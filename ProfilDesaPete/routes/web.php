@@ -14,5 +14,57 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+
+Route::get('index', function(){
+    return view('index');
+});
+
+Route::get('404', function(){
+    return view('404');
+});
+
+Route::get('about', function(){
+    return view('about');
+});
+
+Route::get('blog', function(){
+    return view('blog');
+});
+
+Route::get('booking', function(){
+    return view('booking');
+});
+
+Route::get('contact', function(){
+    return view('contact');
+});
+
+Route::get('destination', function(){
+    return view('destination');
+});
+
+Route::get('gallery', function(){
+    return view('gallery');
+});
+
+Route::get('guides', function(){
+    return view('guides');
+});
+
+Route::get('packages', function(){
+    return view('packages');
+});
+
+Route::get('infografis', function(){
+    return view('infografis');
+});
+
+Route::get('testimonial', function(){
+    return view('testimonial');
+});
+
+Route::get('tour', function(){
+    return view('tour');
 });
