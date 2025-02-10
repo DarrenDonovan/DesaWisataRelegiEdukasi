@@ -1245,3 +1245,10 @@
     background: var(--bs-dark) !important;
 }
 /*** copyright end ***/
+
+.subtext{
+    display: block; /* biar turun ke bawah */
+    font-size: 20px; 
+    color: #ffffff; 
+    margin-left: 47px;
+}
