@@ -1252,3 +1252,9 @@
     color: #ffffff; 
     margin-left: 47px;
 }
+
+.scrolled .subtext {
+    color:#13357B; /* Warna biru saat di-scroll */
+}
+
+

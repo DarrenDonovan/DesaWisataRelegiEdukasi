@@ -130,3 +130,11 @@
 
 })(jQuery);
 
+window.addEventListener("scroll", function () {
+    var navbar = document.querySelector(".navbar-brand"); // Ganti dengan elemen navbar utama jika perlu
+    if (window.scrollY > 50) { // Jika scroll lebih dari 50px
+        navbar.classList.add("scrolled");
+    } else {
+        navbar.classList.remove("scrolled");
+    }
+});
