@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Middleware\Authenticate;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -79,4 +81,4 @@ Route::post('login', [AuthController::class, 'authenticate']);
 
 Route::get('admin', function(){
     return view('admin');
-});
+})->middleware('auth');
