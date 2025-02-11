@@ -11,20 +11,30 @@
 <body>
   <div class="wrapper">
     <div class="title"><span>Login Form</span></div>
-    <form action="#">
+    <form action="login" method="POST">
+    @csrf
       <div class="row">
         <i class="fas fa-user"></i>
-        <input type="text" placeholder="Email or Phone" required />
+        <input type="email" placeholder="Email" name="email" required />
       </div>
       <div class="row">
         <i class="fas fa-lock"></i>
-        <input type="password" placeholder="Password" required />
+        <input type="password" placeholder="Password" name="password" required />
       </div>
       <div class="pass"><a href="#">Forgot password?</a></div>
       <div class="row button">
-        <input type="submit" value="Login" />
+        <input type="submit" value="login" />
       </div>
     </form>
+    @if ($errors->any())
+        <div class="alert alert-danger col-md-6">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
   </div>
 </body>
 </html>
