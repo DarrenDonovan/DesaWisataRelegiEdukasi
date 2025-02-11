@@ -43,19 +43,19 @@
         <div class="container-fluid bg-primary px-5 d-none d-lg-block">
             <div class="row gx-0">
                 <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center" style="height: 45px;">
+                   <!-- <div class="d-inline-flex align-items-center" style="height: 45px;">
                         <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-twitter fw-normal"></i></a>
                         <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
                         <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
                         <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-instagram fw-normal"></i></a>
                         <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href=""><i class="fab fa-youtube fw-normal"></i></a>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-lg-4 text-center text-lg-end">
                     <div class="d-inline-flex align-items-center" style="height: 45px;">
-                        <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Register</small></a>
+                       <!-- <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Register</small></a> -->
                         <a href="{{url('login')}}"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
-                        <div class="dropdown">
+                       <!-- <div class="dropdown">
                             <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown"><small><i class="fa fa-home me-2"></i> My Dashboard</small></a>
                             <div class="dropdown-menu rounded">
                                 <a href="#" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> My Profile</a>
@@ -64,7 +64,7 @@
                                 <a href="#" class="dropdown-item"><i class="fas fa-cog me-2"></i> Account Settings</a>
                                 <a href="#" class="dropdown-item"><i class="fas fa-power-off me-2"></i> Log Out</a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -108,15 +108,15 @@
         </div>
         <!-- Navbar & Hero End -->
 
-        <!-- Header Start -->
-        <div class="container-fluid bg-breadcrumb">
+       <!-- Header Start -->
+       <div class="container-fluid bg-breadcrumb">
             <div class="container text-center py-5" style="max-width: 900px;">
                 <h3 class="text-white display-3 mb-4">Our Blog</h1>
-                <ol class="breadcrumb justify-content-center mb-0">
+                <!-- <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Pages</a></li>
                     <li class="breadcrumb-item active text-white">Blog</li>
-                </ol>    
+                </ol>     -->
             </div>
         </div>
         <!-- Header End -->
@@ -125,8 +125,8 @@
         <div class="container-fluid blog py-5">
             <div class="container py-5">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h5 class="section-title px-3">Our Blog</h5>
-                    <h1 class="mb-4">Popular Travel Blogs</h1>
+                    <h5 class="section-title px-3"> Berita Desa </h5>
+                    <h1 class="mb-4">Menyajikan informasi terbaru tentang peristiwa dan berita terkini Desa Pete </h1>
                     <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti deserunt tenetur sapiente atque. Magni non explicabo beatae sit, vel reiciendis consectetur numquam id similique sunt error obcaecati ducimus officia maiores.
                     </p>
                 </div>
@@ -136,6 +136,52 @@
                             <div class="blog-img">
                                 <div class="blog-img-inner">
                                     <img class="img-fluid w-100 rounded-top" src="img/blog-1.jpg" alt="Image">
+                                    <div class="blog-icon">
+                                        <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                                <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
+                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>28 Jan 2050</small>
+                                    <a href="#" class="btn-hover flex-fill text-center text-white border-end py-2"><i class="fa fa-thumbs-up text-primary me-2"></i>1.7K</a>
+                                    <a href="#" class="btn-hover flex-fill text-center text-white py-2"><i class="fa fa-comments text-primary me-2"></i>1K</a>
+                                </div>
+                            </div>
+                            <div class="blog-content border border-top-0 rounded-bottom p-4">
+                                <p class="mb-3">Posted By: Royal Hamblin </p>
+                                <a href="#" class="h4">Adventures Trip</a>
+                                <p class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam eos</p>
+                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <div class="blog-img-inner">
+                                    <img class="img-fluid w-100 rounded-top" src="img/blog-2.jpg" alt="Image">
+                                    <div class="blog-icon">
+                                        <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                                <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
+                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>28 Jan 2050</small>
+                                    <a href="#" class="btn-hover flex-fill text-center text-white border-end py-2"><i class="fa fa-thumbs-up text-primary me-2"></i>1.7K</a>
+                                    <a href="#" class="btn-hover flex-fill text-center text-white py-2"><i class="fa fa-comments text-primary me-2"></i>1K</a>
+                                </div>
+                            </div>
+                            <div class="blog-content border border-top-0 rounded-bottom p-4">
+                                <p class="mb-3">Posted By: Royal Hamblin </p>
+                                <a href="#" class="h4">Adventures Trip</a>
+                                <p class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam eos</p>
+                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <div class="blog-img-inner">
+                                    <img class="img-fluid w-100 rounded-top" src="img/blog-2.jpg" alt="Image">
                                     <div class="blog-icon">
                                         <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
                                     </div>
@@ -200,13 +246,36 @@
                             </div>
                         </div>
                     </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="blog-item">
+                            <div class="blog-img">
+                                <div class="blog-img-inner">
+                                    <img class="img-fluid w-100 rounded-top" src="img/blog-3.jpg" alt="Image">
+                                    <div class="blog-icon">
+                                        <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                    </div>
+                                </div>
+                                <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
+                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>28 Jan 2050</small>
+                                    <a href="#" class="btn-hover flex-fill text-center text-white border-end py-2"><i class="fa fa-thumbs-up text-primary me-2"></i>1.7K</a>
+                                    <a href="#" class="btn-hover flex-fill text-center text-white py-2"><i class="fa fa-comments text-primary me-2"></i>1K</a>
+                                </div>
+                            </div>
+                            <div class="blog-content border border-top-0 rounded-bottom p-4">
+                                <p class="mb-3">Posted By: Royal Hamblin </p>
+                                <a href="#" class="h4">Adventures Trip</a>
+                                <p class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam eos</p>
+                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Read More</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- Blog End -->
 
         <!-- Subscribe Start -->
-        <div class="container-fluid subscribe py-5">
+        <!-- <div class="container-fluid subscribe py-5">
             <div class="container text-center py-5">
                 <div class="mx-auto text-center" style="max-width: 900px;">
                     <h5 class="subscribe-title px-3">Subscribe</h5>
@@ -219,7 +288,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- Subscribe End -->
 
         <!-- Footer Start -->
@@ -242,7 +311,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
+                    <!-- <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Company</h4>
                             <a href=""><i class="fas fa-angle-right me-2"></i> About</a>
@@ -263,7 +332,7 @@
                             <a href=""><i class="fas fa-angle-right me-2"></i> Sitemap</a>
                             <a href=""><i class="fas fa-angle-right me-2"></i> Cookie policy</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -285,7 +354,7 @@
                 </div>
             </div>
         </div>
-        <!-- Copyright End --> 
+        <!-- Copyright End -->
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
