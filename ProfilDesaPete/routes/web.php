@@ -68,3 +68,7 @@ Route::get('testimonial', function(){
 Route::get('tour', function(){
     return view('tour');
 });
+
+Route::get('login', function(){
+    return view('login');
+});
