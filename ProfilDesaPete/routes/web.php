@@ -36,3 +36,5 @@ Route::post('login', [AuthController::class, 'authenticate']);
 Route::get('admin', function(){
     return view('admin');
 })->middleware('auth');
+
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
