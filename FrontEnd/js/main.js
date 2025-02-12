@@ -139,3 +139,35 @@ window.addEventListener("scroll", function () {
     }
 });
 
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    let modal = document.getElementById("galleryModal");
+    let overlay = document.querySelector(".destination-overlay");
+    let destinationImg = document.querySelector(".destination-img");
+
+    // Saat modal dibuka, sembunyikan overlay sementara
+    modal.addEventListener("show.bs.modal", function () {
+        overlay.style.opacity = "0"; 
+    });
+
+    // Saat modal ditutup, kembalikan hover normal
+    modal.addEventListener("hidden.bs.modal", function () {
+        overlay.style.opacity = "0"; // Pastikan overlay tidak langsung muncul
+
+        // Tambahkan kembali efek hover saat mouse masuk & keluar
+        destinationImg.addEventListener("mouseenter", function () {
+            overlay.style.opacity = "1";
+        });
+
+        destinationImg.addEventListener("mouseleave", function () {
+            overlay.style.opacity = "0";
+        });
+    });
+});
+
+
+
+
+
+
