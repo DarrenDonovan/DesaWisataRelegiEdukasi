@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Middleware\Authenticate;
+use App\Http\Controllers\AdminController;
+use App\Http\Middleware\SuperAdminMiddleware;
 
 
 /*
@@ -38,3 +41,12 @@ Route::get('admin', function(){
 })->middleware('auth');
 
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('admin/createadmin', function(){
+    return view('createadmin');
+});
+
+Route::middleware(['auth', SuperAdminMiddleware::class])->group(function(){
+    Route::get('admin/createadmin', [AdminController::class, 'create']);
+    Route::post('admin/storeadmin', [AdminController::class, 'store'])->name('storeadmin');
+});

@@ -22,6 +22,18 @@ class UserSeeder extends Seeder
             'name' => 'superadmin',
             'email' => 'superadmin@admin.com',
             'password' => Hash::make('123'),
+            'created_at' => now(),
+            'updated_at' => now(),
+            'role' => 'superadmin'
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make('123'),
+            'created_at' => now(),
+            'updated_at' => now(),
+            'role' => 'admin'
         ]);
     }
 }
