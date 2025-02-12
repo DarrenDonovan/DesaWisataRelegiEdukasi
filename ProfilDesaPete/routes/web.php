@@ -26,7 +26,7 @@ Route::get('/', function () {
 $pages = [
     'index', '404', 'about', 'blog', 'booking', 'contact', 
     'destination', 'gallery', 'guides', 'packages', 'infografis', 
-    'testimonial', 'tour', 'login'
+    'testimonial', 'tour', 'login', 'admin2'
 ];
 
 foreach ($pages as $page) {
@@ -48,5 +48,5 @@ Route::get('admin/createadmin', function(){
 
 Route::middleware(['auth', SuperAdminMiddleware::class])->group(function(){
     Route::get('admin/createadmin', [AdminController::class, 'create']);
-    Route::post('admin/storeadmin', [AdminController::class, 'store'])->name('storeadmin');
+    Route::post('admin/storeadmin', [AdminController::class, 'store']);
 });
