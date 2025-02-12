@@ -111,12 +111,12 @@
         <!-- Header Start -->
         <div class="container-fluid bg-breadcrumb">
             <div class="container text-center py-5" style="max-width: 900px;">
-                <h3 class="text-white display-3 mb-4">Our Services</h1>
-                <ol class="breadcrumb justify-content-center mb-0">
+                <h3 class="text-white display-3 mb-4">Infografis</h1>
+                <!-- <ol class="breadcrumb justify-content-center mb-0">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Pages</a></li>
                     <li class="breadcrumb-item active text-white">Services</li>
-                </ol>    
+                </ol>     -->
             </div>
         </div>
         <!-- Header End -->
@@ -125,8 +125,8 @@
         <div class="container-fluid bg-light service py-5">
             <div class="container py-5">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h5 class="section-title px-3">Searvices</h5>
-                    <h1 class="mb-0">Our Services</h1>
+                    <h5 class="section-title px-3">Demografi</h5>
+                    <h1 class="mb-0">Penduduk</h1>
                 </div>
                 <div class="row g-4">
                     <div class="col-lg-6">
@@ -134,7 +134,7 @@
                             <div class="col-12">
                                 <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
                                     <div class="service-content text-end">
-                                        <h5 class="mb-4">WorldWide Tours</h5>
+                                        <h5 class="mb-4">Jumlah Penduduk dan Kepala Keluarga</h5>
                                         <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
                                         </p>
                                     </div>
@@ -146,7 +146,7 @@
                             <div class="col-12">
                                 <div class="service-content-inner d-flex align-items-center  bg-white border border-primary rounded p-4 pe-0">
                                     <div class="service-content text-end">
-                                        <h5 class="mb-4">Hotel Reservation</h5>
+                                        <h5 class="mb-4">Berdasarkan Dusun</h5>
                                         <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
                                         </p>
                                     </div>
@@ -158,7 +158,7 @@
                             <div class="col-12">
                                 <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
                                     <div class="service-content text-end">
-                                        <h5 class="mb-4">Travel Guides</h5>
+                                        <h5 class="mb-4">Berdasarkan Kelompok Umur</h5>
                                         <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
                                         </p>
                                     </div>
@@ -167,10 +167,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <!-- <div class="col-12">
                                 <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
                                     <div class="service-content text-end">
-                                        <h5 class="mb-4">Event Management</h5>
+                                        <h5 class="mb-4">Berdasarkan Pendidikan</h5>
                                         <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
                                         </p>
                                     </div>
@@ -178,7 +178,7 @@
                                         <i class="fa fa-cog fa-4x text-primary"></i>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -189,7 +189,7 @@
                                         <i class="fa fa-globe fa-4x text-primary"></i>
                                     </div>
                                     <div class="service-content">
-                                        <h5 class="mb-4">WorldWide Tours</h5>
+                                        <h5 class="mb-4">Berdasarkan Pekerjaan</h5>
                                         <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
                                         </p>
                                     </div>
@@ -201,7 +201,7 @@
                                         <i class="fa fa-hotel fa-4x text-primary"></i>
                                     </div>
                                     <div class="service-content">
-                                        <h5 class="mb-4">Hotel Reservation</h5>
+                                        <h5 class="mb-4">Berdasarkan Agama</h5>
                                         <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
                                         </p>
                                     </div>
@@ -213,13 +213,13 @@
                                         <i class="fa fa-user fa-4x text-primary"></i>
                                     </div>
                                     <div class="service-content">
-                                        <h5 class="mb-4">Travel Guides</h5>
+                                        <h5 class="mb-4">Berdasarkan Pendidikan</h5>
                                         <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
                                         </p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <!-- <div class="col-12">
                                 <div class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
                                     <div class="service-icon p-4">
                                         <i class="fa fa-cog fa-4x text-primary"></i>
@@ -230,7 +230,7 @@
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                     <div class="col-12">
@@ -243,14 +243,14 @@
         </div>
         <!-- Services End -->
 
-        <!-- Testimonial Start -->
+        <!-- Jumlah penduduk dan kepala keluarga -->
         <div class="container-fluid testimonial py-5">
             <div class="container py-5">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h5 class="section-title px-3">Testimonial</h5>
-                    <h1 class="mb-0">Our Clients Say!!!</h1>
+                    <!-- <h5 class="section-title px-3">Testimonial</h5> -->
+                    <h1 class="mb-0">Jumlah Penduduk dan Kepala Keluarga</h1>
                 </div>
-                <div class="testimonial-carousel owl-carousel">
+                <!-- <div class="testimonial-carousel owl-carousel">
                     <div class="testimonial-item text-center rounded pb-4">
                         <div class="testimonial-comment bg-light rounded p-4">
                             <p class="text-center mb-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis nostrum cupiditate, eligendi repellendus saepe illum earum architecto dicta quisquam quasi porro officiis. Vero reiciendis,
@@ -331,10 +331,60 @@
                             </div>
                         </div>
                     </div>
+                </div> -->
+            </div>
+        </div>
+        <!-- END -->
+
+         <!--  Berdasarkan Dusun-->
+        <div class="container-fluid testimonial py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h1 class="mb-0">Berdasarkan Dusun</h1>
                 </div>
             </div>
         </div>
-        <!-- Testimonial End -->
+        <!-- END -->
+
+        <!-- Berdasarkan kelompok umur  -->
+        <div class="container-fluid testimonial py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h1 class="mb-0">Berdasarkan Kelompok Umur</h1>
+                </div>
+            </div>
+        </div>
+        <!-- END -->
+
+         <!-- Berdasarkan pekerjaan  -->
+         <div class="container-fluid testimonial py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h1 class="mb-0">Berdasarkan Pekerjaan</h1>
+                </div>
+            </div>
+        </div>
+        <!-- END -->
+
+        <!-- Berdasarkan agama  -->
+        <div class="container-fluid testimonial py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h1 class="mb-0">Berdasarkan Agama</h1>
+                </div>
+            </div>
+        </div>
+        <!-- END -->
+
+        <!-- Berdasarkan pendidikan  -->
+        <div class="container-fluid testimonial py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h1 class="mb-0">Berdasarkan Pendidikan</h1>
+                </div>
+            </div>
+        </div>
+        <!-- END -->
 
         <!-- Subscribe Start -->
         <div class="container-fluid subscribe py-5">
@@ -360,7 +410,7 @@
                     <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Hubungi Kami</h4>
-                            <a href=""><i class="fas fa-home me-2"></i> 123 Street, New York, USA</a>
+                            <a href=""><i class="fas fa-home me-2"></i> Tangerang, Banten, Indonesia</a>
                             <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
                             <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
                             <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
@@ -373,7 +423,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
+                    <!-- <div class="col-md-6 col-lg-6 col-xl-3">
                         <div class="footer-item d-flex flex-column">
                             <h4 class="mb-4 text-white">Company</h4>
                             <a href=""><i class="fas fa-angle-right me-2"></i> About</a>
@@ -394,11 +444,12 @@
                             <a href=""><i class="fas fa-angle-right me-2"></i> Sitemap</a>
                             <a href=""><i class="fas fa-angle-right me-2"></i> Cookie policy</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
         <!-- Footer End -->
+        
         
         <!-- Copyright Start -->
         <div class="container-fluid copyright text-body py-4">

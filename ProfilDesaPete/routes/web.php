@@ -20,61 +20,15 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('index', function(){
-    return view('index');
-});
+$pages = [
+    'index', '404', 'about', 'blog', 'booking', 'contact', 
+    'destination', 'gallery', 'guides', 'packages', 'infografis', 
+    'testimonial', 'tour', 'login'
+];
 
-Route::get('404', function(){
-    return view('404');
-});
-
-Route::get('about', function(){
-    return view('about');
-});
-
-Route::get('blog', function(){
-    return view('blog');
-});
-
-Route::get('booking', function(){
-    return view('booking');
-});
-
-Route::get('contact', function(){
-    return view('contact');
-});
-
-Route::get('destination', function(){
-    return view('destination');
-});
-
-Route::get('gallery', function(){
-    return view('gallery');
-});
-
-Route::get('guides', function(){
-    return view('guides');
-});
-
-Route::get('packages', function(){
-    return view('packages');
-});
-
-Route::get('infografis', function(){
-    return view('infografis');
-});
-
-Route::get('testimonial', function(){
-    return view('testimonial');
-});
-
-Route::get('tour', function(){
-    return view('tour');
-});
-
-Route::get('login', function(){
-    return view('login');
-});
+foreach ($pages as $page) {
+    Route::view($page, $page);
+}
 
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'authenticate']);
@@ -82,3 +36,5 @@ Route::post('login', [AuthController::class, 'authenticate']);
 Route::get('admin', function(){
     return view('admin');
 })->middleware('auth');
+
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');

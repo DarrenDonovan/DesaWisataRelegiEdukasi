@@ -1257,6 +1257,13 @@
     color:#13357B; /* Warna biru saat di-scroll */
 }
 
+.pagination-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Pusatkan pagination */
+    gap: 6px; /* Beri jarak antar elemen */
+}
+
 
 .btn-hover{
     text-align: left;
@@ -1286,4 +1293,42 @@
 .destination-img:hover .destination-overlay {
     opacity: 1;
 }
+
+
+.arrow-text {
+    display: block;
+    font-size: 13px;
+    color: white; 
+}
+
+.pagination-number {
+    --size: 32px;
+    border-radius: 6px;
+    background: #13357B;
+    color: white; 
+    min-width: var(--size);
+    height: var(--size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+@media (hover: hover) {
+    .pagination-number:hover {
+        background: #14141F;
+    }
+}
+
+.pagination-number:active {
+    background: #14141F;
+}
+
+.pagination-active {
+    background: #14141F;
+    position: relative;
+}
+
+  
 
