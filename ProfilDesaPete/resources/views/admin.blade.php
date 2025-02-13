@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>Ready Bootstrap Dashboard</title>
+	<title>Admin Dashboard</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 	<link rel="stylesheet" href="{{url('css/admin/bootstrap.min.css')}}">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
@@ -27,32 +27,21 @@
 <body>
    <!-- Topbar Start -->
    <div class="container-fluid bg-primary px-5 d-none d-lg-block">
-            <div class="row gx-0">
-                <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
-                    <div class="d-inline-flex align-items-center" style="height: 45px;">
-                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-twitter fw-normal"></i></a>
-                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
-                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
-                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-instagram fw-normal"></i></a>
-                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href=""><i class="fab fa-youtube fw-normal"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 text-center text-lg-end">
-                    <div class="d-inline-flex align-items-center" style="height: 45px;">
-                        @if(Auth::check() && Auth::user()->role==='superadmin')
-                        <a href="{{url('admin/createadmin')}}"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Add Admin</small></a>
-                        @endif
-                        <a href="{{url('logout')}}"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Logout</small></a>
-                    </div>
+		<div class="row gx-0 justify-content-end"> <!-- Tambahkan justify-content-end -->
+   			<div class="col-lg-4 text-end"> <!-- Gunakan text-end agar teks sejajar ke kanan -->
+                <div class="d-inline-flex align-items-center" style="height: 45px;">
+                    @if(Auth::check() && Auth::user()->role==='superadmin')
+                    <a href="{{url('admin/createadmin')}}"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Add Admin</small></a>
+                    @endif
+                    <a href="{{url('logout')}}"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Logout</small></a>
                 </div>
             </div>
         </div>
+    </div>
         <!-- Topbar End -->
 	<div class="wrapper">
-		
 			<div class="sidebar">
 				<div class="scrollbar-inner sidebar-wrapper">
-					
 					<ul class="nav">
 						<li class="nav-item active">
 							<a href="index.html">
@@ -111,163 +100,72 @@
 					</ul>
 				</div>
 			</div>
+
+
 			<div class="main-panel">
-				<div class="content">
+				<!-- <div>
+					<table>
+						<thead>
+							<th>No</th>
+							<th>Nama Kegiatan</th>
+							<th>Keterangan</th>
+							<th>Gambar</th>
+						</thead>
+						<tbody>
+							@foreach ($kegiatan as $item)
+							<tr>
+								<td>{{ $item->id_kegiatan }}</td>
+								<td>{{ $item->nama_kegiatan }}</td>
+								<td>{{ $item->keterangan }}</td>
+								<td>
+									@if ($item->gambar_kegiatan)
+										<img src="{{ asset('storage/' . $item->gambar_kegiatan )}}" width="100" alt="gambar_kegiatan">
+									@else
+										Tidak ada gambar
+									@endif
+								</td>
+							</tr>
+							@endforeach
+						</tbody>
+					</table>
+				</div> -->
+
+			<div class="content">
 					<div class="container-fluid">
-						<h4 class="page-title">Dashboard</h4>
+						<h4 class="page-title">Kegiatan</h4>
 						<div class="row">
-							<div class="col-md-3">
-								<div class="card card-stats card-warning">
-									<div class="card-body ">
-										<div class="row">
-											<div class="col-5">
-												<div class="icon-big text-center">
-													<i class="la la-users"></i>
-												</div>
-											</div>
-											<div class="col-7 d-flex align-items-center">
-												<div class="numbers">
-													<p class="card-category">Visitors</p>
-													<h4 class="card-title">1,294</h4>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="card card-stats card-success">
-									<div class="card-body ">
-										<div class="row">
-											<div class="col-5">
-												<div class="icon-big text-center">
-													<i class="la la-bar-chart"></i>
-												</div>
-											</div>
-											<div class="col-7 d-flex align-items-center">
-												<div class="numbers">
-													<p class="card-category">Sales</p>
-													<h4 class="card-title">$ 1,345</h4>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="card card-stats card-danger">
+							<div class="col">
+								<div class="card">
 									<div class="card-body">
-										<div class="row">
-											<div class="col-5">
-												<div class="icon-big text-center">
-													<i class="la la-newspaper-o"></i>
-												</div>
-											</div>
-											<div class="col-7 d-flex align-items-center">
-												<div class="numbers">
-													<p class="card-category">Subscribers</p>
-													<h4 class="card-title">1303</h4>
-												</div>
-											</div>
-										</div>
+										<table class="table table-striped mt-3">
+											<thead>
+												<tr>
+													<th scope="col">No</th>
+													<th scope="col">Nama Kegiatan</th>
+													<th scope="col">Keterangan</th>
+													<th scope="col">Gambar Kegiatan</th>
+												</tr>
+											</thead>
+											<tbody>
+    										@if ($kegiatan)
+        										<tr>
+            										<td>{{ $kegiatan->id_kegiatan }}</td>
+            										<td>{{ $kegiatan->nama_kegiatan }}</td>
+            										<td>{{ $kegiatan->keterangan }}</td>
+            										<td>
+                									@if ($kegiatan->gambar_kegiatan)
+                									    <img src="{{ asset('storage/' . $kegiatan->gambar_kegiatan) }}" width="100" alt="">
+                									@else
+                									    Tidak ada gambar
+                									@endif
+													</td>
+												</tr>
+											</tbody>
+											@endif
+										</table>
 									</div>
 								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="card card-stats card-primary">
-									<div class="card-body ">
-										<div class="row">
-											<div class="col-5">
-												<div class="icon-big text-center">
-													<i class="la la-check-circle"></i>
-												</div>
-											</div>
-											<div class="col-7 d-flex align-items-center">
-												<div class="numbers">
-													<p class="card-category">Order</p>
-													<h4 class="card-title">576</h4>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-<!-- 							<div class="col-md-3">
-								<div class="card card-stats">
-									<div class="card-body ">
-										<div class="row">
-											<div class="col-5">
-												<div class="icon-big text-center icon-warning">
-													<i class="la la-pie-chart text-warning"></i>
-												</div>
-											</div>
-											<div class="col-7 d-flex align-items-center">
-												<div class="numbers">
-													<p class="card-category">Number</p>
-													<h4 class="card-title">150GB</h4>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="card card-stats">
-									<div class="card-body ">
-										<div class="row">
-											<div class="col-5">
-												<div class="icon-big text-center">
-													<i class="la la-bar-chart text-success"></i>
-												</div>
-											</div>
-											<div class="col-7 d-flex align-items-center">
-												<div class="numbers">
-													<p class="card-category">Revenue</p>
-													<h4 class="card-title">$ 1,345</h4>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="card card-stats">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-5">
-												<div class="icon-big text-center">
-													<i class="la la-times-circle-o text-danger"></i>
-												</div>
-											</div>
-											<div class="col-7 d-flex align-items-center">
-												<div class="numbers">
-													<p class="card-category">Errors</p>
-													<h4 class="card-title">23</h4>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-3">
-								<div class="card card-stats">
-									<div class="card-body">
-										<div class="row">
-											<div class="col-5">
-												<div class="icon-big text-center">
-													<i class="la la-heart-o text-primary"></i>
-												</div>
-											</div>
-											<div class="col-7 d-flex align-items-center">
-												<div class="numbers">
-													<p class="card-category">Followers</p>
-													<h4 class="card-title">+45K</h4>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div> -->
+
 						</div>
 						<div class="row">
 							<div class="col-md-3">

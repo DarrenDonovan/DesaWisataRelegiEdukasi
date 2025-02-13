@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
+    public function index(){
+        $kegiatan = DB::table('kegiatan')->orderBy('id_kegiatan', 'desc')->first();
+        return view('admin', compact('kegiatan'));
+    }
+
     public function create(){
         if(Auth::user()->role !== 'superadmin'){
             abort(403, 'Unauthorized Access');
