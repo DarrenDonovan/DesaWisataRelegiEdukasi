@@ -140,7 +140,7 @@ window.addEventListener("scroll", function () {
 });
 
 
-
+// MODAL GALLERY
 document.addEventListener("DOMContentLoaded", function () {
     let modal = document.getElementById("galleryModal");
     let overlay = document.querySelector(".destination-overlay");
@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
-
+// MODAL GALLERY END
 
 // PETA
 var map = L.map('map').setView([-6.2486487494494085, 106.45379672355843], 13); // Ganti koordinat sesuai lokasi desa
@@ -231,5 +231,5 @@ document.getElementById("searchBox").addEventListener("input", function() {
         }
     });
 });
-
-
+// PETA END
+        
