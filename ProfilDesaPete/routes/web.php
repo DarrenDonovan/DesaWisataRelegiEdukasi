@@ -24,7 +24,7 @@ Route::get('/', function () {
 });
 
 $pages = [
-    'index', '404', 'about', 'blog', 'booking', 'contact', 
+    '404', 'about', 'blog', 'booking', 'contact', 
     'destination', 'gallery', 'guides', 'packages', 'infografis', 
     'testimonial', 'tour', 'login'
 ];
@@ -36,7 +36,8 @@ foreach ($pages as $page) {
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'authenticate']);
 
-Route::get('admin', [AdminController::class, 'index'])->middleware('auth')->name('admin');
+Route::get('admin', [AdminController::class, 'admin'])->middleware('auth')->name('admin');
+Route::get('/', [AdminController::class, 'index'])->name('index');
 
 /*Route::get('admin', function(){
     return view('admin');

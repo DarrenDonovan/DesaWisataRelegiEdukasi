@@ -133,6 +133,14 @@
                     <h5 class="section-title px-3">Galeri</h5>
                     <h1 class="mb-0">Kegiatan</h1>
                 </div>
+                @if ($kegiatanterbaru)
+                <div>
+                <h1>Kegiatan Terbaru</h1>
+                <img src="{{ asset('storage/' . $kegiatanterbaru->gambar_kegiatan) }}" width="100" alt="">
+                <h1>{{ $kegiatanterbaru->nama_kegiatan }}</h1>
+                <p>{{ $kegiatanterbaru->keterangan }}</p>
+                </div>
+                @endif
                 <div class="tab-class text-center">
                     <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
                         <li class="nav-item">

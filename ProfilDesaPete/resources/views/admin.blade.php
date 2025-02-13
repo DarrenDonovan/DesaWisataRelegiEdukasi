@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
 	<link rel="stylesheet" href="{{url('css/admin/ready.css')}}">
 	<link rel="stylesheet" href="{{url('css/admin/demo.css')}}">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 	 <!-- Icon Font Stylesheet -->
 	 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
@@ -103,36 +104,8 @@
 
 
 			<div class="main-panel">
-				<!-- <div>
-					<table>
-						<thead>
-							<th>No</th>
-							<th>Nama Kegiatan</th>
-							<th>Keterangan</th>
-							<th>Gambar</th>
-						</thead>
-						<tbody>
-							@foreach ($kegiatan as $item)
-							<tr>
-								<td>{{ $item->id_kegiatan }}</td>
-								<td>{{ $item->nama_kegiatan }}</td>
-								<td>{{ $item->keterangan }}</td>
-								<td>
-									@if ($item->gambar_kegiatan)
-										<img src="{{ asset('storage/' . $item->gambar_kegiatan )}}" width="100" alt="gambar_kegiatan">
-									@else
-										Tidak ada gambar
-									@endif
-								</td>
-							</tr>
-							@endforeach
-						</tbody>
-					</table>
-				</div> -->
-
-			<div class="content">
 					<div class="container-fluid">
-						<h4 class="page-title">Kegiatan</h4>
+						<h4 class="page-title mt-4">Kegiatan</h4>
 						<div class="row">
 							<div class="col">
 								<div class="card">
@@ -140,31 +113,56 @@
 										<table class="table table-striped mt-3">
 											<thead>
 												<tr>
-													<th scope="col">No</th>
 													<th scope="col">Nama Kegiatan</th>
 													<th scope="col">Keterangan</th>
 													<th scope="col">Gambar Kegiatan</th>
+													<th scope="col">Action</th>
 												</tr>
 											</thead>
 											<tbody>
-    										@if ($kegiatan)
+    										@if ($kegiatanterbaru)
         										<tr>
-            										<td>{{ $kegiatan->id_kegiatan }}</td>
-            										<td>{{ $kegiatan->nama_kegiatan }}</td>
-            										<td>{{ $kegiatan->keterangan }}</td>
+            										<td>{{ $kegiatanterbaru->nama_kegiatan }}</td>
+            										<td>{{ $kegiatanterbaru->keterangan }}</td>
             										<td>
-                									@if ($kegiatan->gambar_kegiatan)
-                									    <img src="{{ asset('storage/' . $kegiatan->gambar_kegiatan) }}" width="100" alt="">
+                									@if ($kegiatanterbaru->gambar_kegiatan)
+                									    <img src="{{ asset('storage/' . $kegiatanterbaru->gambar_kegiatan) }}" width="100" alt="">
                 									@else
                 									    Tidak ada gambar
                 									@endif
 													</td>
+													<td>Tambah Kegiatan | <a href="#" data-bs-toggle="modal" data-bs-target="#myModal">Edit</a> | Hapus</td>
 												</tr>
+												@endif
 											</tbody>
-											@endif
 										</table>
 									</div>
 								</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Modal Title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+				<form action="" method="post">
+					<label for="nama_kegiatan">Nama Kegiatan</label>
+					<input type="text" name="nama_kegiatan" id="nama_kegiatan">
+					<label for="keterangan">Keterangan</label>
+					<input type="text" name="keterangan" id="keterangan">
+					<label for="gambar_kegiatan">Gambar Kegiatan</label>
+					<input type="image" name="gambar_kegiatan" id="gambar_kegiatan">
+				</form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 						</div>
 						<div class="row">
@@ -477,7 +475,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					
 				</div>
 				<footer class="footer">
 					<div class="container-fluid">
@@ -544,4 +542,5 @@
 <script src="{{url('js/admin/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 <script src="{{url('js/admin/ready.min.js"></script>
 <script src="{{url('js/admin/demo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </html>

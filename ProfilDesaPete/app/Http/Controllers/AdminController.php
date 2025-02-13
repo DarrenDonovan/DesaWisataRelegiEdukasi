@@ -10,9 +10,17 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    public function index(){
-        $kegiatan = DB::table('kegiatan')->orderBy('id_kegiatan', 'desc')->first();
+    public function admin(){
+        $kegiatanterbaru = DB::table('kegiatan')->orderBy('id_kegiatan', 'desc')->first();
+        return view('admin', compact('kegiatanterbaru'));
+
+        $kegiatan = DB::table('kegiatan')->get();
         return view('admin', compact('kegiatan'));
+    }
+
+    public function index(){
+        $kegiatanterbaru = DB::table('kegiatan')->orderBy('id_kegiatan', 'desc')->first();
+        return view('index', compact('kegiatanterbaru'));
     }
 
     public function create(){
