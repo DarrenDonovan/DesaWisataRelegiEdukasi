@@ -102,7 +102,7 @@
 				</div>
 			</div>
 
-
+<!-- Kegiatan Terbaru -->
 			<div class="main-panel">
 					<div class="container-fluid">
 						<h4 class="page-title mt-4">Kegiatan Terbaru</h4>
@@ -148,7 +148,7 @@
 												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             								</div>
             								<div class="modal-body">
-												<form action="{{ route('admin.update', $kegiatanterbaru->id_kegiatan)}}" method="post">
+												<form action="{{ route('admin.update', $kegiatanterbaru->id_kegiatan)}}" method="post" enctype="multipart/form-data">
 													@csrf
 													<label for="nama_kegiatan">Nama Kegiatan</label>
 													<input type="text" name="nama_kegiatan" id="nama_kegiatan" value="{{ $kegiatanterbaru->nama_kegiatan }}" required>
@@ -164,6 +164,7 @@
 								    </div>
 								</div>
 
+					<!-- Daftar Kegiatan -->
 						<div class="row">
 							<div class="col">
 								<div class="card">
@@ -200,7 +201,7 @@
 																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             												</div>
             												<div class="modal-body">
-																<form action="{{ route('admin.update', $item->id_kegiatan)}}" method="post">
+																<form action="{{ route('admin.update', $item->id_kegiatan)}}" method="post" enctype="multipart/form-data">
 																	@csrf
 																	<label for="nama_kegiatan">Nama Kegiatan</label>
 																	<input type="text" name="nama_kegiatan" id="nama_kegiatan" value="{{ $item->nama_kegiatan }}" required>

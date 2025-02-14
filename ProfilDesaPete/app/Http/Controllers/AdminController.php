@@ -64,7 +64,6 @@ class AdminController extends Controller
             return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
         }
 
-        // Data untuk update
         $updateData = [
             'nama_kegiatan' => $request->nama_kegiatan,
             'keterangan' => $request->keterangan,
@@ -72,10 +71,10 @@ class AdminController extends Controller
 
         if ($request->hasFile('gambar_kegiatan')) {
             if ($kegiatan->gambar_kegiatan) {
-                Storage::delete('storage/' . $kegiatan->gambar_kegiatan);
+                Storage::disk('public')->delete($kegiatan->gambar_kegiatan);
             }
 
-            $imagePath = $request->file('gambar_kegiatan')->store('keterangan', 'public');
+            $imagePath = $request->file('gambar_kegiatan')->store('kegiatan', 'public');
             $updateData['gambar_kegiatan'] = $imagePath;
         }
 
