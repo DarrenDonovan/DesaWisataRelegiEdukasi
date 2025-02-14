@@ -105,7 +105,10 @@
 <!-- Kegiatan Terbaru -->
 			<div class="main-panel">
 					<div class="container-fluid">
-						<h4 class="page-title mt-4">Kegiatan Terbaru</h4>
+						@if (Session::has('message'))
+							<p class="alert alert-success mt-2">{{ Session::get('message') }}</p>
+						@endif
+						<h4 class="page-title mt-2">Kegiatan Terbaru</h4>
 						<div class="row">
 							<div class="col">
 								<div class="card">
@@ -131,7 +134,7 @@
                 									    Tidak ada gambar
                 									@endif
 													</td>
-													<td>Tambah Kegiatan | <a href="#" data-bs-toggle="modal" data-bs-target="#myModal">Edit</a> | Hapus</td>
+													<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal">Edit</a></td>
 												</tr>
 												@endif
 											</tbody>
@@ -190,7 +193,7 @@
                 									    Tidak ada gambar
                 									@endif
 													</td>
-													<td>Tambah Kegiatan | <a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{$item->id_kegiatan}}">Edit</a> | Hapus</td>
+													<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{$item->id_kegiatan}}">Edit</a> | <a href="{{route('admin.delete', $item->id_kegiatan)}}">Hapus</a></td>
 												</tr>
 												<!-- Modal Daftar Kegiatan -->
 												<div class="modal fade" id="myModal{{$item->id_kegiatan}}" tabindex="-1" aria-labelledby="modalTitle{{$item->id_kegiatan}}" aria-hidden="true">

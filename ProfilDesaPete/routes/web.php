@@ -55,3 +55,5 @@ Route::middleware(['auth', SuperAdminMiddleware::class])->group(function(){
 });
 
 Route::post('/admin/update/{id}', [AdminController::class, 'update'])->name('admin.update');
+
+Route::get('admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');

@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -80,7 +81,15 @@ class AdminController extends Controller
 
         DB::table('kegiatan')->where('id_kegiatan', $id)->update($updateData);
 
+        Session::flash('message', 'Data Berhasil Diupdate!');
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+    }
+
+    public function delete($id){
+        DB::table('kegiatan')->where('id_kegiatan', $id)->delete();
+        
+        Session::flash('message', 'Data Berhasil Dihapus!');
+        return redirect()->route('admin');
     }
 
 }
