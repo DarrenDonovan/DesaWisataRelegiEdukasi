@@ -105,7 +105,7 @@
 
 			<div class="main-panel">
 					<div class="container-fluid">
-						<h4 class="page-title mt-4">Kegiatan</h4>
+						<h4 class="page-title mt-4">Kegiatan Terbaru</h4>
 						<div class="row">
 							<div class="col">
 								<div class="card">
@@ -143,17 +143,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTitle">Modal Title</h5>
+                <h5 class="modal-title" id="modalTitle">Edit Kegiatan Terbaru</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
 				<form action="" method="post">
 					<label for="nama_kegiatan">Nama Kegiatan</label>
-					<input type="text" name="nama_kegiatan" id="nama_kegiatan">
+					<input type="text" name="nama_kegiatan" id="nama_kegiatan" value="{{ $kegiatanterbaru->nama_kegiatan }}">
 					<label for="keterangan">Keterangan</label>
-					<input type="text" name="keterangan" id="keterangan">
+					<textarea name="keterangan" id="keterangan" cols="50" rows="4">{{ $kegiatanterbaru->keterangan }}</textarea>					
 					<label for="gambar_kegiatan">Gambar Kegiatan</label>
-					<input type="image" name="gambar_kegiatan" id="gambar_kegiatan">
+					<input type="file" name="gambar_kegiatan" id="gambar_kegiatan">
 				</form>
             </div>
             <div class="modal-footer">
