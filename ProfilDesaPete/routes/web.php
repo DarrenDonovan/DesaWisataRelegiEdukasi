@@ -53,3 +53,5 @@ Route::middleware(['auth', SuperAdminMiddleware::class])->group(function(){
     Route::get('admin/createadmin', [AdminController::class, 'create']);
     Route::post('admin/storeadmin', [AdminController::class, 'store']);
 });
+
+Route::post('/admin/update/{id}', [AdminController::class, 'update'])->name('admin.update');
