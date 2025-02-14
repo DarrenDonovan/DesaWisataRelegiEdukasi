@@ -139,7 +139,7 @@
 									</div>
 								</div>
 							
-								<!-- Modal -->
+								<!-- Modal Kegiatan Terbaru -->
 								<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
    									<div class="modal-dialog">
         								<div class="modal-content">
@@ -180,17 +180,41 @@
 											<tbody>
     										@foreach ($kegiatan as $item)
         										<tr>
-            										<td>{{ $kegiatan->nama_kegiatan }}</td>
-            										<td>{{ $kegiatan->keterangan }}</td>
+            										<td>{{ $item->nama_kegiatan }}</td>
+            										<td>{{ $item->keterangan }}</td>
             										<td>
-                									@if ($kegiatan->gambar_kegiatan)
-                									    <img src="{{ asset('storage/' . $kegiatan->gambar_kegiatan) }}" width="100" alt="">
+                									@if ($item->gambar_kegiatan)
+                									    <img src="{{ asset('storage/' . $item->gambar_kegiatan) }}" width="100" alt="">
                 									@else
                 									    Tidak ada gambar
                 									@endif
 													</td>
-													<td>Tambah Kegiatan | <a href="#" data-bs-toggle="modal" data-bs-target="#myModal">Edit</a> | Hapus</td>
+													<td>Tambah Kegiatan | <a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{$item->id_kegiatan}}">Edit</a> | Hapus</td>
 												</tr>
+												<!-- Modal Daftar Kegiatan -->
+												<div class="modal fade" id="myModal{{$item->id_kegiatan}}" tabindex="-1" aria-labelledby="modalTitle{{$item->id_kegiatan}}" aria-hidden="true">
+   													<div class="modal-dialog">
+        												<div class="modal-content">
+            												<div class="modal-header">
+																<h5 class="modal-title" id="modalTitle">Edit Kegiatan Terbaru</h5>
+																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            												</div>
+            												<div class="modal-body">
+																<form action="{{ route('admin.update', $item->id_kegiatan)}}" method="post">
+																	@csrf
+																	<label for="nama_kegiatan">Nama Kegiatan</label>
+																	<input type="text" name="nama_kegiatan" id="nama_kegiatan" value="{{ $item->nama_kegiatan }}" required>
+																	<label for="keterangan">Keterangan</label>
+																	<textarea name="keterangan" id="keterangan" cols="50" rows="4" required>{{ $item->keterangan }}</textarea>					
+																	<label for="gambar_kegiatan">Gambar Kegiatan</label>
+																	<input type="file" name="gambar_kegiatan" id="gambar_kegiatan">
+																	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                													<button type="submit" class="btn btn-primary">Save changes</button>
+																</form>
+												            </div>
+												        </div>
+												    </div>
+												</div>
 												@endforeach
 											</tbody>
 										</table>
@@ -198,6 +222,9 @@
 								</div>
 							</div>
 						</div>
+
+						
+
 
 
 						<div class="row">

@@ -13,8 +13,8 @@ class AdminController extends Controller
 {
     public function admin(){
         $kegiatanterbaru = DB::table('kegiatan')->orderBy('id_kegiatan', 'desc')->first();
-
         $kegiatan = DB::table('kegiatan')->get();
+    
         return view('admin', compact('kegiatanterbaru', 'kegiatan'));
     }
 
