@@ -127,7 +127,7 @@
     										@if ($kegiatanterbaru)
         										<tr>
             										<td>{{ $kegiatanterbaru->nama_kegiatan }}</td>
-													<td>{{ $kegiatanterbaru->jenis_kegiatan }}</td>
+													<td>{{ $kegiatanterbaru->nama_jenis_kegiatan }}</td>
             										<td>{{ $kegiatanterbaru->keterangan }}</td>
             										<td>
                 									@if ($kegiatanterbaru->gambar_kegiatan)
@@ -158,6 +158,15 @@
 													<div class="form-group">
 														<label for="nama_kegiatan">Nama Kegiatan</label>
 														<input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" value="{{ $kegiatanterbaru->nama_kegiatan }}" required>
+													</div>
+													<div class="form-group">
+														<label for="jenis_kegiatan">Jenis Kegiatan</label>
+														<select name="jenis_kegiatan" required>
+														    <option value="">-- Pilih Jenis Kegiatan --</option>
+														    @foreach ($jenis_kegiatan as $item)
+														        <option value="{{ $item->id_jenis_kegiatan }}">{{ $item->nama_jenis_kegiatan }}</option>
+														    @endforeach
+														</select>
 													</div>
 													<div class="form-group">
 														<label for="keterangan">Keterangan</label>
@@ -195,7 +204,7 @@
     										@foreach ($kegiatan as $item)
         										<tr>
             										<td>{{ $item->nama_kegiatan }}</td>
-													<td>{{ $item->jenis_kegiatan }}</td>
+													<td>{{ $item->nama_jenis_kegiatan }}</td>
             										<td>{{ $item->keterangan }}</td>
             										<td>
                 									@if ($item->gambar_kegiatan)
@@ -206,6 +215,7 @@
 													</td>
 													<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{$item->id_kegiatan}}">Edit</a> | <a href="{{route('admin.deleteKegiatan', $item->id_kegiatan)}}">Hapus</a></td>
 												</tr>
+
 												<!-- Modal Daftar Kegiatan -->
 												<div class="modal fade" id="myModal{{$item->id_kegiatan}}" tabindex="-1" aria-labelledby="modalTitle{{$item->id_kegiatan}}" aria-hidden="true">
    													<div class="modal-dialog">
@@ -220,6 +230,15 @@
 																	<div class="form-group">
 																		<label for="nama_kegiatan">Nama Kegiatan</label>
 																		<input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" value="{{ $item->nama_kegiatan }}" required>
+																	</div>
+																	<div class="form-group">
+																		<label for="jenis_kegiatan">Jenis Kegiatan</label>
+																		<select name="jenis_kegiatan" required>
+														    				<option value="">-- Pilih Jenis Kegiatan --</option>
+														    				@foreach ($jenis_kegiatan as $jenis)
+														        				<option value="{{ $jenis->id_jenis_kegiatan }}">{{ $jenis->nama_jenis_kegiatan }}</option>
+														    				@endforeach
+																		</select>
 																	</div>
 																	<div class="form-group">
 																		<label for="keterangan">Keterangan</label>
@@ -260,6 +279,15 @@
 													<div class="form-group">
 														<label for="nama_kegiatan">Nama Kegiatan</label>
 														<input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" required>
+													</div>
+													<div class="form-group">
+														<label for="jenis_kegiatan">Jenis Kegiatan</label>
+														<select name="jenis_kegiatan" required>
+														    <option value="">-- Pilih Jenis Kegiatan --</option>
+														    @foreach ($jenis_kegiatan as $item)
+														        <option value="{{ $item->id_jenis_kegiatan }}">{{ $item->nama_jenis_kegiatan }}</option>
+														    @endforeach
+														</select>
 													</div>
 													<div class="form-group">
 														<label for="keterangan">Keterangan</label>

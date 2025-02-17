@@ -23,8 +23,10 @@ class AdminController extends Controller
             ->select('kegiatan.*', 'jenis_kegiatan.*')
             ->orderBy('id_kegiatan', 'desc')
             ->paginate(5);
+
+        $jenis_kegiatan = DB::table('jenis_kegiatan')->get();
     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan'));
     }
 
 
@@ -71,7 +73,7 @@ class AdminController extends Controller
     {
         $request->validate([
             'nama_kegiatan' => 'required|string|max:100',
-            'jenis_kegiatan' => 'required|string',
+            'jenis_kegiatan' => 'required|integer', //Sama dengan option name
             'keterangan' => 'required|string',
             'gambar_kegiatan' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
@@ -84,7 +86,7 @@ class AdminController extends Controller
 
         $updateData = [
             'nama_kegiatan' => $request->nama_kegiatan,
-            'jenis_kegiatan' => $request->jenis_kegiatan,
+            'id_jenis_kegiatan' => $request->jenis_kegiatan,  //nama kolom ditable => name di option
             'keterangan' => $request->keterangan,
         ];
 
@@ -115,7 +117,7 @@ class AdminController extends Controller
     public function createKegiatan(Request $request){
         $request->validate([
             'nama_kegiatan' => 'required|string|max:100',
-            'jenis_kegiatan' => 'required|string',
+            'jenis_kegiatan' => 'required|integer', //Sama dengan option name
             'keterangan' => 'required|string',
             'gambar_kegiatan' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
@@ -127,7 +129,7 @@ class AdminController extends Controller
 
         DB::table('kegiatan')->insert([
             'nama_kegiatan' => $request->nama_kegiatan,
-            'jenis_kegiatan' => $request->jenis_kegiatan,
+            'id_jenis_kegiatan' => $request->jenis_kegiatan, //nama kolom ditable => name di option
             'keterangan' => $request->keterangan,
             'gambar_kegiatan' => $imagePath
         ]);
