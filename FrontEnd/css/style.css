@@ -1368,3 +1368,74 @@ table {
     color: #333;
 }
 
+/* HIGLIGHT CSS */
+.containerBerita {
+    display: flex;
+    gap: 30px; /* Mengurangi gap agar lebih proporsional */
+    max-width: 1200px; /* Lebih luas agar card tidak terlalu sempit */
+    width: 100%;
+    max-height: 500px;
+    margin: 0 auto; /* Posisi di tengah */
+    justify-content: center; /* Agar card terpusat */
+    flex-wrap: wrap; /* Supaya card tetap rapi jika layar kecil */
+}
+
+.cardBerita {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    max-width: 420px; /* Membatasi lebar card */
+    min-width: 280px; /* Supaya tidak terlalu kecil */
+    height: 480px; /* Sedikit lebih tinggi untuk mengakomodasi teks */
+}
+
+.cardBerita img {
+    width: 100%; /* Supaya gambar tidak keluar */
+    height: 300px; /* Tinggi gambar lebih proporsional */
+    object-fit: cover;
+}
+
+/* .cardBerita-body {
+    flex-grow: 1; 
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+} */
+
+.cardBerita-body p {
+    flex-grow: 1; /* Supaya deskripsi memenuhi ruang yang ada */
+    overflow: hidden; /* Menghindari teks meluber */
+    text-overflow: ellipsis;
+}
+
+.cardBerita-footer {
+    padding: 10px;
+    text-align: center;
+    background-color: white;
+    border-top: 1px solid #ddd;
+    margin-top: auto; /* Footer tetap di bawah */
+}
+
+.cardBerita-footer a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.cardBerita-footer a:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .containerBerita {
+        flex-direction: column;
+        align-items: center;
+    }
+}
