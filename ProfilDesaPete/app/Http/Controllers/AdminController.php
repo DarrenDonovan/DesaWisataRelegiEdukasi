@@ -14,15 +14,17 @@ class AdminController extends Controller
 {
     public function admin(){
         $kegiatanterbaru = DB::table('kegiatan')->orderBy('id_kegiatan', 'desc')->first();
-        $kegiatan = DB::table('kegiatan')->paginate(4);
+        $kegiatan = DB::table('kegiatan')->orderBy('id_kegiatan', 'desc')->paginate(5);
     
         return view('admin', compact('kegiatanterbaru', 'kegiatan'));
     }
+
 
     public function index(){
         $kegiatanterbaru = DB::table('kegiatan')->orderBy('id_kegiatan', 'desc')->first();
         return view('index', compact('kegiatanterbaru'));
     }
+
 
     public function create(){
         if(Auth::user()->role !== 'superadmin'){
@@ -30,6 +32,7 @@ class AdminController extends Controller
         }
         return view('createadmin');
     }
+
 
     public function store(Request $request){
         if(Auth::user()->role !== 'superadmin'){
@@ -51,7 +54,8 @@ class AdminController extends Controller
          return redirect('admin/createadmin')->with('success', 'Admin created successfully!');
     }
 
-    public function update(Request $request, $id)
+
+    public function updateKegiatan(Request $request, $id)
     {
         $request->validate([
             'nama_kegiatan' => 'required|string|max:100',
@@ -85,10 +89,34 @@ class AdminController extends Controller
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
     }
 
-    public function delete($id){
+
+    public function deleteKegiatan($id){
         DB::table('kegiatan')->where('id_kegiatan', $id)->delete();
         
         Session::flash('message', 'Data Berhasil Dihapus!');
+        return redirect()->route('admin');
+    }
+
+
+    public function createKegiatan(Request $request){
+        $request->validate([
+            'nama_kegiatan' => 'required|string|max:100',
+            'keterangan' => 'required|string',
+            'gambar_kegiatan' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $imagePath = null;
+        if($request->hasFile('gambar_kegiatan')){
+            $imagePath = $request->file('gambar_kegiatan')->store('kegiatan', 'public');
+        }
+
+        DB::table('kegiatan')->insert([
+            'nama_kegiatan' => $request->nama_kegiatan,
+            'keterangan' => $request->keterangan,
+            'gambar_kegiatan' => $imagePath
+        ]);
+
+        Session::flash('message', 'Data Berhasil Ditambahkan!');
         return redirect()->route('admin');
     }
 

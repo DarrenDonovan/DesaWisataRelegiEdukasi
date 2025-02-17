@@ -54,6 +54,8 @@ Route::middleware(['auth', SuperAdminMiddleware::class])->group(function(){
     Route::post('admin/storeadmin', [AdminController::class, 'store']);
 });
 
-Route::post('/admin/update/{id}', [AdminController::class, 'update'])->name('admin.update');
+Route::post('/admin/update/{id}', [AdminController::class, 'updateKegiatan'])->name('admin.updateKegiatan');
 
-Route::get('admin/delete/{id}', [AdminController::class, 'delete'])->name('admin.delete');
+Route::get('admin/delete/{id}', [AdminController::class, 'deleteKegiatan'])->name('admin.deleteKegiatan');
+
+Route::post('admin/createKegiatan', [AdminController::class, 'createKegiatan'])->name('admin.createKegiatan');

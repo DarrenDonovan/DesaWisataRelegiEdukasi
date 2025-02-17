@@ -134,7 +134,7 @@
                 									    Tidak ada gambar
                 									@endif
 													</td>
-													<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal">Edit</a></td>
+													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalKegiatan_terbaru">Edit</a></td>
 												</tr>
 												@endif
 											</tbody>
@@ -143,7 +143,7 @@
 								</div>
 							
 								<!-- Modal Kegiatan Terbaru -->
-								<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+								<div class="modal fade" id="modalKegiatan_terbaru" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
    									<div class="modal-dialog">
         								<div class="modal-content">
             								<div class="modal-header">
@@ -151,7 +151,7 @@
 												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             								</div>
             								<div class="modal-body">
-												<form action="{{ route('admin.update', $kegiatanterbaru->id_kegiatan)}}" method="post" enctype="multipart/form-data">
+												<form action="{{ route('admin.updateKegiatan', $kegiatanterbaru->id_kegiatan)}}" method="post" enctype="multipart/form-data">
 													@csrf
 													<label for="nama_kegiatan">Nama Kegiatan</label>
 													<input type="text" name="nama_kegiatan" id="nama_kegiatan" value="{{ $kegiatanterbaru->nama_kegiatan }}" required>
@@ -168,8 +168,9 @@
 								</div>
 
 					<!-- Daftar Kegiatan -->
-					<h4 class="page-title mt-2">Daftar Kegiatan</h4>
-					<div class="row">
+					<h4 class="page-title mt-1">Daftar Kegiatan</h4>
+					<button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalTambah_kegiatan">Tambah Kegiatan</button>					
+						<div class="row">
 							<div class="col">
 								<div class="card">
 									<div class="card-body">
@@ -194,7 +195,7 @@
                 									    Tidak ada gambar
                 									@endif
 													</td>
-													<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{$item->id_kegiatan}}">Edit</a> | <a href="{{route('admin.delete', $item->id_kegiatan)}}">Hapus</a></td>
+													<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{$item->id_kegiatan}}">Edit</a> | <a href="{{route('admin.deleteKegiatan', $item->id_kegiatan)}}">Hapus</a></td>
 												</tr>
 												<!-- Modal Daftar Kegiatan -->
 												<div class="modal fade" id="myModal{{$item->id_kegiatan}}" tabindex="-1" aria-labelledby="modalTitle{{$item->id_kegiatan}}" aria-hidden="true">
@@ -205,7 +206,7 @@
 																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             												</div>
             												<div class="modal-body">
-																<form action="{{ route('admin.update', $item->id_kegiatan)}}" method="post" enctype="multipart/form-data">
+																<form action="{{ route('admin.updateKegiatan', $item->id_kegiatan)}}" method="post" enctype="multipart/form-data">
 																	@csrf
 																	<label for="nama_kegiatan">Nama Kegiatan</label>
 																	<input type="text" name="nama_kegiatan" id="nama_kegiatan" value="{{ $item->nama_kegiatan }}" required>
@@ -230,6 +231,31 @@
 								</div>
 							</div>
 						</div>
+
+						<!-- Modal Tambah Kegiatan -->
+						<div class="modal fade" id="modalTambah_kegiatan" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+   									<div class="modal-dialog">
+        								<div class="modal-content">
+            								<div class="modal-header">
+												<h5 class="modal-title" id="modalTitle">Tambah Kegiatan Terbaru</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            								</div>
+            								<div class="modal-body">
+												<form action=" {{ route('admin.createKegiatan') }}" method="post" enctype="multipart/form-data">
+													@csrf
+													<label for="nama_kegiatan">Nama Kegiatan</label>
+													<input type="text" name="nama_kegiatan" id="nama_kegiatan" required>
+													<label for="keterangan">Keterangan</label>
+													<textarea name="keterangan" id="keterangan" cols="50" rows="4" required></textarea>					
+													<label for="gambar_kegiatan">Gambar Kegiatan</label>
+													<input type="file" name="gambar_kegiatan" id="gambar_kegiatan">
+													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                									<button type="submit" class="btn btn-primary">Save changes</button>
+												</form>
+								            </div>
+								        </div>
+								    </div>
+								</div>
 
 						
 
