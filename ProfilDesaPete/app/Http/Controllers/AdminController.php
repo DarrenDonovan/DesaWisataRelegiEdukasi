@@ -13,15 +13,27 @@ use Illuminate\Support\Facades\Session;
 class AdminController extends Controller
 {
     public function admin(){
-        $kegiatanterbaru = DB::table('kegiatan')->orderBy('id_kegiatan', 'desc')->first();
-        $kegiatan = DB::table('kegiatan')->orderBy('id_kegiatan', 'desc')->paginate(5);
+        $kegiatanterbaru = DB::table('kegiatan')
+        ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+        ->select('kegiatan.*', 'jenis_kegiatan.*')
+        ->orderBy('id_kegiatan', 'desc')->first();
+
+        $kegiatan = DB::table('kegiatan')
+            ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+            ->select('kegiatan.*', 'jenis_kegiatan.*')
+            ->orderBy('id_kegiatan', 'desc')
+            ->paginate(5);
     
         return view('admin', compact('kegiatanterbaru', 'kegiatan'));
     }
 
 
     public function index(){
-        $kegiatanterbaru = DB::table('kegiatan')->orderBy('id_kegiatan', 'desc')->first();
+        $kegiatanterbaru = DB::table('kegiatan')
+        ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+        ->select('kegiatan.*', 'jenis_kegiatan.*')
+        ->orderBy('id_kegiatan', 'desc')->first();
+
         return view('index', compact('kegiatanterbaru'));
     }
 
@@ -59,6 +71,7 @@ class AdminController extends Controller
     {
         $request->validate([
             'nama_kegiatan' => 'required|string|max:100',
+            'jenis_kegiatan' => 'required|string',
             'keterangan' => 'required|string',
             'gambar_kegiatan' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
@@ -71,6 +84,7 @@ class AdminController extends Controller
 
         $updateData = [
             'nama_kegiatan' => $request->nama_kegiatan,
+            'jenis_kegiatan' => $request->jenis_kegiatan,
             'keterangan' => $request->keterangan,
         ];
 
@@ -101,6 +115,7 @@ class AdminController extends Controller
     public function createKegiatan(Request $request){
         $request->validate([
             'nama_kegiatan' => 'required|string|max:100',
+            'jenis_kegiatan' => 'required|string',
             'keterangan' => 'required|string',
             'gambar_kegiatan' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
@@ -112,6 +127,7 @@ class AdminController extends Controller
 
         DB::table('kegiatan')->insert([
             'nama_kegiatan' => $request->nama_kegiatan,
+            'jenis_kegiatan' => $request->jenis_kegiatan,
             'keterangan' => $request->keterangan,
             'gambar_kegiatan' => $imagePath
         ]);

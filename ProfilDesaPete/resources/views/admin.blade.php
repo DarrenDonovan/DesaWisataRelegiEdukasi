@@ -127,6 +127,7 @@
     										@if ($kegiatanterbaru)
         										<tr>
             										<td>{{ $kegiatanterbaru->nama_kegiatan }}</td>
+													<td>{{ $kegiatanterbaru->jenis_kegiatan }}</td>
             										<td>{{ $kegiatanterbaru->keterangan }}</td>
             										<td>
                 									@if ($kegiatanterbaru->gambar_kegiatan)
@@ -154,14 +155,19 @@
             								<div class="modal-body">
 												<form action="{{ route('admin.updateKegiatan', $kegiatanterbaru->id_kegiatan)}}" method="post" enctype="multipart/form-data">
 													@csrf
-													<label for="nama_kegiatan">Nama Kegiatan</label>
-													<input type="text" name="nama_kegiatan" id="nama_kegiatan" value="{{ $kegiatanterbaru->nama_kegiatan }}" required>
-													<label for="keterangan">Keterangan</label>
-													<textarea name="keterangan" id="keterangan" cols="50" rows="4" required>{{ $kegiatanterbaru->keterangan }}</textarea>					
-													<label for="gambar_kegiatan">Gambar Kegiatan</label>
-													<input type="file" name="gambar_kegiatan" id="gambar_kegiatan">
-													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                									<button type="submit" class="btn btn-primary">Save changes</button>
+													<div class="form-group">
+														<label for="nama_kegiatan">Nama Kegiatan</label>
+														<input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" value="{{ $kegiatanterbaru->nama_kegiatan }}" required>
+													</div>
+													<div class="form-group">
+														<label for="keterangan">Keterangan</label>
+														<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required>{{ $kegiatanterbaru->keterangan }}</textarea>					
+													</div>
+													<div class="form-group">
+														<label for="gambar_kegiatan">Gambar Kegiatan</label>
+														<input type="file" class="form-control" name="gambar_kegiatan" id="gambar_kegiatan">
+                									</div>
+													<button type="submit" class="btn btn-primary form-control">Save changes</button>
 												</form>
 								            </div>
 								        </div>
@@ -170,7 +176,7 @@
 
 					<!-- Daftar Kegiatan -->
 					<h4 class="page-title mt-1">Daftar Kegiatan</h4>
-					<button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalTambah_kegiatan">Tambah Kegiatan</button>					
+					<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalTambah_kegiatan">Tambah Kegiatan</button>					
 						<div class="row">
 							<div class="col">
 								<div class="card">
@@ -179,6 +185,7 @@
 											<thead>
 												<tr>
 													<th scope="col">Nama Kegiatan</th>
+													<th scope="col">Jenis Kegiatan</th>
 													<th scope="col">Keterangan</th>
 													<th scope="col">Gambar Kegiatan</th>
 													<th scope="col">Action</th>
@@ -188,6 +195,7 @@
     										@foreach ($kegiatan as $item)
         										<tr>
             										<td>{{ $item->nama_kegiatan }}</td>
+													<td>{{ $item->jenis_kegiatan }}</td>
             										<td>{{ $item->keterangan }}</td>
             										<td>
                 									@if ($item->gambar_kegiatan)
@@ -209,14 +217,19 @@
             												<div class="modal-body">
 																<form action="{{ route('admin.updateKegiatan', $item->id_kegiatan)}}" method="post" enctype="multipart/form-data">
 																	@csrf
-																	<label for="nama_kegiatan">Nama Kegiatan</label>
-																	<input type="text" name="nama_kegiatan" id="nama_kegiatan" value="{{ $item->nama_kegiatan }}" required>
-																	<label for="keterangan">Keterangan</label>
-																	<textarea name="keterangan" id="keterangan" cols="50" rows="4" required>{{ $item->keterangan }}</textarea>					
-																	<label for="gambar_kegiatan">Gambar Kegiatan</label>
-																	<input type="file" name="gambar_kegiatan" id="gambar_kegiatan">
-																	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                													<button type="submit" class="btn btn-primary">Save changes</button>
+																	<div class="form-group">
+																		<label for="nama_kegiatan">Nama Kegiatan</label>
+																		<input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" value="{{ $item->nama_kegiatan }}" required>
+																	</div>
+																	<div class="form-group">
+																		<label for="keterangan">Keterangan</label>
+																		<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required>{{ $item->keterangan }}</textarea>
+																	</div>
+																	<div class="form-group">					
+																		<label for="gambar_kegiatan">Gambar Kegiatan</label>
+																		<input type="file" name="gambar_kegiatan" id="gambar_kegiatan" class="form-control-file">
+																	</div>
+                													<button type="submit" class="btn btn-primary form-control">Save changes</button>
 																</form>
 												            </div>
 												        </div>
@@ -244,14 +257,19 @@
             								<div class="modal-body">
 												<form action=" {{ route('admin.createKegiatan') }}" method="post" enctype="multipart/form-data">
 													@csrf
-													<label for="nama_kegiatan">Nama Kegiatan</label>
-													<input type="text" name="nama_kegiatan" id="nama_kegiatan" required>
-													<label for="keterangan">Keterangan</label>
-													<textarea name="keterangan" id="keterangan" cols="50" rows="4" required></textarea>					
-													<label for="gambar_kegiatan">Gambar Kegiatan</label>
-													<input type="file" name="gambar_kegiatan" id="gambar_kegiatan">
-													<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                									<button type="submit" class="btn btn-primary">Save changes</button>
+													<div class="form-group">
+														<label for="nama_kegiatan">Nama Kegiatan</label>
+														<input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" required>
+													</div>
+													<div class="form-group">
+														<label for="keterangan">Keterangan</label>
+														<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required></textarea>					
+													</div>
+													<div class="form-group">
+														<label for="gambar_kegiatan">Gambar Kegiatan</label>
+														<input type="file" class="form-control" name="gambar_kegiatan" id="gambar_kegiatan">
+                									</div>
+													<button type="submit" class="form-control" class="btn btn-primary">Tambahkan</button>
 												</form>
 								            </div>
 								        </div>
