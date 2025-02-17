@@ -117,6 +117,7 @@
 											<thead>
 												<tr>
 													<th scope="col">Nama Kegiatan</th>
+													<th scope="col">Jenis Kegiatan</th>
 													<th scope="col">Keterangan</th>
 													<th scope="col">Gambar Kegiatan</th>
 													<th scope="col">Action</th>
