@@ -168,7 +168,8 @@
 								</div>
 
 					<!-- Daftar Kegiatan -->
-						<div class="row">
+					<h4 class="page-title mt-2">Daftar Kegiatan</h4>
+					<div class="row">
 							<div class="col">
 								<div class="card">
 									<div class="card-body">
@@ -222,14 +223,15 @@
 												@endforeach
 											</tbody>
 										</table>
+										<div class="mb-4">
+										{{ $kegiatan->links() }}
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 
 						
-
-
 
 						<div class="row">
 							<div class="col-md-3">

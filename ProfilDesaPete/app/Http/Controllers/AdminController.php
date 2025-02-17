@@ -14,7 +14,7 @@ class AdminController extends Controller
 {
     public function admin(){
         $kegiatanterbaru = DB::table('kegiatan')->orderBy('id_kegiatan', 'desc')->first();
-        $kegiatan = DB::table('kegiatan')->get();
+        $kegiatan = DB::table('kegiatan')->paginate(4);
     
         return view('admin', compact('kegiatanterbaru', 'kegiatan'));
     }
