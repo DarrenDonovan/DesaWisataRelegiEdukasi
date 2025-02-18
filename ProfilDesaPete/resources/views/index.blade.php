@@ -142,93 +142,68 @@
                 </div>
                 @endif
                 <div class="tab-class text-center">
-                    <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
+                    <ul class="nav nav-pills d-inline-flex justify-content-center mb-2">
                         <li class="nav-item">
-                            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-1">
+                            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-all">
                                 <span class="text-dark" style="width: 150px;">Semua</span>
                             </a>
                         </li>
+                        @foreach ($jenis_kegiatan as $jenis)
                         <li class="nav-item">
-                            <a class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
-                                <span class="text-dark" style="width: 150px;">Rapat Koordinasi</span>
+                            <a class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-{{ $jenis->id_jenis_kegiatan }}">
+                                <span class="text-dark" style="width: 150px;">{{ $jenis->nama_jenis_kegiatan }}</span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
-                                <span class="text-dark" style="width: 150px;">Posyandu</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
-                                <span class="text-dark" style="width: 150px;">Ulang Tahun Desa</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-5">
-                                <span class="text-dark" style="width: 150px;">Kesehatan</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-6">
-                                <span class="text-dark" style="width: 150px;">Lomba</span>
-                            </a>
-                        </li>
+                        @endforeach
                     </ul>
                     <div class="tab-content">
-                        <div id="tab-1" class="tab-pane fade show p-0 active">
+                        <div id="tab-all" class="tab-pane fade show p-0 active">
                             <div class="row g-4">
-                                <div class="col-xl-8">
-                                    <div class="row g-4">
-                                        
-                                        <!-- Thumbnail 1 -->
-                                        <div class="col-lg-6">
-                                            <div class="destination-img">
-                                                <img class="img-fluid rounded w-100" src="img/destination-1.jpg" alt="Rapat Koordinasi" data-bs-toggle="modal">
-                                                <div class="destination-overlay p-4 text-start">
-                                                    <a class="btn btn-primary text-white rounded-pill border py-2 px-3" style="pointer-events: none;">6 Photos</a>                                                       
-                                                    <h4 class="text-white mb-2 mt-3">Rapat Koordinasi</h4>
-                                                    <a href="#galleryModal" class="btn-hover text-white"  data-bs-toggle="modal" data-bs-target="#galleryModal">Lihat Semua Foto <i class="fa fa-arrow-right ms-2"></i>
-                                                </a>
-                                                </div>
+                                <div class="row g-4">
+                                    
+                                    @foreach ($jenis_kegiatan as $jk)
+                                    <!-- Thumbnail 1 -->
+                                    <div class="col-lg-4">
+                                        <div class="destination-img">
+                                            <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $jk->gambar_jenis_kegiatan ) }}" width="200" height="150" data-bs-toggle="modal" style="object-fit: cover;">
+                                            <div class="destination-overlay p-4 text-start">
+                                                <a class="btn btn-primary text-white rounded-pill border py-2 px-3" style="pointer-events: none;">6 Photos</a>                                                       
+                                                <h4 class="text-white mb-2 mt-3">{{ $jk->nama_jenis_kegiatan }}</h4>
+                                                <a href="#galleryModal{{ $jk->id_jenis_kegiatan }}" class="btn-hover text-white"  data-bs-toggle="modal" data-bs-target="#galleryModal{{ $jk->id_jenis_kegiatan }}">Lihat Semua Foto <i class="fa fa-arrow-right ms-2"></i>
+                                            </a>
                                             </div>
                                         </div>
-
-                                        <!-- galeri pas di klik -->
-                                        <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="galleryModalLabel">Galeri Rapat Koordinasi</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row g-2">
-                                                            <div class="col-md-4">
-                                                                <img class="img-fluid rounded w-100" src="img/destination-2.jpg" alt="Foto 2">
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img class="img-fluid rounded w-100" src="img/destination-3.jpg" alt="Foto 3">
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img class="img-fluid rounded w-100" src="img/destination-4.jpg" alt="Foto 4">
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img class="img-fluid rounded w-100" src="img/destination-5.jpg" alt="Foto 5">
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img class="img-fluid rounded w-100" src="img/destination-6.jpg" alt="Foto 6">
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img class="img-fluid rounded w-100" src="img/destination-7.jpg" alt="Foto 7">
-                                                            </div>
-                                                        </div>
+                                    </div>
+                                    <!-- galeri pas di klik -->
+                                    <div class="modal fade" id="galleryModal{{ $jk->id_jenis_kegiatan }}" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="galleryModalLabel">Galeri {{ $jk->nama_jenis_kegiatan }}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row g-2">
+                                                        @foreach ($kegiatan as $items)
+                                                            @if ($items->gambar_kegiatan && $items->id_jenis_kegiatan == $jk->id_jenis_kegiatan)
+                                                                <div class="col-md-4">
+                									                <img src="{{ asset('storage/' . $items->gambar_kegiatan) }}" width="150" height="150" style="object-fit: cover">
+                                                                </div>
+                									        @endif
+                                                        @endforeach
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
 
                                         <!-- thumbnail 2 -->
-                                        <div class="col-lg-6">
+                                        <!-- <div class="col-lg-4">
                                             <div class="destination-img">
                                                 <img class="img-fluid rounded w-100" src="img/destination-2.jpg" alt="Posyandu" data-bs-toggle="modal">
                                                 <div class="destination-overlay p-4 text-start">
@@ -238,9 +213,9 @@
                                                 </a>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- galery thumbnail 2 -->
-                                        <div class="modal fade" id="galleryModal2" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+                                        <!-- <div class="modal fade" id="galleryModal2" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -259,10 +234,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <!-- thumbnail 3 -->
-                                        <div class="col-lg-6">
+                                        <!-- <div class="col-lg-4">
                                             <div class="destination-img">
                                                 <img class="img-fluid rounded w-100" src="img/destination-3.jpg" alt="Ulang Tahun Desa" data-bs-toggle="modal">
                                                 <div class="destination-overlay p-4 text-start">
@@ -272,9 +247,9 @@
                                                 </a>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <!-- gallery thumbnail 3 -->
-                                        <div class="modal fade" id="galleryModal3" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+                                        <!-- <div class="modal fade" id="galleryModal3" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -298,11 +273,11 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            </div> 
+                                        </div>-->
 
                                         <!-- thumbnail 4 -->
-                                        <div class="col-lg-6">
+                                        <!-- <div class="col-lg-4">
                                             <div class="destination-img">
                                                 <img class="img-fluid rounded w-100" src="img/destination-8.jpg" alt="Kesehatan" data-bs-toggle="modal">
                                                 <div class="destination-overlay p-4 text-start">
@@ -314,9 +289,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- galery thumbnail 4 -->
-                                <div class="modal fade" id="galleryModal4" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+                                <!-- <div class="modal fade" id="galleryModal4" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -347,10 +322,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div>  -->
 
                                 <!-- thumbnail 5 -->
-                                <div class="col-xl-4">
+                                <!-- <div class="col-xl-4">
                                     <div class="destination-img h-100">
                                         <img class="img-fluid rounded w-100 h-100" src="img/destination-9.jpg" style="object-fit: cover; min-height: 300px;" alt="lomba" data-bs-toggle="modal">
                                         <div class="destination-overlay p-4 text-start">
@@ -360,9 +335,9 @@
                                             </a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <!-- gallery thumbnail 5 -->
-                                <div class="modal fade" id="galleryModal5" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+                                <!-- <div class="modal fade" id="galleryModal5" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -391,39 +366,27 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                        </div> -->
+                       
 
                         <!-- Rapat koordinasi start -->
-                        <div id="tab-2" class="tab-pane fade show p-0">
+                        @foreach ($jenis_kegiatan as $jenisKegiatan)
+                        <div id="tab-{{ $jenisKegiatan->id_jenis_kegiatan }}" class="tab-pane fade show p-0">
                             <div class="row g-4">
                                 <div class="container py-5">
                                     <div class="row g-4">
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-1.jpg" alt="Rapat Koordinasi">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-2.jpg" alt="Foto 2">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-3.jpg" alt="Foto 3">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-4.jpg" alt="Foto 4">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-5.jpg" alt="Foto 5">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-6.jpg" alt="Foto 6">
-                                        </div>
+                                        @foreach ($kegiatan as $item)
+                                            @if ($item->gambar_kegiatan && $item->id_jenis_kegiatan == $jenisKegiatan->id_jenis_kegiatan)
+                                            <div class="col-lg-4 col-md-6">
+                                                <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $item->gambar_kegiatan) }}" width="250" height="250" style="object-fit: cover;">
+                                            </div>
+                                            @endif
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                         <!-- Rapat koordinasi END -->
 
                         <!-- Posyandu start -->

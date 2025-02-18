@@ -45,7 +45,7 @@ class AdminController extends Controller
             ->get();
 
         $jenis_kegiatan = DB::table('jenis_kegiatan')
-            ->select('jenis_kegiatan.id_jenis_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan')
+            ->select('jenis_kegiatan.id_jenis_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'jenis_kegiatan.gambar_jenis_kegiatan')
             ->get();
 
         return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan'));
