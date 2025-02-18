@@ -38,7 +38,17 @@ class AdminController extends Controller
         ->select('kegiatan.*', 'jenis_kegiatan.*')
         ->orderBy('id_kegiatan', 'desc')->first();
 
-        return view('index', compact('kegiatanterbaru'));
+        $kegiatan = DB::table('kegiatan')
+            ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan')
+            ->orderBy('id_kegiatan', 'desc')
+            ->get();
+
+        $jenis_kegiatan = DB::table('jenis_kegiatan')
+            ->select('jenis_kegiatan.id_jenis_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan')
+            ->get();
+
+        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan'));
     }
 
 
@@ -109,8 +119,11 @@ class AdminController extends Controller
 
 
     public function deleteKegiatan($id){
+        $kegiatan = DB::table('kegiatan')->where('id_kegiatan', $id)->first();
+
         DB::table('kegiatan')->where('id_kegiatan', $id)->delete();
-        
+        Storage::disk('public')->delete($kegiatan->gambar_kegiatan);
+
         Session::flash('message', 'Data Berhasil Dihapus!');
         return redirect()->route('admin');
     }
