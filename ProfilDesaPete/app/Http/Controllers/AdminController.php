@@ -14,17 +14,19 @@ class AdminController extends Controller
 {
     public function admin(){
         $kegiatanterbaru = DB::table('kegiatan')
-        ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
-        ->select('kegiatan.*', 'jenis_kegiatan.*')
-        ->orderBy('id_kegiatan', 'desc')->first();
+            ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan')
+            ->orderBy('id_kegiatan', 'desc')->first();
 
         $kegiatan = DB::table('kegiatan')
             ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
-            ->select('kegiatan.*', 'jenis_kegiatan.*')
+            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan')
             ->orderBy('id_kegiatan', 'desc')
             ->paginate(5);
 
-        $jenis_kegiatan = DB::table('jenis_kegiatan')->get();
+        $jenis_kegiatan = DB::table('jenis_kegiatan')
+            ->select('jenis_kegiatan.id_jenis_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan')
+            ->get();
     
         return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan'));
     }

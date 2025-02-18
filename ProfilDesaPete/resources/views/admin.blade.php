@@ -161,10 +161,13 @@
 													</div>
 													<div class="form-group">
 														<label for="jenis_kegiatan">Jenis Kegiatan</label>
-														<select name="jenis_kegiatan" required>
+														<select name="jenis_kegiatan" class="form-control" required>
 														    <option value="">-- Pilih Jenis Kegiatan --</option>
 														    @foreach ($jenis_kegiatan as $item)
-														        <option value="{{ $item->id_jenis_kegiatan }}">{{ $item->nama_jenis_kegiatan }}</option>
+														        <option value="{{ $item->id_jenis_kegiatan }}" 
+																{{ $item->id_jenis_kegiatan == $kegiatanterbaru->id_jenis_kegiatan ? 'selected' :'' }}>
+																{{ $item->nama_jenis_kegiatan }}
+																</option>
 														    @endforeach
 														</select>
 													</div>
@@ -174,7 +177,7 @@
 													</div>
 													<div class="form-group">
 														<label for="gambar_kegiatan">Gambar Kegiatan</label>
-														<input type="file" class="form-control" name="gambar_kegiatan" id="gambar_kegiatan">
+														<input type="file" class="form-control-file" name="gambar_kegiatan" id="gambar_kegiatan">
                 									</div>
 													<button type="submit" class="btn btn-primary form-control">Save changes</button>
 												</form>
@@ -201,23 +204,23 @@
 												</tr>
 											</thead>
 											<tbody>
-    										@foreach ($kegiatan as $item)
+    										@foreach ($kegiatan as $items)
         										<tr>
-            										<td>{{ $item->nama_kegiatan }}</td>
-													<td>{{ $item->nama_jenis_kegiatan }}</td>
-            										<td>{{ $item->keterangan }}</td>
+            										<td>{{ $items->nama_kegiatan }}</td>
+													<td>{{ $items->nama_jenis_kegiatan }}</td>
+            										<td>{{ $items->keterangan }}</td>
             										<td>
-                									@if ($item->gambar_kegiatan)
-                									    <img src="{{ asset('storage/' . $item->gambar_kegiatan) }}" width="100" alt="">
+                									@if ($items->gambar_kegiatan)
+                									    <img src="{{ asset('storage/' . $items->gambar_kegiatan) }}" width="100" alt="">
                 									@else
                 									    Tidak ada gambar
                 									@endif
 													</td>
-													<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{$item->id_kegiatan}}">Edit</a> | <a href="{{route('admin.deleteKegiatan', $item->id_kegiatan)}}">Hapus</a></td>
+													<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{$items->id_kegiatan}}">Edit</a> | <a href="{{route('admin.deleteKegiatan', $items->id_kegiatan)}}">Hapus</a></td>
 												</tr>
 
 												<!-- Modal Daftar Kegiatan -->
-												<div class="modal fade" id="myModal{{$item->id_kegiatan}}" tabindex="-1" aria-labelledby="modalTitle{{$item->id_kegiatan}}" aria-hidden="true">
+												<div class="modal fade" id="myModal{{$items->id_kegiatan}}" tabindex="-1" aria-labelledby="modalTitle{{$items->id_kegiatan}}" aria-hidden="true">
    													<div class="modal-dialog">
         												<div class="modal-content">
             												<div class="modal-header">
@@ -225,24 +228,27 @@
 																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             												</div>
             												<div class="modal-body">
-																<form action="{{ route('admin.updateKegiatan', $item->id_kegiatan)}}" method="post" enctype="multipart/form-data">
+																<form action="{{ route('admin.updateKegiatan', $items->id_kegiatan)}}" method="post" enctype="multipart/form-data">
 																	@csrf
 																	<div class="form-group">
 																		<label for="nama_kegiatan">Nama Kegiatan</label>
-																		<input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" value="{{ $item->nama_kegiatan }}" required>
+																		<input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" value="{{ $items->nama_kegiatan }}" required>
 																	</div>
 																	<div class="form-group">
 																		<label for="jenis_kegiatan">Jenis Kegiatan</label>
-																		<select name="jenis_kegiatan" required>
+																		<select name="jenis_kegiatan" class="form-control" required>
 														    				<option value="">-- Pilih Jenis Kegiatan --</option>
 														    				@foreach ($jenis_kegiatan as $jenis)
-														        				<option value="{{ $jenis->id_jenis_kegiatan }}">{{ $jenis->nama_jenis_kegiatan }}</option>
+														    				    <option value="{{ $jenis->id_jenis_kegiatan }}" 
+																				{{ $jenis->id_jenis_kegiatan == $items->id_jenis_kegiatan ? 'selected' : '' }}>
+																				{{ $jenis->nama_jenis_kegiatan }}
+																				</option>
 														    				@endforeach
 																		</select>
 																	</div>
 																	<div class="form-group">
 																		<label for="keterangan">Keterangan</label>
-																		<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required>{{ $item->keterangan }}</textarea>
+																		<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required>{{ $items->keterangan }}</textarea>
 																	</div>
 																	<div class="form-group">					
 																		<label for="gambar_kegiatan">Gambar Kegiatan</label>
@@ -282,7 +288,7 @@
 													</div>
 													<div class="form-group">
 														<label for="jenis_kegiatan">Jenis Kegiatan</label>
-														<select name="jenis_kegiatan" required>
+														<select name="jenis_kegiatan" class="form-control" required>
 														    <option value="">-- Pilih Jenis Kegiatan --</option>
 														    @foreach ($jenis_kegiatan as $item)
 														        <option value="{{ $item->id_jenis_kegiatan }}">{{ $item->nama_jenis_kegiatan }}</option>
@@ -295,9 +301,9 @@
 													</div>
 													<div class="form-group">
 														<label for="gambar_kegiatan">Gambar Kegiatan</label>
-														<input type="file" class="form-control" name="gambar_kegiatan" id="gambar_kegiatan">
+														<input type="file" class="form-control-file" name="gambar_kegiatan" id="gambar_kegiatan">
                 									</div>
-													<button type="submit" class="form-control" class="btn btn-primary">Tambahkan</button>
+													<button type="submit" class="btn btn-primary form-control">Tambahkan</button>
 												</form>
 								            </div>
 								        </div>
