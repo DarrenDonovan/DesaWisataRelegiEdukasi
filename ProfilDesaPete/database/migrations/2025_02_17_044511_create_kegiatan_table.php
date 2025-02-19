@@ -22,6 +22,10 @@ class CreateKegiatanTable extends Migration
             $table->foreignId('id_jenis_kegiatan')  
                 ->constrained('jenis_kegiatan') 
                 ->onDelete('cascade'); 
+            $table->foreignId('id_desa')
+                ->constrained('desa')
+                ->onDelete('cascade');
+            $table->date('tanggal_kegiatan');
         });
     }
 
