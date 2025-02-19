@@ -15,20 +15,26 @@ class AdminController extends Controller
     public function admin(){
         $kegiatanterbaru = DB::table('kegiatan')
             ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
-            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan')
+            ->join('desa', 'kegiatan.id_desa', 'desa.id_desa')
+            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_desa', 'desa.nama_desa')
             ->orderBy('id_kegiatan', 'desc')->first();
 
         $kegiatan = DB::table('kegiatan')
             ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
-            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan')
+            ->join('desa', 'kegiatan.id_desa', 'desa.id_desa')
+            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_desa', 'desa.nama_desa')
             ->orderBy('id_kegiatan', 'desc')
             ->paginate(5);
 
         $jenis_kegiatan = DB::table('jenis_kegiatan')
             ->select('jenis_kegiatan.id_jenis_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan')
             ->get();
+
+        $desa = DB::table('desa')
+            ->select('desa.id_desa', 'desa.nama_desa')
+            ->get();
     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'desa'));
     }
 
 
@@ -86,6 +92,7 @@ class AdminController extends Controller
         $request->validate([
             'nama_kegiatan' => 'required|string|max:100',
             'jenis_kegiatan' => 'required|integer', //Sama dengan option name
+            'nama_desa' => 'required|integer', 
             'keterangan' => 'required|string',
             'gambar_kegiatan' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
@@ -99,6 +106,7 @@ class AdminController extends Controller
         $updateData = [
             'nama_kegiatan' => $request->nama_kegiatan,
             'id_jenis_kegiatan' => $request->jenis_kegiatan,  //nama kolom ditable => name di option
+            'id_desa' => $request->nama_desa,
             'keterangan' => $request->keterangan,
         ];
 
@@ -133,6 +141,7 @@ class AdminController extends Controller
         $request->validate([
             'nama_kegiatan' => 'required|string|max:100',
             'jenis_kegiatan' => 'required|integer', //Sama dengan option name
+            'nama_desa' => 'required|integer',
             'keterangan' => 'required|string',
             'gambar_kegiatan' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
@@ -145,6 +154,7 @@ class AdminController extends Controller
         DB::table('kegiatan')->insert([
             'nama_kegiatan' => $request->nama_kegiatan,
             'id_jenis_kegiatan' => $request->jenis_kegiatan, //nama kolom ditable => name di option
+            'id_desa' => $request->nama_desa,
             'keterangan' => $request->keterangan,
             'gambar_kegiatan' => $imagePath
         ]);

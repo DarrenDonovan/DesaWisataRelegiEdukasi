@@ -118,6 +118,7 @@
 												<tr>
 													<th scope="col">Nama Kegiatan</th>
 													<th scope="col">Jenis Kegiatan</th>
+													<th scope="col">Nama Desa</th>
 													<th scope="col">Keterangan</th>
 													<th scope="col">Gambar Kegiatan</th>
 													<th scope="col">Action</th>
@@ -128,6 +129,7 @@
         										<tr>
             										<td>{{ $kegiatanterbaru->nama_kegiatan }}</td>
 													<td>{{ $kegiatanterbaru->nama_jenis_kegiatan }}</td>
+													<td>{{ $kegiatanterbaru->nama_desa }}</td>
             										<td>{{ $kegiatanterbaru->keterangan }}</td>
             										<td>
                 									@if ($kegiatanterbaru->gambar_kegiatan)
@@ -172,6 +174,18 @@
 														</select>
 													</div>
 													<div class="form-group">
+														<label for="nama_desa">Nama Desa</label>
+														<select name="nama_desa" class="form-control" required>
+														    <option value="">-- Pilih Desa --</option>
+														    @foreach ($desa as $itemDesa)
+														        <option value="{{ $itemDesa->id_desa }}" 
+																{{ $itemDesa->id_desa == $kegiatanterbaru->id_desa ? 'selected' :'' }}>
+																{{ $itemDesa->nama_desa }}
+																</option>
+														    @endforeach
+														</select>
+													</div>
+													<div class="form-group">
 														<label for="keterangan">Keterangan</label>
 														<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required>{{ $kegiatanterbaru->keterangan }}</textarea>					
 													</div>
@@ -198,6 +212,7 @@
 												<tr>
 													<th scope="col">Nama Kegiatan</th>
 													<th scope="col">Jenis Kegiatan</th>
+													<th scope="col">Nama Desa</th>
 													<th scope="col">Keterangan</th>
 													<th scope="col">Gambar Kegiatan</th>
 													<th scope="col">Action</th>
@@ -208,6 +223,7 @@
         										<tr>
             										<td>{{ $items->nama_kegiatan }}</td>
 													<td>{{ $items->nama_jenis_kegiatan }}</td>
+													<td>{{ $items->nama_desa }}</td>
             										<td>{{ $items->keterangan }}</td>
             										<td>
                 									@if ($items->gambar_kegiatan)
@@ -242,6 +258,18 @@
 														    				    <option value="{{ $jenis->id_jenis_kegiatan }}" 
 																				{{ $jenis->id_jenis_kegiatan == $items->id_jenis_kegiatan ? 'selected' : '' }}>
 																				{{ $jenis->nama_jenis_kegiatan }}
+																				</option>
+														    				@endforeach
+																		</select>
+																	</div>
+																	<div class="form-group">
+																		<label for="nama_desa">Nama Desa</label>
+																		<select name="nama_desa" class="form-control" required>
+														    				<option value="">-- Pilih Desa --</option>
+														    				@foreach ($desa as $itemDesa)
+														    				    <option value="{{ $itemDesa->id_desa }}" 
+																				{{ $itemDesa->id_desa == $items->id_desa ? 'selected' : '' }}>
+																				{{ $itemDesa->nama_desa }}
 																				</option>
 														    				@endforeach
 																		</select>
@@ -292,6 +320,15 @@
 														    <option value="">-- Pilih Jenis Kegiatan --</option>
 														    @foreach ($jenis_kegiatan as $item)
 														        <option value="{{ $item->id_jenis_kegiatan }}">{{ $item->nama_jenis_kegiatan }}</option>
+														    @endforeach
+														</select>
+													</div>
+													<div class="form-group">
+														<label for="nama_desa">Nama Desa</label>
+														<select name="nama_desa" class="form-control" required>
+														    <option value="">-- Pilih Desa --</option>
+														    @foreach ($desa as $item)
+														        <option value="{{ $item->id_desa }}">{{ $item->nama_desa }}</option>
 														    @endforeach
 														</select>
 													</div>
