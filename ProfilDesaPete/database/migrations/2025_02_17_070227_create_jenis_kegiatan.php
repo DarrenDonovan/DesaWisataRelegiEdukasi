@@ -16,7 +16,8 @@ class CreateJenisKegiatanTable extends Migration
     {
         Schema::create('jenis_kegiatan', function (Blueprint $table) {
             $table->id('id_jenis_kegiatan');  
-            $table->string('jenis_kegiatan', 100);  
+            $table->string('jenis_kegiatan', 100); 
+            $table->string('gambar_kegiatan', 255); 
         });
     }
 
