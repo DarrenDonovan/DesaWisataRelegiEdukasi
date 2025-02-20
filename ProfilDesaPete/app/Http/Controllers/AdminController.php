@@ -33,8 +33,13 @@ class AdminController extends Controller
         $desa = DB::table('desa')
             ->select('desa.id_desa', 'desa.nama_desa')
             ->get();
+
+        $profil_desa = DB::table('profil_desa')
+            ->join('desa', 'desa.id_desa', '=', 'profil_desa.id_desa')
+            ->select('profil_desa.id_profil', 'profil_desa.judul_profil', 'profil_desa.konten_profil', 'profil_desa.logo_desa', 'profil_desa.id_desa', 'desa.nama_desa')
+            ->get();
     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'desa'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'desa', 'profil_desa'));
     }
 
 
@@ -54,7 +59,16 @@ class AdminController extends Controller
             ->select('jenis_kegiatan.id_jenis_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'jenis_kegiatan.gambar_jenis_kegiatan')
             ->get();
 
-        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan'));
+        $desa = DB::table('desa')
+            ->select('desa.id_desa', 'desa.nama_desa')
+            ->get();
+
+        $profil_desa = DB::table('profil_desa')
+            ->join('desa', 'desa.id_desa', '=', 'profil_desa.id_desa')
+            ->select('profil_desa.id_profil', 'profil_desa.judul_profil', 'profil_desa.konten_profil', 'profil_desa.logo_desa', 'profil_desa.id_desa', 'desa.nama_desa')
+            ->get();
+
+        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'desa', 'profil_desa'));
     }
 
 
