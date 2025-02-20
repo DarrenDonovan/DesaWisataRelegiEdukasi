@@ -169,6 +169,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // PETA
 // Inisialisasi Peta
+// Inisialisasi Peta
 var map = L.map('map').setView([-6.235, 106.466], 13); // Pastikan koordinat sesuai lokasi
 
 // Definisi tile layer (peta jalan dan peta satelit)
@@ -191,20 +192,56 @@ var baseMaps = {
 
 L.control.layers(baseMaps).addTo(map);
 
-// Data Interest Points (langsung ditampilkan tanpa kategori)
+// Data Interest Points dengan kategori Desa dan Kelurahan
 var interestPoints = [
-    { name: "Pasir Bolang", lat: -6.226479917976542,    lon: 106.47184220102415 },
-    { name: "Cisereh", lat: -6.222,  lon: 106.458 },
-    { name: "Pasir Nangka", lat: -6.234,  lon: 106.471},
-    { name: "Pematang", lat: -6.238,  lon: 106.460},
-    { name: "Pete", lat: -6.253,  lon: 106.453},
-    { name: "Tegalsari", lat: -6.242760178426513,   lon: 106.44619795929671},
+    { name: "Pasir Bolang", lat: -6.226479917976542, lon: 106.47184220102415, category: "Desa" },
+    { name: "Cisereh", lat: -6.23258393623556, lon: 106.45836800354205, category: "Desa" },
+    { name: "Pasir Nangka", lat: -6.252225664864957, lon: 106.47206608878156, category: "Desa" },
+    { name: "Pematang", lat: -6.250700227216448, lon: 106.46269611260229, category: "Desa" },
+    { name: "Pete", lat: -6.2551757467598605, lon: 106.46014819401702, category: "Desa" },
+    { name: "Tegalsari", lat: -6.259508718586721, lon: 106.44606958089086, category: "Desa" },
+    { name: "Mata Gara", lat: -6.251052078322207, lon: 106.48871237640144, category: "Desa" },
+    { name: "Kadu Agung", lat: -6.269039580483018, lon: 106.4977442519755, category: "Kelurahan" },
+    { name: "Marga Sari", lat: -6.286065988747027, lon: 106.49771244628573, category: "Desa" },
+    { name: "Sodong", lat: -6.282788679349722, lon: 106.46819138548888, category: "Desa" },
+    { name: "Tapos", lat: -6.294917102598325, lon: 106.47231257584326, category: "Desa" },
+    { name: "Bantar Panjang", lat: -6.295601184925948, lon: 106.45126923990308, category: "Desa" },
+    { name: "Cileles", lat: -6.320242630257741, lon: 106.43198249092904, category: "Desa" },
+    { name: "Tigaraksa", lat: -6.26416190920571, lon: 106.47298765390316, category: "Kelurahan" }
 ];
 
-// Tambahkan marker ke peta
-interestPoints.forEach(point => {
-    L.marker([point.lat, point.lon]).addTo(map)
-        .bindPopup(`<b>${point.name}</b>`);
+// Array untuk menyimpan marker
+var markers = [];
+
+// Fungsi untuk menampilkan marker berdasarkan kategori
+function addMarkers(category) {
+    // Hapus semua marker sebelum menambahkan yang baru
+    markers.forEach(marker => map.removeLayer(marker));
+    markers = [];
+
+    interestPoints.forEach(point => {
+        if (category === "all" || point.category === category) {
+            var marker = L.marker([point.lat, point.lon]).addTo(map);
+
+            // Tooltip menggantikan Popup agar tidak ada tombol X dan menghilang otomatis
+            marker.bindTooltip(`<b>${point.name}</b><br>${point.category}`, {
+                permanent: false,   // Tooltip hanya muncul saat cursor di atas
+                direction: "top",   // Menampilkan tooltip di atas marker
+                opacity: 0.9        // Sedikit transparan agar terlihat bagus
+            });
+
+            markers.push(marker);
+        }
+    });
+}
+
+// Tambahkan semua marker pertama kali
+addMarkers("all");
+
+// Event untuk filter berdasarkan kategori
+document.getElementById("categoryFilter").addEventListener("change", function () {
+    addMarkers(this.value);
 });
+
 // PETA END
         
