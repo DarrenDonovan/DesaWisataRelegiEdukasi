@@ -109,13 +109,13 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-5">
                         <div class="h-100" >
-                            <img src="{{url('img/logokab.png')}}" class="img-fluid" style="width: 400px; height: auto; margin-left: 100px;" alt="">
+                            <img src="{{asset('storage/' . $profil->logo_wilayah)}}" class="img-fluid" style="width: 400px; height: auto; margin-left: 100px;" alt="">
                         </div>
                     </div>
                     <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
                         <h5 class="section-about-title pe-3">Sejarah</h5>
-                        <h1 class="mb-4" class="text-primary">Desa Pete</h1>
-                        <p class="mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem ducimus cum ullam quod aspernatur aut iusto aliquam veritatis, quae mollitia tempora explicabo similique modi impedit odit saepe debitis. Nostrum, eos.</p>                        
+                        <h1 class="mb-4" class="text-primary">{{ $profil->nama_wilayah }}</h1>
+                        <p class="mb-4">{{ $profil->deskripsi }}</p>                        
                     </div>
                 </div>
             </div>

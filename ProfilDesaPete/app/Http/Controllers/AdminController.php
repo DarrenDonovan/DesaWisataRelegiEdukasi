@@ -12,17 +12,24 @@ use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
+
+    //Declare Database connection to data into admin adn index
     public function admin(){
+        $user = Auth::user();
+
         $kegiatanterbaru = DB::table('kegiatan')
             ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
-            ->join('desa', 'kegiatan.id_desa', 'desa.id_desa')
-            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_desa', 'desa.nama_desa')
+            ->join('wilayah', 'kegiatan.id_wilayah', 'wilayah.id_wilayah')
+            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
+            // ->where('kegiatan.id_wilayah', 'wilayah.id_wilayah')
+            // ->where('kegiatan.id_wilayah', $user->id_wilayah)
             ->orderBy('id_kegiatan', 'desc')->first();
 
         $kegiatan = DB::table('kegiatan')
             ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
-            ->join('desa', 'kegiatan.id_desa', 'desa.id_desa')
-            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_desa', 'desa.nama_desa')
+            ->join('wilayah', 'kegiatan.id_wilayah', 'wilayah.id_wilayah')
+            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
+          //  ->where('kegiatan.id_wilayah', $user->id_wilayah)
             ->orderBy('id_kegiatan', 'desc')
             ->paginate(5);
 
@@ -30,16 +37,17 @@ class AdminController extends Controller
             ->select('jenis_kegiatan.id_jenis_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan')
             ->get();
 
-        $desa = DB::table('desa')
-            ->select('desa.id_desa', 'desa.nama_desa')
+        $wilayah = DB::table('wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah')
             ->get();
 
-        $profil_desa = DB::table('profil_desa')
-            ->join('desa', 'desa.id_desa', '=', 'profil_desa.id_desa')
-            ->select('profil_desa.id_profil', 'profil_desa.judul_profil', 'profil_desa.konten_profil', 'profil_desa.logo_desa', 'profil_desa.id_desa', 'desa.nama_desa')
-            ->get();
+        $profil = DB::table('profil')
+            ->join('wilayah', 'wilayah.id_wilayah', '=', 'profil.id_wilayah')
+            ->select('profil.id_profil', 'profil.id_wilayah', 'profil.deskripsi', 'profil.logo_wilayah', 'wilayah.nama_wilayah')
+            ->where('profil.id_wilayah', $user->id_wilayah)
+            ->first();
     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'desa', 'profil_desa'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil'));
     }
 
 
@@ -59,35 +67,49 @@ class AdminController extends Controller
             ->select('jenis_kegiatan.id_jenis_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'jenis_kegiatan.gambar_jenis_kegiatan')
             ->get();
 
-        $desa = DB::table('desa')
-            ->select('desa.id_desa', 'desa.nama_desa')
+        $wilayah = DB::table('wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah')
             ->get();
 
-        $profil_desa = DB::table('profil_desa')
-            ->join('desa', 'desa.id_desa', '=', 'profil_desa.id_desa')
-            ->select('profil_desa.id_profil', 'profil_desa.judul_profil', 'profil_desa.konten_profil', 'profil_desa.logo_desa', 'profil_desa.id_desa', 'desa.nama_desa')
-            ->get();
+        $profil = DB::table('profil')
+            ->join('wilayah', 'wilayah.id_wilayah', '=', 'profil.id_wilayah')
+            ->select('profil.id_profil', 'profil.id_wilayah', 'profil.deskripsi', 'profil.logo_wilayah', 'wilayah.nama_wilayah')
+            ->first();
 
-        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'desa', 'profil_desa'));
+        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah','profil'));
     }
 
 
+    //Create Admin
     public function create(){
         if(Auth::user()->role !== 'superadmin'){
             abort(403, 'Unauthorized Access');
         }
-        return view('createadmin');
+
+        $users = DB::table('users')
+            ->join('wilayah', 'wilayah.id_wilayah', 'users.id_wilayah')
+            ->select('users.name', 'users.email', 'users.role', 'users.id_wilayah', 'wilayah.nama_wilayah')
+            ->get();
+
+        $wilayah = DB::table('wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah')
+            ->get();
+
+        return view('createadmin', compact('users','wilayah'));
     }
 
 
+    //Store Admin Data
     public function store(Request $request){
         if(Auth::user()->role !== 'superadmin'){
             abort(403, 'Unauthorized Access');
         }
+        
          $request->validate([
             'name'=>'required|string',
             'email'=>'required|email|unique:users',
-            'password'=>'required'
+            'password'=>'required',
+            'wilayah'=>'required|integer'
          ]);
 
          User::create([
@@ -95,23 +117,30 @@ class AdminController extends Controller
             'email'=>$request->email,
             'password'=> Hash::make($request->password),
             'role'=>'admin',
+            'id_wilayah'=>$request->wilayah
          ]);
 
          return redirect('admin/createadmin')->with('success', 'Admin created successfully!');
     }
 
 
+    //Data Update
     public function updateKegiatan(Request $request, $id)
     {
         $request->validate([
             'nama_kegiatan' => 'required|string|max:100',
             'jenis_kegiatan' => 'required|integer', //Sama dengan option name
-            'nama_desa' => 'required|integer', 
+            'nama_wilayah' => 'required|integer', 
             'keterangan' => 'required|string',
             'gambar_kegiatan' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
-        $kegiatan = DB::table('kegiatan')->where('id_kegiatan', $id)->first();
+       // $user = Auth::user();
+
+        $kegiatan = DB::table('kegiatan')
+            ->where('id_kegiatan', $id)
+            //->where('kegiatan.id_wilayah', $user->id_wilayah)
+            ->first();
 
         if (!$kegiatan) {
             return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
@@ -120,7 +149,7 @@ class AdminController extends Controller
         $updateData = [
             'nama_kegiatan' => $request->nama_kegiatan,
             'id_jenis_kegiatan' => $request->jenis_kegiatan,  //nama kolom ditable => name di option
-            'id_desa' => $request->nama_desa,
+            'id_wilayah' => $request->nama_wilayah,
             'keterangan' => $request->keterangan,
         ];
 
@@ -139,7 +168,46 @@ class AdminController extends Controller
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
     }
 
+    public function updateProfil(Request $request, $id){
+        $request->validate([
+            'nama_wilayah' => 'required|integer', 
+            'deskripsi' => 'required|string',
+            'logo_wilayah' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
 
+       // $user = Auth::user();
+
+        $profil = DB::table('profil')
+            ->where('id_profil', $id)
+            //->where('profil.id_wilayah', $user->id_wilayah)
+            ->first();
+
+        if (!$profil) {
+            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+        }
+
+        $updateData = [
+            'id_wilayah' => $request->nama_wilayah,
+            'deskripsi' => $request->deskripsi,
+        ];
+
+        if ($request->hasFile('logo_wilayah')) {
+            if ($profil->logo_wilayah) {
+                Storage::disk('public')->delete($profil->logo_wilayah);
+            }
+
+            $imagePath = $request->file('logo_wilayah')->store('profil', 'public');
+            $updateData['logo_wilayah'] = $imagePath;
+        }
+
+        DB::table('profil')->where('id_profil', $id)->update($updateData);
+
+        Session::flash('message', 'Data Berhasil Diupdate!');
+        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+    }
+
+
+    //Delete Data
     public function deleteKegiatan($id){
         $kegiatan = DB::table('kegiatan')->where('id_kegiatan', $id)->first();
 
@@ -151,11 +219,12 @@ class AdminController extends Controller
     }
 
 
+    //Create Data
     public function createKegiatan(Request $request){
         $request->validate([
             'nama_kegiatan' => 'required|string|max:100',
             'jenis_kegiatan' => 'required|integer', //Sama dengan option name
-            'nama_desa' => 'required|integer',
+            'nama_wilayah' => 'required|integer',
             'keterangan' => 'required|string',
             'gambar_kegiatan' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
@@ -168,7 +237,7 @@ class AdminController extends Controller
         DB::table('kegiatan')->insert([
             'nama_kegiatan' => $request->nama_kegiatan,
             'id_jenis_kegiatan' => $request->jenis_kegiatan, //nama kolom ditable => name di option
-            'id_desa' => $request->nama_desa,
+            'id_wilayah' => $request->nama_wilayah,
             'keterangan' => $request->keterangan,
             'gambar_kegiatan' => $imagePath
         ]);
@@ -176,5 +245,6 @@ class AdminController extends Controller
         Session::flash('message', 'Data Berhasil Ditambahkan!');
         return redirect()->route('admin');
     }
+
 
 }
