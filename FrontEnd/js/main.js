@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // PETA
 // Inisialisasi Peta
 // Inisialisasi Peta
-var map = L.map('map').setView([-6.235, 106.466], 13); // Pastikan koordinat sesuai lokasi
+var map = L.map('map').setView([-6.256097964960715, 106.4710449399145], 12); // Pastikan koordinat sesuai lokasi
 
 // Definisi tile layer (peta jalan dan peta satelit)
 var streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -207,7 +207,7 @@ var interestPoints = [
     { name: "Tapos", lat: -6.294917102598325, lon: 106.47231257584326, category: "Desa" },
     { name: "Bantar Panjang", lat: -6.295601184925948, lon: 106.45126923990308, category: "Desa" },
     { name: "Cileles", lat: -6.320242630257741, lon: 106.43198249092904, category: "Desa" },
-    { name: "Tigaraksa", lat: -6.26416190920571, lon: 106.47298765390316, category: "Kelurahan" }
+    { name: "Tigaraksa", lat: -6.26416190920571, lon: -6.26416190920571, category: "Kelurahan" }
 ];
 
 // Array untuk menyimpan marker
