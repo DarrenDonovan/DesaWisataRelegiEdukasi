@@ -59,3 +59,5 @@ Route::post('/admin/update/{id}', [AdminController::class, 'updateKegiatan'])->n
 Route::get('admin/delete/{id}', [AdminController::class, 'deleteKegiatan'])->name('admin.deleteKegiatan');
 
 Route::post('admin/createKegiatan', [AdminController::class, 'createKegiatan'])->name('admin.createKegiatan');
+
+Route::post('/admin/updateProfil/{id}', [AdminController::class, 'updateProfil'])->name('admin.updateProfil');

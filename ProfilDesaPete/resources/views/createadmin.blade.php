@@ -26,6 +26,14 @@
       <div class="input-box">
         <input type="password" placeholder="Create password" name="password" required>
       </div>
+      <div class="input-box">
+        <select class="form-control" name="wilayah" id="wilayah" required>
+          <option value="">-- Pilih Wilayah --</option>
+            @foreach ($wilayah as $item)
+              <option value="{{ $item->id_wilayah }}">{{ $item->nama_wilayah }}</option>
+            @endforeach
+        </select>
+    </div>
       <div class="input-box button">
         <input type="Submit" value="Add Admin">
       </div>

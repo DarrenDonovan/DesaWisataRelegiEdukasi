@@ -45,14 +45,12 @@
 				<div class="scrollbar-inner sidebar-wrapper">
 					<ul class="nav">
 						<li class="nav-item active">
-							<a href="index.html">
-								<i class="la la-dashboard"></i>
+							<a href="{{ url('admin') }}">
 								<p>Dashboard</p>
 								<span class="badge badge-count">5</span>
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="components.html">
 								<i class="la la-table"></i>
 								<p>Components</p>
 								<span class="badge badge-count">14</span>
@@ -102,12 +100,80 @@
 				</div>
 			</div>
 
-<!-- Kegiatan Terbaru -->
 			<div class="main-panel">
 					<div class="container-fluid">
 						@if (Session::has('message'))
 							<p class="alert alert-success mt-2">{{ Session::get('message') }}</p>
 						@endif
+
+						<!-- Profil -->
+<!-- Berarti mesti ada for loop untuk pengkondisian untuk cek apabila admin wilayah 1 login, maka hanya bisa lihat kontek khusus admin wilayah 1 -->
+					<div class="d-flex justify-content-between align-items-center mt-4">
+						<h4 class="page-title mt-1">Profil Kecamatan</h4>
+						<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalEdit_profil">Edit Profil</button>	
+					</div>	
+						<div class="row">
+							<div class="col-md-3">
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">Logo Wilayah</h4>
+										<img src="{{ asset('storage/' . $profil->logo_wilayah) }}" width="100" alt="">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-9">
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">Konten Profil</h4>
+										<p class="card-category">
+										{{ $profil->nama_wilayah }}</p>
+									</div>
+									<div class="card-body">
+										<p>{{ $profil->deskripsi }}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+							<!-- Modal Edit profil -->
+							<div class="modal fade" id="modalEdit_profil" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+   									<div class="modal-dialog">
+        								<div class="modal-content">
+            								<div class="modal-header">
+												<h5 class="modal-title" id="modalTitle">Edit Profil</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            								</div>
+            								<div class="modal-body">
+												<form action="{{ route('admin.updateProfil', $profil->id_profil)}}" method="post" enctype="multipart/form-data">
+													@csrf
+													<div class="form-group">
+														<label for="nama_wilayah">Nama Wilayah</label>
+														<select name="nama_wilayah" class="form-control" required>
+														    <option value="">-- Pilih Wilayah --</option>
+														    @foreach ($wilayah as $itemWilayah)
+														        <option value="{{ $itemWilayah->id_wilayah }}" 
+																{{ $itemWilayah->id_wilayah == $profil->id_wilayah ? 'selected' :'' }}>
+																{{ $itemWilayah->nama_wilayah }}
+																</option>
+														    @endforeach
+														</select>
+													</div>
+													<div class="form-group">
+														<label for="deskripsi">Deskripsi</label>
+														<textarea name="deskripsi" class="form-control" id="deskripsi" cols="50" rows="4" required>{{ $profil->deskripsi }}</textarea>					
+													</div>
+													<div class="form-group">
+														<label for="logo_wilayah">Gambar Kegiatan</label>
+														<input type="file" class="form-control-file" name="logo_wilayah" id="logo_wilayah">
+                									</div>
+													<button type="submit" class="btn btn-primary form-control">Save changes</button>
+												</form>
+								            </div>
+								        </div>
+								    </div>
+								</div>
+
+						<!-- Kegiatan Terbaru -->
 						<h4 class="page-title mt-2">Kegiatan Terbaru</h4>
 						<div class="row">
 							<div class="col">
@@ -118,7 +184,7 @@
 												<tr>
 													<th scope="col">Nama Kegiatan</th>
 													<th scope="col">Jenis Kegiatan</th>
-													<th scope="col">Nama Desa</th>
+													<th scope="col">Nama Wilayah</th>
 													<th scope="col">Keterangan</th>
 													<th scope="col">Gambar Kegiatan</th>
 													<th scope="col">Action</th>
@@ -129,7 +195,7 @@
         										<tr>
             										<td>{{ $kegiatanterbaru->nama_kegiatan }}</td>
 													<td>{{ $kegiatanterbaru->nama_jenis_kegiatan }}</td>
-													<td>{{ $kegiatanterbaru->nama_desa }}</td>
+													<td>{{ $kegiatanterbaru->nama_wilayah }}</td>
             										<td>{{ $kegiatanterbaru->keterangan }}</td>
             										<td>
                 									@if ($kegiatanterbaru->gambar_kegiatan)
@@ -174,13 +240,13 @@
 														</select>
 													</div>
 													<div class="form-group">
-														<label for="nama_desa">Nama Desa</label>
-														<select name="nama_desa" class="form-control" required>
-														    <option value="">-- Pilih Desa --</option>
-														    @foreach ($desa as $itemDesa)
-														        <option value="{{ $itemDesa->id_desa }}" 
-																{{ $itemDesa->id_desa == $kegiatanterbaru->id_desa ? 'selected' :'' }}>
-																{{ $itemDesa->nama_desa }}
+														<label for="nama_wilayah">Nama Wilayah</label>
+														<select name="nama_wilayah" class="form-control" required>
+														    <option value="">-- Pilih Wilayah --</option>
+														    @foreach ($wilayah as $itemWilayah)
+														        <option value="{{ $itemWilayah->id_wilayah }}" 
+																{{ $itemWilayah->id_wilayah == $kegiatanterbaru->id_wilayah ? 'selected' :'' }}>
+																{{ $itemWilayah->nama_wilayah }}
 																</option>
 														    @endforeach
 														</select>
@@ -201,8 +267,10 @@
 								</div>
 
 					<!-- Daftar Kegiatan -->
-					<h4 class="page-title mt-1">Daftar Kegiatan</h4>
-					<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalTambah_kegiatan">Tambah Kegiatan</button>					
+					<div class="d-flex justify-content-between align-items-center">
+						<h4 class="page-title mt-1">Daftar Kegiatan</h4>
+						<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalTambah_kegiatan">Tambah Kegiatan</button>	
+					</div>				
 						<div class="row">
 							<div class="col">
 								<div class="card">
@@ -212,7 +280,7 @@
 												<tr>
 													<th scope="col">Nama Kegiatan</th>
 													<th scope="col">Jenis Kegiatan</th>
-													<th scope="col">Nama Desa</th>
+													<th scope="col">Nama Wilayah</th>
 													<th scope="col">Keterangan</th>
 													<th scope="col">Gambar Kegiatan</th>
 													<th scope="col">Action</th>
@@ -223,7 +291,7 @@
         										<tr>
             										<td>{{ $items->nama_kegiatan }}</td>
 													<td>{{ $items->nama_jenis_kegiatan }}</td>
-													<td>{{ $items->nama_desa }}</td>
+													<td>{{ $items->nama_wilayah }}</td>
             										<td>{{ $items->keterangan }}</td>
             										<td>
                 									@if ($items->gambar_kegiatan)
@@ -235,7 +303,7 @@
 													<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{$items->id_kegiatan}}">Edit</a> | <a href="{{route('admin.deleteKegiatan', $items->id_kegiatan)}}">Hapus</a></td>
 												</tr>
 
-												<!-- Modal Daftar Kegiatan -->
+												<!-- Modal Edit Kegiatan -->
 												<div class="modal fade" id="myModal{{$items->id_kegiatan}}" tabindex="-1" aria-labelledby="modalTitle{{$items->id_kegiatan}}" aria-hidden="true">
    													<div class="modal-dialog">
         												<div class="modal-content">
@@ -263,13 +331,13 @@
 																		</select>
 																	</div>
 																	<div class="form-group">
-																		<label for="nama_desa">Nama Desa</label>
-																		<select name="nama_desa" class="form-control" required>
-														    				<option value="">-- Pilih Desa --</option>
-														    				@foreach ($desa as $itemDesa)
-														    				    <option value="{{ $itemDesa->id_desa }}" 
-																				{{ $itemDesa->id_desa == $items->id_desa ? 'selected' : '' }}>
-																				{{ $itemDesa->nama_desa }}
+																		<label for="nama_wilayah">Nama Wilayah</label>
+																		<select name="nama_wilayah" class="form-control" required>
+														    				<option value="">-- Pilih Wilayah --</option>
+														    				@foreach ($wilayah as $itemWilayah)
+														    				    <option value="{{ $itemWilayah->id_wilayah }}" 
+																				{{ $itemWilayah->id_wilayah == $items->id_wilayah ? 'selected' : '' }}>
+																				{{ $itemWilayah->nama_wilayah }}
 																				</option>
 														    				@endforeach
 																		</select>
@@ -324,11 +392,11 @@
 														</select>
 													</div>
 													<div class="form-group">
-														<label for="nama_desa">Nama Desa</label>
-														<select name="nama_desa" class="form-control" required>
-														    <option value="">-- Pilih Desa --</option>
-														    @foreach ($desa as $item)
-														        <option value="{{ $item->id_desa }}">{{ $item->nama_desa }}</option>
+														<label for="nama_wilayah">Nama Wilayah</label>
+														<select name="nama_wilayah" class="form-control" required>
+														    <option value="">-- Pilih Wilayah --</option>
+														    @foreach ($wilayah as $item)
+														        <option value="{{ $item->id_wilayah }}">{{ $item->nama_wilayah }}</option>
 														    @endforeach
 														</select>
 													</div>
@@ -347,39 +415,8 @@
 								    </div>
 								</div>
 
+						
 
-						<div class="row">
-							<div class="col-md-3">
-								<div class="card">
-									<div class="card-header">
-										<h4 class="card-title">Task</h4>
-										<p class="card-category">Complete</p>
-									</div>
-									<div class="card-body">
-										<div id="task-complete" class="chart-circle mt-4 mb-3"></div>
-									</div>
-									<div class="card-footer">
-										<div class="legend"><i class="la la-circle text-primary"></i> Completed</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-9">
-								<div class="card">
-									<div class="card-header">
-										<h4 class="card-title">World Map</h4>
-										<p class="card-category">
-										Map of the distribution of users around the world</p>
-									</div>
-									<div class="card-body">
-										<div class="mapcontainer">
-											<div class="map">
-												<span>Alternative content for the map</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
 						<div class="row row-card-no-pd">
 							<div class="col-md-4">
 								<div class="card">
