@@ -109,13 +109,13 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-5">
                         <div class="h-100" >
-                            <img src="{{asset('storage/' . $profil->logo_wilayah)}}" class="img-fluid" style="width: 400px; height: auto; margin-left: 100px;" alt="">
+                            <img src="{{asset('storage/' . $profilkecamatan->logo_wilayah)}}" class="img-fluid" style="width: 400px; height: auto; margin-left: 100px;" alt="">
                         </div>
                     </div>
                     <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
                         <h5 class="section-about-title pe-3">Sejarah</h5>
-                        <h1 class="mb-4" class="text-primary">{{ $profil->nama_wilayah }}</h1>
-                        <p class="mb-4">{{ $profil->deskripsi }}</p>                        
+                        <h1 class="mb-4" class="text-primary">{{ $profilkecamatan->nama_wilayah }}</h1>
+                        <p class="mb-4">{{ $profilkecamatan->deskripsi }}</p>                        
                     </div>
                 </div>
             </div>

@@ -19,17 +19,17 @@ class AdminController extends Controller
 
         $kegiatanterbaru = DB::table('kegiatan')
             ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
-            ->join('wilayah', 'kegiatan.id_wilayah', 'wilayah.id_wilayah')
+            ->join('wilayah', 'kegiatan.id_wilayah', '=', 'wilayah.id_wilayah')
             ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
-            // ->where('kegiatan.id_wilayah', 'wilayah.id_wilayah')
-            // ->where('kegiatan.id_wilayah', $user->id_wilayah)
-            ->orderBy('id_kegiatan', 'desc')->first();
-
+            ->where('kegiatan.id_wilayah', $user->id_wilayah)
+            ->orderBy('id_kegiatan', 'desc')
+            ->first();
+        
         $kegiatan = DB::table('kegiatan')
             ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
-            ->join('wilayah', 'kegiatan.id_wilayah', 'wilayah.id_wilayah')
+            ->join('wilayah', 'kegiatan.id_wilayah','=', 'wilayah.id_wilayah')
             ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
-          //  ->where('kegiatan.id_wilayah', $user->id_wilayah)
+            ->where('kegiatan.id_wilayah', $user->id_wilayah)
             ->orderBy('id_kegiatan', 'desc')
             ->paginate(5);
 
@@ -76,7 +76,13 @@ class AdminController extends Controller
             ->select('profil.id_profil', 'profil.id_wilayah', 'profil.deskripsi', 'profil.logo_wilayah', 'wilayah.nama_wilayah')
             ->first();
 
-        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah','profil'));
+        $profilkecamatan = DB::table('profil')
+            ->join('wilayah', 'wilayah.id_wilayah', '=', 'profil.id_wilayah')
+            ->select('profil.id_profil', 'profil.id_wilayah', 'profil.deskripsi', 'profil.logo_wilayah', 'wilayah.nama_wilayah')
+            ->where('profil.id_wilayah', 13)
+            ->first();
+
+        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah','profil', 'profilkecamatan'));
     }
 
 
@@ -135,11 +141,11 @@ class AdminController extends Controller
             'gambar_kegiatan' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
-       // $user = Auth::user();
+       $user = Auth::user();
 
         $kegiatan = DB::table('kegiatan')
             ->where('id_kegiatan', $id)
-            //->where('kegiatan.id_wilayah', $user->id_wilayah)
+            ->where('kegiatan.id_wilayah', $user->id_wilayah)
             ->first();
 
         if (!$kegiatan) {
@@ -175,11 +181,11 @@ class AdminController extends Controller
             'logo_wilayah' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
-       // $user = Auth::user();
+        $user = Auth::user();
 
         $profil = DB::table('profil')
             ->where('id_profil', $id)
-            //->where('profil.id_wilayah', $user->id_wilayah)
+            ->where('profil.id_wilayah', $user->id_wilayah)
             ->first();
 
         if (!$profil) {

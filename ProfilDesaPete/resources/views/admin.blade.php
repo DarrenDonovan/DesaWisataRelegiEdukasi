@@ -107,17 +107,20 @@
 						@endif
 
 						<!-- Profil -->
-<!-- Berarti mesti ada for loop untuk pengkondisian untuk cek apabila admin wilayah 1 login, maka hanya bisa lihat kontek khusus admin wilayah 1 -->
 					<div class="d-flex justify-content-between align-items-center mt-4">
 						<h4 class="page-title mt-1">Profil Kecamatan</h4>
+						@if($profil)
 						<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalEdit_profil">Edit Profil</button>	
+						@endif
 					</div>	
 						<div class="row">
 							<div class="col-md-3">
 								<div class="card">
 									<div class="card-header">
 										<h4 class="card-title">Logo Wilayah</h4>
+										@if($profil && $profil->logo_wilayah)
 										<img src="{{ asset('storage/' . $profil->logo_wilayah) }}" width="100" alt="">
+										@endif
 									</div>
 								</div>
 							</div>
@@ -126,16 +129,25 @@
 									<div class="card-header">
 										<h4 class="card-title">Konten Profil</h4>
 										<p class="card-category">
+										@if($profil)
 										{{ $profil->nama_wilayah }}</p>
+										@else
+										Belum ada Data
+										@endif
 									</div>
 									<div class="card-body">
+										@if($profil)
 										<p>{{ $profil->deskripsi }}</p>
+										@else
+										Belum ada deskripsi
+										@endif
 									</div>
 								</div>
 							</div>
 						</div>
 
 							<!-- Modal Edit profil -->
+							@if($profil)
 							<div class="modal fade" id="modalEdit_profil" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
    									<div class="modal-dialog">
         								<div class="modal-content">
@@ -172,6 +184,8 @@
 								        </div>
 								    </div>
 								</div>
+								@endif
+
 
 						<!-- Kegiatan Terbaru -->
 						<h4 class="page-title mt-2">Kegiatan Terbaru</h4>
