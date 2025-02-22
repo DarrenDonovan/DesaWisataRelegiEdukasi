@@ -27,6 +27,47 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <style>
+            /* Container peta agar tetap di tengah dan lebar */
+            .map-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin-top: 20px;
+            }
+        
+            #map1 {
+                width: 90%; /* Ubah sesuai kebutuhan */
+                height: 600px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            }
+        
+            /* Styling tombol filter agar di pojok kiri atas peta */
+            .filter-container {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                background: white;
+                padding: 8px 12px;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+                z-index: 1000;
+                font-weight: bold;
+            }
+        
+            /* Supaya select lebih rapi */
+            .filter-container select {
+                padding: 5px;
+                font-size: 14px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+        </style>
     </head>
 
     <body>
@@ -90,36 +131,120 @@
 
         <!-- Header Start -->
         <div class="container-fluid bg-breadcrumb">
-            <h3 class="text-white display-3 mb-4">
-                <span class="small-text">Desa</span>
+            <h3 class="text-white display-3 mb-4 text-center">
+                <span class="small-text d-block">Desa</span>
                 Bantar Panjang
             </h3>
-            
-            
-                <!-- <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                    <li class="breadcrumb-item active text-white">404 Page</li>
-                </ol>     -->
-            </div>
         </div>
         <!-- Header End -->
 
-        <!-- 404 Start -->
-        <div class="container-fluid py-5" style="background: linear-gradient(rgba(19, 53, 123, 0.3), rgba(19, 53, 153, 0.3)); object-fit: cover;">
-            <div class="container py-5 text-center">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <i class="bi bi-exclamation-triangle display-1 text-primary"></i>
-                        <h1 class="display-1">404</h1>
-                        <h1 class="mb-4 text-dark">Page Not Found</h1>
-                        <p class="mb-4 text-dark">We’re sorry, the page you have looked for does not exist in our website! Maybe go to our home page or try to use a search?</p>
-                        <a class="btn btn-primary rounded-pill py-3 px-5" href="index.html">Go Back To Home</a>
-                    </div>
-                </div>
+        <!-- Profil -->
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <!-- <h5 class="section-title px-3"> Lokasi Desa </h5> -->
+            <h1 class="mb-0"> Profil Desa </h1>
+        </div>
+        <div class="containerProDes">
+            <div class="proDes">
+                <h2>Bantar Panjang</h2>
+                <p><strong>Batas Desa</strong></p>
+                <table>
+                    <tr><td class="highlight">Utara</td><td>Desa A</td></tr>
+                    <tr><td class="highlight">Timur</td><td>Desa B</td></tr>
+                    <tr><td class="highlight">Selatan</td><td>Desa C</td></tr>
+                    <tr><td class="highlight">Barat</td><td>Desa D</td></tr>
+                </table>
+                <p><strong>Luas Desa:</strong> 421.000 m²</p>
+                <p><strong>Jumlah Penduduk:</strong> 1.149 Jiwa</p>
+            </div>
+    
+            <div class="gmbrDesa">
+                <img src="img/gallery-1.jpg" class="img-fluid rounded shadow-lg" alt="Gambar Desa">
             </div>
         </div>
-        <!-- 404 End -->
+        <!-- Profil end -->
+
+        <!-- PETA DESA -->
+        <div class="map-container">
+            <div id="map1"></div>
+        
+            <!-- Filter kategori, sekarang di pojok kiri atas peta -->
+            <div class="filter-container">
+                <label for="catMap1">Kategori:</label>
+                <select id="catMap1">
+                    <option value="all">Semua</option>
+                    <option value="Wisata">Wisata</option>
+                    <option value="Kuliner">Kuliner</option>
+                </select>
+            </div>
+        </div>
+        
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        
+        
+        <script>
+            // Inisialisasi Peta
+            var map = L.map('map1').setView([-6.295601, 106.451269], 13); // Fokus ke Bantar Panjang
+        
+            // Definisi tile layer (peta jalan dan peta satelit)
+            var streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            });
+        
+            var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: '&copy; Esri & Contributors'
+            });
+        
+            // Tambahkan layer default (peta jalan)
+            streetLayer.addTo(map);
+        
+            // Kontrol untuk memilih peta
+            var baseMaps = {
+                "Peta Jalan": streetLayer,
+                "Peta Satelit": satelliteLayer
+            };
+        
+            L.control.layers(baseMaps).addTo(map);
+        
+            // Data Lokasi (Wisata, Kuliner, dll.)
+            var locations = [
+                { "name": "Wisata 1", "lat": -6.297656, "lon": 106.441847, "category": "Wisata" },
+                { "name": "Wisata 2", "lat": -6.301753, "lon": 106.459986, "category": "Wisata" },
+                { "name": "Pasar Tradisional Bantar Panjang", "lat": -6.292268, "lon": 106.441476, "category": "Kuliner" },
+                { "name": "RM Ayam Geprek", "lat": -6.287349, "lon": 106.449960, "category": "Kuliner" },
+            ];
+        
+            // Array untuk menyimpan marker
+            var markers = [];
+        
+            // Fungsi untuk menampilkan marker berdasarkan kategori
+            function addMarkers(category) {
+                markers.forEach(marker => map.removeLayer(marker));
+                markers = [];
+        
+                locations.forEach(point => {
+                    if (category === "all" || point.category === category) {
+                        var marker = L.marker([point.lat, point.lon]).addTo(map);
+                        marker.bindTooltip(`<b>${point.name}</b><br>${point.category}`, {
+                            permanent: false,
+                            direction: "top",
+                            opacity: 0.9
+                        });
+                        markers.push(marker);
+                    }
+                });
+            }
+        
+            // Tambahkan semua marker pertama kali
+            addMarkers("all");
+        
+            // Event untuk filter kategori
+            document.getElementById("catMap1").addEventListener("change", function () {
+                addMarkers(this.value);
+            });
+        </script>
+        <!-- PETA END -->
+        
+
 
         <!-- Subscribe Start -->
         <div class="container-fluid subscribe py-5">
