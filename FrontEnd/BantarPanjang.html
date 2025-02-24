@@ -36,45 +36,48 @@
     <link href="css/style.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-      /* Container peta agar tetap di tengah dan lebar */
-      .map-container {
+   
+    <style>    
+    .mapBantar-container {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
         align-items: center;
         width: 100%;
-        margin-top: 90px;
+        margin-top: 50px;
         position: relative;
-      }
+    }
 
-      #map1 {
-        width: 90%; /* Ubah sesuai kebutuhan */
+    /* Styling  tampilan peta */
+    #mapBantar {
+        width: 100%; /* Lebarnya */
         height: 600px;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      }
+    }
 
-      /* Styling tombol filter agar di pojok kiri atas peta */
-      .filter-container {
+    /* Styling tombol filter agar berada di pojok kiri atas peta */
+    /* .filter-container {
         position: absolute;
-        top: -70px;
-        left: 80px;
+        top: 10px;
+        left: 20px;
         background: white;
-        padding: 8px 12px;
+        padding: 10px 15px;
         border-radius: 5px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         z-index: 1000;
         font-weight: bold;
-      }
+        display: flex;
+        align-items: center;
+    }
 
-      /* Supaya select lebih rapi */
-      .filter-container select {
-        padding: 5px;
+    .filter-container select {
+        padding: 5px 10px;
         font-size: 14px;
         border: 1px solid #ccc;
         border-radius: 3px;
         cursor: pointer;
-      }
+        margin-left: 8px;
+    } */
     </style>
   </head>
 
@@ -82,13 +85,11 @@
     <!-- Spinner Start -->
     <div
       id="spinner"
-      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
-    >
+      class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
       <div
         class="spinner-border text-primary"
         style="width: 3rem; height: 3rem"
-        role="status"
-      >
+        role="status">
         <span class="sr-only">Loading...</span>
       </div>
     </div>
@@ -141,8 +142,7 @@
                 href="#"
                 class="nav-link dropdown-toggle active"
                 data-bs-toggle="dropdown"
-                >Pages</a
-              >
+                >Pages</a>
               <div class="dropdown-menu m-0">
                 <a href="destination.html" class="dropdown-item">Destination</a>
                 <a href="tour.html" class="dropdown-item">Explore Tour</a>
@@ -173,8 +173,8 @@
     <!-- Header End -->
 
     <!-- Profil -->
-    <div class="mx-auto text-center mb-5" style="max-width: 900px">
-      <!-- <h5 class="section-title px-3"> Lokasi Desa </h5> -->
+    <div class="mx-auto text-center mb-5" style="max-width: 900px; margin-top: 50px;">
+      <h5 class="section-title px-3"> perkenalkan </h5>
       <h1 class="mb-0">Profil Desa</h1>
     </div>
     <div class="containerProDes">
@@ -214,111 +214,24 @@
     <!-- Profil end -->
 
     <!-- PETA DESA -->
-    <div class="map-container">
-      <div id="map1"></div>
-
-      <!-- Filter kategori, sekarang di pojok kiri atas peta -->
-      <div class="filter-container">
-        <label for="catMap1">Kategori:</label>
-        <select id="catMap1">
-          <option value="all">Semua</option>
-          <option value="Wisata">Wisata</option>
-          <option value="Kuliner">Kuliner</option>
-        </select>
+    <div class="container-fluid packages py-5">
+      <div class="container py-5">
+          <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+              <h5 class="section-title px-3">Peta Desa</h5>
+              <h1 class="mb-0">Menampilkan Peta Desa Bantar Panjang Dengan Interest Point</h1>
+          </div>
+          <select id="categoryFilterBantar">
+              <option value="all">Semua</option>
+              <option value="Wisata">Wisata</option>
+              <option value="Kuliner">Kuliner</option>
+              <option value="Penginapan">Penginapan</option>
+          </select>
+          <div id="mapBantar"></div>
+          <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+          <br>
       </div>
-    </div>
-
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-    <script>
-      // Inisialisasi Peta
-      var map = L.map("map1").setView([-6.295601, 106.451269], 13); // Fokus ke Bantar Panjang
-
-      // Definisi tile layer (peta jalan dan peta satelit)
-      var streetLayer = L.tileLayer(
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        {
-          attribution: "&copy; OpenStreetMap contributors",
-        }
-      );
-
-      var satelliteLayer = L.tileLayer(
-        "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-        {
-          attribution: "&copy; Esri & Contributors",
-        }
-      );
-
-      // Tambahkan layer default (peta jalan)
-      streetLayer.addTo(map);
-
-      // Kontrol untuk memilih peta
-      var baseMaps = {
-        "Peta Jalan": streetLayer,
-        "Peta Satelit": satelliteLayer,
-      };
-
-      L.control.layers(baseMaps).addTo(map);
-
-      // Data Lokasi (Wisata, Kuliner, dll.)
-      var locations = [
-        {
-          name: "Wisata 1",
-          lat: -6.297656,
-          lon: 106.441847,
-          category: "Wisata",
-        },
-        {
-          name: "Wisata 2",
-          lat: -6.301753,
-          lon: 106.459986,
-          category: "Wisata",
-        },
-        {
-          name: "Pasar Tradisional Bantar Panjang",
-          lat: -6.292268,
-          lon: 106.441476,
-          category: "Kuliner",
-        },
-        {
-          name: "RM Ayam Geprek",
-          lat: -6.287349,
-          lon: 106.44996,
-          category: "Kuliner",
-        },
-      ];
-
-      // Array untuk menyimpan marker
-      var markers = [];
-
-      // Fungsi untuk menampilkan marker berdasarkan kategori
-      function addMarkers(category) {
-        markers.forEach((marker) => map.removeLayer(marker));
-        markers = [];
-
-        locations.forEach((point) => {
-          if (category === "all" || point.category === category) {
-            var marker = L.marker([point.lat, point.lon]).addTo(map);
-            marker.bindTooltip(`<b>${point.name}</b><br>${point.category}`, {
-              permanent: false,
-              direction: "top",
-              opacity: 0.9,
-            });
-            markers.push(marker);
-          }
-        });
-      }
-
-      // Tambahkan semua marker pertama kali
-      addMarkers("all");
-
-      // Event untuk filter kategori
-      document
-        .getElementById("catMap1")
-        .addEventListener("change", function () {
-          addMarkers(this.value);
-        });
-    </script>
+  </div>
+   
     <!-- PETA END -->
 
     <!-- Subscribe Start -->
@@ -517,7 +430,82 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
 
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Inisialisasi Peta
+        var mapBantar = L.map('mapBantar').setView([-6.295601184925948, 106.45126923990308], 15);
+        
+        // Definisi tile layer (peta jalan dan peta satelit)
+        var streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        });
+        
+        var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: '&copy; Esri & Contributors'
+        });
+        
+        // Tambahkan layer default (peta jalan)
+        streetLayer.addTo(mapBantar);
+        
+        // Kontrol untuk memilih peta
+        var baseMaps = {
+            "Peta Jalan": streetLayer,
+            "Peta Satelit": satelliteLayer
+        };
+        
+        L.control.layers(baseMaps).addTo(mapBantar);
+        
+        // Data Interest Points dengan kategori Desa dan Kelurahan
+        var interestPoints = [
+        { name: "Wisata 1", lat: -6.297656, lon: 106.441847, category: "Wisata" },
+            { name: "Wisata 2", lat: -6.301753, lon: 106.459986, category: "Wisata" },
+            { name: "Pasar Bantar Panjang", lat: -6.292268, lon: 106.441476, category: "Kuliner" },
+            { name: "RM Ayam Geprek", lat: -6.287349, lon: 106.449960, category: "Kuliner" },
+            { name: "Hotel Bintang", lat: -6.299345, lon: 106.451763, category: "Penginapan" },
+            { name: "Homestay Desa", lat: -6.293872, lon: 106.444982, category: "Penginapan" }
+        ];
+        
+        // Array untuk menyimpan marker
+        var markers = [];
+        
+        // Fungsi untuk menampilkan marker berdasarkan kategori
+        function addMarkers(category) {
+            // Hapus semua marker sebelum menambahkan yang baru
+            markers.forEach(marker => mapBantar.removeLayer(marker));
+            markers = [];
+        
+            interestPoints.forEach(point => {
+                if (category === "all" || point.category === category) {
+                    var marker = L.marker([point.lat, point.lon]).addTo(mapBantar);
+        
+                    // Tooltip menggantikan Popup agar tidak ada tombol X dan menghilang otomatis
+                    marker.bindTooltip(`<b>${point.name}</b><br>${point.category}`, {
+                        permanent: false,
+                        direction: "top",
+                        opacity: 0.9
+                    });
+        
+                    markers.push(marker);
+                }
+            });
+        }
+        
+        // Tambahkan semua marker pertama kali
+        addMarkers("all");
+        
+        // Event untuk filter berdasarkan kategori
+        var filterDropdown = document.getElementById("categoryFilterBantar");
+        if (filterDropdown) {
+            filterDropdown.addEventListener("change", function () {
+                addMarkers(this.value);
+            });
+        }
+    });
+
+        </script>
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    
   </body>
 </html>
