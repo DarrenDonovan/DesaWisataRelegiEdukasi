@@ -1282,11 +1282,15 @@
   font-size: 20px;
   color: #ffffff;
   margin-left: 41px;
+  z-index: 10;
+  position: relative;
 }
 
 .scrolled .subtext {
   color: #13357b; /* Warna biru saat di-scroll */
 }
+
+
 
 .pagination-container {
   display: flex;

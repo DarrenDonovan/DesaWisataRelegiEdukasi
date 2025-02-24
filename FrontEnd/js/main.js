@@ -260,6 +260,16 @@ if (document.getElementById("map")) {
 
 // PETA END
 
+
+// KECAMATAN SCROLL (yang samping logo)
+window.addEventListener("scroll", function() {
+    if (window.scrollY > 50) { // Sesuaikan nilai ini sesuai kebutuhan
+        document.body.classList.add("scrolled");
+    } else {
+        document.body.classList.remove("scrolled");
+    }
+});
+
   
 
 
