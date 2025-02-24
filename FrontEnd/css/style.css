@@ -148,6 +148,11 @@
 /*** Topbar End ***/
 
 /*** Navbar ***/
+
+.navbar {
+  z-index: 9999 !important;
+}
+
 .navbar-light .navbar-nav .nav-link {
   font-family: "Roboto", sans-serif;
   position: relative;
@@ -1424,7 +1429,6 @@ table {
   object-fit: cover;
 }
 
-
 .cardBerita-body p {
   flex-grow: 1; /* Supaya deskripsi memenuhi ruang yang ada */
   overflow: hidden; /* Menghindari teks meluber */
@@ -1459,15 +1463,16 @@ table {
   }
 }
 
-.map { 
-    height: 500px; width: 100%; 
+.map {
+  height: 500px;
+  width: 100%;
 }
 
 /* PROFILE DESA */
-.small-text{
-    font-size: 0.7em; /* Ukuran lebih kecil */
-    font-weight: normal; /* Supaya gak terlalu tebal */
-} 
+.small-text {
+  font-size: 0.7em; /* Ukuran lebih kecil */
+  font-weight: normal; /* Supaya gak terlalu tebal */
+}
 
 .containerProDes {
   display: flex;
