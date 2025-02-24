@@ -167,6 +167,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 // MODAL GALLERY END
 
+
+
 // PETA
 // Inisialisasi Peta
 var map = L.map('map').setView([-6.256097964960715, 106.4710449399145], 12); // Pastikan koordinat sesuai lokasi

@@ -430,82 +430,84 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     <script src="lib/lightbox/js/lightbox.min.js"></script>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Inisialisasi Peta
-        var mapBantar = L.map('mapBantar').setView([-6.295601184925948, 106.45126923990308], 15);
-        
-        // Definisi tile layer (peta jalan dan peta satelit)
-        var streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenStreetMap contributors'
-        });
-        
-        var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: '&copy; Esri & Contributors'
-        });
-        
-        // Tambahkan layer default (peta jalan)
-        streetLayer.addTo(mapBantar);
-        
-        // Kontrol untuk memilih peta
-        var baseMaps = {
-            "Peta Jalan": streetLayer,
-            "Peta Satelit": satelliteLayer
-        };
-        
-        L.control.layers(baseMaps).addTo(mapBantar);
-        
-        // Data Interest Points dengan kategori Desa dan Kelurahan
-        var interestPoints = [
-        { name: "Wisata 1", lat: -6.297656, lon: 106.441847, category: "Wisata" },
-            { name: "Wisata 2", lat: -6.301753, lon: 106.459986, category: "Wisata" },
-            { name: "Pasar Bantar Panjang", lat: -6.292268, lon: 106.441476, category: "Kuliner" },
-            { name: "RM Ayam Geprek", lat: -6.287349, lon: 106.449960, category: "Kuliner" },
-            { name: "Hotel Bintang", lat: -6.299345, lon: 106.451763, category: "Penginapan" },
-            { name: "Homestay Desa", lat: -6.293872, lon: 106.444982, category: "Penginapan" }
-        ];
-        
-        // Array untuk menyimpan marker
-        var markers = [];
-        
-        // Fungsi untuk menampilkan marker berdasarkan kategori
-        function addMarkers(category) {
-            // Hapus semua marker sebelum menambahkan yang baru
-            markers.forEach(marker => mapBantar.removeLayer(marker));
-            markers = [];
-        
-            interestPoints.forEach(point => {
-                if (category === "all" || point.category === category) {
-                    var marker = L.marker([point.lat, point.lon]).addTo(mapBantar);
-        
-                    // Tooltip menggantikan Popup agar tidak ada tombol X dan menghilang otomatis
-                    marker.bindTooltip(`<b>${point.name}</b><br>${point.category}`, {
-                        permanent: false,
-                        direction: "top",
-                        opacity: 0.9
-                    });
-        
-                    markers.push(marker);
-                }
-            });
-        }
-        
-        // Tambahkan semua marker pertama kali
-        addMarkers("all");
-        
-        // Event untuk filter berdasarkan kategori
-        var filterDropdown = document.getElementById("categoryFilterBantar");
-        if (filterDropdown) {
-            filterDropdown.addEventListener("change", function () {
-                addMarkers(this.value);
-            });
-        }
-    });
-
-        </script>
+    
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
     
   </body>
+  <script>
+    
+    document.addEventListener("DOMContentLoaded", function () {
+      // Inisialisasi Peta
+      var mapBantar = L.map('mapBantar').setView([-6.295601184925948, 106.45126923990308], 15);
+      
+      // Definisi tile layer (peta jalan dan peta satelit)
+      var streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors'
+      });
+      
+      var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+          attribution: '&copy; Esri & Contributors'
+      });
+      
+      // Tambahkan layer default (peta jalan)
+      streetLayer.addTo(mapBantar);
+      
+      // Kontrol untuk memilih peta
+      var baseMaps = {
+          "Peta Jalan": streetLayer,
+          "Peta Satelit": satelliteLayer
+      };
+      
+      L.control.layers(baseMaps).addTo(mapBantar);
+      
+      // Data Interest Points dengan kategori Desa dan Kelurahan
+      var interestPoints = [
+      { name: "Wisata 1", lat: -6.297656, lon: 106.441847, category: "Wisata" },
+          { name: "Wisata 2", lat: -6.301753, lon: 106.459986, category: "Wisata" },
+          { name: "Pasar Bantar Panjang", lat: -6.292268, lon: 106.441476, category: "Kuliner" },
+          { name: "RM Ayam Geprek", lat: -6.287349, lon: 106.449960, category: "Kuliner" },
+          { name: "Hotel Bintang", lat: -6.299345, lon: 106.451763, category: "Penginapan" },
+          { name: "Homestay Desa", lat: -6.293872, lon: 106.444982, category: "Penginapan" }
+      ];
+      
+      // Array untuk menyimpan marker
+      var markers = [];
+      
+      // Fungsi untuk menampilkan marker berdasarkan kategori
+      function addMarkers(category) {
+          // Hapus semua marker sebelum menambahkan yang baru
+          markers.forEach(marker => mapBantar.removeLayer(marker));
+          markers = [];
+      
+          interestPoints.forEach(point => {
+              if (category === "all" || point.category === category) {
+                  var marker = L.marker([point.lat, point.lon]).addTo(mapBantar);
+      
+                  // Tooltip menggantikan Popup agar tidak ada tombol X dan menghilang otomatis
+                  marker.bindTooltip(`<b>${point.name}</b><br>${point.category}`, {
+                      permanent: false,
+                      direction: "top",
+                      opacity: 0.9
+                  });
+      
+                  markers.push(marker);
+              }
+          });
+      }
+      
+      // Tambahkan semua marker pertama kali
+      addMarkers("all");
+      
+      // Event untuk filter berdasarkan kategori
+      var filterDropdown = document.getElementById("categoryFilterBantar");
+      if (filterDropdown) {
+          filterDropdown.addEventListener("change", function () {
+              addMarkers(this.value);
+          });
+      }
+  });
+
+  </script>
 </html>
