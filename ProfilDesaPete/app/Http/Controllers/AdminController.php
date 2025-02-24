@@ -81,8 +81,11 @@ class AdminController extends Controller
             ->select('profil.id_profil', 'profil.id_wilayah', 'profil.deskripsi', 'profil.logo_wilayah', 'wilayah.nama_wilayah')
             ->where('profil.id_wilayah', 13)
             ->first();
+        
+        $about_us = DB::table('about_us')
+            ->first();
 
-        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah','profil', 'profilkecamatan'));
+        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah','profil', 'profilkecamatan', 'about_us'));
     }
 
 

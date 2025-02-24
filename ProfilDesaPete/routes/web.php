@@ -19,10 +19,12 @@ use App\Http\Middleware\SuperAdminMiddleware;
 |
 */
 
+//Index
 Route::get('/', function () {
     return view('index');
 });
 
+//Navbar Pages
 $pages = [
     '404', 'about', 'blog', 'booking', 'contact', 
     'destination', 'gallery', 'guides', 'packages', 'infografis', 
@@ -33,18 +35,18 @@ foreach ($pages as $page) {
     Route::view($page, $page);
 }
 
+//Admin Login
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'authenticate']);
 
+//Admin Dashboard Landpage
 Route::get('admin', [AdminController::class, 'admin'])->middleware('auth')->name('admin');
 Route::get('/', [AdminController::class, 'index'])->name('index');
 
-/*Route::get('admin', function(){
-    return view('admin');
-})->middleware('auth');*/
-
+// Admin Logout
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
+//Create Admin
 Route::get('admin/createadmin', function(){
     return view('createadmin');
 });
@@ -54,6 +56,7 @@ Route::middleware(['auth', SuperAdminMiddleware::class])->group(function(){
     Route::post('admin/storeadmin', [AdminController::class, 'store']);
 });
 
+//Admin Function
 Route::post('/admin/update/{id}', [AdminController::class, 'updateKegiatan'])->name('admin.updateKegiatan');
 
 Route::get('admin/delete/{id}', [AdminController::class, 'deleteKegiatan'])->name('admin.deleteKegiatan');
