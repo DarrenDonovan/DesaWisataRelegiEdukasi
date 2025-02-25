@@ -271,6 +271,4 @@ window.addEventListener("scroll", function() {
 });
 
   
-
-
     
