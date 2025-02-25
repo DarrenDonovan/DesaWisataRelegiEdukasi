@@ -17,35 +17,44 @@ class AdminController extends Controller
     public function admin(){
         $user = Auth::user();
 
-        $kegiatanterbaru = DB::table('kegiatan')
-            ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
-            ->join('wilayah', 'kegiatan.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
-            ->where('kegiatan.id_wilayah', $user->id_wilayah)
-            ->orderBy('id_kegiatan', 'desc')
-            ->first();
-        
-        $kegiatan = DB::table('kegiatan')
-            ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
-            ->join('wilayah', 'kegiatan.id_wilayah','=', 'wilayah.id_wilayah')
-            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
-            ->where('kegiatan.id_wilayah', $user->id_wilayah)
-            ->orderBy('id_kegiatan', 'desc')
-            ->paginate(5);
+        //Kegiatan Terbaru
+        if($user->role == 'superadmin'){
+            $kegiatanterbaru = DB::table('kegiatan')
+                ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+                ->join('wilayah', 'kegiatan.id_wilayah', '=', 'wilayah.id_wilayah')
+                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
+                ->orderBy('id_kegiatan', 'desc')
+                ->first();
+        }
+        else{
+            $kegiatanterbaru = DB::table('kegiatan')
+                ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+                ->join('wilayah', 'kegiatan.id_wilayah', '=', 'wilayah.id_wilayah')
+                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
+                ->where('kegiatan.id_wilayah', $user->id_wilayah)
+                ->orderBy('id_kegiatan', 'desc')
+                ->first();
+        }
 
-        $kegiatanall = DB::table('kegiatan')
-            ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
-            ->join('wilayah', 'kegiatan.id_wilayah','=', 'wilayah.id_wilayah')
-            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
-            ->orderBy('id_kegiatan', 'desc')
-            ->paginate(5);
+        //Daftar Kegiatan
+        if($user->role == 'superadmin'){
+            $kegiatan = DB::table('kegiatan')
+                ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+                ->join('wilayah', 'kegiatan.id_wilayah','=', 'wilayah.id_wilayah')
+                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
+                ->orderBy('id_kegiatan', 'desc')
+                ->paginate(5);
+        }
+        else{
+            $kegiatan = DB::table('kegiatan')
+                ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+                ->join('wilayah', 'kegiatan.id_wilayah','=', 'wilayah.id_wilayah')
+                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
+                ->where('kegiatan.id_wilayah', $user->id_wilayah)
+                ->orderBy('id_kegiatan', 'desc')
+                ->paginate(5);
+        }
         
-        $kegiatanterbaruall = DB::table('kegiatan')
-            ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
-            ->join('wilayah', 'kegiatan.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
-            ->orderBy('id_kegiatan', 'desc')
-            ->first();
 
         $jenis_kegiatan = DB::table('jenis_kegiatan')
             ->select('jenis_kegiatan.id_jenis_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan')
@@ -61,7 +70,7 @@ class AdminController extends Controller
             ->where('profil.id_wilayah', $user->id_wilayah)
             ->first();
     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'kegiatanall', 'kegiatanterbaruall'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil'));
     }
 
 
@@ -237,6 +246,19 @@ class AdminController extends Controller
         Session::flash('message', 'Data Berhasil Dihapus!');
         return redirect()->route('admin');
     }
+
+    // public function removeAdmin(Request $request){
+    //     $request->validate([
+    //         'name'
+    //     ])
+
+    //     $user = DB::table('users')->get();
+    //     $removeAdmin = DB::table('users')->where('id', $request)->first();
+
+    //     DB::table('users')->where('id', $request)->delete();
+    //     Session::flash('message', 'Admin Berhasil Dihapus!');
+    //     return view('removeAdmin', compact('user'));
+    // }
 
 
     //Create Data

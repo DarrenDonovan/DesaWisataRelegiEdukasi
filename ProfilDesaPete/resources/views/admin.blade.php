@@ -33,7 +33,7 @@
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
                     @if(Auth::check() && Auth::user()->role==='superadmin')
                     <a href="{{url('admin/createadmin')}}"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Add Admin</small></a>
-					<a href="{{url('admin/removeadmin')}}"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Remove Admin</small></a>
+					<a href="{{url('admin/removeAdmin')}}"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Remove Admin</small></a>
                     @endif
                     <a href="{{url('logout')}}"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Logout</small></a>
                 </div>
@@ -206,23 +206,8 @@
 												</tr>
 											</thead>
 											<tbody>
-												@if(Auth::user()->role='superadmin')
+												@if($kegiatanterbaru)
         										<tr>
-            										<td>{{ $kegiatanterbaruall->nama_kegiatan }}</td>
-													<td>{{ $kegiatanterbaruall->nama_jenis_kegiatan }}</td>
-													<td>{{ $kegiatanterbaruall->nama_wilayah }}</td>
-            										<td>{{ $kegiatanterbaruall->keterangan }}</td>
-            										<td>
-                									@if ($kegiatanterbaruall->gambar_kegiatan)
-                									    <img src="{{ asset('storage/' . $kegiatanterbaruall->gambar_kegiatan) }}" width="100" alt="">
-                									@else
-                									    Tidak ada gambar
-                									@endif
-													</td>
-													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalKegiatan_terbaru">Edit</a></td>
-												</tr>
-												@else
-												<tr>
             										<td>{{ $kegiatanterbaru->nama_kegiatan }}</td>
 													<td>{{ $kegiatanterbaru->nama_jenis_kegiatan }}</td>
 													<td>{{ $kegiatanterbaru->nama_wilayah }}</td>
@@ -317,7 +302,7 @@
 												</tr>
 											</thead>
 											<tbody>
-    										@foreach ($kegiatanall as $items)
+    										@foreach ($kegiatan as $items)
         										<tr>
             										<td>{{ $items->nama_kegiatan }}</td>
 													<td>{{ $items->nama_jenis_kegiatan }}</td>
@@ -390,7 +375,7 @@
 											</tbody>
 										</table>
 										<div class="mb-4">
-										{{ $kegiatanall->links() }}
+										{{ $kegiatan->links() }}
 										</div>
 									</div>
 								</div>
