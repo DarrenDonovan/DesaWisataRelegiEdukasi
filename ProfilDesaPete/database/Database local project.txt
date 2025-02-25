@@ -1,0 +1,81 @@
+php artisan migrate --path=database/migrations/2014_10_12_000000_create_users_table.php
+php artisan db:seed --class=UserSeeder
+
+CREATE TABLE wilayah (
+    id_wilayah INT AUTO_INCREMENT PRIMARY KEY,
+    nama_wilayah VARCHAR(255) NOT NULL,
+    jenis_wilayah VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE jenis_kegiatan (
+    id_jenis_kegiatan INT AUTO_INCREMENT PRIMARY KEY,
+    nama_jenis_kegiatan VARCHAR(50) NOT NULL,
+    gambar_jenis_kegiatan VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE kegiatan (
+    id_kegiatan INT AUTO_INCREMENT PRIMARY KEY,
+    nama_kegiatan VARCHAR(255) NOT NULL,
+    keterangan LONGTEXT,
+    gambar_kegiatan VARCHAR(255),
+    id_wilayah INT NOT NULL,
+    id_jenis_kegiatan INT NOT NULL,
+    tanggal_kegiatan DATE NOT NULL,
+    FOREIGN KEY (id_wilayah) REFERENCES wilayah(id_wilayah) ON DELETE CASCADE,
+    FOREIGN KEY (id_jenis_kegiatan) REFERENCES jenis_kegiatan(id_jenis_kegiatan) ON DELETE CASCADE
+);
+
+CREATE TABLE profil (
+    id_profil INT AUTO_INCREMENT PRIMARY KEY,
+    id_kegiatan INT NOT NULL,
+    deskripsi LONGTEXT,
+    FOREIGN KEY (id_kegiatan) REFERENCES kegiatan(id_kegiatan) ON DELETE CASCADE
+);
+
+INSERT INTO wilayah (id_wilayah, nama_wilayah, jenis_wilayah) VALUES
+(1, 'Desa Pasir Bolang', 'Desa'),
+(2, 'Desa Cisereh', 'Desa'),
+(3, 'Desa Pasir Nangka', 'Desa'),
+(4, 'Desa Pematang', 'Desa'),
+(5, 'Desa Pete', 'Desa'),
+(6, 'Desa Tegalsari', 'Desa'),
+(7, 'Desa Mata Gara', 'Desa'),
+(8, 'Desa Marga Sari', 'Desa'),
+(9, 'Desa Sodong', 'Desa'),
+(10, 'Desa Tapos', 'Desa'),
+(11, 'Desa Bantar Panjang', 'Desa'),
+(12, 'Desa Cileles', 'Desa'),
+(13, 'Kecamatan Tigaraksa', 'Kecamatan'),
+(14, 'Kelurahan Kadu Agung', 'Kelurahan'),
+(15, 'Kelurahan Tigaraksa', 'Kelurahan');
+
+INSERT INTO jenis_kegiatan (id_jenis_kegiatan, nama_jenis_kegiatan, gambar_jenis_kegiatan) VALUES
+(1, 'Rapat Koordinasi', 'jenis_kegiatan/rapat-koordinasi.jpeg'),
+(2, 'Posyandu', 'jenis_kegiatan/posyandu.png'),
+(3, 'Ulang Tahun Desa', 'jenis_kegiatan/ultah-desa.jpg'),
+(4, 'Kesehatan', 'jenis_kegiatan/kesehatan.jpg'),
+(5, 'Lomba', 'jenis_kegiatan/lomba-desa.jpg');
+
+INSERT INTO profil (id_profil, id_wilayah, deskripsi, logo_wilayah) VALUES
+(1, 13, 'Sumber informasi terbaru tentang desa-desa yang ada di Kecamatan Tigaraksa', 'profil/kecamatan/71HY0KP3dd8rRpWBYXqTU5oGIICDgItMyrsRASoI.png');
+
+
+INSERT INTO kegiatan (id_kegiatan, nama_kegiatan, keterangan, gambar_kegiatan, id_wilayah, id_jenis_kegiatan, tanggal_kegiatan) VALUES
+(1, 'Rapat Koordinasi Pembangunan', 'Rapat koordinasi untuk membahas pembangunan infrastruktur di desa.', 'kegiatan/rapat1.jpg', 1, 1, '2025-03-01'),
+(2, 'Posyandu Balita Desa Cisereh', 'Kegiatan posyandu rutin untuk pemeriksaan kesehatan balita.', 'kegiatan/posyandu1.jpg', 2, 2, '2025-03-05'),
+(3, 'Perayaan HUT Desa Pasir Nangka', 'Acara perayaan ulang tahun desa dengan berbagai kegiatan budaya.', 'kegiatan/ultah-desa1.jpg', 3, 3, '2025-04-10'),
+(4, 'Pemeriksaan Kesehatan Gratis', 'Program pemeriksaan kesehatan gratis untuk warga desa.', 'kegiatan/kesehatan1.jpg', 4, 4, '2025-02-25'),
+(5, 'Lomba Kebersihan Antar RT', 'Lomba kebersihan untuk meningkatkan kesadaran warga tentang kebersihan lingkungan.', 'kegiatan/lomba1.jpg', 5, 5, '2025-03-12'),
+(6, 'Rapat Evaluasi Program Desa', 'Evaluasi program desa yang telah berjalan selama setahun.', 'kegiatan/rapat2.jpg', 6, 1, '2025-03-20'),
+(7, 'Posyandu Lansia Desa Mata Gara', 'Kegiatan posyandu untuk pemeriksaan kesehatan lansia.', 'kegiatan/posyandu2.jpg', 7, 2, '2025-04-02'),
+(8, 'Festival Budaya Desa Marga Sari', 'Festival budaya tahunan dengan berbagai pertunjukan seni.', 'kegiatan/ultah-desa2.jpeg', 8, 3, '2025-05-15'),
+(9, 'Sosialisasi Kesehatan Ibu dan Anak', 'Sosialisasi pentingnya kesehatan ibu dan anak di Desa Sodong.', 'kegiatan/kesehatan2.jpeg', 9, 4, '2025-02-18'),
+(10, 'Turnamen Olahraga Desa Tapos', 'Lomba olahraga antar warga desa untuk mempererat persaudaraan.', 'kegiatan/lomba2.jpg', 10, 5, '2025-06-01'),
+(11, 'Musyawarah Desa Bantar Panjang', 'Musyawarah desa terkait rencana pembangunan desa tahun depan.', 'kegiatan/rapat3.jpg', 11, 1, '2025-02-28'),
+(12, 'Pemeriksaan Kesehatan Cileles', 'Pemeriksaan kesehatan gratis untuk warga desa.', 'kegiatan/kesehatan3.jpg', 12, 4, '2025-03-07'),
+(13, 'Lomba Mewarnai Anak Tigaraksa', 'Lomba mewarnai tingkat anak-anak dalam rangka memperingati Hari Anak.', 'kegiatan/lomba3.jpg', 13, 5, '2025-03-22'),
+(14, 'Posyandu Bayi Kelurahan Kadu Agung', 'Pelayanan posyandu untuk bayi dan balita.', 'kegiatan/posyandu3.jpg', 14, 2, '2025-04-05'),
+(15, 'Rapat Perencanaan Kelurahan Tigaraksa', 'Rapat membahas perencanaan program kelurahan.', 'kegiatan/rapat3.jpg', 15, 1, '2025-04-15');
+
+
+

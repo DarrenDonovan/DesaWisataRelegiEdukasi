@@ -33,6 +33,20 @@ class AdminController extends Controller
             ->orderBy('id_kegiatan', 'desc')
             ->paginate(5);
 
+        $kegiatanall = DB::table('kegiatan')
+            ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+            ->join('wilayah', 'kegiatan.id_wilayah','=', 'wilayah.id_wilayah')
+            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
+            ->orderBy('id_kegiatan', 'desc')
+            ->paginate(5);
+        
+        $kegiatanterbaruall = DB::table('kegiatan')
+            ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+            ->join('wilayah', 'kegiatan.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
+            ->orderBy('id_kegiatan', 'desc')
+            ->first();
+
         $jenis_kegiatan = DB::table('jenis_kegiatan')
             ->select('jenis_kegiatan.id_jenis_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan')
             ->get();
@@ -47,7 +61,7 @@ class AdminController extends Controller
             ->where('profil.id_wilayah', $user->id_wilayah)
             ->first();
     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'kegiatanall', 'kegiatanterbaruall'));
     }
 
 
@@ -81,11 +95,8 @@ class AdminController extends Controller
             ->select('profil.id_profil', 'profil.id_wilayah', 'profil.deskripsi', 'profil.logo_wilayah', 'wilayah.nama_wilayah')
             ->where('profil.id_wilayah', 13)
             ->first();
-        
-        $about_us = DB::table('about_us')
-            ->first();
 
-        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah','profil', 'profilkecamatan', 'about_us'));
+        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah','profil', 'profilkecamatan'));
     }
 
 

@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateKegiatanTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -22,8 +22,8 @@ class CreateKegiatanTable extends Migration
             $table->foreignId('id_jenis_kegiatan')  
                 ->constrained('jenis_kegiatan') 
                 ->onDelete('cascade'); 
-            $table->foreignId('id_desa')
-                ->constrained('desa')
+            $table->foreignId('id_wilayah')
+                ->constrained('wilayah')
                 ->onDelete('cascade');
             $table->date('tanggal_kegiatan');
         });
@@ -39,3 +39,4 @@ class CreateKegiatanTable extends Migration
         Schema::dropIfExists('kegiatan');
     }
 }
+;

@@ -500,11 +500,11 @@
                 <div class="row g-5">
                     <div class="col-md-6 col-lg-6 col-xl-6">
                         <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Hubungi Kami</h4>
-                            <a href=""><i class="fas fa-home me-2"></i>{{ $about_us->alamat }}</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i>{{ $about_us->email }}</a>
-                            <a href=""><i class="fas fa-phone me-2"></i>{{ $about_us->phone }}</a>
-                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i>+012 345 67890</a>
+                        <h4 class="mb-4 text-white">Hubungi Kami</h4>
+                            <a href=""><i class="fas fa-home me-2"></i> Tangerang, Banten, Indonesia</a>
+                            <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
+                            <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
+                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-share fa-2x text-white me-2"></i>
                                 <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
