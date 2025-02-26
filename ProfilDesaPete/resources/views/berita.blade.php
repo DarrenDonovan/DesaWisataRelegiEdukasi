@@ -1,9 +1,11 @@
+<!-- HARUS DIUPDATE -->
+
 <!DOCTYPE html>
 <html lang="en">
 
     <head>
         <meta charset="utf-8">
-        <title>Travela - Tourism Website Template</title>
+        <title>Berita Desa Pete</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
@@ -18,15 +20,15 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
         <!-- Libraries Stylesheet -->
-        <link href="{{url('lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
-        <link href="{{url('lib/lightbox/css/lightbox.min.css')}}" rel="stylesheet">
+        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
 
         <!-- Customized Bootstrap Stylesheet -->
-        <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Template Stylesheet -->
-        <link href="{{url('css/style.css')}}" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
     </head>
 
     <body>
@@ -43,28 +45,11 @@
         <div class="container-fluid bg-primary px-5 d-none d-lg-block">
             <div class="row gx-0">
                 <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
-                   <!-- <div class="d-inline-flex align-items-center" style="height: 45px;">
-                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-twitter fw-normal"></i></a>
-                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-facebook-f fw-normal"></i></a>
-                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-linkedin-in fw-normal"></i></a>
-                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle me-2" href=""><i class="fab fa-instagram fw-normal"></i></a>
-                        <a class="btn btn-sm btn-outline-light btn-sm-square rounded-circle" href=""><i class="fab fa-youtube fw-normal"></i></a>
-                    </div> -->
+                    
                 </div>
                 <div class="col-lg-4 text-center text-lg-end">
                     <div class="d-inline-flex align-items-center" style="height: 45px;">
-                       <!-- <a href="#"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Register</small></a> -->
-                        <a href="{{url('login')}}"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
-                       <!-- <div class="dropdown">
-                            <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown"><small><i class="fa fa-home me-2"></i> My Dashboard</small></a>
-                            <div class="dropdown-menu rounded">
-                                <a href="#" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> My Profile</a>
-                                <a href="#" class="dropdown-item"><i class="fas fa-comment-alt me-2"></i> Inbox</a>
-                                <a href="#" class="dropdown-item"><i class="fas fa-bell me-2"></i> Notifications</a>
-                                <a href="#" class="dropdown-item"><i class="fas fa-cog me-2"></i> Account Settings</a>
-                                <a href="#" class="dropdown-item"><i class="fas fa-power-off me-2"></i> Log Out</a>
-                            </div>
-                        </div> -->
+                       <a href="login.html"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
                     </div>
                 </div>
             </div>
@@ -74,7 +59,7 @@
         <!-- Navbar & Hero Start -->
         <div class="container-fluid position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="{{url('index')}}" class="navbar-brand p-0">
+                <a href="" class="navbar-brand p-0">
                     <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Desa Pete <span class="subtext">Kabupaten Tangerang</span></h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
@@ -83,40 +68,39 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="{{url('index')}}" class="nav-item nav-link">Home</a>
-                        <a href="{{url('about')}}" class="nav-item nav-link">Tentang Kami</a>
-                        <a href="{{url('infografis')}}" class="nav-item nav-link">Infografis</a>
-                        <a href="{{url('packages')}}" class="nav-item nav-link">Packages</a>
-                        <a href="{{url('blog')}}" class="nav-item nav-link active">Blog</a>
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
+                        <a href="infografis.html" class="nav-item nav-link">Infografis</a>
+                        <a href="maps.html" class="nav-item nav-link">Maps</a>
+                        <a href="berita.html" class="nav-item nav-link">Berita</a>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile Desa</a>
                             <div class="dropdown-menu m-0">
-                                <a href="{{url('destination')}}" class="dropdown-item">Destination</a>
-                                <a href="{{url('tour')}}" class="dropdown-item">Explore Tour</a>
-                                <a href="{{url('booking')}}" class="dropdown-item">Travel Booking</a>
-                                <a href="{{url('gallery')}}" class="dropdown-item">Our Gallery</a>
-                                <a href="{{url('guides')}}" class="dropdown-item">Travel Guides</a>
-                                <a href="{{url('testimonial')}}" class="dropdown-item">Testimonial</a>
-                                <a href="{{url('404')}}" class="dropdown-item">404 Page</a>
+                                <a href="BantarPanjang.html" class="dropdown-item">Desa Bantar Panjang </a>
+                                <a href="Cileles.html" class="dropdown-item">Desa Cileles</a>
+                                <a href="Cisereh.html" class="dropdown-item">Desa Cisereh</a>
+                                <a href="KaduAgung.html" class="dropdown-item">Desa Kadu Agung</a>
+                                <a href="MargaSari.html" class="dropdown-item">Desa Marga Sari</a>
+                                <a href="MataGara.html" class="dropdown-item">Desa Mata Gara</a>
+                                <a href="PasirBolang.html" class="dropdown-item">Desa Pasir Bolang</a>
+                                <a href="PasirNangka.html" class="dropdown-item">Desa Pasir Nangka</a>
+                                <a href="Pematang.html" class="dropdown-item">Desa Pematang</a>
+                                <a href="Pete.html" class="dropdown-item">Desa Pete</a>
+                                <a href="Sodong.html" class="dropdown-item">Desa Sodong</a>
+                                <a href="Tapos.html" class="dropdown-item">Desa Tapos</a>
+                                <a href="KaduAgung.html" class="dropdown-item">Kelurahan Kadu Agung</a>
+                                <a href="Tigaraksa.html" class="dropdown-item">Kelurahan Tigaraksa</a>
                             </div>
                         </div>
-                        <a href="{{url('contact')}}" class="nav-item nav-link">Contact</a>
                     </div>
-                    <a href="" class="btn btn-primary rounded-pill py-2 px-4 ms-lg-4">Book Now</a>
-                </div>
             </nav>
         </div>
         <!-- Navbar & Hero End -->
 
-       <!-- Header Start -->
-       <div class="container-fluid bg-breadcrumb">
+        <!-- Header Start -->
+        <div class="container-fluid bg-breadcrumb">
             <div class="container text-center py-5" style="max-width: 900px;">
-                <h3 class="text-white display-3 mb-4">Our Blog</h1>
-                <!-- <ol class="breadcrumb justify-content-center mb-0">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                    <li class="breadcrumb-item active text-white">Blog</li>
-                </ol>     -->
+                <h3 class="text-white display-3 mb-4">Berita</h1>
             </div>
         </div>
         <!-- Header End -->
@@ -150,7 +134,7 @@
                                 <p class="mb-3">Posted By: Royal Hamblin </p>
                                 <a href="#" class="h4">Adventures Trip</a>
                                 <p class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam eos</p>
-                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Read More</a>
+                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Baca Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -173,7 +157,7 @@
                                 <p class="mb-3">Posted By: Royal Hamblin </p>
                                 <a href="#" class="h4">Adventures Trip</a>
                                 <p class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam eos</p>
-                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Read More</a>
+                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Baca Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -196,7 +180,7 @@
                                 <p class="mb-3">Posted By: Royal Hamblin </p>
                                 <a href="#" class="h4">Adventures Trip</a>
                                 <p class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam eos</p>
-                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Read More</a>
+                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Baca Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -219,7 +203,7 @@
                                 <p class="mb-3">Posted By: Royal Hamblin </p>
                                 <a href="#" class="h4">Adventures Trip</a>
                                 <p class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam eos</p>
-                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Read More</a>
+                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Baca Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -242,7 +226,7 @@
                                 <p class="mb-3">Posted By: Royal Hamblin </p>
                                 <a href="#" class="h4">Adventures Trip</a>
                                 <p class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam eos</p>
-                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Read More</a>
+                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Baca Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -265,11 +249,39 @@
                                 <p class="mb-3">Posted By: Royal Hamblin </p>
                                 <a href="#" class="h4">Adventures Trip</a>
                                 <p class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam eos</p>
-                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Read More</a>
+                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="pagination-container">
+                        <div class="pagination-number arrow">
+                            <svg width="18" height="18">
+                                <use xlink:href="#left" />
+                            </svg>
+                            <span class="arrow-text">Kembali</span> 
+                        </div>
+                        
+                        <div class="pagination-number">1</div>
+                        <div class="pagination-number">2</div>
+                        <div class="pagination-number ">3</div>
+                        <div class="pagination-number">4</div>
+                        <div class="pagination-number">5</div>
+                        
+                        <div class="pagination-number arrow">
+                            <svg width="18" height="18">
+                                <use xlink:href="#right" />
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <svg class="hide">
+                        <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </symbol>
+                        <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </symbol>
+                    </svg>                    
             </div>
         </div>
         <!-- Blog End -->
@@ -363,14 +375,14 @@
         <!-- JavaScript Libraries -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="{{url('lib/easing/easing.min.js')}}"></script>
-        <script src="{{url('lib/waypoints/waypoints.min.js')}}"></script>
-        <script src="{{url('lib/owlcarousel/owl.carousel.min.js')}}"></script>
-        <script src="{{url('lib/lightbox/js/lightbox.min.js')}}"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/lightbox/js/lightbox.min.js"></script>
         
 
         <!-- Template Javascript -->
-        <script src="{{url('js/main.js')}}"></script>
+        <script src="js/main.js"></script>
     </body>
 
 </html>

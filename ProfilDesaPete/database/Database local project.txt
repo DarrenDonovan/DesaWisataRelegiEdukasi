@@ -20,16 +20,17 @@ CREATE TABLE kegiatan (
     gambar_kegiatan VARCHAR(255),
     id_wilayah INT NOT NULL,
     id_jenis_kegiatan INT NOT NULL,
-    tanggal_kegiatan DATE NOT NULL,
+    tanggal_kegiatan DATE,
     FOREIGN KEY (id_wilayah) REFERENCES wilayah(id_wilayah) ON DELETE CASCADE,
     FOREIGN KEY (id_jenis_kegiatan) REFERENCES jenis_kegiatan(id_jenis_kegiatan) ON DELETE CASCADE
 );
 
 CREATE TABLE profil (
     id_profil INT AUTO_INCREMENT PRIMARY KEY,
-    id_kegiatan INT NOT NULL,
+    id_wilayah INT NOT NULL,
     deskripsi LONGTEXT,
-    FOREIGN KEY (id_kegiatan) REFERENCES kegiatan(id_kegiatan) ON DELETE CASCADE
+    logo_wilayah VARCHAR(255),
+    FOREIGN KEY (id_wilayah) REFERENCES wilayah(id_wilayah) ON DELETE CASCADE
 );
 
 INSERT INTO wilayah (id_wilayah, nama_wilayah, jenis_wilayah) VALUES
