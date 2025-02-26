@@ -32,16 +32,45 @@
    			<div class="col-lg-4 text-end"> <!-- Gunakan text-end agar teks sejajar ke kanan -->
                 <div class="d-inline-flex align-items-center" style="height: 45px;">
                     @if(Auth::check() && Auth::user()->role==='superadmin')
+					<a href="#" data-bs-toggle="modal" data-bs-target="#modal_removeAdmin"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Remove Admin</small></a>
                     <a href="{{url('admin/createadmin')}}"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Add Admin</small></a>
-					<a href="{{url('admin/removeAdmin')}}"><small class="me-3 text-light"><i class="fa fa-user me-2"></i>Remove Admin</small></a>
                     @endif
                     <a href="{{url('logout')}}"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Logout</small></a>
                 </div>
             </div>
         </div>
     </div>
+
+<!-- Modal Remove Admin  -->
+	<div class="modal fade" id="modal_removeAdmin" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+   									<div class="modal-dialog">
+        								<div class="modal-content">
+            								<div class="modal-header">
+												<h5 class="modal-title" id="modalTitle">Remove Admin</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            								</div>
+            								<div class="modal-body">
+												<form action="{{ route('removeAdmin')}}" method="post" enctype="multipart/form-data">
+													@csrf
+													<div class="form-group">
+														<label for="admin">Nama Admin</label>
+														<select name="admin" class="form-control" required>
+														    <option value="">-- Pilih Admin --</option>
+														    @foreach ($users as $items)
+														        <option value="{{ $items->id }}">
+																{{ $items->name }}
+																</option>
+														    @endforeach
+														</select>
+													</div>
+													<button type="submit" class="btn btn-primary form-control">Save changes</button>
+												</form>
+								            </div>
+								        </div>
+								    </div>
+								</div>
         <!-- Topbar End -->
-	<div class="wrapper">
+	<!-- <div class="wrapper">
 			<div class="sidebar">
 				<div class="scrollbar-inner sidebar-wrapper">
 					<ul class="nav">
@@ -99,7 +128,7 @@
 						</li>
 					</ul>
 				</div>
-			</div>
+			</div> -->
 
 			<div class="main-panel">
 					<div class="container-fluid">

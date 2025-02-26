@@ -55,6 +55,10 @@ class AdminController extends Controller
                 ->paginate(5);
         }
         
+        $users = DB::table('users')
+            ->select('users.id', 'users.name')
+            ->where('users.id', '>', 1)
+            ->get();
 
         $jenis_kegiatan = DB::table('jenis_kegiatan')
             ->select('jenis_kegiatan.id_jenis_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan')
@@ -70,7 +74,7 @@ class AdminController extends Controller
             ->where('profil.id_wilayah', $user->id_wilayah)
             ->first();
     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users'));
     }
 
 
@@ -247,20 +251,19 @@ class AdminController extends Controller
         return redirect()->route('admin');
     }
 
-    // public function removeAdmin(Request $request){
-    //     $request->validate([
-    //         'name'
-    //     ])
+    public function removeAdmin(Request $request){
+        $request->validate([
+            'admin' => 'required|integer'
+        ]);
 
-    //     $user = DB::table('users')->get();
-    //     $removeAdmin = DB::table('users')->where('id', $request)->first();
+        $users = DB::table('users')->get();
 
-    //     DB::table('users')->where('id', $request)->delete();
-    //     Session::flash('message', 'Admin Berhasil Dihapus!');
-    //     return view('removeAdmin', compact('user'));
-    // }
+        DB::table('users')->where('id', $request->admin)->delete();
+        Session::flash('message', 'Admin Berhasil Dihapus!');
+        return redirect()->route('removeAdmin');
+    }
 
-
+    
     //Create Data
     public function createKegiatan(Request $request){
         $request->validate([
