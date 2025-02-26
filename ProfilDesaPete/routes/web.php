@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\AuthController;
 use App\Http\Middleware\Authenticate;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Middleware\SuperAdminMiddleware;
 
@@ -24,20 +25,15 @@ Route::get('/', function () {
     return view('index');
 });
 
-//Navbar Pages
-$pages = [
-    '404', 'about', 'blog', 'booking', 'contact', 
-    'destination', 'gallery', 'guides', 'packages', 'infografis', 
-    'testimonial', 'tour', 'login'
-];
-
-foreach ($pages as $page) {
-    Route::view($page, $page);
-}
-
 //Admin Login
 Route::get('login', [AuthController::class, 'login'])->name('login');
 Route::post('login', [AuthController::class, 'authenticate']);
+
+//Other Pages
+Route::get('about', [UserController::class, 'about'])->name('about');
+Route::get('infografis', [UserController::class, 'infografis'])->name('infografis');
+Route::get('maps', [UserController::class, 'maps'])->name('maps');
+Route::get('berita', [UserController::class, 'berita'])->name('berita');
 
 //Admin Dashboard Landpage
 Route::get('admin', [AdminController::class, 'admin'])->middleware('auth')->name('admin');

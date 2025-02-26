@@ -112,7 +112,6 @@ class AdminController extends Controller
         return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah','profil', 'profilkecamatan'));
     }
 
-
     //Create Admin
     public function create(){
         if(Auth::user()->role !== 'superadmin'){

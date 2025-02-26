@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>Travela - Tourism Website Template</title>
+        <title>Peta Desa Pete</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
@@ -27,6 +27,12 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <style>
+            #map { height: 500px; }
+        </style>
+
     </head>
 
     <body>
@@ -46,14 +52,14 @@
                 </div>
                 <div class="col-lg-4 text-center text-lg-end">
                     <div class="d-inline-flex align-items-center" style="height: 45px;">
-                        <a href="login.html"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
+                        <a href="login.html"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a> 
                     </div>
                 </div>
             </div>
         </div>
         <!-- Topbar End -->
 
-         <!-- Navbar & Hero Start -->
+        <!-- Navbar & Hero Start -->
         <div class="container-fluid position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
@@ -68,7 +74,7 @@
                         <a href="{{ url('/') }}" class="nav-item nav-link">Home</a>
                         <a href="{{ url('about') }}" class="nav-item nav-link">Tentang Kami</a>
                         <a href="{{ url('infografis') }}" class="nav-item nav-link">Infografis</a>
-                        <a href="{{ url('maps') }}" class="nav-item nav-link">Maps</a>
+                        <a href="{{ url('maps') }}" class="nav-item nav-link active">Maps</a>
                         <a href="{{ url('berita') }}" class="nav-item nav-link">Berita</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile Desa</a>
@@ -85,87 +91,31 @@
         <!-- Header Start -->
         <div class="container-fluid bg-breadcrumb">
             <div class="container text-center py-5" style="max-width: 900px;">
-                <h3 class="text-white display-3 mb-4">Profile Desa</h1> 
+                <h3 class="text-white display-3 mb-4">Maps</h1>
             </div>
         </div>
-        <!-- Header End --
+        <!-- Header End -->
 
-        <!-- Packages Start -->
+        <!-- Peta -->
         <div class="container-fluid packages py-5">
             <div class="container py-5">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h5 class="section-title px-3">Desa Desa</h5>
-                    <h1 class="mb-0">Kecamatan Tigakarsa</h1>
+                    <h5 class="section-title px-3">Peta Kecamatan</h5>
+                    <h1 class="mb-0">Menampilkan Peta Kecamatan Tigaraksa Dengan Penandaan Lokasi Setiap Desa</h1>
                 </div>
-                <div class="packages-carousel owl-carousel">
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="img/packages-4.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">Venice - Italy</h5>
-                                <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo quia quae illum aperiam fugiat voluptatem repellat</p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="img/packages-2.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">The New California</h5>
-                                <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo quia quae illum aperiam fugiat voluptatem repellat</p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="img/packages-3.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">Discover Japan</h5>
-                                <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo quia quae illum aperiam fugiat voluptatem repellat</p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="img/packages-1.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">Thayland Trip</h5>
-                                <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo quia quae illum aperiam fugiat voluptatem repellat</p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
+                
+                <select id="categoryFilter">
+                    <option value="all">Semua</option>
+                    <option value="Desa">Desa</option>
+                    <option value="Kelurahan">Kelurahan</option>
+                </select>
+                <div id="map"></div>
+                <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                <br>
             </div>
         </div>
-        <!-- Packages End -->
+        <!-- Peta End -->
 
         <!-- Footer Start -->
         <div class="container-fluid footer py-5">
@@ -187,28 +137,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Company</h4>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> About</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Careers</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Blog</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Press</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Gift Cards</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Magazine</a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Support</h4>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Contact</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Legal Notice</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Privacy Policy</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Terms and Conditions</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Sitemap</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Cookie policy</a>
-                        </div>
-                    </div> -->
+                    
                 </div>
             </div>
         </div>
@@ -248,6 +177,8 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        
+    
     </body>
 
 </html>

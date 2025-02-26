@@ -68,12 +68,12 @@
                     <span class="fa fa-bars"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
-                        <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
-                        <a href="infografis.html" class="nav-item nav-link">Infografis</a>
-                        <a href="packages.html" class="nav-item nav-link">Maps</a>
-                        <a href="blog.html" class="nav-item nav-link">Berita</a>
+                <div class="navbar-nav ms-auto py-0">
+                        <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
+                        <a href="{{ url('about') }}" class="nav-item nav-link">Tentang Kami</a>
+                        <a href="{{ url('infografis') }}" class="nav-item nav-link">Infografis</a>
+                        <a href="{{ url('maps') }}" class="nav-item nav-link">Maps</a>
+                        <a href="{{ url('berita') }}" class="nav-item nav-link">Berita</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile Desa</a>
                             <div class="dropdown-menu m-0">
@@ -216,7 +216,7 @@
                                     @foreach ($jenis_kegiatan as $jk)
                                     <div class="col-lg-4">
                                         <div class="destination-img">
-                                            <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $jk->gambar_jenis_kegiatan ) }}" width="200" height="150" data-bs-toggle="modal" style="object-fit: cover;">
+                                            <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $jk->gambar_jenis_kegiatan ) }}" data-bs-toggle="modal" style="object-fit: cover; width: 1000px; height: 240px">
                                             <div class="destination-overlay p-4 text-start">
                                                 <a class="btn btn-primary text-white rounded-pill border py-2 px-3" style="pointer-events: none;">6 Photos</a>                                                       
                                                 <h4 class="text-white mb-2 mt-3">{{ $jk->nama_jenis_kegiatan }}</h4>
@@ -238,7 +238,7 @@
                                                         @foreach ($kegiatan as $items)
                                                             @if ($items->gambar_kegiatan && $items->id_jenis_kegiatan == $jk->id_jenis_kegiatan)
                                                                 <div class="col-md-4">
-                									                <img src="{{ asset('storage/' . $items->gambar_kegiatan) }}" width="150" height="150" style="object-fit: cover">
+                									                <img src="{{ asset('storage/' . $items->gambar_kegiatan) }}" style="object-fit: cover; width: 250px; height: 150px;">
                                                                 </div>
                 									        @endif
                                                         @endforeach
@@ -262,7 +262,7 @@
                                         @foreach ($kegiatan as $item)
                                             @if ($item->gambar_kegiatan && $item->id_jenis_kegiatan == $jenisKegiatan->id_jenis_kegiatan)
                                             <div class="col-lg-4 col-md-6">
-                                                <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $item->gambar_kegiatan) }}" width="250" height="250" style="object-fit: cover;">
+                                                <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $item->gambar_kegiatan) }}" style="object-fit: cover; width: 1000px; height: 240px">
                                             </div>
                                             @endif
                                         @endforeach
