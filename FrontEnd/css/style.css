@@ -1,5 +1,6 @@
 /*** Spinner Start ***/
 /*** Spinner ***/
+
 #spinner {
   opacity: 0;
   visibility: hidden;
@@ -202,6 +203,7 @@
   font-weight: 900;
   vertical-align: middle;
   margin-left: 8px;
+  width: 30px;
 }
 
 @media (min-width: 1200px) {
@@ -310,6 +312,7 @@
 .carousel-header .carousel-control-prev,
 .carousel-header .carousel-control-next {
   background: transparent;
+  overflow-y: hidden;
 }
 
 .carousel-header .carousel-control-prev .carousel-control-prev-icon {
