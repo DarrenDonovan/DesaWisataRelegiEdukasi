@@ -256,8 +256,6 @@ class AdminController extends Controller
             'admin' => 'required|integer'
         ]);
 
-        $users = DB::table('users')->get();
-
         DB::table('users')->where('id', $request->admin)->delete();
         Session::flash('message', 'Admin Berhasil Dihapus!');
         return redirect()->route('removeAdmin');
