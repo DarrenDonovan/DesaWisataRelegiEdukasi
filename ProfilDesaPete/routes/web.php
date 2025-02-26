@@ -54,6 +54,8 @@ Route::get('admin/createadmin', function(){
 Route::middleware(['auth', SuperAdminMiddleware::class])->group(function(){
     Route::get('admin/createadmin', [AdminController::class, 'create']);
     Route::post('admin/storeadmin', [AdminController::class, 'store']);
+    Route::get('admin/removeAdmin',[AdminController::class, 'admin'])->name('removeAdmin');
+    Route::post('admin/removeAdmin', [AdminController::class, 'removeAdmin'])->name('removeAdmin');
 });
 
 //Admin Function
@@ -65,4 +67,3 @@ Route::post('admin/createKegiatan', [AdminController::class, 'createKegiatan'])-
 
 Route::post('/admin/updateProfil/{id}', [AdminController::class, 'updateProfil'])->name('admin.updateProfil');
 
-// Route::post('admin/removeAdmin', [AdminController::class, 'removeAdmin'])->name('removeAdmin');

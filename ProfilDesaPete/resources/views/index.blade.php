@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+<head>
         <meta charset="utf-8">
-        <title>Website Desa Pete</title>
+        <title>Website Kecamatan Tigaraksa</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="" name="keywords">
         <meta content="" name="description">
@@ -18,15 +18,21 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
         <!-- Libraries Stylesheet -->
-        <link href="{{url('lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
-        <link href="{{url('lib/lightbox/css/lightbox.min.css')}}" rel="stylesheet">
+        <link href="{{ url('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+        <link href="{{ url('lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
 
 
         <!-- Customized Bootstrap Stylesheet -->
-        <link href="{{url('css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
 
         <!-- Template Stylesheet -->
-        <link href="{{url('css/style.css')}}" rel="stylesheet">
+        <link href="{{ url('css/style.css') }}" rel="stylesheet">
+        <!-- Leaflet CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+        <!-- Leaflet JS -->
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
     </head>
 
     <body>
@@ -104,8 +110,8 @@
         </div>
         <div class="container-fluid w-100 search-bar position-relative" style="top: -50%; transform: translateY(-50%);">
                 <div class="position-relative rounded-pill w-100 mx-auto p-5" style="background: rgba(19, 53, 123, 0.8);">
-                    <!-- <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Eg: Thailand"> -->
-                    <!-- <button type="button" class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2" style="top: 50%; right: 46px; transform: translateY(-50%);">Search</button> -->
+                    <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="🔍 Cari..."> 
+                    <button type="button" class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2" style="top: 50%; right: 46px; transform: translateY(-50%);">Search</button> 
                 </div>
             </div>
         </div>
@@ -130,9 +136,46 @@
         </div>
         <!-- About End -->
 
-       <!-- Services Start -->
-       
-        <!-- Services End -->
+        <!-- Highlight Start -->
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h5 class="section-title px-3">Highlight</h5>
+            <h1 class="mb-0">Berita Terbaru Kecamatan Tigaraksa</h1>
+        </div>
+        <div class="containerBerita">
+            <div class="cardBerita">
+                <img src="img/image1.jpg" alt="Gambar">
+                <div class="card-body">
+                    <h5>Judul 1</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, iste quis? Ut quod</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#">Lihat Detail</a>
+                </div>
+            </div>
+
+            <div class="cardBerita">
+                <img src="img/image2.jpg" alt="Gambar">
+                <div class="card-body">
+                    <h5>Judul 2</h5>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur itaque</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#">Lihat Detail</a>
+                </div>
+            </div>
+
+            <div class="cardBerita">
+                <img src="img/image3.jpg" alt="Gambar">
+                <div class="card-body">
+                    <h5>Judul 3</h5>
+                    <p>Deskripsi ini cukup panjang, mungkin lebih panjang dari yang lain.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="#">Lihat Detail</a>
+                </div>
+            </div>
+        </div>
+        <!-- Highlight End -->
 
         <!-- Kegiatan Start -->
         <div class="container-fluid destination py-5">
@@ -169,8 +212,8 @@
                             <div class="row g-4">
                                 <div class="row g-4">
                                     
+<!-- PERBAIKI BAGIAN INI -->                                
                                     @foreach ($jenis_kegiatan as $jk)
-                                    <!-- Thumbnail 1 -->
                                     <div class="col-lg-4">
                                         <div class="destination-img">
                                             <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $jk->gambar_jenis_kegiatan ) }}" width="200" height="150" data-bs-toggle="modal" style="object-fit: cover;">
@@ -210,173 +253,6 @@
                             </div>
                         </div>
 
-                                        <!-- thumbnail 2 -->
-                                        <!-- <div class="col-lg-4">
-                                            <div class="destination-img">
-                                                <img class="img-fluid rounded w-100" src="img/destination-2.jpg" alt="Posyandu" data-bs-toggle="modal">
-                                                <div class="destination-overlay p-4 text-start">
-                                                    <a class="btn btn-primary text-white rounded-pill border py-2 px-3" style="pointer-events: none;">2 Photos</a>
-                                                    <h4 class="text-white mb-2 mt-3">Posyandu</h4>
-                                                    <a href="#galleryModal2" class="btn-hover text-white"  data-bs-toggle="modal" data-bs-target="#galleryModal2">Lihat Semua Foto <i class="fa fa-arrow-right ms-2"></i>
-                                                </a>
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                        <!-- galery thumbnail 2 -->
-                                        <!-- <div class="modal fade" id="galleryModal2" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="galleryModalLabel">Galeri Posyandu</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row g-2">
-                                                            <div class="col-md-4">
-                                                                <img class="img-fluid rounded w-100" src="img/destination-2.jpg" alt="Foto 2">
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img class="img-fluid rounded w-100" src="img/destination-3.jpg" alt="Foto 3">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> -->
-
-                                        <!-- thumbnail 3 -->
-                                        <!-- <div class="col-lg-4">
-                                            <div class="destination-img">
-                                                <img class="img-fluid rounded w-100" src="img/destination-3.jpg" alt="Ulang Tahun Desa" data-bs-toggle="modal">
-                                                <div class="destination-overlay p-4 text-start">
-                                                    <a class="btn btn-primary text-white rounded-pill border py-2 px-3" style="pointer-events: none;">4 Photos</a>
-                                                    <h4 class="text-white mb-2 mt-3">Ulang Tahun Desa</h4>
-                                                    <a href="#galleryModal3" class="btn-hover text-white"  data-bs-toggle="modal" data-bs-target="#galleryModal3">Lihat Semua Foto <i class="fa fa-arrow-right ms-2"></i>
-                                                </a>
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                        <!-- gallery thumbnail 3 -->
-                                        <!-- <div class="modal fade" id="galleryModal3" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="galleryModalLabel">Galeri Ulang Tahun Desa</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row g-2">
-                                                            <div class="col-md-4">
-                                                                <img class="img-fluid rounded w-100" src="img/destination-4.jpg" alt="Foto 4">
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img class="img-fluid rounded w-100" src="img/destination-5.jpg" alt="Foto 5">
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img class="img-fluid rounded w-100" src="img/destination-6.jpg" alt="Foto 6">
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <img class="img-fluid rounded w-100" src="img/destination-7.jpg" alt="Foto 7">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> 
-                                        </div>-->
-
-                                        <!-- thumbnail 4 -->
-                                        <!-- <div class="col-lg-4">
-                                            <div class="destination-img">
-                                                <img class="img-fluid rounded w-100" src="img/destination-8.jpg" alt="Kesehatan" data-bs-toggle="modal">
-                                                <div class="destination-overlay p-4 text-start">
-                                                    <a class="btn btn-primary text-white rounded-pill border py-2 px-3" style="pointer-events: none;">6 Photos</a>
-                                                    <h4 class="text-white mb-2 mt-3">Kesehatan</h4>
-                                                    <a href="#galleryModal4" class="btn-hover text-white"  data-bs-toggle="modal" data-bs-target="#galleryModal4">Lihat Semua Foto <i class="fa fa-arrow-right ms-2"></i>
-                                                </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <!-- galery thumbnail 4 -->
-                                <!-- <div class="modal fade" id="galleryModal4" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="galleryModalLabel">Galeri Kesehatan</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row g-2">
-                                                    <div class="col-md-4">
-                                                        <img class="img-fluid rounded w-100" src="img/destination-2.jpg" alt="Foto 2">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <img class="img-fluid rounded w-100" src="img/destination-3.jpg" alt="Foto 3">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <img class="img-fluid rounded w-100" src="img/destination-4.jpg" alt="Foto 4">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <img class="img-fluid rounded w-100" src="img/destination-5.jpg" alt="Foto 5">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <img class="img-fluid rounded w-100" src="img/destination-6.jpg" alt="Foto 6">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <img class="img-fluid rounded w-100" src="img/destination-7.jpg" alt="Foto 7">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>  -->
-
-                                <!-- thumbnail 5 -->
-                                <!-- <div class="col-xl-4">
-                                    <div class="destination-img h-100">
-                                        <img class="img-fluid rounded w-100 h-100" src="img/destination-9.jpg" style="object-fit: cover; min-height: 300px;" alt="lomba" data-bs-toggle="modal">
-                                        <div class="destination-overlay p-4 text-start">
-                                            <a class="btn btn-primary text-white rounded-pill border py-2 px-3" style="pointer-events: none;">6 Photos</a>
-                                            <h4 class="text-white mb-2 mt-3">Lomba</h4>
-                                            <a href="#galleryModal5" class="btn-hover text-white"  data-bs-toggle="modal" data-bs-target="#galleryModal5">Lihat Semua Foto <i class="fa fa-arrow-right ms-2"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <!-- gallery thumbnail 5 -->
-                                <!-- <div class="modal fade" id="galleryModal5" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="galleryModalLabel">Galeri Lomba Desa</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row g-2">
-                                                    <div class="col-md-4">
-                                                        <img class="img-fluid rounded w-100" src="img/destination-2.jpg" alt="Foto 2">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <img class="img-fluid rounded w-100" src="img/destination-3.jpg" alt="Foto 3">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <img class="img-fluid rounded w-100" src="img/destination-4.jpg" alt="Foto 4">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <img class="img-fluid rounded w-100" src="img/destination-5.jpg" alt="Foto 5">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <img class="img-fluid rounded w-100" src="img/destination-6.jpg" alt="Foto 6">
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <img class="img-fluid rounded w-100" src="img/destination-7.jpg" alt="Foto 7">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> -->
-                       
-
                         <!-- Rapat koordinasi start -->
                         @foreach ($jenis_kegiatan as $jenisKegiatan)
                         <div id="tab-{{ $jenisKegiatan->id_jenis_kegiatan }}" class="tab-pane fade show p-0">
@@ -398,7 +274,7 @@
                         <!-- Rapat koordinasi END -->
 
                         <!-- Posyandu start -->
-                        <div id="tab-3" class="tab-pane fade show p-0">
+                        <!-- <div id="tab-3" class="tab-pane fade show p-0">
                             <div class="row g-4">
                                 <div class="container py-5">
                                     <div class="row g-4">
@@ -423,11 +299,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Posyandu END -->
 
                         <!-- Ulang tahun start -->
-                        <div id="tab-4" class="tab-pane fade show p-0">
+                        <!-- <div id="tab-4" class="tab-pane fade show p-0">
                             <div class="row g-4">
                                 <div class="container py-5">
                                     <div class="row g-4">
@@ -452,11 +328,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Ulang tahun end -->
 
                         <!-- Kesehatan start -->
-                        <div id="tab-5" class="tab-pane fade show p-0">
+                        <!-- <div id="tab-5" class="tab-pane fade show p-0">
                             <div class="row g-4">
                                 <div class="container py-5">
                                     <div class="row g-4">
@@ -469,11 +345,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Kesehatan end -->
 
                         <!-- Lomba start -->
-                        <div id="tab-6" class="tab-pane fade show p-0">
+                        <!-- <div id="tab-6" class="tab-pane fade show p-0">
                             <div class="row g-4">
                                 <div class="container py-5">
                                     <div class="row g-4">
@@ -486,7 +362,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <!-- lomba end -->
                     </div>
                 </div>
