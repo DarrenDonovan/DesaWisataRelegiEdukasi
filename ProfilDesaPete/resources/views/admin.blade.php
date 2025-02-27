@@ -450,38 +450,26 @@
 						<!-- About Us -->
 						<div class="d-flex justify-content-between align-items-center mt-4">
 						<h4 class="page-title mt-1">About Us</h4>
-						@if($profil)
 						<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalEdit_profil">Edit Profil</button>	
-						@endif
 					</div>	
 						<div class="row">
 							<div class="col-md-3">
 								<div class="card">
 									<div class="card-header">
-										<h4 class="card-title">Logo Wilayah</h4>
-										@if($profil && $profil->logo_wilayah)
-										<img src="{{ asset('storage/' . $profil->logo_wilayah) }}" width="100" alt="">
-										@endif
+										<h4 class="card-title">Gambar</h4>
+										<img src="" width="100" alt="">
 									</div>
 								</div>
 							</div>
 							<div class="col-md-9">
 								<div class="card">
 									<div class="card-header">
-										<h4 class="card-title">Konten Profil</h4>
+										<h4 class="card-title">Konten Kecamatan</h4>
 										<p class="card-category">
-										@if($profil)
-										{{ $profil->nama_wilayah }}</p>
-										@else
-										Belum ada Data
-										@endif
 									</div>
 									<div class="card-body">
-										@if($profil)
-										<p>{{ $profil->deskripsi }}</p>
-										@else
-										Belum ada deskripsi
-										@endif
+										<p></p>
+										
 									</div>
 								</div>
 							</div>

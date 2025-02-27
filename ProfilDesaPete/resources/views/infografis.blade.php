@@ -46,7 +46,7 @@
             <div class="row gx-0 justify-content-end"> <!-- Tambahkan justify-content-end -->
                 <div class="col-lg-4 text-end"> <!-- Gunakan text-end agar teks sejajar ke kanan -->
                     <div class="d-inline-flex align-items-center" style="height: 45px;">
-                        <a href="#"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
+                        <a href="{{url('login')}}"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
                     </div>
                 </div>
             </div>
