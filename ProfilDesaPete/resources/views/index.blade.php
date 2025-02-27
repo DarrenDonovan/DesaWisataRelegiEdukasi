@@ -264,6 +264,8 @@
                             </div>
                         </div>
 
+
+
                         <!-- MODAL BELUM MUNCUL & RAPIIN GRIDNYA -->
                         <!-- Rapat koordinasi start -->
                         @foreach ($jenis_kegiatan as $jenisKegiatan)
@@ -312,6 +314,9 @@
             </div>
         </div>
         <!-- Kegiatan End -->
+
+
+        
 
         <!-- Footer Start -->
         <div class="container-fluid footer py-5">

@@ -43,32 +43,32 @@
 
 <!-- Modal Remove Admin  -->
 	<div class="modal fade" id="modal_removeAdmin" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
-   									<div class="modal-dialog">
-        								<div class="modal-content">
-            								<div class="modal-header">
-												<h5 class="modal-title" id="modalTitle">Remove Admin</h5>
-												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            								</div>
-            								<div class="modal-body">
-												<form action="{{ route('removeAdmin')}}" method="post" enctype="multipart/form-data">
-													@csrf
-													<div class="form-group">
-														<label for="admin">Nama Admin</label>
-														<select name="admin" class="form-control" required>
-														    <option value="">-- Pilih Admin --</option>
-														    @foreach ($users as $items)
-														        <option value="{{ $items->id }}">
-																{{ $items->name }}
-																</option>
-														    @endforeach
-														</select>
-													</div>
-													<button type="submit" class="btn btn-primary form-control">Save changes</button>
-												</form>
-								            </div>
-								        </div>
-								    </div>
-								</div>
+   		<div class="modal-dialog">
+    		<div class="modal-content">
+    			<div class="modal-header">
+					<h5 class="modal-title" id="modalTitle">Remove Admin</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    			</div>
+    			<div class="modal-body">
+					<form action="{{ route('removeAdmin')}}" method="post" enctype="multipart/form-data">
+						@csrf
+						<div class="form-group">
+							<label for="admin">Nama Admin</label>
+							<select name="admin" class="form-control" required>
+							    <option value="">-- Pilih Admin --</option>
+							    @foreach ($users as $items)
+							        <option value="{{ $items->id }}">
+									{{ $items->name }}
+									</option>
+							    @endforeach
+							</select>
+						</div>
+						<button type="submit" class="btn btn-primary form-control">Save changes</button>
+					</form>
+	            </div>
+	        </div>
+	    </div>
+	</div>
         <!-- Topbar End -->
 	<!-- <div class="wrapper">
 			<div class="sidebar">
@@ -188,18 +188,6 @@
             								<div class="modal-body">
 												<form action="{{ route('admin.updateProfil', $profil->id_profil)}}" method="post" enctype="multipart/form-data">
 													@csrf
-													<div class="form-group">
-														<label for="nama_wilayah">Nama Wilayah</label>
-														<select name="nama_wilayah" class="form-control" required>
-														    <option value="">-- Pilih Wilayah --</option>
-														    @foreach ($wilayah as $itemWilayah)
-														        <option value="{{ $itemWilayah->id_wilayah }}" 
-																{{ $itemWilayah->id_wilayah == $profil->id_wilayah ? 'selected' :'' }}>
-																{{ $itemWilayah->nama_wilayah }}
-																</option>
-														    @endforeach
-														</select>
-													</div>
 													<div class="form-group">
 														<label for="deskripsi">Deskripsi</label>
 														<textarea name="deskripsi" class="form-control" id="deskripsi" cols="50" rows="4" required>{{ $profil->deskripsi }}</textarea>					
@@ -459,9 +447,69 @@
 								    </div>
 								</div>
 
+						<!-- About Us -->
+						<div class="d-flex justify-content-between align-items-center mt-4">
+						<h4 class="page-title mt-1">About Us</h4>
+						@if($profil)
+						<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalEdit_profil">Edit Profil</button>	
+						@endif
+					</div>	
+						<div class="row">
+							<div class="col-md-3">
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">Logo Wilayah</h4>
+										@if($profil && $profil->logo_wilayah)
+										<img src="{{ asset('storage/' . $profil->logo_wilayah) }}" width="100" alt="">
+										@endif
+									</div>
+								</div>
+							</div>
+							<div class="col-md-9">
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">Konten Profil</h4>
+										<p class="card-category">
+										@if($profil)
+										{{ $profil->nama_wilayah }}</p>
+										@else
+										Belum ada Data
+										@endif
+									</div>
+									<div class="card-body">
+										@if($profil)
+										<p>{{ $profil->deskripsi }}</p>
+										@else
+										Belum ada deskripsi
+										@endif
+									</div>
+								</div>
+							</div>
+						</div>
+
 						
 
-						<div class="row row-card-no-pd">
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+								<div class="row row-card-no-pd">
 							<div class="col-md-4">
 								<div class="card">
 									<div class="card-body">

@@ -202,7 +202,6 @@ class AdminController extends Controller
 
     public function updateProfil(Request $request, $id){
         $request->validate([
-            'nama_wilayah' => 'required|integer', 
             'deskripsi' => 'required|string',
             'logo_wilayah' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
@@ -219,7 +218,6 @@ class AdminController extends Controller
         }
 
         $updateData = [
-            'id_wilayah' => $request->nama_wilayah,
             'deskripsi' => $request->deskripsi,
         ];
 
