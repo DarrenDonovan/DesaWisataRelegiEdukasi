@@ -179,20 +179,33 @@
 
 <!-- Bisa Dibikin Grid -->
         <!-- Kegiatan Start -->
+        <!-- Kegiatan Terbaru -->
         <div class="container-fluid destination py-5">
             <div class="container py-5">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <div class="mx-auto text-center mb-3" style="max-width: 900px;">
                     <h5 class="section-title px-3">Galeri</h5>
                     <h1 class="mb-0">Kegiatan</h1>
                 </div>
-                @if ($kegiatanterbaru)
-                <div>
-                <h1>Kegiatan Terbaru</h1>
-                <img src="{{ asset('storage/' . $kegiatanterbaru->gambar_kegiatan) }}" width="100" alt="">
-                <h1>{{ $kegiatanterbaru->nama_kegiatan }}</h1>
-                <p>{{ $kegiatanterbaru->keterangan }}</p>
+                <div class="container-fluid mb-4">
+                    <div class="container py-5">
+                        <div class="row g-5 align-items-center">
+                            <div class="col-md-5">
+                                <div class="h-100" >
+                                    <img src="{{asset('storage/' . $kegiatanterbaru->gambar_kegiatan)}}" class="img-fluid" style="width: 400px; height: auto; margin-left: 40px;" alt="">
+                                </div>
+                            </div>
+                            @if ($kegiatanterbaru)
+                            <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
+                                <h5 class="section-about-title pe-3">Kegiatan Terbaru</h5>
+                                <h1 class="mb-4" class="text-primary">{{ $kegiatanterbaru->nama_kegiatan }}</h1>
+                                <p class="mb-4">{{ $kegiatanterbaru->keterangan }}</p>                        
+                            </div>
+                            @endif
+                        </div>
+                    </div>
                 </div>
-                @endif
+
+                <!-- Daftar Kegiatan -->
                 <div class="tab-class text-center">
                     <ul class="nav nav-pills d-inline-flex justify-content-center mb-2">
                         <li class="nav-item">
@@ -212,38 +225,35 @@
                         <div id="tab-all" class="tab-pane fade show p-0 active">
                             <div class="row g-4">
                                 <div class="row g-4">
-                                    
-<!-- PERBAIKI BAGIAN INI -->                                
-                                    @foreach ($jenis_kegiatan as $jk)
+                                    @foreach ($kegiatan as $keg)
                                     <div class="col-lg-4">
                                         <div class="destination-img">
-                                            <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $jk->gambar_jenis_kegiatan ) }}" data-bs-toggle="modal" style="object-fit: cover; width: 1000px; height: 240px">
+                                            <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $keg->gambar_kegiatan ) }}" data-bs-toggle="modal" style="object-fit: cover; width: 1000px; height: 240px">
                                             <div class="destination-overlay p-4 text-start">
                                                 <a class="btn btn-primary text-white rounded-pill border py-2 px-3" style="pointer-events: none;">6 Photos</a>                                                       
-                                                <h4 class="text-white mb-2 mt-3">{{ $jk->nama_jenis_kegiatan }}</h4>
-                                                <a href="#galleryModal{{ $jk->id_jenis_kegiatan }}" class="btn-hover text-white"  data-bs-toggle="modal" data-bs-target="#galleryModal{{ $jk->id_jenis_kegiatan }}">Lihat Semua Foto <i class="fa fa-arrow-right ms-2"></i>
+                                                <h4 class="text-white mb-2 mt-3">{{ $keg->nama_kegiatan }}</h4>
+                                                <a href="#galleryModal{{ $keg->id_kegiatan }}" class="btn-hover text-white"  data-bs-toggle="modal" data-bs-target="#galleryModal{{ $keg->id_kegiatan }}">Lihat Semua Foto <i class="fa fa-arrow-right ms-2"></i>
                                             </a>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- galeri pas di klik -->
-                                    <div class="modal fade" id="galleryModal{{ $jk->id_jenis_kegiatan }}" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="galleryModal{{ $keg->id_kegiatan }}" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title" id="galleryModalLabel">Galeri {{ $jk->nama_jenis_kegiatan }}</h5>
+                                                    <h5 class="modal-title" id="galleryModalLabel">Galeri {{ $keg->nama_kegiatan }}</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="row g-2">
                                                         @foreach ($kegiatan as $items)
-                                                            @if ($items->gambar_kegiatan && $items->id_jenis_kegiatan == $jk->id_jenis_kegiatan)
+                                                            @if ($items->gambar_kegiatan && $items->id_jenis_kegiatan == $keg->id_jenis_kegiatan)
                                                                 <div class="col-md-4">
                 									                <img src="{{ asset('storage/' . $items->gambar_kegiatan) }}" style="object-fit: cover; width: 250px; height: 150px;">
                                                                 </div>
                 									        @endif
                                                         @endforeach
-                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -254,117 +264,49 @@
                             </div>
                         </div>
 
+                        <!-- MODAL BELUM MUNCUL & RAPIIN GRIDNYA -->
                         <!-- Rapat koordinasi start -->
                         @foreach ($jenis_kegiatan as $jenisKegiatan)
-                        <div id="tab-{{ $jenisKegiatan->id_jenis_kegiatan }}" class="tab-pane fade show p-0">
+                        <div id="tab-{{ $jenisKegiatan->id_jenis_kegiatan }}" class="tab-pane fade p-0">
                             <div class="row g-4">
-                                <div class="container py-5">
-                                    <div class="row g-4">
-                                        @foreach ($kegiatan as $item)
-                                            @if ($item->gambar_kegiatan && $item->id_jenis_kegiatan == $jenisKegiatan->id_jenis_kegiatan)
-                                            <div class="col-lg-4 col-md-6">
-                                                <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $item->gambar_kegiatan) }}" style="object-fit: cover; width: 1000px; height: 240px">
+                                @foreach ($kegiatan as $item)
+                                    @if ($item->id_jenis_kegiatan == $jenisKegiatan->id_jenis_kegiatan)
+                                    <div class="col-lg-4 col-md-6"> <!-- 3 columns on large screens, 2 on medium -->
+                                        <div class="destination-img">
+                                            <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $item->gambar_kegiatan) }}" style="object-fit: cover; width: 100%; height: 240px;">
+                                            <div class="destination-overlay p-4 text-start">
+                                                <a class="btn btn-primary text-white rounded-pill border py-2 px-3" style="pointer-events: none;">6 Photos</a>                                                       
+                                                <h4 class="text-white mb-2 mt-3">{{ $item->nama_kegiatan }}</h4>
+                                                <a href="#galleryModal{{ $item->id_kegiatan }}" class="btn-hover text-white"  data-bs-toggle="modal" data-bs-target="#galleryModal{{ $item->id_kegiatan }}">Lihat Semua Foto <i class="fa fa-arrow-right ms-2"></i></a>
                                             </div>
-                                            @endif
-                                        @endforeach
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="modal fade" id="galleryModal{{ $item->id_kegiatan }}" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="galleryModalLabel">Galeri {{ $item->nama_kegiatan }}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row g-2">
+                                                        @foreach ($kegiatan as $items)
+                                                            @if ($items->gambar_kegiatan && $items->id_jenis_kegiatan == $jenisKegiatan->id_jenis_kegiatan)
+                                                                <div class="col-md-4">
+                									                <img src="{{ asset('storage/' . $items->gambar_kegiatan) }}" style="object-fit: cover; width: 250px; height: 150px;">
+                                                                </div>
+                									        @endif
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                @endforeach
                             </div>
                         </div>
                         @endforeach
-                        <!-- Rapat koordinasi END -->
-
-                        <!-- Posyandu start -->
-                        <!-- <div id="tab-3" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="container py-5">
-                                    <div class="row g-4">
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-1.jpg" alt="Rapat Koordinasi">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-2.jpg" alt="Foto 2">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-3.jpg" alt="Foto 3">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-4.jpg" alt="Foto 4">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-5.jpg" alt="Foto 5">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-6.jpg" alt="Foto 6">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- Posyandu END -->
-
-                        <!-- Ulang tahun start -->
-                        <!-- <div id="tab-4" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="container py-5">
-                                    <div class="row g-4">
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-1.jpg" alt="Rapat Koordinasi">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-2.jpg" alt="Foto 2">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-3.jpg" alt="Foto 3">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-4.jpg" alt="Foto 4">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-5.jpg" alt="Foto 5">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-6.jpg" alt="Foto 6">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- Ulang tahun end -->
-
-                        <!-- Kesehatan start -->
-                        <!-- <div id="tab-5" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="container py-5">
-                                    <div class="row g-4">
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-1.jpg" alt="Rapat Koordinasi">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-2.jpg" alt="Foto 2">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- Kesehatan end -->
-
-                        <!-- Lomba start -->
-                        <!-- <div id="tab-6" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="container py-5">
-                                    <div class="row g-4">
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-5.jpg" alt="Foto 5">
-                                        </div>
-                                        <div class="col-lg-4 col-md-6">
-                                            <img class="img-fluid rounded w-100" src="img/destination-6.jpg" alt="Foto 6">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- lomba end -->
                     </div>
                 </div>
             </div>
