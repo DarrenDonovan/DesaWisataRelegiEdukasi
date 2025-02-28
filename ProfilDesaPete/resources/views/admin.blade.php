@@ -449,35 +449,62 @@
 
 						<!-- About Us -->
 						<div class="d-flex justify-content-between align-items-center mt-4">
-						<h4 class="page-title mt-1">About Us</h4>
-						<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalEdit_profil">Edit About</button>	
-					</div>	
-						<div class="row">
-							<div class="col-md-3">
-								<div class="card">
-									<div class="card-header">
-										<h4 class="card-title">Gambar</h4>
-										<img src="{{ asset('storage/' . $about->gambar_about) }}" width="270px" alt="">
+							<h4 class="page-title mt-1">About Us</h4>
+							<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalEdit_about">Edit Tentang Kami</button>	
+						</div>	
+							<div class="row">
+								<div class="col-md-3">
+									<div class="card">
+										<div class="card-header">
+											<h4 class="card-title">Gambar</h4>
+											<img src="{{ asset('storage/' . $about->gambar_about) }}" width="270px" alt="">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-9">
+									<div class="card">
+										<div class="card-header">
+											<h4 class="card-title">Konten Kecamatan</h4>
+											<p class="card-category">Visi dan Misi</p>
+										</div>
+										<div class="card-body">
+											<h4 class="card-title">Visi Kecamatan</h4>
+											<p>{{ $about->visi }}</p>
+											<h4 class="card-title">Misi Kecamatan</h4>
+											<p>{{ $about->misi }}</p>
+										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-9">
-								<div class="card">
-									<div class="card-header">
-										<h4 class="card-title">Konten Kecamatan</h4>
-										<p class="card-category">Visi dan Misi</p>
-									</div>
-									<div class="card-body">
-										<h4 class="card-title">Visi Kecamatan</h4>
-										<p>{{ $about->visi }}</p>
 
-										<h4 class="card-title">Misi Kecamatan</h4>
-										<p>{{ $about->misi }}</p>
-										
-									</div>
+							<div class="modal fade" id="modalEdit_about" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+   									<div class="modal-dialog">
+        								<div class="modal-content">
+            								<div class="modal-header">
+												<h5 class="modal-title" id="modalTitle">Edit Tentang Kami</h5>
+												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            								</div>
+            								<div class="modal-body">
+												<form action="" method="post" enctype="multipart/form-data">
+													@csrf
+													<div class="form-group">
+														<label for="deskripsi">Visi</label>
+														<textarea name="deskripsi" class="form-control" id="deskripsi" cols="50" rows="4" required>{{ $about->visi }}</textarea>					
+													</div>
+													<div class="form-group">
+														<label for="deskripsi">Misi</label>
+														<textarea name="deskripsi" class="form-control" id="deskripsi" cols="50" rows="4" required>{{ $about->misi }}</textarea>					
+													</div>
+													<div class="form-group">
+														<label for="logo_wilayah">Gambar Kegiatan</label>
+														<input type="file" class="form-control-file" name="logo_wilayah" id="logo_wilayah">
+                									</div>
+													<button type="submit" class="btn btn-primary form-control">Save changes</button>
+												</form>
+								            </div>
+								        </div>
+								    </div>
 								</div>
-							</div>
-						</div>
 
 						
 
