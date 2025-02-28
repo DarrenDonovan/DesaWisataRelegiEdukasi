@@ -450,14 +450,14 @@
 						<!-- About Us -->
 						<div class="d-flex justify-content-between align-items-center mt-4">
 						<h4 class="page-title mt-1">About Us</h4>
-						<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalEdit_profil">Edit Profil</button>	
+						<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalEdit_profil">Edit About</button>	
 					</div>	
 						<div class="row">
 							<div class="col-md-3">
 								<div class="card">
 									<div class="card-header">
 										<h4 class="card-title">Gambar</h4>
-										<img src="" width="100" alt="">
+										<img src="{{ asset('storage/' . $about->gambar_about) }}" width="270px" alt="">
 									</div>
 								</div>
 							</div>
@@ -465,10 +465,14 @@
 								<div class="card">
 									<div class="card-header">
 										<h4 class="card-title">Konten Kecamatan</h4>
-										<p class="card-category">
+										<p class="card-category">Visi dan Misi</p>
 									</div>
 									<div class="card-body">
-										<p></p>
+										<h4 class="card-title">Visi Kecamatan</h4>
+										<p>{{ $about->visi }}</p>
+
+										<h4 class="card-title">Misi Kecamatan</h4>
+										<p>{{ $about->misi }}</p>
 										
 									</div>
 								</div>

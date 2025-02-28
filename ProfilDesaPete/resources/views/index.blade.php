@@ -227,8 +227,8 @@
                                 <div class="row g-4">
                                     @foreach ($kegiatan as $keg)
                                     <div class="col-lg-4">
-                                        <div class="destination-img">
-                                            <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $keg->gambar_kegiatan ) }}" data-bs-toggle="modal" style="object-fit: cover; width: 1000px; height: 240px">
+                                        <div class="destination-img" style="width: 100%; object-fit:cover;">
+                                            <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $keg->gambar_kegiatan) }}" data-bs-toggle="modal"  style="width: 432px; height: 250px; object-fit:cover;">
                                             <div class="destination-overlay p-4 text-start">
                                                 <a class="btn btn-primary text-white rounded-pill border py-2 px-3" style="pointer-events: none;">6 Photos</a>                                                       
                                                 <h4 class="text-white mb-2 mt-3">{{ $keg->nama_kegiatan }}</h4>
@@ -254,6 +254,21 @@
                                                                 </div>
                 									        @endif
                                                         @endforeach
+                                                        <div class="container-fluid mb-4">
+                                                            <div class="container py-5">
+                                                                <div class="row g-5 align-items-center">
+                                                                    <div class="col-md-5">
+                                                                        <div class="h-100" >
+                                                                            <img src="{{asset('storage/' . $keg->gambar_kegiatan)}}" class="img-fluid" style="width: 400px; height: auto; margin-left: 40px;" alt="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
+                                                                        <h1 class="mb-4" class="text-primary">{{ $keg->nama_kegiatan }}</h1>
+                                                                        <p class="mb-4">{{ $keg->keterangan }}</p>                        
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>    
                                                     </div>
                                                 </div>
                                             </div>
@@ -267,23 +282,23 @@
 
 
                         <!-- MODAL BELUM MUNCUL & RAPIIN GRIDNYA -->
-                        <!-- Rapat koordinasi start -->
+                        <!-- Kegiatan per kategori -->
                         @foreach ($jenis_kegiatan as $jenisKegiatan)
                         <div id="tab-{{ $jenisKegiatan->id_jenis_kegiatan }}" class="tab-pane fade p-0">
                             <div class="row g-4">
                                 @foreach ($kegiatan as $item)
                                     @if ($item->id_jenis_kegiatan == $jenisKegiatan->id_jenis_kegiatan)
                                     <div class="col-lg-4 col-md-6"> <!-- 3 columns on large screens, 2 on medium -->
-                                        <div class="destination-img">
-                                            <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $item->gambar_kegiatan) }}" style="object-fit: cover; width: 100%; height: 240px;">
+                                        <div class="destination-img" style="width: 100%; object-fit:cover;">
+                                            <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $item->gambar_kegiatan) }}" style="object-fit: cover; width: 100%; height: 250px;">
                                             <div class="destination-overlay p-4 text-start">
                                                 <a class="btn btn-primary text-white rounded-pill border py-2 px-3" style="pointer-events: none;">6 Photos</a>                                                       
                                                 <h4 class="text-white mb-2 mt-3">{{ $item->nama_kegiatan }}</h4>
-                                                <a href="#galleryModal{{ $item->id_kegiatan }}" class="btn-hover text-white"  data-bs-toggle="modal" data-bs-target="#galleryModal{{ $item->id_kegiatan }}">Lihat Semua Foto <i class="fa fa-arrow-right ms-2"></i></a>
+                                                <a href="#galleryModal{{ $item->id_kegiatan }}-{{ $jenisKegiatan->id_jenis_kegiatan }}" class="btn-hover text-white" data-bs-toggle="modal" data-bs-target="#galleryModal{{ $item->id_kegiatan }}-{{ $jenisKegiatan->id_jenis_kegiatan }}">Lihat Semua Foto <i class="fa fa-arrow-right ms-2"></i></a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal fade" id="galleryModal{{ $item->id_kegiatan }}" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="galleryModal{{ $item->id_kegiatan }}-{{ $jenisKegiatan->id_jenis_kegiatan }}" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
