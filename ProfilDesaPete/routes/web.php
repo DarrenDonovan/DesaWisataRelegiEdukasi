@@ -63,3 +63,4 @@ Route::post('admin/createKegiatan', [AdminController::class, 'createKegiatan'])-
 
 Route::post('/admin/updateProfil/{id}', [AdminController::class, 'updateProfil'])->name('admin.updateProfil');
 
+Route::post('/admin/updateAboutUs', [AdminController::class, 'updateAboutUs'])->name('admin.updateAboutUs');

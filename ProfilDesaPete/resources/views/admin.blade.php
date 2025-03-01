@@ -24,7 +24,24 @@
 
         <!-- Template Stylesheet -->
         <link href="{{url('css/style.css')}}" rel="stylesheet">
-</head>
+
+		<!-- TinyMCE -->
+		<script src="https://cdn.tiny.cloud/1/jnkfs9zvfl13vly0k5556lcy3znx17cwejz9ng8k3hyk3uau/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+		<script>
+		  tinymce.init({
+		    selector: '.visi', 
+		    plugins: 'code table lists',
+		    toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+		  });
+
+		  tinymce.init({
+		    selector: '.misi', 
+		    plugins: 'code table lists',
+		    toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+		  });
+		</script>
+	</head>
 <body>
    <!-- Topbar Start -->
    <div class="container-fluid bg-primary px-5 d-none d-lg-block">
@@ -469,9 +486,9 @@
 										</div>
 										<div class="card-body">
 											<h4 class="card-title">Visi Kecamatan</h4>
-											<p>{{ $about->visi }}</p>
+											<p>{!! $about->visi !!}</p>
 											<h4 class="card-title">Misi Kecamatan</h4>
-											<p>{{ $about->misi }}</p>
+											<p>{!! $about->misi !!}</p>
 										</div>
 									</div>
 								</div>
@@ -485,19 +502,19 @@
 												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             								</div>
             								<div class="modal-body">
-												<form action="" method="post" enctype="multipart/form-data">
+												<form action="{{ route('admin.updateAboutUs') }}" method="post" enctype="multipart/form-data">
 													@csrf
 													<div class="form-group">
-														<label for="deskripsi">Visi</label>
-														<textarea name="deskripsi" class="form-control" id="deskripsi" cols="50" rows="4" required>{{ $about->visi }}</textarea>					
+														<label for="visi">Visi</label>
+														<textarea name="visi" class="form-control visi" id="visi" cols="50" rows="4" required>{{ $about->visi }}</textarea>					
 													</div>
 													<div class="form-group">
-														<label for="deskripsi">Misi</label>
-														<textarea name="deskripsi" class="form-control" id="deskripsi" cols="50" rows="4" required>{{ $about->misi }}</textarea>					
+														<label for="misi">Misi</label>
+														<textarea name="misi" class="form-control misi" id="misi" cols="50" rows="4" required>{{ $about->misi }}</textarea>					
 													</div>
 													<div class="form-group">
-														<label for="logo_wilayah">Gambar Kegiatan</label>
-														<input type="file" class="form-control-file" name="logo_wilayah" id="logo_wilayah">
+														<label for="gambar_about">Gambar Kegiatan</label>
+														<input type="file" class="form-control-file" name="gambar_about" id="gambar_about">
                 									</div>
 													<button type="submit" class="btn btn-primary form-control">Save changes</button>
 												</form>

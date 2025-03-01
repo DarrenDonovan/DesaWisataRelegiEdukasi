@@ -242,6 +242,40 @@ class AdminController extends Controller
     }
 
 
+    public function updateAboutUs(Request $request){
+        $request -> validate([
+            'visi' => 'required|string',
+            'misi' => 'required|string',
+            'gambar_about' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+        
+        $about_us = DB::table('about_us')->first();
+
+        if (!$about_us) {
+            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+        }   
+
+        $updateData = [
+            'visi' => $request->visi,
+            'misi' => $request->misi
+        ];
+
+        if ($request->hasFile('gambar_about')) {
+            if ($about_us->gambar_about) {
+                Storage::disk('public')->delete($about_us->gambar_about);
+            }
+
+            $imagePath = $request->file('gambar_about')->store('about_us', 'public');
+            $updateData['gambar_about'] = $imagePath;
+        }
+
+        DB::table('about_us')->where('id_about', $about_us->id_about)->update($updateData);
+
+        Session::flash('message', 'Data Berhasil Diupdate!');
+        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+    }
+
+
     //Delete Data
     public function deleteKegiatan($id){
         $kegiatan = DB::table('kegiatan')->where('id_kegiatan', $id)->first();

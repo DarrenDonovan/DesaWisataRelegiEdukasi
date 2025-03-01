@@ -106,25 +106,9 @@
                     <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8))">
                         <h5 class="section-about-title pe-3">Visi dan Misi Kecamatan Tigakarsa</h5>
                         <h1 class="mb-4"> Visi </h1>
-                        <p class="mb-4">Visi Kecamatan Tigaraksa bertujuan memberikan arah strategis bagi pembangunan daerah yang berkelanjutan sebagai berikut:</p>
-                        <p><strong>"Terwujudnya kehidupan masyarakat Kecamatan Tigaraksa yang cerdas, religius, dan berwawasan kemandirian"</strong></p>
-                        <ul>
-                            <li><strong>Cerdas:</strong> Masyarakat memiliki wawasan, keterampilan, serta pendidikan yang mendukung kualitas hidup</li>
-                            <li><strong>Religius:</strong> Nilai-nilai agama menjadi landasan dalam kehidupan masyarakat dan kebijakan pemerintah</li>
-                            <li><strong>Berwawasan Kemandirian:</strong> Masyarakat mampu berpikir kreatif, inovatif, serta mandiri dalam menghadapi tantangan</li>
-                        </ul>
-                        <p class="mb-4">Visi ini menjadi pedoman dalam menyusun program prioritas dan kegiatan pembangunan di Kecamatan Tigaraksa </p>
+                        {!! $about_us->visi !!}
                         <h1 class="mb-4"> Misi </h1>
-                        <ul>
-                            <li>Meningkatkan fasilitas pendidikan dan layanan kesehatan masyarakat</li>
-                            <li>Mendorong pertumbuhan ekonomi berbasis UMKM sesuai potensi wilayah</li>
-                            <li>Mewujudkan kesejahteraan sosial dengan nilai-nilai religius dalam pemerintahan</li>
-                            <li>Mempercepat pembangunan infrastruktur jalan, jembatan, dan fasilitas umum</li>
-                            <li>Meningkatkan ketertiban dan keamanan melalui koordinasi yang efektif</li>
-                            <li>Mengembangkan kapasitas aparatur kecamatan, desa, dan kelurahan dalam pelayanan publik</li>
-                        </ul>
-                        <p class="mb-4">Misi ini menjadi pedoman utama dalam merancang kebijakan dan program pembangunan di Kecamatan Tigaraksa</p>            
-                        <!-- <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Detail</a> -->
+                        {!! $about_us->misi !!}
                     </div>
                 </div>
             </div>
