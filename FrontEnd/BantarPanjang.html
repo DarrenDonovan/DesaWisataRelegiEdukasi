@@ -80,14 +80,14 @@
   
       /* CARD WISATA */
         .containerWisata {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: auto;
             text-align: center;
         }
 
         .gridWisata {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
             gap: 20px;
         }
 
@@ -107,9 +107,53 @@
 
         .cardW:hover img {
             transform: scale(1.05);
+            cursor: pointer;
         }
 
         .cardW .info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            text-align: left;
+        }
+        .containerUMKM {
+            max-width: 1400px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .gridUMKM {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+        
+        .cardU {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .cardU img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .cardU:hover img {
+            /* transform: scale(1.05); */
+            cursor: pointer;
+        }
+
+        .cardU .info {
             position: absolute;
             bottom: 0;
             left: 0;
@@ -210,7 +254,7 @@
     <!-- Header End -->
 
     <!-- Profil -->
-    <div class="mx-auto text-center mb-5" style="max-width: 900px; margin-top: 50px;">
+    <div class="mx-auto text-center mb-5" style="max-width: 900px; margin-top: 100px;">
       <h5 class="section-title px-3"> perkenalkan </h5>
       <h1 class="mb-0">Profil Desa</h1>
     </div>
@@ -242,7 +286,7 @@
 
       <div class="gmbrDesa">
         <img
-          src="img/gallery-1.jpg"
+          src="img/petakecamatan.png"
           class="img-fluid rounded shadow-lg"
           alt="Gambar Desa"
         />
@@ -251,7 +295,7 @@
     <!-- Profil end -->
 
     <!-- Wisata start -->
-    <div class="mx-auto text-center mb-5" style="max-width: 900px; margin-top: 50px;">
+    <div class="mx-auto text-center mb-5" style="max-width: 900px; margin-top: 100px;">
       <h5 class="section-title px-3"> Wisata </h5>
       <h1 class="mb-0">Jelajahi Wisata Lokal</h1>
     </div>
@@ -284,6 +328,39 @@
       </div>
   </div>
 
+  <!-- UMKM start -->
+  <div class="mx-auto text-center mb-5" style="max-width: 900px; margin-top: 100px;">
+    <h5 class="section-title px-3"> UMKM </h5>
+    <h1 class="mb-0">Produk Khas Daerah</h1>
+  </div>
+  <div class="containerUMKM">
+    <div class="gridUMKM">
+        <div class="cardU">
+            <img src="img/pantai.jpg" alt="Pantai">
+            <div class="info">Pantai Indah</div>
+        </div>
+        <div class="cardU">
+            <img src="img/Gunung.jpg" alt="Gunung">
+            <div class="info">Gunung Sejuk</div>
+        </div>
+        <div class="cardU">
+            <img src="img/Hutan.jpg" alt="Hutan">
+            <div class="info">Hutan Hijau</div>
+        </div>
+        <div class="cardU">
+            <img src="img/Kota.jpg" alt="Kota">
+            <div class="info">Wisata Kota</div>
+        </div>
+        <div class="cardU">
+            <img src="img/candi.jpg" alt="Candi">
+            <div class="info">Candi Bersejarah</div>
+        </div>
+        <div class="cardU">
+            <img src="img/airTerjun.jpg" alt="Air Terjun">
+            <div class="info">Air Terjun Cantik</div>
+        </div>
+    </div>
+</div>
 
     <!-- PETA DESA -->
     <!-- <div class="container-fluid packages py-5">
