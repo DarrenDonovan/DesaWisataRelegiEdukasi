@@ -1526,3 +1526,175 @@ table {
   font-weight: bold;
   color: #333;
 }
+
+/* Menjadikan navbar fixed dan memberi background */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Pastikan navbar di atas elemen lain */
+  background-color: #002c77; /* Warna background navbar */
+}
+
+/* Tambahkan padding-top pada main content agar tidak tertutup navbar */
+.main {
+  padding-top: 80px; /* Sesuaikan dengan tinggi navbar */
+  min-height: calc(100vh - 80px); /* Pastikan konten memenuhi layar */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hero section agar tidak tertutup navbar */
+.container-fluid {
+  margin-top: 80px; /* Sesuaikan jika perlu */
+}
+
+/* Pastikan wrapper memenuhi tinggi layar */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Buat konten utama fleksibel agar footer tetap di bawah */
+.content {
+  flex: 1;
+  min-height: 400px; 
+}
+
+/* Pastikan footer menempel di bawah tanpa ruang kosong */
+.footer {
+  background-color: #000;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* Pastikan copyright juga menyatu dengan footer */
+.copyright {
+  background-color: #000;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Reset margin dan padding ekstra */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Pastikan tidak ada margin bawah yang menyebabkan celah */
+.container-fluid.footer, .container-fluid.copyright {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Styling untuk blog details */
+.blog-details .post-img img {
+  width: 100%;
+  height: 400px; /* Sesuaikan dengan kebutuhan */
+  object-fit: cover;
+  border-radius: 8px; /* Opsional: Tambahkan efek rounded */
+}
+
+.blog-details .title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 20px;
+}
+
+.meta-top ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  font-size: 14px;
+  color: #777;
+}
+
+.meta-top ul li {
+  display: flex;
+  align-items: center;
+}
+
+.meta-top ul li i {
+  margin-right: 5px;
+  color: #555;
+}
+
+.blog-details .content {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #444;
+  margin-top: 20px;
+}
+
+.blog-details .content img {
+  width: 100%;
+  height: auto;
+  margin: 20px 0;
+  border-radius: 8px;
+}
+
+blockquote {
+  background: #f9f9f9;
+  padding: 15px;
+  border-left: 4px solid #007bff;
+  font-style: italic;
+  margin: 20px 0;
+  color: #555;
+}
+
+.blog-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.blog-card:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.meta-bottom {
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #777;
+}
+
+.meta-bottom ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.meta-bottom ul li {
+  display: inline;
+}
+
+.meta-bottom i {
+  margin-right: 5px;
+  color: #555;
+}
+
+.meta-bottom a {
+  text-decoration: none;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.meta-bottom a:hover {
+  color: #007bff;
+}
