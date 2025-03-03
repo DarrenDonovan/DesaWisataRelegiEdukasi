@@ -418,51 +418,51 @@
 
 						<!-- Modal Tambah Kegiatan -->
 						<div class="modal fade" id="modalTambah_kegiatan" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
-   									<div class="modal-dialog">
-        								<div class="modal-content">
-            								<div class="modal-header">
-												<h5 class="modal-title" id="modalTitle">Tambah Kegiatan Terbaru</h5>
-												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            								</div>
-            								<div class="modal-body">
-												<form action=" {{ route('admin.createKegiatan') }}" method="post" enctype="multipart/form-data">
-													@csrf
-													<div class="form-group">
-														<label for="nama_kegiatan">Nama Kegiatan</label>
-														<input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" required>
-													</div>
-													<div class="form-group">
-														<label for="jenis_kegiatan">Jenis Kegiatan</label>
-														<select name="jenis_kegiatan" class="form-control" required>
-														    <option value="">-- Pilih Jenis Kegiatan --</option>
-														    @foreach ($jenis_kegiatan as $item)
-														        <option value="{{ $item->id_jenis_kegiatan }}">{{ $item->nama_jenis_kegiatan }}</option>
-														    @endforeach
-														</select>
-													</div>
-													<div class="form-group">
-														<label for="nama_wilayah">Nama Wilayah</label>
-														<select name="nama_wilayah" class="form-control" required>
-														    <option value="">-- Pilih Wilayah --</option>
-														    @foreach ($wilayah as $item)
-														        <option value="{{ $item->id_wilayah }}">{{ $item->nama_wilayah }}</option>
-														    @endforeach
-														</select>
-													</div>
-													<div class="form-group">
-														<label for="keterangan">Keterangan</label>
-														<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required></textarea>					
-													</div>
-													<div class="form-group">
-														<label for="gambar_kegiatan">Gambar Kegiatan</label>
-														<input type="file" class="form-control-file" name="gambar_kegiatan" id="gambar_kegiatan">
-                									</div>
-													<button type="submit" class="btn btn-primary form-control">Tambahkan</button>
-												</form>
-								            </div>
-								        </div>
-								    </div>
-								</div>
+   							<div class="modal-dialog">
+        						<div class="modal-content">
+            						<div class="modal-header">
+										<h5 class="modal-title" id="modalTitle">Tambah Kegiatan Terbaru</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            						</div>
+            						<div class="modal-body">
+										<form action=" {{ route('admin.createKegiatan') }}" method="post" enctype="multipart/form-data">
+											@csrf
+											<div class="form-group">
+												<label for="nama_kegiatan">Nama Kegiatan</label>
+												<input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" required>
+											</div>
+											<div class="form-group">
+												<label for="jenis_kegiatan">Jenis Kegiatan</label>
+												<select name="jenis_kegiatan" class="form-control" required>
+												    <option value="">-- Pilih Jenis Kegiatan --</option>
+												    @foreach ($jenis_kegiatan as $item)
+												        <option value="{{ $item->id_jenis_kegiatan }}">{{ $item->nama_jenis_kegiatan }}</option>
+												    @endforeach
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="nama_wilayah">Nama Wilayah</label>
+												<select name="nama_wilayah" class="form-control" required>
+												    <option value="">-- Pilih Wilayah --</option>
+												    @foreach ($wilayah as $item)
+												        <option value="{{ $item->id_wilayah }}">{{ $item->nama_wilayah }}</option>
+												    @endforeach
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="keterangan">Keterangan</label>
+												<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required></textarea>					
+											</div>
+											<div class="form-group">
+												<label for="gambar_kegiatan">Gambar Kegiatan</label>
+												<input type="file" class="form-control-file" name="gambar_kegiatan" id="gambar_kegiatan">
+                							</div>
+											<button type="submit" class="btn btn-primary form-control">Tambahkan</button>
+										</form>
+						            </div>
+						        </div>
+						    </div>
+						</div>
 
 						<!-- About Us -->
 						<div class="d-flex justify-content-between align-items-center mt-4">
@@ -470,15 +470,21 @@
 							<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalEdit_about">Edit Tentang Kami</button>	
 						</div>	
 							<div class="row">
-								<div class="col-md-3">
+								<div class="col-md-4">
 									<div class="card">
 										<div class="card-header">
-											<h4 class="card-title">Gambar</h4>
-											<img src="{{ asset('storage/' . $about->gambar_about) }}" width="270px" alt="">
+											<h4 class="card-title text-center mb-1">Gambar</h4>
+											<img src="{{ asset('storage/' . $about->gambar_about) }}" width="275" alt="">
+										</div>
+									</div>
+									<div class="card">
+										<div class="card-header">
+											<h4 class="card-title text-center mb-1">Bagan Organisasi</h4>
+											<img src="{{ asset('storage/' . $about->bagan_organisasi) }}" width="275px" alt="">
 										</div>
 									</div>
 								</div>
-								<div class="col-md-9">
+								<div class="col-md-8">
 									<div class="card">
 										<div class="card-header">
 											<h4 class="card-title">Konten Kecamatan</h4>
@@ -516,6 +522,10 @@
 														<label for="gambar_about">Gambar Kegiatan</label>
 														<input type="file" class="form-control-file" name="gambar_about" id="gambar_about">
                 									</div>
+													<div class="form-group">
+														<label for="bagan_organisasi">Bagan Organisasi</label>
+														<input type="file" class="form-control-file" name="bagan_organisasi" id="bagan_organisasi">
+                									</div>
 													<button type="submit" class="btn btn-primary form-control">Save changes</button>
 												</form>
 								            </div>
@@ -523,9 +533,127 @@
 								    </div>
 								</div>
 
-						
+						<!-- Perangkat Kecamatan -->
+						<div class="d-flex justify-content-between align-items-center">
+							<h4 class="page-title mt-1">Perangkat Kecamatan</h4>
+							<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalTambah_perangkat">Tambah Personil</button>	
+						</div>		
+		  			
+						<div class="container-fluid guide">
+        				    <div class="container card py-4">
+        				        <div class="row g-4">
+									@foreach ($perangkat_kecamatan as $perangkat)
+        				            <div class="col-md-6 col-lg-3">
+        				                <div class="guide-item">
+        				                    <div class="guide-img">
+        				                        <img src="{{ asset('storage/' . $perangkat->gambar_perangkat) }}" style="height: 300px; width:100%; object-fit:cover" class="img-fluid w-100 rounded-top" alt="Image">
+        				                    </div>
+        				                    <div class="guide-title text-center rounded-bottom p-2">
+        				                        <div class="guide-title-inner" style="height: 150px">
+        				                            <h4 class="mt-3">{{ $perangkat->nama }}</h4>
+        				                            <p class="mb-3">{{ $perangkat->jabatan }}</p>
+													<a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalEdit_perangkat{{$perangkat->id_perangkat}}">Edit</a> 
+													<a href="{{ route('admin.removePerangkat', $perangkat->id_perangkat) }}" class="btn btn-danger">Remove</a>
+        				                        </div>
+        				                    </div>
+
+										<!-- Modal Edit perangkat kecamatan -->
+										<div class="modal fade" id="modalEdit_perangkat{{$perangkat->id_perangkat}}" tabindex="-1" aria-labelledby="modalTitle{{$perangkat->id_perangkat}}" aria-hidden="true">
+   											<div class="modal-dialog">
+        										<div class="modal-content">
+            										<div class="modal-header">
+														<h5 class="modal-title" id="modalTitle">Edit Perangkat Kecamatan</h5>
+														<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            										</div>
+            										<div class="modal-body">
+														<form action="{{ route('admin.updatePerangkat', $perangkat->id_perangkat)}}" method="post" enctype="multipart/form-data">
+															@csrf
+															<div class="form-group">
+																<label for="nama_kegiatan">Nama</label>
+																<input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" value="{{ $perangkat->nama }}" required>
+															</div>
+															<div class="form-group">
+																<label for="jabatan">Jabatan</label>
+																<input type="text" class="form-control" name="jabatan" id="jabatan" value="{{ $perangkat->jabatan }}" required>
+															</div>
+															<div class="form-group">
+																<label for="link_facebook">Link Facebook (Optional)</label>
+																<input type="text" class="form-control" name="link_facebook" id="link_facebook">
+															</div>
+															<div class="form-group">
+																<label for="link_instagram">Link Instagram (Optional)</label>
+																<input type="text" class="form-control" name="link_instagram" id="link_instagram">
+															</div>
+															<div class="form-group">
+																<label for="link_tiktok">Link Tiktok (Optional)</label>
+																<input type="text" class="form-control" name="link_tiktok" id="link_tiktok">
+															</div>
+															<div class="form-group">
+																<label for="gambar_perangkat">Gambar</label>
+																<input type="file" class="form-control-file" name="gambar_perangkat" id="gambar_perangkat">
+                											</div>
+															</div>
+                											<button type="submit" class="btn btn-primary form-control p-2">Save changes</button>
+														</form>
+						    				        </div>
+						    				    </div>
+						    				</div>
+        				                </div>
+        				            </div>
+									@endforeach
+								</div>
+							</div>
+						</div>
 
 						
+		  			
+						<!-- Modal Tambah Kegiatan -->
+						<div class="modal fade" id="modalTambah_perangkat" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+   							<div class="modal-dialog">
+        						<div class="modal-content">
+            						<div class="modal-header">
+										<h5 class="modal-title" id="modalTitle">Tambah Perangkat Kecamatan</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            						</div>
+            						<div class="modal-body">
+										<form action=" {{ route('admin.createPerangkat') }}" method="post" enctype="multipart/form-data">
+											@csrf
+											<div class="form-group">
+												<label for="nama">Nama</label>
+												<input type="text" class="form-control" name="nama" id="nama" required>
+											</div>
+											<div class="form-group">
+												<label for="jabatan">Jabatan</label>
+												<input type="text" class="form-control" name="jabatan" id="jabatan" required>
+											</div>
+											<div class="form-group">
+												<label for="link_facebook">Link Facebook (Optional)</label>
+												<input type="text" class="form-control" name="link_facebook" id="link_facebook">
+											</div>
+											<div class="form-group">
+												<label for="link_instagram">Link Instagram (Optional)</label>
+												<input type="text" class="form-control" name="link_instagram" id="link_instagram">
+											</div>
+											<div class="form-group">
+												<label for="link_tiktok">Link Tiktok (Optional)</label>
+												<input type="text" class="form-control" name="link_tiktok" id="link_tiktok">
+											</div>
+											<div class="form-group">
+												<label for="gambar_perangkat">Gambar</label>
+												<input type="file" class="form-control-file" name="gambar_perangkat" id="gambar_perangkat">
+                							</div>
+											<button type="submit" class="btn btn-primary form-control">Tambahkan</button>
+										</form>
+						            </div>
+						        </div>
+						    </div>
+						</div>
+		
+		
+		
+		
+		
+										
 						
 						
 						
@@ -545,7 +673,8 @@
 						
 						
 						
-								<div class="row row-card-no-pd">
+						
+						<div class="row row-card-no-pd">
 							<div class="col-md-4">
 								<div class="card">
 									<div class="card-body">

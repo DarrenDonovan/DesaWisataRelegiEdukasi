@@ -1,19 +1,19 @@
 php artisan migrate --path=database/migrations/2014_10_12_000000_create_users_table.php
 php artisan db:seed --class=UserSeeder
 
-CREATE TABLE wilayah (
+- CREATE TABLE wilayah (
     id_wilayah INT AUTO_INCREMENT PRIMARY KEY,
     nama_wilayah VARCHAR(255) NOT NULL,
     jenis_wilayah VARCHAR(50) NOT NULL
 );
 
-CREATE TABLE jenis_kegiatan (
+- CREATE TABLE jenis_kegiatan (
     id_jenis_kegiatan INT AUTO_INCREMENT PRIMARY KEY,
     nama_jenis_kegiatan VARCHAR(50) NOT NULL,
     gambar_jenis_kegiatan VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE kegiatan (
+- CREATE TABLE kegiatan (
     id_kegiatan INT AUTO_INCREMENT PRIMARY KEY,
     nama_kegiatan VARCHAR(255) NOT NULL,
     keterangan LONGTEXT,
@@ -25,7 +25,7 @@ CREATE TABLE kegiatan (
     FOREIGN KEY (id_jenis_kegiatan) REFERENCES jenis_kegiatan(id_jenis_kegiatan) ON DELETE CASCADE
 );
 
-CREATE TABLE profil (
+- CREATE TABLE profil (
     id_profil INT AUTO_INCREMENT PRIMARY KEY,
     id_wilayah INT NOT NULL,
     deskripsi LONGTEXT,
@@ -33,6 +33,27 @@ CREATE TABLE profil (
     FOREIGN KEY (id_wilayah) REFERENCES wilayah(id_wilayah) ON DELETE CASCADE
 );
 
+- CREATE TABLE about_us(
+    id_about INT AUTO_INCREMENT PRIMARY KEY,
+    id_wilayah INT NOT NULL,
+    visi LONGTEXT,
+    misi LONGTEXT,
+    gambar_about VARCHAR(255),
+    bagan_organisasi VARCHAR(255),
+    FOREIGN KEY (id_wilayah) REFERENCES wilayah(id_wilayah) ON DELETE CASCADE
+)
+
+- CREATE TABLE perangkat_kecamatan (
+    id_perangkat INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(255),
+    jabatan VARCHAR(255),
+    link_facebook VARCHAR(255),
+    link_instagram VARCHAR(255),
+    link_tiktok VARCHAR(255),
+    gambar_perangkat VARCHAR(255)
+);
+
+**
 INSERT INTO wilayah (id_wilayah, nama_wilayah, jenis_wilayah) VALUES
 (1, 'Desa Pasir Bolang', 'Desa'),
 (2, 'Desa Cisereh', 'Desa'),
@@ -50,6 +71,7 @@ INSERT INTO wilayah (id_wilayah, nama_wilayah, jenis_wilayah) VALUES
 (14, 'Kelurahan Kadu Agung', 'Kelurahan'),
 (15, 'Kelurahan Tigaraksa', 'Kelurahan');
 
+**
 INSERT INTO jenis_kegiatan (id_jenis_kegiatan, nama_jenis_kegiatan, gambar_jenis_kegiatan) VALUES
 (1, 'Rapat Koordinasi', 'jenis_kegiatan/rapat-koordinasi.jpeg'),
 (2, 'Posyandu', 'jenis_kegiatan/posyandu.png'),
@@ -57,10 +79,11 @@ INSERT INTO jenis_kegiatan (id_jenis_kegiatan, nama_jenis_kegiatan, gambar_jenis
 (4, 'Kesehatan', 'jenis_kegiatan/kesehatan.jpg'),
 (5, 'Lomba', 'jenis_kegiatan/lomba-desa.jpg');
 
+**
 INSERT INTO profil (id_profil, id_wilayah, deskripsi, logo_wilayah) VALUES
 (1, 13, 'Sumber informasi terbaru tentang desa-desa yang ada di Kecamatan Tigaraksa', 'profil/kecamatan/71HY0KP3dd8rRpWBYXqTU5oGIICDgItMyrsRASoI.png');
 
-
+**
 INSERT INTO kegiatan (id_kegiatan, nama_kegiatan, keterangan, gambar_kegiatan, id_wilayah, id_jenis_kegiatan, tanggal_kegiatan) VALUES
 (1, 'Rapat Koordinasi Pembangunan', 'Rapat koordinasi untuk membahas pembangunan infrastruktur di desa.', 'kegiatan/rapat1.jpg', 1, 1, '2025-03-01'),
 (2, 'Posyandu Balita Desa Cisereh', 'Kegiatan posyandu rutin untuk pemeriksaan kesehatan balita.', 'kegiatan/posyandu1.jpg', 2, 2, '2025-03-05'),
@@ -77,6 +100,41 @@ INSERT INTO kegiatan (id_kegiatan, nama_kegiatan, keterangan, gambar_kegiatan, i
 (13, 'Lomba Mewarnai Anak Tigaraksa', 'Lomba mewarnai tingkat anak-anak dalam rangka memperingati Hari Anak.', 'kegiatan/lomba3.jpg', 13, 5, '2025-03-22'),
 (14, 'Posyandu Bayi Kelurahan Kadu Agung', 'Pelayanan posyandu untuk bayi dan balita.', 'kegiatan/posyandu3.jpg', 14, 2, '2025-04-05'),
 (15, 'Rapat Perencanaan Kelurahan Tigaraksa', 'Rapat membahas perencanaan program kelurahan.', 'kegiatan/rapat3.jpg', 15, 1, '2025-04-15');
+
+**
+INSERT INTO about_us (id_about, id_wilayah, visi, misi, gambar_about, bagan_organisasi) VALUES
+(1, 13, '<p>Visi Kecamatan Tigaraksa bertujuan memberikan arah strategis bagi pembangunan daerah yang berkelanjutan sebagai berikut:</p>
+<p>"Terwujudnya kehidupan masyarakat Kecamatan Tigaraksa yang cerdas, religius, dan berwawasan kemandirian"</p>
+<ul>
+<li>Cerdas: Masyarakat memiliki wawasan, keterampilan, serta pendidikan yang mendukung kualitas hidup</li>
+<li>Religius: Nilai-nilai agama menjadi landasan dalam kehidupan masyarakat dan kebijakan pemerintah</li>
+<li>Berwawasan Kemandirian: Masyarakat mampu berpikir kreatif, inovatif, serta mandiri dalam menghadapi tantangan</li>
+</ul>
+<p>Visi ini menjadi pedoman dalam menyusun program prioritas dan kegiatan pembangunan di Kecamatan Tigaraksa</p>', '<ul>
+<li>Meningkatkan fasilitas pendidikan dan layanan kesehatan masyarakat</li>
+<li>Mendorong pertumbuhan ekonomi berbasis UMKM sesuai potensi wilayah</li>
+<li>Mewujudkan kesejahteraan sosial dengan nilai-nilai religius dalam pemerintahan</li>
+<li>Mempercepat pembangunan infrastruktur jalan, jembatan, dan fasilitas umum</li>
+<li>Meningkatkan ketertiban dan keamanan melalui koordinasi yang efektif</li>
+<li>Mengembangkan kapasitas aparatur kecamatan, desa, dan kelurahan dalam pelayanan publik</li>
+</ul>
+<p>Misi ini menjadi pedoman utama dalam merancang kebijakan dan program pembangunan di Kecamatan Tigaraksa, Tangerang</p>' , 'about_us/tentang-kami.jpg', 'bagan_organisasi/tigaraksa.jpg');
+
+**
+INSERT INTO perangkat_kecamatan (id_perangkat, nama, jabatan, link_facebook, link_instagram, link_tiktok, gambar_perangkat)
+VALUES
+(1, 'Ahmad Setiawan', 'Camat', 'https://facebook.com/ahmadsetiawan', 'https://instagram.com/ahmadsetiawan', 'https://tiktok.com/@ahmadsetiawan', 'perangkat_kecamatan/camat_ahmad.jpg'),
+(2, 'Budi Santoso', 'Sekretaris Kecamatan', 'https://facebook.com/budisantoso', 'https://instagram.com/budisantoso', 'https://tiktok.com/@budisantoso', 'perangkat_kecamatan/sekretaris_budi.jpg'),
+(3, 'Citra Dewi', 'Kasi Pemerintahan', 'https://facebook.com/citradewi', 'https://instagram.com/citrapemerintahan', 'https://tiktok.com/@citradewi', 'perangkat_kecamatan/kasi_pemerintahan.jpg'),
+(4, 'Dedi Prasetyo', 'Kasi Pembangunan dan Perekonomian', 'https://facebook.com/dediprasetyo', 'https://instagram.com/dediprasetyo', 'https://tiktok.com/@dediprasetyo', 'perangkat_kecamatan/kasi_pembangunan.jpg'),
+(5, 'Eka Sari', 'Kasi Kesejahteraan Sosial', 'https://facebook.com/ekasari', 'https://instagram.com/ekasari', 'https://tiktok.com/@ekasari', 'perangkat_kecamatan/kasi_kesejahteraan.jpg'),
+(6, 'Farhan Hakim', 'Kasi Ketenteraman dan Ketertiban Umum', 'https://facebook.com/farhanhakim', 'https://instagram.com/farhanhakim', 'https://tiktok.com/@farhanhakim', 'perangkat_kecamatan/kasi_ketertiban.jpg'),
+(7, 'Gina Lestari', 'Kasi Pelayanan Umum', 'https://facebook.com/ginalestari', 'https://instagram.com/ginalestari', 'https://tiktok.com/@ginalestari', 'perangkat_kecamatan/kasi_pelayanan.jpg'),
+(8, 'Hendra Wijaya', 'Kepala Desa Pasir Nangka', 'https://facebook.com/hendrawijaya', 'https://instagram.com/hendrawijaya', 'https://tiktok.com/@hendrawijaya', 'perangkat_kecamatan/kepala_pasirnangka.jpg'),
+(9, 'Indah Permata', 'Kepala Desa Margasari', 'https://facebook.com/indahpermata', 'https://instagram.com/indahpermata', 'https://tiktok.com/@indahpermata', 'perangkat_kecamatan/kepala_margasari.jpg'),
+(10, 'Joko Susilo', 'Kepala Desa Tapos', 'https://facebook.com/jokosusilo', 'https://instagram.com/jokosusilo', 'https://tiktok.com/@jokosusilo', 'perangkat_kecamatan/kepala_tapos.jpg'),
+(11, 'Kartika Dewi', 'Kepala Desa Matagara', 'https://facebook.com/kartikadewi', 'https://instagram.com/kartikadewi', 'https://tiktok.com/@kartikadewi', 'perangkat_kecamatan/kepala_matagara.jpg'),
+(12, 'Lukman Hakim', 'Kepala Desa Cileles', 'https://facebook.com/lukmanhakim', 'https://instagram.com/lukmanhakim', 'https://tiktok.com/@lukmanhakim', 'perangkat_kecamatan/kepala_cileles.jpg');
 
 
 

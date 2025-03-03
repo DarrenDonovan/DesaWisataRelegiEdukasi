@@ -68,18 +68,22 @@ class AdminController extends Controller
             ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah')
             ->get();
 
-        $profil = DB::table('profil')
-            ->join('wilayah', 'wilayah.id_wilayah', '=', 'profil.id_wilayah')
-            ->select('profil.id_profil', 'profil.id_wilayah', 'profil.deskripsi', 'profil.logo_wilayah', 'wilayah.nama_wilayah')
-            ->where('profil.id_wilayah', $user->id_wilayah)
+        $profil = DB::table('profil_kecamatan')
+            ->join('wilayah', 'wilayah.id_wilayah', '=', 'profil_kecamatan.id_wilayah')
+            ->select('profil_kecamatan.id_profil', 'profil_kecamatan.id_wilayah', 'profil_kecamatan.deskripsi', 'profil_kecamatan.logo_wilayah', 'wilayah.nama_wilayah')
+            ->where('profil_kecamatan.id_wilayah', $user->id_wilayah)
             ->first();
 
         $about = DB::table('about_us')
             ->join('wilayah', 'wilayah.id_wilayah', '=', 'about_us.id_wilayah')
-            ->select('about_us.id_about', 'about_us.id_wilayah', 'about_us.visi', 'about_us.misi', 'about_us.gambar_about', 'wilayah.nama_wilayah')
+            ->select('about_us.id_about', 'about_us.id_wilayah', 'about_us.visi', 'about_us.misi', 'about_us.gambar_about', 'about_us.bagan_organisasi', 'wilayah.nama_wilayah')
             ->first();
+
+        $perangkat_kecamatan = DB::table('perangkat_kecamatan')
+            ->select('perangkat_kecamatan.id_perangkat', 'perangkat_kecamatan.nama', 'perangkat_kecamatan.jabatan', 'perangkat_kecamatan.link_facebook', 'perangkat_kecamatan.link_instagram', 'perangkat_kecamatan.link_tiktok', 'perangkat_kecamatan.gambar_perangkat')
+            ->get();
     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users', 'about'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users', 'about', 'perangkat_kecamatan'));
     }
 
 
@@ -103,15 +107,15 @@ class AdminController extends Controller
             ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah')
             ->get();
 
-        $profil = DB::table('profil')
-            ->join('wilayah', 'wilayah.id_wilayah', '=', 'profil.id_wilayah')
-            ->select('profil.id_profil', 'profil.id_wilayah', 'profil.deskripsi', 'profil.logo_wilayah', 'wilayah.nama_wilayah')
+        $profil = DB::table('profil_kecamatan')
+            ->join('wilayah', 'wilayah.id_wilayah', '=', 'profil_kecamatan.id_wilayah')
+            ->select('profil_kecamatan.id_profil', 'profil_kecamatan.id_wilayah', 'profil_kecamatan.deskripsi', 'profil_kecamatan.logo_wilayah', 'wilayah.nama_wilayah')
             ->first();
 
-        $profilkecamatan = DB::table('profil')
-            ->join('wilayah', 'wilayah.id_wilayah', '=', 'profil.id_wilayah')
-            ->select('profil.id_profil', 'profil.id_wilayah', 'profil.deskripsi', 'profil.logo_wilayah', 'wilayah.nama_wilayah')
-            ->where('profil.id_wilayah', 13)
+        $profilkecamatan = DB::table('profil_kecamatan')
+            ->join('wilayah', 'wilayah.id_wilayah', '=', 'profil_kecamatan.id_wilayah')
+            ->select('profil_kecamatan.id_profil', 'profil_kecamatan.id_wilayah', 'profil_kecamatan.deskripsi', 'profil_kecamatan.logo_wilayah', 'wilayah.nama_wilayah')
+            ->where('profil_kecamatan.id_wilayah', 13)
             ->first();
 
         return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah','profil', 'profilkecamatan'));
@@ -158,6 +162,61 @@ class AdminController extends Controller
          ]);
 
          return redirect('admin/createadmin')->with('success', 'Admin created successfully!');
+    }
+
+    //Create Data
+    public function createKegiatan(Request $request){
+        $request->validate([
+            'nama_kegiatan' => 'required|string|max:100',
+            'jenis_kegiatan' => 'required|integer', //Sama dengan option name
+            'nama_wilayah' => 'required|integer',
+            'keterangan' => 'required|string',
+            'gambar_kegiatan' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $imagePath = null;
+        if($request->hasFile('gambar_kegiatan')){
+            $imagePath = $request->file('gambar_kegiatan')->store('kegiatan', 'public');
+        }
+
+        DB::table('kegiatan')->insert([
+            'nama_kegiatan' => $request->nama_kegiatan,
+            'id_jenis_kegiatan' => $request->jenis_kegiatan, //nama kolom ditable => name di option
+            'id_wilayah' => $request->nama_wilayah,
+            'keterangan' => $request->keterangan,
+            'gambar_kegiatan' => $imagePath
+        ]);
+
+        Session::flash('message', 'Data Berhasil Ditambahkan!');
+        return redirect()->route('admin');
+    }
+
+    public function createPerangkat(Request $request){
+        $request->validate([
+            'nama' => 'required|string',
+            'jabatan' => 'required|string',
+            'link_facebook' => 'nullable|string',
+            'link_instagram' => 'nullable|string',
+            'link_tiktok' => 'nullable|string',
+            'gambar_perangkat' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $imagePath = null;
+        if($request->hasFile('gambar_perangkat')){
+            $imagePath = $request->file('gambar_perangkat')->store('perangkat_kecamatan', 'public');
+        }
+
+        DB::table('perangkat_kecamatan')->insert([
+            'nama' => $request->nama,
+            'jabatan' => $request->jabatan,
+            'link_facebook' => $request->link_facebook,
+            'link_instagram' => $request->link_instagram,
+            'link_tiktok' => $request->link_tiktok,
+            'gambar_perangkat' => $imagePath
+        ]);
+
+        Session::flash('message', 'Data Berhasil Ditambahkan!');
+        return redirect()->route('admin');
     }
 
 
@@ -213,9 +272,9 @@ class AdminController extends Controller
 
         $user = Auth::user();
 
-        $profil = DB::table('profil')
+        $profil = DB::table('profil_kecamatan')
             ->where('id_profil', $id)
-            ->where('profil.id_wilayah', $user->id_wilayah)
+            ->where('profil_kecamatan.id_wilayah', $user->id_wilayah)
             ->first();
 
         if (!$profil) {
@@ -235,7 +294,7 @@ class AdminController extends Controller
             $updateData['logo_wilayah'] = $imagePath;
         }
 
-        DB::table('profil')->where('id_profil', $id)->update($updateData);
+        DB::table('profil_kecamatan')->where('id_profil', $id)->update($updateData);
 
         Session::flash('message', 'Data Berhasil Diupdate!');
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
@@ -246,7 +305,8 @@ class AdminController extends Controller
         $request -> validate([
             'visi' => 'required|string',
             'misi' => 'required|string',
-            'gambar_about' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+            'gambar_about' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'bagan_organisasi' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
         
         $about_us = DB::table('about_us')->first();
@@ -269,7 +329,58 @@ class AdminController extends Controller
             $updateData['gambar_about'] = $imagePath;
         }
 
+        if ($request->hasFile('bagan_organisasi')) {
+            if ($about_us->bagan_organisasi) {
+                Storage::disk('public')->delete($about_us->bagan_organisasi);
+            }
+
+            $imagePath = $request->file('bagan_organisasi')->store('bagan_organisasi', 'public');
+            $updateData['bagan_organisasi'] = $imagePath;
+        }
+
         DB::table('about_us')->where('id_about', $about_us->id_about)->update($updateData);
+
+        Session::flash('message', 'Data Berhasil Diupdate!');
+        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+    }
+
+
+    public function updatePerangkat(Request $request, $id){
+        $request->validate([
+            'nama' => 'required|string',
+            'jabatan' => 'required|string',
+            'link_facebook' => 'nullable|string',
+            'link_instagram' => 'nullable|string',
+            'link_tiktok' => 'nullable|string',
+            'gambar_perangkat' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $perangkat = DB::table('perangkat_kecamatan')
+            ->where('id_perangkat', $id)
+            ->first();
+
+        if (!$perangkat) {
+            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+        }
+
+        $updateData = [
+            'nama' => $request->nama,
+            'jabatan' => $request->jabatan,
+            'link_facebook' => $request->link_facebook,
+            'link_instagram' => $request->link_instagram,
+            'link_tiktok' => $request->link_tiktok,
+        ];
+
+        if ($request->hasFile('gambar_perangkat')) {
+            if ($perangkat->gambar_perangkat) {
+                Storage::disk('public')->delete($perangkat->gambar_perangkat);
+            }
+
+            $imagePath = $request->file('gambar_perangkat')->store('perangkat_kecamatan', 'public');
+            $updateData['perangkat_kecamatan'] = $imagePath;
+        }
+
+        DB::table('perangkat_kecamatan')->where('id_perangkat', $id)->update($updateData);
 
         Session::flash('message', 'Data Berhasil Diupdate!');
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
@@ -297,31 +408,13 @@ class AdminController extends Controller
         return redirect()->route('removeAdmin');
     }
 
-    
-    //Create Data
-    public function createKegiatan(Request $request){
-        $request->validate([
-            'nama_kegiatan' => 'required|string|max:100',
-            'jenis_kegiatan' => 'required|integer', //Sama dengan option name
-            'nama_wilayah' => 'required|integer',
-            'keterangan' => 'required|string',
-            'gambar_kegiatan' => 'required|image|mimes:jpeg,png,jpg|max:2048'
-        ]);
+    public function removePerangkat($id){
+        $perangkat = DB::table('perangkat_kecamatan')->where('id_perangkat', $id)->first();
 
-        $imagePath = null;
-        if($request->hasFile('gambar_kegiatan')){
-            $imagePath = $request->file('gambar_kegiatan')->store('kegiatan', 'public');
-        }
+        DB::table('perangkat_kecamatan')->where('id_perangkat', $id)->delete();
+        Storage::disk('public')->delete($perangkat->gambar_perangkat);
 
-        DB::table('kegiatan')->insert([
-            'nama_kegiatan' => $request->nama_kegiatan,
-            'id_jenis_kegiatan' => $request->jenis_kegiatan, //nama kolom ditable => name di option
-            'id_wilayah' => $request->nama_wilayah,
-            'keterangan' => $request->keterangan,
-            'gambar_kegiatan' => $imagePath
-        ]);
-
-        Session::flash('message', 'Data Berhasil Ditambahkan!');
+        Session::flash('message', 'Data Berhasil Dihapus!');
         return redirect()->route('admin');
     }
 

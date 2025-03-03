@@ -22,7 +22,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->string('role');
-            $table->foreignId('id_wilayah')->constrained('wilayah');
+            $table->foreignId('id_wilayah')->constrained('wilayah', 'id_wilayah');
         });
     }
 

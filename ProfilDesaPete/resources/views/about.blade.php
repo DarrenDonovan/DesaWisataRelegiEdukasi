@@ -100,7 +100,7 @@
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-5">
                         <div class="h-100" style="border: 50px solid; border-color: transparent #13357B transparent #13357B;">
-                            <img src="img/tentang-kami.jpg" class="img-fluid w-100 h-100" alt="">
+                            <img src="{{ asset('storage/' . $about_us->gambar_about) }}" class="img-fluid w-100 h-100" alt="">
                         </div>
                     </div>
                     <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8))">
@@ -119,6 +119,7 @@
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
             <h5 class="section-title px-3"> Bagan Organisasi</h5>
             <h1 class="mb-0"> Struktur Pemerintahan Kecamatan </h1>
+            <img src="{{ asset('storage/' . $about_us->bagan_organisasi) }}" class="img-fluid w-100 h-100" alt="">
         </div>
         <!--  Struktur organisasi end-->
 
@@ -135,19 +136,18 @@
                         <div class="guide-item">
                             <div class="guide-img">
                                 <div class="guide-img-efects">
-                                    <img src="img/guide-1.jpg" class="img-fluid w-100 rounded-top" alt="Image">
+                                    <img src="{{ asset('storage/' . $camat->gambar_perangkat) }}" style="height: 300px; width:100%; object-fit:cover" class="img-fluid w-100 rounded-top" alt="Image">
                                 </div>
                                 <div class="guide-icon rounded-pill p-2">
                                     <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                                     <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
                                     <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
                                 </div>
                             </div>
                             <div class="guide-title text-center rounded-bottom p-4">
-                                <div class="guide-title-inner">
-                                    <h4 class="mt-3">Full Name</h4>
-                                    <p class="mb-0">Designation</p>
+                                <div class="guide-title-inner" style="height: 100px">
+                                    <h4 class="mt-3">{{ $camat->nama }}</h4>
+                                    <p class="mb-0">{{ $camat->jabatan }}</p>
                                 </div>
                             </div>
                         </div>
@@ -156,238 +156,72 @@
                         <div class="guide-item">
                             <div class="guide-img">
                                 <div class="guide-img-efects">
-                                    <img src="img/guide-2.jpg" class="img-fluid w-100 rounded-top" alt="Image">
+                                    <img src="{{ asset('storage/' . $sekretaris->gambar_perangkat) }}" style="height: 300px; width:100%; object-fit:cover" class="img-fluid w-100 rounded-top" alt="Image">
                                 </div>
                                 <div class="guide-icon rounded-pill p-2">
                                     <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                                     <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
                                     <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
                                 </div>
                             </div>
                             <div class="guide-title text-center rounded-bottom p-4">
-                                <div class="guide-title-inner">
-                                    <h4 class="mt-3">Full Name</h4>
-                                    <p class="mb-0">Designation</p>
+                                <div class="guide-title-inner" style="height:100px">
+                                    <h4 class="mt-3">{{ $sekretaris->nama }}</h4>
+                                    <p class="mb-0">{{ $sekretaris->jabatan }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @foreach ($kasi as $kepala_seksi)
+                    <div class="col-md-6 col-lg-3">
+                        <div class="guide-item" >
+                            <div class="guide-img">
+                                <div class="guide-img-efects">
+                                    <img src="{{ asset('storage/' . $kepala_seksi->gambar_perangkat) }}" style="height: 300px; width:100%; object-fit:cover" class="img-fluid w-100 rounded-top" alt="Image">
+                                </div>
+                                <div class="guide-icon rounded-pill p-2">
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                            <div class="guide-title text-center rounded-bottom p-4">
+                                <div class="guide-title-inner" style="height: 100px">
+                                    <h4 class="mt-3">{{ $kepala_seksi->nama }}</h4>
+                                    <p class="mb-0">{{ $kepala_seksi->jabatan }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+
+                    @foreach ($kepala_desa as $kades)
                     <div class="col-md-6 col-lg-3">
                         <div class="guide-item">
                             <div class="guide-img">
                                 <div class="guide-img-efects">
-                                    <img src="img/guide-3.jpg" class="img-fluid w-100 rounded-top" alt="Image">
+                                    <img src="{{ asset('storage/' . $kades->gambar_perangkat) }}" style="height: 300px; width:100%; object-fit:cover" class="img-fluid w-100 rounded-top" alt="Image">
                                 </div>
                                 <div class="guide-icon rounded-pill p-2">
                                     <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                                     <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
                                     <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
                                 </div>
                             </div>
                             <div class="guide-title text-center rounded-bottom p-4">
-                                <div class="guide-title-inner">
-                                    <h4 class="mt-3">Full Name</h4>
-                                    <p class="mb-0">Designation</p>
+                                <div class="guide-title-inner" style="height: 100px">
+                                    <h4 class="mt-3">{{ $kades->nama }}</h4>
+                                    <p class="mb-0">{{ $kades->jabatan }}</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="guide-item">
-                            <div class="guide-img">
-                                <div class="guide-img-efects">
-                                    <img src="img/guide-4.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                                </div>
-                                <div class="guide-icon rounded-pill p-2">
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                                </div>
-                            </div>
-                            <div class="guide-title text-center rounded-bottom p-4">
-                                <div class="guide-title-inner">
-                                    <h4 class="mt-3">Full Name</h4>
-                                    <p class="mb-0">Designation</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="guide-item">
-                            <div class="guide-img">
-                                <div class="guide-img-efects">
-                                    <img src="img/guide-4.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                                </div>
-                                <div class="guide-icon rounded-pill p-2">
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                                </div>
-                            </div>
-                            <div class="guide-title text-center rounded-bottom p-4">
-                                <div class="guide-title-inner">
-                                    <h4 class="mt-3">Full Name</h4>
-                                    <p class="mb-0">Designation</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="guide-item">
-                            <div class="guide-img">
-                                <div class="guide-img-efects">
-                                    <img src="img/guide-4.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                                </div>
-                                <div class="guide-icon rounded-pill p-2">
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                                </div>
-                            </div>
-                            <div class="guide-title text-center rounded-bottom p-4">
-                                <div class="guide-title-inner">
-                                    <h4 class="mt-3">Full Name</h4>
-                                    <p class="mb-0">Designation</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="guide-item">
-                            <div class="guide-img">
-                                <div class="guide-img-efects">
-                                    <img src="img/guide-4.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                                </div>
-                                <div class="guide-icon rounded-pill p-2">
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                                </div>
-                            </div>
-                            <div class="guide-title text-center rounded-bottom p-4">
-                                <div class="guide-title-inner">
-                                    <h4 class="mt-3">Full Name</h4>
-                                    <p class="mb-0">Designation</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="guide-item">
-                            <div class="guide-img">
-                                <div class="guide-img-efects">
-                                    <img src="img/guide-4.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                                </div>
-                                <div class="guide-icon rounded-pill p-2">
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                                </div>
-                            </div>
-                            <div class="guide-title text-center rounded-bottom p-4">
-                                <div class="guide-title-inner">
-                                    <h4 class="mt-3">Full Name</h4>
-                                    <p class="mb-0">Designation</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="guide-item">
-                            <div class="guide-img">
-                                <div class="guide-img-efects">
-                                    <img src="img/guide-4.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                                </div>
-                                <div class="guide-icon rounded-pill p-2">
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                                </div>
-                            </div>
-                            <div class="guide-title text-center rounded-bottom p-4">
-                                <div class="guide-title-inner">
-                                    <h4 class="mt-3">Full Name</h4>
-                                    <p class="mb-0">Designation</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="guide-item">
-                            <div class="guide-img">
-                                <div class="guide-img-efects">
-                                    <img src="img/guide-4.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                                </div>
-                                <div class="guide-icon rounded-pill p-2">
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                                </div>
-                            </div>
-                            <div class="guide-title text-center rounded-bottom p-4">
-                                <div class="guide-title-inner">
-                                    <h4 class="mt-3">Full Name</h4>
-                                    <p class="mb-0">Designation</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="guide-item">
-                            <div class="guide-img">
-                                <div class="guide-img-efects">
-                                    <img src="img/guide-4.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                                </div>
-                                <div class="guide-icon rounded-pill p-2">
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                                </div>
-                            </div>
-                            <div class="guide-title text-center rounded-bottom p-4">
-                                <div class="guide-title-inner">
-                                    <h4 class="mt-3">Full Name</h4>
-                                    <p class="mb-0">Designation</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <div class="guide-item">
-                            <div class="guide-img">
-                                <div class="guide-img-efects">
-                                    <img src="img/guide-4.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                                </div>
-                                <div class="guide-icon rounded-pill p-2">
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                    <a class="btn btn-square btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                                </div>
-                            </div>
-                            <div class="guide-title text-center rounded-bottom p-4">
-                                <div class="guide-title-inner">
-                                    <h4 class="mt-3">Full Name</h4>
-                                    <p class="mb-0">Designation</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
-        <!-- Perangkat End -->
 
+        <!-- Perangkat End -->
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
             <h5 class="section-title px-3"> Lokasi Desa </h5>
             <h1 class="mb-0"> Peta Lokasi Desa </h1>
