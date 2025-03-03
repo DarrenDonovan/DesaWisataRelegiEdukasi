@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Detail Wisata</title>
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="css/style.css" rel="stylesheet">
+            <style>
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                }
+                body {
+                    font-family: Arial, sans-serif;
+                    background-color: #f5f5f5;
+                    padding: 0px;
+                }
+                .containerUtama {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                }
+                .contain {
+                    display: flex;
+                    gap: 20px;
+                    background: white;
+                    padding: 20px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                    padding: 30px;
+                }
+                .contentSidebar {
+                    display: grid;
+                    grid-template-rows: repeat(3, 1fr);
+                    gap: 20px;
+                    width: 30%;
+                }
+                .sidebarItem {
+                    background: #ddd;
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 8px;
+                }
+                .contenDesk {
+                    width: 60%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    padding: 40px;
+                }
+                .contenDesk h2 {
+                    font-size: 24px;
+                    margin-bottom: 10px;
+                }
+                .contentPaketan {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                    gap: 20px;
+                    padding: 20px;
+                    justify-content: center;
+                }
+
+                .paket {
+                    background: white;
+                    border-radius: 10px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    text-align: center;
+                    padding: 10px;
+                }
+
+                .paket img {
+                    width: 100%;
+                    border-radius: 10px;
+                }
+
+                .btn {
+                    background-color: #13357b;
+                    color: white;
+                    border: none;
+                    padding: 10px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    margin-top: 10px;
+                    width: 100%;
+                }
+
+                .btn:hover {
+                    background-color: #13357b;
+                }
+
+            </style>
+        </head>
+        <body>
+            <div class="container-fluid bg-primary px-5 d-none d-lg-block">
+                <div class="row gx-0 justify-content-end"> <!-- Tambahkan justify-content-end -->
+                    <div class="col-lg-4 text-end"> <!-- Gunakan text-end agar teks sejajar ke kanan -->
+                        <div class="d-inline-flex align-items-center" style="height: 45px;">
+                            <a href="#"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="containerUtama">
+                <!-- Container Atas -->
+                <div class="contain">
+                    <div class="contentSidebar">
+                        <img src="img/destination-1.jpg" class="sidebarItem">
+                        <iframe class="sidebarItem"
+                        width="100%" 
+                        height="300px" 
+                        frameborder="0" 
+                        style="border:0" 
+                        allowfullscreen 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.318758012817!2d110.36948781477602!3d-7.785985979065649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a579bfbdb9e8f%3A0x2d82c7c81c50a5a5!2sYogyakarta!5e0!3m2!1sen!2sid!4v1700000000000">
+                        </iframe>
+                        <div class="sidebarItem">Gambar 3</div>
+                    </div>
+                    <div class="contenDesk">
+                        <h2>Judul Wisata</h2>
+                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt molestias laudantium voluptatem, eum ipsum esse accusamus aliquid iusto, aut error similique sit ipsam ut corrupti tempore nobis magnam placeat quibusdam.</p>
+                    </div>
+                </div>
+        
+                <!-- Container Bawah (Paketan Wisata) -->
+                <div class="contentPaketan">
+                    <div class="paket">
+                        <img src="img/packages-1.jpg" alt="Hidden Gems Jogja">
+                        <button class="btn">Hidden Gems [Klik Sini]</button>
+                    </div>
+                    <div class="paket">
+                        <img src="img/packages-2.jpg" alt="Wisata Keluarga">
+                        <button class="btn">Wisata Keluarga [Klik Sini]</button>
+                    </div>
+                    <div class="paket">
+                        <img src="img/packages-3.jpg" alt="Jogja Magelang 2H1M">
+                        <button class="btn">Wisata 2H1M [Klik Sini]</button>
+                    </div>
+                </div>
+                
+            </div>
+        </body>     
+</html>
