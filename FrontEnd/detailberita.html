@@ -42,6 +42,38 @@
         <!-- Leaflet JS -->
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+        <style>
+          /* Navbar agar tetap di atas */
+          .navbar {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              z-index: 1000;
+              background-color: #002c77;
+              padding: 15px 20px;
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          }
+  
+          /* Supaya konten tidak ketutupan navbar */
+          .main {
+              padding-top: 100px; /* Sesuaikan dengan tinggi navbar */
+          }
+  
+          /* Hero section atau container utama */
+          .container-fluid {
+              margin-top: 20px;
+          }
+  
+          /* Styling Artikel */
+          .article {
+              background: white;
+              padding: 20px;
+              border-radius: 10px;
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          }
+      </style>
+
     </head>
 
     <body class="single-post-page">
@@ -66,7 +98,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="index.html" class="nav-item nav-link active">Home</a>
+                    <a href="index.html" class="nav-item nav-link">Home</a>
                     <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
                     <a href="infografis.html" class="nav-item nav-link">Infografis</a>
                     <a href="maps.html" class="nav-item nav-link">Maps</a>
@@ -95,7 +127,7 @@
 
   <main class="main">
 
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
 
         <div class="col-lg-8">
@@ -116,7 +148,6 @@
                   <ul>
                     <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">John Doe</a></li>
                     <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">Jan 1, 2022</time></a></li>
-                    <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>
                   </ul>
                 </div><!-- End meta top -->
 
@@ -163,17 +194,17 @@
 
                 <div class="meta-bottom">
                   <i class="bi bi-folder"></i>
-                  <ul class="cats">
-                    <li><a href="#">Business</a></li>
+                  <ul class="meta-list">
+                      <li><a href="#">Business</a></li>
                   </ul>
-
+              
                   <i class="bi bi-tags"></i>
-                  <ul class="tags">
-                    <li><a href="#">Creative</a></li>
-                    <li><a href="#">Tips</a></li>
-                    <li><a href="#">Marketing</a></li>
+                  <ul class="meta-list tags">
+                      <li><a href="#">Creative</a>,</li>
+                      <li><a href="#">Tips</a>,</li>
+                      <li><a href="#">Marketing</a></li>
                   </ul>
-                </div><!-- End meta bottom -->
+              </div><!-- End meta bottom -->
 
               </article>
 
@@ -192,7 +223,7 @@
                 <h3 class="widget-title">Recent Posts</h3>
                 
                 <div class="post-item d-flex border-bottom pb-2 mb-2">
-                <img src="img/blog/blog-recent-1.jpg" alt="" class="flex-shrink-0 me-2 rounded" width="60">
+                <img src="img/blog-1.jpg" alt="" class="flex-shrink-0 me-2 rounded" width="60">
                 <div>
                     <h4 class="h6 mb-1"><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
                     <time datetime="2020-01-01" class="text-muted small">Jan 1, 2020</time>
@@ -200,7 +231,7 @@
                 </div>
                 
                 <div class="post-item d-flex border-bottom pb-2 mb-2">
-                <img src="assets/img/blog/blog-recent-2.jpg" alt="" class="flex-shrink-0 me-2 rounded" width="60">
+                <img src="img/blog-2.jpg" alt="" class="flex-shrink-0 me-2 rounded" width="60">
                 <div>
                     <h4 class="h6 mb-1"><a href="blog-details.html">Quidem autem et impedit</a></h4>
                     <time datetime="2020-01-01" class="text-muted small">Jan 1, 2020</time>
@@ -208,7 +239,7 @@
                 </div>
                 
                 <div class="post-item d-flex border-bottom pb-2 mb-2">
-                <img src="assets/img/blog/blog-recent-3.jpg" alt="" class="flex-shrink-0 me-2 rounded" width="60">
+                <img src="img/blog-3.jpg" alt="" class="flex-shrink-0 me-2 rounded" width="60">
                 <div>
                     <h4 class="h6 mb-1"><a href="blog-details.html">Id quia et et ut maxime similique occaecati ut</a></h4>
                     <time datetime="2020-01-01" class="text-muted small">Jan 1, 2020</time>
@@ -216,7 +247,7 @@
                 </div>
                 
                 <div class="post-item d-flex border-bottom pb-2 mb-2">
-                <img src="assets/img/blog/blog-recent-4.jpg" alt="" class="flex-shrink-0 me-2 rounded" width="60">
+                <img src="img/blog-4.jpg" alt="" class="flex-shrink-0 me-2 rounded" width="60">
                 <div>
                     <h4 class="h6 mb-1"><a href="blog-details.html">Laborum corporis quo dara net para</a></h4>
                     <time datetime="2020-01-01" class="text-muted small">Jan 1, 2020</time>
@@ -224,7 +255,7 @@
                 </div>
                 
                 <div class="post-item d-flex">
-                <img src="assets/img/blog/blog-recent-5.jpg" alt="" class="flex-shrink-0 me-2 rounded" width="60">
+                <img src="img/blog-5.jpg" alt="" class="flex-shrink-0 me-2 rounded" width="60">
                 <div>
                     <h4 class="h6 mb-1"><a href="blog-details.html">Et dolores corrupti quae illo quod dolor</a></h4>
                     <time datetime="2020-01-01" class="text-muted small">Jan 1, 2020</time>
@@ -259,6 +290,54 @@
     </div>
 
   </main>
+
+   <!-- Footer Start -->
+   <div class="container-fluid footer py-5">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item d-flex flex-column">
+                    <h4 class="mb-4 text-white">Hubungi Kami</h4>
+                    <a href=""><i class="fas fa-home me-2"></i> Tangerang, Banten, Indonesia</a>
+                    <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
+                    <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
+                    <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-share fa-2x text-white me-2"></i>
+                        <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
+                        <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+<!-- Copyright Start -->
+<div class="container-fluid copyright text-body py-4">
+    <div class="container">
+        <div class="row g-4 align-items-center">
+            <div class="col-md-6 text-center text-md-end mb-md-0">
+                <i class="fas fa-copyright me-2"></i><a class="text-white" href="#">Site Name</a>, All right reserved.
+            </div>
+            <div class="col-md-6 text-center text-md-start">
+                <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
+                <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
+                <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
+                Designed By <a class="text-white" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a href="https://themewagon.com">ThemeWagon</a>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Copyright End -->
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
+
 
     
     <!-- JavaScript Libraries -->
