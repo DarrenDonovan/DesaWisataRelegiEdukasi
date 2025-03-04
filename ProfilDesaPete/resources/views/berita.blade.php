@@ -25,10 +25,10 @@
 
 
         <!-- Customized Bootstrap Stylesheet -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet">
 
         <!-- Template Stylesheet -->
-        <link href="css/style.css" rel="stylesheet">
+        <link href="{{ url('css/style.css') }}" rel="stylesheet">
     </head>
 
     <body>
@@ -49,7 +49,7 @@
                 </div>
                 <div class="col-lg-4 text-center text-lg-end">
                     <div class="d-inline-flex align-items-center" style="height: 45px;">
-                        <a href="{{url('login')}}"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
+                       <a href="login.html"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
                     </div>
                 </div>
             </div>
@@ -61,18 +61,17 @@
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
                     <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Kecamatan Tigaraksa<span class="subtext">Kabupaten Tangerang</span></h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
+                    <div class="navbar-nav ms-auto py-0">
                         <a href="{{ url('/') }}" class="nav-item nav-link">Home</a>
                         <a href="{{ url('about') }}" class="nav-item nav-link">Tentang Kami</a>
                         <a href="{{ url('infografis') }}" class="nav-item nav-link">Infografis</a>
-                        <a href="{{ url('maps') }}" class="nav-item nav-link active">Maps</a>
-                        <a href="{{ url('berita') }}" class="nav-item nav-link">Berita</a>
+                        <a href="{{ url('maps') }}" class="nav-item nav-link">Maps</a>
+                        <a href="{{ url('berita') }}" class="nav-item nav-link active">Berita</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile Desa</a>
                             <div class="dropdown-menu m-0">
@@ -83,7 +82,9 @@
                         </div>
                     </div>
             </nav>
+        </div>
         <!-- Navbar & Hero End -->
+
 
         <!-- Header Start -->
         <div class="container-fluid bg-breadcrumb">
@@ -98,34 +99,12 @@
             <div class="container py-5">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                     <h5 class="section-title px-3"> Berita Desa </h5>
-                    <h1 class="mb-4">Menyajikan informasi terbaru tentang peristiwa dan berita terkini Desa Pete </h1>
+                    <h1 class="mb-4">Menyajikan informasi terbaru tentang peristiwa dan berita terkini Kecamatan Tigaraksa </h1>
                     <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti deserunt tenetur sapiente atque. Magni non explicabo beatae sit, vel reiciendis consectetur numquam id similique sunt error obcaecati ducimus officia maiores.
                     </p>
                 </div>
                 <div class="row g-4 justify-content-center">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <div class="blog-img-inner">
-                                    <img class="img-fluid w-100 rounded-top" src="img/blog-1.jpg" alt="Image">
-                                    <div class="blog-icon">
-                                        <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
-                                    </div>
-                                </div>
-                                <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
-                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>28 Jan 2050</small>
-                                    <a href="#" class="btn-hover flex-fill text-center text-white border-end py-2"><i class="fa fa-thumbs-up text-primary me-2"></i>1.7K</a>
-                                    <a href="#" class="btn-hover flex-fill text-center text-white py-2"><i class="fa fa-comments text-primary me-2"></i>1K</a>
-                                </div>
-                            </div>
-                            <div class="blog-content border border-top-0 rounded-bottom p-4">
-                                <p class="mb-3">Posted By: Royal Hamblin </p>
-                                <a href="#" class="h4">Adventures Trip</a>
-                                <p class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam eos</p>
-                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Baca Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
+                    @foreach ($berita as $item)
                     <div class="col-lg-4 col-md-6">
                         <div class="blog-item">
                             <div class="blog-img">
@@ -136,160 +115,30 @@
                                     </div>
                                 </div>
                                 <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
-                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>28 Jan 2050</small>
+                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>{{ $item->tanggal_berita }}</small>
                                     <a href="#" class="btn-hover flex-fill text-center text-white border-end py-2"><i class="fa fa-thumbs-up text-primary me-2"></i>1.7K</a>
                                     <a href="#" class="btn-hover flex-fill text-center text-white py-2"><i class="fa fa-comments text-primary me-2"></i>1K</a>
                                 </div>
                             </div>
-                            <div class="blog-content border border-top-0 rounded-bottom p-4">
-                                <p class="mb-3">Posted By: Royal Hamblin </p>
-                                <a href="#" class="h4">Adventures Trip</a>
-                                <p class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam eos</p>
-                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Baca Selengkapnya</a>
+                            <div class="blog-content border border-top-0 rounded-bottom p-4 d-flex flex-column justify-content-between" style="height: 290px;">
+                                <div>
+                                    <p class="mb-3">Posted By: {{ $item->penulis_berita }}</p>
+                                    <a href="#" class="h4">{{ $item->judul_berita }}</a>
+                                    <p class="my-3">{{ Str::limit($item->konten_berita, 50, '...') }}</p>
+                                </div>
+                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4 mt-auto">Baca Selengkapnya</a>
                             </div>
+
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <div class="blog-img-inner">
-                                    <img class="img-fluid w-100 rounded-top" src="img/blog-2.jpg" alt="Image">
-                                    <div class="blog-icon">
-                                        <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
-                                    </div>
-                                </div>
-                                <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
-                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>28 Jan 2050</small>
-                                    <a href="#" class="btn-hover flex-fill text-center text-white border-end py-2"><i class="fa fa-thumbs-up text-primary me-2"></i>1.7K</a>
-                                    <a href="#" class="btn-hover flex-fill text-center text-white py-2"><i class="fa fa-comments text-primary me-2"></i>1K</a>
-                                </div>
-                            </div>
-                            <div class="blog-content border border-top-0 rounded-bottom p-4">
-                                <p class="mb-3">Posted By: Royal Hamblin </p>
-                                <a href="#" class="h4">Adventures Trip</a>
-                                <p class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam eos</p>
-                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Baca Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <div class="blog-img-inner">
-                                    <img class="img-fluid w-100 rounded-top" src="img/blog-2.jpg" alt="Image">
-                                    <div class="blog-icon">
-                                        <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
-                                    </div>
-                                </div>
-                                <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
-                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>28 Jan 2050</small>
-                                    <a href="#" class="btn-hover flex-fill text-center text-white border-end py-2"><i class="fa fa-thumbs-up text-primary me-2"></i>1.7K</a>
-                                    <a href="#" class="btn-hover flex-fill text-center text-white py-2"><i class="fa fa-comments text-primary me-2"></i>1K</a>
-                                </div>
-                            </div>
-                            <div class="blog-content border border-top-0 rounded-bottom p-4">
-                                <p class="mb-3">Posted By: Royal Hamblin </p>
-                                <a href="#" class="h4">Adventures Trip</a>
-                                <p class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam eos</p>
-                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Baca Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <div class="blog-img-inner">
-                                    <img class="img-fluid w-100 rounded-top" src="img/blog-3.jpg" alt="Image">
-                                    <div class="blog-icon">
-                                        <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
-                                    </div>
-                                </div>
-                                <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
-                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>28 Jan 2050</small>
-                                    <a href="#" class="btn-hover flex-fill text-center text-white border-end py-2"><i class="fa fa-thumbs-up text-primary me-2"></i>1.7K</a>
-                                    <a href="#" class="btn-hover flex-fill text-center text-white py-2"><i class="fa fa-comments text-primary me-2"></i>1K</a>
-                                </div>
-                            </div>
-                            <div class="blog-content border border-top-0 rounded-bottom p-4">
-                                <p class="mb-3">Posted By: Royal Hamblin </p>
-                                <a href="#" class="h4">Adventures Trip</a>
-                                <p class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam eos</p>
-                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Baca Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="blog-item">
-                            <div class="blog-img">
-                                <div class="blog-img-inner">
-                                    <img class="img-fluid w-100 rounded-top" src="img/blog-3.jpg" alt="Image">
-                                    <div class="blog-icon">
-                                        <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
-                                    </div>
-                                </div>
-                                <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
-                                    <small class="flex-fill text-center border-end py-2"><i class="fa fa-calendar-alt text-primary me-2"></i>28 Jan 2050</small>
-                                    <a href="#" class="btn-hover flex-fill text-center text-white border-end py-2"><i class="fa fa-thumbs-up text-primary me-2"></i>1.7K</a>
-                                    <a href="#" class="btn-hover flex-fill text-center text-white py-2"><i class="fa fa-comments text-primary me-2"></i>1K</a>
-                                </div>
-                            </div>
-                            <div class="blog-content border border-top-0 rounded-bottom p-4">
-                                <p class="mb-3">Posted By: Royal Hamblin </p>
-                                <a href="#" class="h4">Adventures Trip</a>
-                                <p class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam eos</p>
-                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4">Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="pagination-container">
-                        <div class="pagination-number arrow">
-                            <svg width="18" height="18">
-                                <use xlink:href="#left" />
-                            </svg>
-                            <span class="arrow-text">Kembali</span> 
-                        </div>
-                        
-                        <div class="pagination-number">1</div>
-                        <div class="pagination-number">2</div>
-                        <div class="pagination-number ">3</div>
-                        <div class="pagination-number">4</div>
-                        <div class="pagination-number">5</div>
-                        
-                        <div class="pagination-number arrow">
-                            <svg width="18" height="18">
-                                <use xlink:href="#right" />
-                            </svg>
-                        </div>
-                    </div>
-                    
-                    <svg class="hide">
-                        <symbol id="left" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                        </symbol>
-                        <symbol id="right" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </symbol>
-                    </svg>                    
+                    @endforeach        
+                </div>
+                {{ $berita->links() }}                
             </div>
         </div>
         <!-- Blog End -->
 
-        <!-- Subscribe Start -->
-        <!-- <div class="container-fluid subscribe py-5">
-            <div class="container text-center py-5">
-                <div class="mx-auto text-center" style="max-width: 900px;">
-                    <h5 class="subscribe-title px-3">Subscribe</h5>
-                    <h1 class="text-white mb-4">Our Newsletter</h1>
-                    <p class="text-white mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum tempore nam, architecto doloremque velit explicabo? Voluptate sunt eveniet fuga eligendi! Expedita laudantium fugiat corrupti eum cum repellat a laborum quasi.
-                    </p>
-                    <div class="position-relative mx-auto">
-                        <input class="form-control border-primary rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
-                        <button type="button" class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 px-4 mt-2 me-2">Subscribe</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- Subscribe End -->
+        
 
         <!-- Footer Start -->
         <div class="container-fluid footer py-5">
@@ -311,28 +160,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Company</h4>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> About</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Careers</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Blog</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Press</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Gift Cards</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Magazine</a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Support</h4>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Contact</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Legal Notice</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Privacy Policy</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Terms and Conditions</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Sitemap</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Cookie policy</a>
-                        </div>
-                    </div> -->
                 </div>
             </div>
         </div>
@@ -363,14 +190,14 @@
         <!-- JavaScript Libraries -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/lightbox/js/lightbox.min.js"></script>
+        <script src="{{ url('lib/easing/easing.min.js') }}"></script>
+        <script src="{{ url('lib/waypoints/waypoints.min.js') }}"></script>
+        <script src="{{ url('lib/owlcarousel/owl.carousel.min.js') }}"></script>
+        <script src="{{ url('lib/lightbox/js/lightbox.min.js') }}"></script>
         
 
         <!-- Template Javascript -->
-        <script src="js/main.js"></script>
+        <script src="{{ url('js/main.js') }}"></script>
     </body>
 
 </html>

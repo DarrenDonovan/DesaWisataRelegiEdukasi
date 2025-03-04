@@ -53,6 +53,18 @@ php artisan db:seed --class=UserSeeder
     gambar_perangkat VARCHAR(255)
 );
 
+- CREATE TABLE berita (
+    id_berita INT AUTO_INCREMENT PRIMARY KEY,
+    judul_berita VARCHAR(255) NOT NULL,
+    konten_berita LONGTEXT NOT NULL,
+    gambar_berita VARCHAR(255),
+    tanggal_berita DATE NOT NULL,
+    penulis_berita VARCHAR(100) NOT NULL,
+    id_wilayah INT,
+    FOREIGN KEY (id_wilayah) REFERENCES wilayah(id_wilayah) ON DELETE SET NULL
+);
+
+
 **
 INSERT INTO wilayah (id_wilayah, nama_wilayah, jenis_wilayah) VALUES
 (1, 'Desa Pasir Bolang', 'Desa'),
@@ -135,6 +147,51 @@ VALUES
 (10, 'Joko Susilo', 'Kepala Desa Tapos', 'https://facebook.com/jokosusilo', 'https://instagram.com/jokosusilo', 'https://tiktok.com/@jokosusilo', 'perangkat_kecamatan/kepala_tapos.jpg'),
 (11, 'Kartika Dewi', 'Kepala Desa Matagara', 'https://facebook.com/kartikadewi', 'https://instagram.com/kartikadewi', 'https://tiktok.com/@kartikadewi', 'perangkat_kecamatan/kepala_matagara.jpg'),
 (12, 'Lukman Hakim', 'Kepala Desa Cileles', 'https://facebook.com/lukmanhakim', 'https://instagram.com/lukmanhakim', 'https://tiktok.com/@lukmanhakim', 'perangkat_kecamatan/kepala_cileles.jpg');
+
+**
+INSERT INTO berita (judul_berita, konten_berita, gambar_berita, tanggal_berita, penulis_berita, id_wilayah) VALUES
+('Festival Budaya Tigaraksa 2024', 
+ 'Pemerintah Kecamatan Tigaraksa mengadakan festival budaya tahunan dengan berbagai pertunjukan seni dan kuliner khas daerah.', 
+ 'berita/festival_tigaraksa.jpg', 
+ '2024-03-01', 
+ 'Dinas Pariwisata Tigaraksa', 
+ 1),
+
+('Pembangunan Infrastruktur di Desa Pasir Nangka', 
+ 'Proyek pembangunan jalan desa di Pasir Nangka mulai dikerjakan untuk meningkatkan aksesibilitas warga.', 
+ 'berita/jalan_pasir_nangka.jpg', 
+ '2024-02-20', 
+ 'Dinas PUPR Tigaraksa', 
+ 2),
+
+('Lomba Kebersihan Antar Desa', 
+ 'Dalam rangka memperingati Hari Peduli Sampah Nasional, Kecamatan Tigaraksa menggelar lomba kebersihan antar desa.', 
+ 'berita/lomba_kebersihan.jpg', 
+ '2024-02-25', 
+ 'Pemuda Karang Taruna Tigaraksa', 
+ 3),
+
+('Sosialisasi Pertanian Organik di Desa Tapos', 
+ 'Petani di Desa Tapos diberikan pelatihan tentang pertanian organik untuk meningkatkan hasil panen yang lebih sehat.', 
+ 'berita/pelatihan_pertanian.jpg', 
+ '2024-02-15', 
+ 'Dinas Pertanian Tigaraksa', 
+ 4),
+
+('Pengobatan Gratis di Desa Sodong', 
+ 'Puskesmas Tigaraksa mengadakan program pengobatan gratis untuk warga Desa Sodong.', 
+ 'berita/pengobatan_gratis.jpg', 
+ '2024-03-03', 
+ 'Puskesmas Tigaraksa', 
+ 5),
+
+('Peringatan Hari Kemerdekaan di Desa Cileles', 
+ 'Warga Desa Cileles merayakan Hari Kemerdekaan RI ke-79 dengan berbagai perlombaan dan upacara bendera.', 
+ 'berita/hari_kemerdekaan_cileles.jpg', 
+ '2024-08-17', 
+ 'Panitia HUT RI Tigaraksa', 
+ 6);
+
 
 
 

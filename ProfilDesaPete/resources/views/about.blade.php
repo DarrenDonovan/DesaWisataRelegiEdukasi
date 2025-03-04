@@ -62,13 +62,12 @@
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
                     <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Kecamatan Tigaraksa<span class="subtext">Kabupaten Tangerang</span></h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto py-0">
+                    <div class="navbar-nav ms-auto py-0">
                         <a href="{{ url('/') }}" class="nav-item nav-link">Home</a>
                         <a href="{{ url('about') }}" class="nav-item nav-link active">Tentang Kami</a>
                         <a href="{{ url('infografis') }}" class="nav-item nav-link">Infografis</a>

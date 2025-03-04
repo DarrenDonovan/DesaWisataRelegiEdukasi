@@ -50,7 +50,12 @@ class UserController extends Controller
             ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah')
             ->get();
 
-        return view('berita', compact('wilayah'));
+        $berita = DB::table('berita')
+            ->join('wilayah', 'berita.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->select('berita.id_berita', 'berita.judul_berita', 'berita.konten_berita', 'berita.gambar_berita', 'berita.penulis_berita', 'berita.tanggal_berita', 'berita.id_wilayah', 'wilayah.nama_wilayah')
+            ->paginate(6);
+
+        return view('berita', compact('wilayah', 'berita'));
     }
 
     public function infografis(){
