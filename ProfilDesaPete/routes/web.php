@@ -66,6 +66,6 @@ Route::post('/admin/updateProfil/{id}', [AdminController::class, 'updateProfil']
 Route::post('/admin/updateAboutUs', [AdminController::class, 'updateAboutUs'])->name('admin.updateAboutUs');
 
 //Route untuk Perangkat Kecamatan
-Route::post('admin/createPerangkat', [AdminController::class], 'createPerangkat')->name('admin.createPerangkat');
+Route::post('admin/createPerangkat', [AdminController::class, 'createPerangkat'])->name('admin.createPerangkat');
 Route::post('/admin/updatePerangkat/{id}', [AdminController::class, 'updatePerangkat'])->name('admin.updatePerangkat');
-Route::get('admin/removePerangkat/{id}', [AdminController::class], 'removePerangkat')->name('admin.removePerangkat');
+Route::get('admin/removePerangkat/{id}', [AdminController::class, 'removePerangkat'])->name('admin.removePerangkat');
