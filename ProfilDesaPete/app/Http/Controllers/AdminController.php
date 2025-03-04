@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Session;
 
-class AdminController extends Controller
-{
+class AdminController extends Controller{
 
     //Declare Database connection to data into admin adn index
     public function admin(){
@@ -221,8 +220,8 @@ class AdminController extends Controller
 
 
     //Data Update
-    public function updateKegiatan(Request $request, $id)
-    {
+    public function updateKegiatan(Request $request, $id){
+
         $request->validate([
             'nama_kegiatan' => 'required|string|max:100',
             'jenis_kegiatan' => 'required|integer', //Sama dengan option name
@@ -230,13 +229,15 @@ class AdminController extends Controller
             'keterangan' => 'required|string',
             'gambar_kegiatan' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
-
+        
        $user = Auth::user();
 
         $kegiatan = DB::table('kegiatan')
             ->where('id_kegiatan', $id)
             ->where('kegiatan.id_wilayah', $user->id_wilayah)
             ->first();
+        
+        dd($kegiatan);
 
         if (!$kegiatan) {
             return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
@@ -258,8 +259,11 @@ class AdminController extends Controller
             $updateData['gambar_kegiatan'] = $imagePath;
         }
 
-        DB::table('kegiatan')->where('id_kegiatan', $id)->update($updateData);
-
+        DB::enableQueryLog(); // Start query logging
+        $affectedRows = DB::table('kegiatan')->where('id_kegiatan', $id)->update($updateData);
+        dd(DB::getQueryLog()); // Show the actual SQL query
+        
+        
         Session::flash('message', 'Data Berhasil Diupdate!');
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
     }
@@ -358,7 +362,7 @@ class AdminController extends Controller
         $perangkat = DB::table('perangkat_kecamatan')
             ->where('id_perangkat', $id)
             ->first();
-
+        
         if (!$perangkat) {
             return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
         }
