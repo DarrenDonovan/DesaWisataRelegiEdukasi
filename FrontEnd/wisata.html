@@ -2,16 +2,17 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Detail Wisata</title>
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    </head>
-    
 
-    <!-- Template Stylesheet -->
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    />
+
+    <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet" />
     <style>
       * {
@@ -19,77 +20,96 @@
         padding: 0;
         box-sizing: border-box;
       }
-      html, body {
-        margin: 0;
-        padding: 0;
+
+      body {
         font-family: Arial, sans-serif;
         background-color: #f5f5f5;
-      } 
-      .container-fluid {
-        margin: 0;
-        padding: 9px;
-        height: 60px;
-
       }
 
+      /* NAVBAR */
+      .container-fluid {
+        padding: 9px;
+        height: 60px;
+      }
       .container-fluid i {
         font-size: 30px;
       }
+
+      /* CONTAINER UTAMA */
       .containerUtama {
         display: flex;
+        align-items: stretch;
         flex-direction: column;
         gap: 20px;
-        
-      }
-      .contain {
-        display: flex;
-        gap: 20px;
-        background: white;
         padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        padding: 30px;
-      }
-      .contentSidebar {
-        display: grid;
-        grid-template-rows: repeat(3, 1fr);
-        gap: 20px;
-        width: 30%;
-        padding: 20px;
-      }
-      .sidebarItem {
-        background: #ddd;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 8px;
-      }
-      .contenDesk {
-        width: 60%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        padding: 50px;
-      }
-      .contenDesk h2 {
-        font-size: 26px;
-        margin-bottom: 10px;
-      }
-      .contenDesk h3 {
-        font-size: 16px;
-        line-height: 30px;
+        height: auto;
       }
 
-      .contenDesk p{
-        line-height: 40px;
+      .contain {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        height: auto; /* Ubah dari height: 100% */
       }
+
+      .vrContain {
+        width: 100%;
+      }
+      .vr {
+        width: 100%; 
+        height: 500px; 
+      }
+
+      .contentSidebar {
+        flex: 1;
+        min-width: 300px;
+        display: flex; /* Tambahkan ini */
+        flex-direction: column; /* Supaya elemen di dalamnya vertikal */
+        gap: 10px; /* Beri jarak antar elemen */
+      }
+
+      .contentSidebar img {
+        width: 100%; /* Pastikan gambar menyesuaikan lebarnya */
+        height: auto;
+        border-radius: 10px;
+        margin-top: 30px;
+        margin-bottom: 25px;
+      }
+
+      .contentSidebar iframe {
+        width: 100%;
+        height: calc(700px/2);
+        border-radius: 10px;
+      }
+
+      .contenDesk {
+        flex: 2;
+        padding: 20px;
+      }
+
+      .contenDesk h2 {
+        font-size: 25px;
+        margin-bottom: 10px;
+      }
+
+      .contenDesk h3 {
+        font-size: 16px;
+      }
+
+      .contenDesk p {
+        line-height: 1.6;
+      }
+
+      /* CONTENT PAKETAN */
       .contentPaketan {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 20px;
         padding: 20px;
-        justify-content: center;
       }
 
       .paket {
@@ -117,57 +137,107 @@
       }
 
       .btn:hover {
-        background-color: #13357b;
+        background-color: #0a2a5c;
+      }
+
+      /* MEDIA QUERIES */
+      @media (max-width: 768px) {
+        .contain {
+          flex-direction: column;
+          padding: 20px;
+        }
+
+        .contentSidebar {
+          width: 100%;
+        }
+
+        .contenDesk {
+          width: 100%;
+          padding: 10px;
+        }
+        .contenDesk iframe {
+          width: 50px;
+          height: 50px;
+        }
       }
     </style>
   </head>
   <body>
     <!-- NAVBAR -->
     <div class="container-fluid bg-primary px-5 d-none d-lg-block">
-        <div class="row gx-0 justify-content-start"> 
-            <div class="col-lg-4 text-start"> 
-                <div class="d-inline-flex align-items-center" style="height: 45px">
-                    <a href="BantarPanjang.html">
-                        <small class="me-3 text-light">
-                            <i class="bi bi-chevron-left me-2"></i>
-                        </small>
-                    </a>    
-                </div>
-            </div>
+      <div class="row gx-0 justify-content-start">
+        <div class="col-lg-4 text-start">
+          <div class="d-inline-flex align-items-center" style="height: 45px">
+            <a href="BantarPanjang.html">
+              <small class="me-3 text-light">
+                <i class="bi bi-chevron-left me-2"></i>
+              </small>
+            </a>
+          </div>
         </div>
+      </div>
     </div>
-    <!-- ALL CONTAIN -->
+
+    <!-- CONTAINER UTAMA -->
     <div class="containerUtama">
-      <!-- Container Atas -->
+      <!-- CONTAINER ATAS -->
       <div class="contain">
         <div class="contentSidebar">
-          <img src="img/destination-1.jpg" class="sidebarItem" />
+          <img src="img/destination-1.jpg" alt="Pantai Indah" />
           <iframe
-            class="sidebarItem"
-            width="100%"
-            height="300px"
             frameborder="0"
             style="border: 0"
             allowfullscreen
             referrerpolicy="no-referrer-when-downgrade"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.318758012817!2d110.36948781477602!3d-7.785985979065649!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a579bfbdb9e8f%3A0x2d82c7c81c50a5a5!2sYogyakarta!5e0!3m2!1sen!2sid!4v1700000000000"
-          >
-          </iframe>
-          
+          ></iframe>
         </div>
         <div class="contenDesk">
           <h2><strong>Pantai Indah</strong></h2>
-          <p style="color: #000000;">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est modi voluptatum nisi recusandae beatae facere quis sint, illum nulla? Sunt deserunt debitis suscipit a hic iure maiores, fugiat corporis aperiam. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Praesentium, doloremque. Cupiditate, numquam distinctio. Sed doloremque aliquam molestiae perferendis totam in placeat, suscipit eligendi, tempore qui accusamus voluptatibus eaque provident quibusdam.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis error ut voluptate a sequi minima rerum iure vel totam numquam nam modi repellendus iusto natus ab perspiciatis, dolores perferendis! Commodi.
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
+            voluptates velit, a cumque necessitatibus pariatur, possimus
+            reprehenderit non, sit harum ipsa cupiditate. Labore minima modi
+            natus placeat perferendis quae ipsa. Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Qui temporibus nisi, illum, voluptas
+            omnis libero esse sunt iste, minima vero delectus! Libero dolorum
+            magnam consequuntur commodi pariatur quasi consectetur aut! Lorem
+            ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus
+            recusandae molestiae neque officiis reprehenderit, sed repellat
+            natus placeat quia. Aliquam, hic. Ipsa, quis officia autem commodi
+            non sequi necessitatibus expedita. Lorem ipsum dolor sit, amet
+            consectetur adipisicing elit. Doloremque fugiat autem, esse
+            reiciendis tempore quas minima ducimus optio maxime eligendi quo
+            perferendis voluptatem deleniti dicta velit ab nihil vero
+            accusantium. Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Nulla id magnam ipsa. Qui, reprehenderit atque, ducimus a
+            voluptate similique amet enim cumque temporibus sed error
+            repellendus quas aperiam non beatae! Lorem ipsum dolor sit amet
+            consectetur adipisicing elit. Dolores provident perferendis aut id
+            quidem molestias non rem voluptates. Eius, ex voluptatibus!
+            Quibusdam vel voluptates neque quod accusantium consectetur officiis
+            ratione?
           </p>
-          <h3><strong>Fasilitas: Kamar mandi, gratis pakaian renang, dll</strong></h3>
+          <h3>
+            <strong>Fasilitas: Kamar mandi, gratis pakaian renang, dll</strong>
+          </h3>
           <h3><strong>Jam Operasional: 08:00-20:00 (Setiap Hari)</strong></h3>
           <h3><strong>Kontak: 08123456789 (Jhon Thor)</strong></h3>
+          <div class="vrContain">
+            <iframe
+              class="vr"
+              src="https://www.theasys.io/viewer/NNM9ohSuQKofH7qEhfrxopve2sVPyJ"
+              allowfullscreen="true"
+              frameborder="0"
+              scrolling="no"
+              allow="vr;gyroscope;accelerometer"
+            >
+            </iframe>
+          </div>
         </div>
       </div>
 
-      <!-- Container Bawah (Paketan Wisata) -->
+      <!-- CONTAINER PAKETAN -->
       <div class="contentPaketan">
         <div class="paket">
           <img src="img/packages-1.jpg" alt="Hidden Gems Jogja" />
