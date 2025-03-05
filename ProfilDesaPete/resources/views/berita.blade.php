@@ -20,8 +20,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
         <!-- Libraries Stylesheet -->
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+        <link href="{{ url('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+        <link href="{{ url('lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet">
 
 
         <!-- Customized Bootstrap Stylesheet -->
@@ -43,13 +43,10 @@
 
         <!-- Topbar Start -->
         <div class="container-fluid bg-primary px-5 d-none d-lg-block">
-            <div class="row gx-0">
-                <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
-                    
-                </div>
-                <div class="col-lg-4 text-center text-lg-end">
+            <div class="row gx-0 justify-content-end"> <!-- Tambahkan justify-content-end -->
+                <div class="col-lg-4 text-end"> <!-- Gunakan text-end agar teks sejajar ke kanan -->
                     <div class="d-inline-flex align-items-center" style="height: 45px;">
-                       <a href="login.html"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
+                        <a href="{{url('login')}}"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
                     </div>
                 </div>
             </div>
@@ -100,8 +97,6 @@
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                     <h5 class="section-title px-3"> Berita Desa </h5>
                     <h1 class="mb-4">Menyajikan informasi terbaru tentang peristiwa dan berita terkini Kecamatan Tigaraksa </h1>
-                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti deserunt tenetur sapiente atque. Magni non explicabo beatae sit, vel reiciendis consectetur numquam id similique sunt error obcaecati ducimus officia maiores.
-                    </p>
                 </div>
                 <div class="row g-4 justify-content-center">
                     @foreach ($berita as $item)
@@ -126,7 +121,7 @@
                                     <a href="#" class="h4">{{ $item->judul_berita }}</a>
                                     <p class="my-3">{{ Str::limit($item->konten_berita, 50, '...') }}</p>
                                 </div>
-                                <a href="#" class="btn btn-primary rounded-pill py-2 px-4 mt-auto">Baca Selengkapnya</a>
+                                <a href="{{ url('detailberita/' . $item->id_berita) }}" class="btn btn-primary rounded-pill py-2 px-4 mt-auto">Baca Selengkapnya</a>
                             </div>
 
                         </div>

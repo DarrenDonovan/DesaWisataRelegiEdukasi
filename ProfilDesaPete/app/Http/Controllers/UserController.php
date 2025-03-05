@@ -58,6 +58,20 @@ class UserController extends Controller
         return view('berita', compact('wilayah', 'berita'));
     }
 
+    public function detailberita($id){
+        $wilayah = DB::table('wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah')
+            ->get();
+
+        $berita = DB::table('berita')
+            ->join('wilayah', 'berita.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->select('berita.id_berita', 'berita.judul_berita', 'berita.konten_berita', 'berita.gambar_berita', 'berita.penulis_berita', 'berita.tanggal_berita', 'berita.id_wilayah', 'wilayah.nama_wilayah')
+            ->where('berita.id_berita', '=', $id)
+            ->first();
+        
+        return view('detailberita', compact('wilayah', 'berita'));
+    }
+
     public function infografis(){
         $wilayah = DB::table('wilayah')
             ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah')

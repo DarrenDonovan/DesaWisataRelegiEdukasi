@@ -40,6 +40,12 @@
 		    plugins: 'code table lists',
 		    toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
 		  });
+
+		  tinymce.init({
+		    selector: '.konten_berita', 
+		    plugins: 'code table lists',
+		    toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | image'
+		  });
 		</script>
 	</head>
 <body>
@@ -606,9 +612,7 @@
 							</div>
 						</div>
 
-						
-		  			
-						<!-- Modal Tambah Kegiatan -->
+						<!-- Modal Tambah Perangkat -->
 						<div class="modal fade" id="modalTambah_perangkat" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
    							<div class="modal-dialog">
         						<div class="modal-content">
@@ -643,6 +647,133 @@
 												<label for="gambar_perangkat">Gambar</label>
 												<input type="file" class="form-control-file" name="gambar_perangkat" id="gambar_perangkat">
                 							</div>
+											<button type="submit" class="btn btn-primary form-control">Tambahkan</button>
+										</form>
+						            </div>
+						        </div>
+						    </div>
+						</div>
+
+				<!-- Berita -->
+					<div class="d-flex justify-content-between align-items-center">
+						<h4 class="page-title mt-1">Daftar Berita</h4>
+						<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalTambah_berita">Tambah Berita</button>	
+					</div>				
+						<div class="row">
+							<div class="col">
+								<div class="card">
+									<div class="card-body">
+										<table class="table table-striped mt-3">
+											<thead>
+												<tr>
+													<th scope="col">Judul</th>
+													<th scope="col">Penulis</th>
+													<th scope="col">Tanggal</th>
+													<th scope="col">Konten</th>
+													<th scope="col">Action</th>
+												</tr>
+											</thead>
+											<tbody>
+    										@foreach ($berita as $itemBerita)
+        										<tr>
+            										<td>{{ $itemBerita->judul_berita }}</td>
+													<td>{{ $itemBerita->penulis_berita }}</td>
+													<td>{{ $itemBerita->tanggal_berita }}</td>
+            										<td>{{ Str::limit($itemBerita->konten_berita, 50, '...') }}</td>
+													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalView_Berita{{$itemBerita->id_berita}}">View</a> | <a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_Berita{{$itemBerita->id_berita}}">Edit</a> | <a href="">Hapus</a></td>
+												</tr>
+
+		  										<!-- Modal View Berita -->
+		  										<div class="modal fade" id="modalView_Berita{{$itemBerita->id_berita}}" tabindex="-1" aria-labelledby="modalTitle{{$itemBerita->id_berita}}" aria-hidden="true">
+   													<div class="modal-dialog">
+        												<div class="modal-content">
+            												<div class="modal-header">
+																<h5 class="modal-title" id="modalTitle">Detail Berita</h5>
+																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            												</div>
+            												<div class="modal-body">
+															<div>
+                                							    <p class="mb-3">Posted By: {{ $itemBerita->penulis_berita }}</p>
+																<p class="mb-3">Tanggal: {{ $itemBerita->tanggal_berita }}</p>
+                                							    <a href="#" class="h4">{{ $itemBerita->judul_berita }}</a>
+                                							    <p class="my-3">{!! $itemBerita->konten_berita !!}</p>
+                                							</div>
+															</div>
+												        </div>
+												    </div>
+												</div>
+
+												<!-- Modal Edit Berita -->
+												<div class="modal fade" id="modalUpdate_Berita{{$itemBerita->id_berita}}" tabindex="-1" aria-labelledby="modalTitle{{$itemBerita->id_berita}}" aria-hidden="true">
+   													<div class="modal-dialog">
+        												<div class="modal-content">
+            												<div class="modal-header">
+																<h5 class="modal-title" id="modalTitle">Edit Berita</h5>
+																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            												</div>
+            												<div class="modal-body">
+																<form action="" method="post" enctype="multipart/form-data">
+																	@csrf
+																	<div class="form-group">
+																		<label for="judul_berita">Judul Berita</label>
+																		<input type="text" class="form-control" name="judul_berita" id="judul_berita" value="{{ $itemBerita->judul_berita }}" required>
+																	</div>
+																	<div class="form-group">
+																		<label for="penulis_berita">Penulis Berita</label>
+																		<input type="text" name="penulis_berita" class="form-control" id="penulis_berita" value="{{ $itemBerita->penulis_berita }}" required></textarea>
+																	</div>
+																	<div class="form-group">
+																		<label for="tanggal_berita">Tanggal Berita</label>
+																		<input type="date" name="tanggal_berita" class="form-control" id="tanggal_berita" value="{{ $itemBerita->tanggal_berita }}" required></textarea>
+																	</div>
+																	<div class="form-group">
+		  																<label for="konten_berita">Konten Berita</label>
+																		<textarea name="konten_berita" id="konten_berita" class="form-control" rows="4" cols="50">{!! $itemBerita->konten_berita !!}</textarea>
+																	</div>
+                													<button type="submit" class="btn btn-primary form-control">Save changes</button>
+																</form>
+												            </div>
+												        </div>
+												    </div>
+												</div>
+												@endforeach
+											</tbody>
+										</table>
+										<div class="mb-4">
+										{{ $berita->links() }}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Modal Tambah Berita -->
+						<div class="modal fade" id="modalTambah_berita" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+   							<div class="modal-dialog">
+        						<div class="modal-content">
+            						<div class="modal-header">
+										<h5 class="modal-title" id="modalTitle">Tambah Berita</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            						</div>
+            						<div class="modal-body">
+										<form action="" method="post" enctype="multipart/form-data">
+											@csrf
+											<div class="form-group">
+												<label for="judul_berita">Judul Berita</label>
+												<input type="text" class="form-control" name="judul_berita" id="judul_berita" required>
+											</div>
+											<div class="form-group">
+												<label for="penulis_berita">Penulis Berita</label>
+												<input type="text" name="penulis_berita" class="form-control" id="penulis_berita" required></textarea>
+											</div>
+											<div class="form-group">
+												<label for="tanggal_berita">Tanggal Berita</label>
+												<input type="date" name="tanggal_berita" class="form-control" id="tanggal_berita" required></textarea>
+											</div>
+											<div class="form-group">
+		  										<label for="konten_berita">Konten Berita</label>
+												<textarea name="konten_berita" id="konten_berita" class="form-control" rows="4" cols="50"></textarea>
+											</div>
 											<button type="submit" class="btn btn-primary form-control">Tambahkan</button>
 										</form>
 						            </div>
