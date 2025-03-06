@@ -223,6 +223,34 @@ class AdminController extends Controller{
         return redirect()->route('admin');
     }
 
+    public function createBerita(Request $request){
+        $request->validate([
+            'judul_berita' => 'required|string',
+            'penulis_berita' => 'required|string',
+            'tanggal_berita' => 'required|date',
+            'nama_wilayah' => 'required|integer',
+            'gambar_berita' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'konten_berita' => 'required|string'
+        ]);
+
+        $imagePath = null;
+        if($request->hasFile('gambar_berita')){
+            $imagePath = $request->file('gambar_berita')->store('berita', 'public');
+        }
+
+        DB::table('berita')->insert([
+            'judul_berita' => $request->judul_berita,
+            'penulis_berita' => $request->penulis_berita,
+            'tanggal_berita' => $request->tanggal_berita,
+            'id_wilayah' => $request->nama_wilayah,
+            'gambar_berita' => $imagePath,
+            'konten_berita' => $request->konten_berita
+        ]);
+
+        Session::flash('message', 'Data Berhasil Ditambahkan!');
+        return redirect()->route('admin');
+    }
+
 
     //Data Update
     public function updateKegiatan(Request $request, $id){
@@ -395,10 +423,53 @@ class AdminController extends Controller{
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
     }
 
+    public function updateBerita(Request $request, $id){
+        $request -> validate([
+            'judul_berita' => 'required|string',
+            'penulis_berita' => 'required|string',
+            'tanggal_berita' => 'required|date',
+            'nama_wilayah'=> 'required|integer',
+            'gambar_berita' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'konten_berita' => 'required|string'
+        ]);
+
+        $berita = DB::table('berita')
+            ->where('berita.id_berita', $id)
+            ->first();
+        
+        if(!$berita){
+            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+        }
+
+        $updateData = [
+            'judul_berita' => $request->judul_berita,
+            'penulis_berita' => $request->penulis_berita,
+            'tanggal_berita' => $request->tanggal_berita,
+            'id_wilayah' => $request->nama_wilayah,
+            'konten_berita' => $request->konten_berita,
+        ];
+
+        if ($request->hasFile('gambar_berita')) {
+            if ($perangkat->gambar_berita) {
+                Storage::disk('public')->delete($berita->gambar_berita);
+            }
+
+            $imagePath = $request->file('gambar_berita')->store('berita', 'public');
+            $updateData['berita'] = $imagePath;
+        }
+
+        DB::table('berita')->where('id_berita', $id)->update($updateData);
+
+        Session::flash('message', 'Data Berhasil Diupdate!');
+        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+    }
+
 
     //Delete Data
     public function deleteKegiatan($id){
-        $kegiatan = DB::table('kegiatan')->where('id_kegiatan', $id)->first();
+        $kegiatan = DB::table('kegiatan')
+            ->where('id_kegiatan', $id)
+            ->first();
 
         DB::table('kegiatan')->where('id_kegiatan', $id)->delete();
         Storage::disk('public')->delete($kegiatan->gambar_kegiatan);
@@ -407,7 +478,7 @@ class AdminController extends Controller{
         return redirect()->route('admin');
     }
 
-    public function removeAdmin(Request $request){
+    public function deleteAdmin(Request $request){
         $request->validate([
             'admin' => 'required|integer'
         ]);
@@ -417,11 +488,27 @@ class AdminController extends Controller{
         return redirect()->route('removeAdmin');
     }
 
-    public function removePerangkat($id){
-        $perangkat = DB::table('perangkat_kecamatan')->where('id_perangkat', $id)->first();
+    public function deletePerangkat($id){
+        $perangkat = DB::table('perangkat_kecamatan')
+            ->where('id_perangkat', $id)
+            ->first();
 
         DB::table('perangkat_kecamatan')->where('id_perangkat', $id)->delete();
         Storage::disk('public')->delete($perangkat->gambar_perangkat);
+
+        Session::flash('message', 'Data Berhasil Dihapus!');
+        return redirect()->route('admin');
+    }
+
+    public function deleteBerita($id){
+        $berita = DB::table('berita')
+            ->where('id_berita', $id)
+            ->first();
+
+        DB::table('berita')
+            ->where('id_berita', $id)
+            ->delete();
+        Storage::disk('public')->delete($berita->gambar_berita);
 
         Session::flash('message', 'Data Berhasil Dihapus!');
         return redirect()->route('admin');

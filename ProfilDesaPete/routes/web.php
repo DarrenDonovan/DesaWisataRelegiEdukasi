@@ -51,8 +51,8 @@ Route::get('admin/createadmin', function(){
 Route::middleware(['auth', SuperAdminMiddleware::class])->group(function(){
     Route::get('admin/createadmin', [AdminController::class, 'create']);
     Route::post('admin/storeadmin', [AdminController::class, 'store']);
-    Route::get('admin/removeAdmin',[AdminController::class, 'admin'])->name('removeAdmin');
-    Route::post('admin/removeAdmin', [AdminController::class, 'removeAdmin'])->name('removeAdmin');
+    Route::get('admin/deleteAdmin',[AdminController::class, 'admin'])->name('removeAdmin');
+    Route::post('admin/deleteAdmin', [AdminController::class, 'deleteAdmin'])->name('removeAdmin');
 });
 
 //Admin Function
@@ -69,4 +69,9 @@ Route::post('/admin/updateAboutUs', [AdminController::class, 'updateAboutUs'])->
 //Route untuk Perangkat Kecamatan
 Route::post('admin/createPerangkat', [AdminController::class, 'createPerangkat'])->name('admin.createPerangkat');
 Route::post('/admin/updatePerangkat/{id}', [AdminController::class, 'updatePerangkat'])->name('admin.updatePerangkat');
-Route::get('admin/removePerangkat/{id}', [AdminController::class, 'removePerangkat'])->name('admin.removePerangkat');
+Route::get('admin/deletePerangkat/{id}', [AdminController::class, 'deletePerangkat'])->name('admin.removePerangkat');
+
+//Route untuk berita
+Route::post('admin/createBerita', [AdminController::class, 'createBerita'])->name('admin.createBerita');
+Route::post('admin/updateBerita/{id}', [AdminController::class, 'updateBerita'])->name('admin.updateBerita');
+Route::get('admin/deleteBerita/{id}', [AdminController::class, 'deleteBerita'])->name('admin.deleteBerita');

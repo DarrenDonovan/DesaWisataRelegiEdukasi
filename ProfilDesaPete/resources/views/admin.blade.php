@@ -30,20 +30,20 @@
 
 		<script>
 		  tinymce.init({
-		    selector: '.visi', 
+		    selector: '#visi', 
 		    plugins: 'code table lists',
 		    toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
 		  });
 
 		  tinymce.init({
-		    selector: '.misi', 
+		    selector: '#misi', 
 		    plugins: 'code table lists',
 		    toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
 		  });
 
 		  tinymce.init({
-		    selector: '.konten_berita', 
-		    plugins: 'code table lists',
+		    selector: '#konten_berita', 
+		    plugins: 'code table lists image',
 		    toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | image'
 		  });
 		</script>
@@ -518,11 +518,11 @@
 												@csrf
 												<div class="form-group">
 													<label for="visi">Visi</label>
-													<textarea name="visi" class="form-control visi" id="visi" cols="50" rows="4" required>{{ $about->visi }}</textarea>					
+													<textarea name="visi" class="form-control" id="visi" cols="50" rows="4" required>{{ $about->visi }}</textarea>					
 												</div>
 												<div class="form-group">
 													<label for="misi">Misi</label>
-													<textarea name="misi" class="form-control misi" id="misi" cols="50" rows="4" required>{{ $about->misi }}</textarea>					
+													<textarea name="misi" class="form-control" id="misi" cols="50" rows="4" required>{{ $about->misi }}</textarea>					
 												</div>
 												<div class="form-group">
 													<label for="gambar_about">Gambar Kegiatan</label>
@@ -670,6 +670,7 @@
 													<th scope="col">Penulis</th>
 													<th scope="col">Tanggal</th>
 													<th scope="col">Konten</th>
+													<th scope="col">Thumbnail</th>
 													<th scope="col">Action</th>
 												</tr>
 											</thead>
@@ -679,8 +680,13 @@
             										<td>{{ $itemBerita->judul_berita }}</td>
 													<td>{{ $itemBerita->penulis_berita }}</td>
 													<td>{{ $itemBerita->tanggal_berita }}</td>
-            										<td>{{ Str::limit($itemBerita->konten_berita, 50, '...') }}</td>
-													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalView_Berita{{$itemBerita->id_berita}}">View</a> | <a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_Berita{{$itemBerita->id_berita}}">Edit</a> | <a href="">Hapus</a></td>
+            										<td>{{ Str::limit($itemBerita->konten_berita, 40, '...') }}</td>
+													@if($itemBerita->gambar_berita)
+													<td><img src="{{ asset('storage/' . $itemBerita->gambar_berita) }}" width="100" alt=""></td>
+													@else
+													Tidak ada gambar
+													@endif
+													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalView_Berita{{$itemBerita->id_berita}}">View</a> | <a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_Berita{{$itemBerita->id_berita}}">Edit</a> | <a href="{{ route('admin.deleteBerita', $itemBerita->id_berita) }}">Hapus</a></td>
 												</tr>
 
 		  										<!-- Modal View Berita -->
@@ -712,7 +718,7 @@
 																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             												</div>
             												<div class="modal-body">
-																<form action="" method="post" enctype="multipart/form-data">
+																<form action="{{ route('admin.updateBerita', $itemBerita->id_berita) }}" method="post" enctype="multipart/form-data">
 																	@csrf
 																	<div class="form-group">
 																		<label for="judul_berita">Judul Berita</label>
@@ -726,6 +732,19 @@
 																		<label for="tanggal_berita">Tanggal Berita</label>
 																		<input type="date" name="tanggal_berita" class="form-control" id="tanggal_berita" value="{{ $itemBerita->tanggal_berita }}" required></textarea>
 																	</div>
+																	<div class="form-group">
+																		<label for="nama_wilayah">Nama Wilayah</label>
+																		<select name="nama_wilayah" class="form-control" required>
+																		    <option value="">-- Pilih Wilayah --</option>
+																		    @foreach ($wilayah as $item)
+																		        <option value="{{ $itemBerita->id_wilayah }}">{{ $item->nama_wilayah }}</option>
+																		    @endforeach
+																		</select>
+																	</div>
+																	<div class="form-group">
+																		<label for="gambar_berita">Thumbnail</label>
+																		<input type="file" class="form-control-file" name="gambar_berita" id="gambar_berita">
+                													</div>
 																	<div class="form-group">
 		  																<label for="konten_berita">Konten Berita</label>
 																		<textarea name="konten_berita" id="konten_berita" class="form-control" rows="4" cols="50">{!! $itemBerita->konten_berita !!}</textarea>
@@ -756,7 +775,7 @@
 										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             						</div>
             						<div class="modal-body">
-										<form action="" method="post" enctype="multipart/form-data">
+										<form action="{{ route('admin.createBerita') }}" method="post" enctype="multipart/form-data">
 											@csrf
 											<div class="form-group">
 												<label for="judul_berita">Judul Berita</label>
@@ -770,6 +789,19 @@
 												<label for="tanggal_berita">Tanggal Berita</label>
 												<input type="date" name="tanggal_berita" class="form-control" id="tanggal_berita" required></textarea>
 											</div>
+											<div class="form-group">
+												<label for="nama_wilayah">Nama Wilayah</label>
+												<select name="nama_wilayah" class="form-control" required>
+												    <option value="">-- Pilih Wilayah --</option>
+												    @foreach ($wilayah as $item)
+												        <option value="{{ $item->id_wilayah }}">{{ $item->nama_wilayah }}</option>
+												    @endforeach
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="gambar_berita">Thumbnail</label>
+												<input type="file" class="form-control-file" name="gambar_berita" id="gambar_berita">
+                							</div>
 											<div class="form-group">
 		  										<label for="konten_berita">Konten Berita</label>
 												<textarea name="konten_berita" id="konten_berita" class="form-control" rows="4" cols="50"></textarea>
