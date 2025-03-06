@@ -701,7 +701,7 @@
 															<div>
                                 							    <p class="mb-3">Posted By: {{ $itemBerita->penulis_berita }}</p>
 																<p class="mb-3">Tanggal: {{ $itemBerita->tanggal_berita }}</p>
-                                							    <a href="#" class="h4">{{ $itemBerita->judul_berita }}</a>
+                                							    <p class="mb-3">{{ $itemBerita->judul_berita }}</p>
                                 							    <p class="my-3">{!! $itemBerita->konten_berita !!}</p>
                                 							</div>
 															</div>
@@ -735,10 +735,13 @@
 																	<div class="form-group">
 																		<label for="nama_wilayah">Nama Wilayah</label>
 																		<select name="nama_wilayah" class="form-control" required>
-																		    <option value="">-- Pilih Wilayah --</option>
-																		    @foreach ($wilayah as $item)
-																		        <option value="{{ $itemBerita->id_wilayah }}">{{ $item->nama_wilayah }}</option>
-																		    @endforeach
+														    				<option value="">-- Pilih Wilayah --</option>
+														    				@foreach ($wilayah as $itemsWilayah)
+														    				    <option value="{{ $itemsWilayah->id_wilayah }}" 
+																				{{ $itemsWilayah->id_wilayah == $itemBerita->id_wilayah ? 'selected' : '' }}>
+																				{{ $itemsWilayah->nama_wilayah }}
+																				</option>
+														    				@endforeach
 																		</select>
 																	</div>
 																	<div class="form-group">

@@ -84,9 +84,10 @@ class AdminController extends Controller{
 
         $berita = DB::table('berita')
             ->join('wilayah', 'berita.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->select('berita.id_berita', 'berita.judul_berita', 'berita.konten_berita', 'berita.gambar_berita', 'berita.penulis_berita', 'berita.tanggal_berita', 'berita.id_wilayah')
+            ->select('berita.id_berita', 'berita.judul_berita', 'berita.konten_berita', 'berita.gambar_berita', 'berita.penulis_berita', 'berita.tanggal_berita', 'berita.id_wilayah', 'wilayah.nama_wilayah')
+            ->orderBy('id_berita', 'desc')
             ->paginate(5);
-    
+                    
         return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users', 'about', 'perangkat_kecamatan', 'berita'));
     }
 
