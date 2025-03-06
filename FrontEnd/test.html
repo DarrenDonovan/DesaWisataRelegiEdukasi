@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Route Navigation Gratis</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+<script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+
+    <style>
+      
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      h2 {
+        margin-top: 20px;
+      }
+      #panorama {
+        width: 90%;
+        max-width: 1000px;
+        height: 500px;
+        margin: 20px auto;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Virtual Tour 360° - Desa Wisata</h2>
+    <div id="panorama" style="width: 800px; height: 400px;"></div>
+
+    <script>
+        pannellum.viewer('panorama', {
+            type: "equirectangular",    
+            panorama: "img/panorama.jpg",  // Ganti dengan path gambar panorama kamu
+            autoLoad: true
+        });
+    </script>
+    
+    
+  </body>
+</html>
