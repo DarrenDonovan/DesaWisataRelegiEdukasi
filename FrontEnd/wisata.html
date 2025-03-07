@@ -11,7 +11,12 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
     />
-
+    <!-- 360 ESSENTIALS -->
+    <link rel="stylesheet" href="css/site.css" media="all" />
+    <link rel="stylesheet" href="css/panorama360.css" media="all" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/jquery.mousewheel.min.js"></script>
+    <script src="js/jquery.panorama360.js"></script>
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet" />
     <style>
@@ -57,12 +62,23 @@
       }
 
       .vrContain {
-        width: 100%;
-      }
-      .vr {
-        width: 100%; 
-        height: 500px; 
-      }
+    width: 100%;
+    height: auto;
+    border: 2px solid blue; /* Tambahkan 'solid' agar border terlihat */
+    display: flex; /* Agar elemen di dalamnya mengikuti layout fleksibel */
+    justify-content: flex-end; /* Pusatkan panorama */
+    align-items: center;
+}
+
+.panorama {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    background-color: #444;
+    padding: 10px;
+    position: relative; 
+    margin: 0 auto; 
+}
 
       .contentSidebar {
         flex: 1;
@@ -224,15 +240,13 @@
           <h3><strong>Jam Operasional: 08:00-20:00 (Setiap Hari)</strong></h3>
           <h3><strong>Kontak: 08123456789 (Jhon Thor)</strong></h3>
           <div class="vrContain">
-            <iframe
-              class="vr"
-              src="https://www.theasys.io/viewer/NNM9ohSuQKofH7qEhfrxopve2sVPyJ"
-              allowfullscreen="true"
-              frameborder="0"
-              scrolling="no"
-              allow="vr;gyroscope;accelerometer"
-            >
-            </iframe>
+            <div class="panorama" style="width:700px;height:500px;padding:10px;top:50%;left:50%;margin-top:-260px;margin-left:-360px;background-color:#444;">
+              <div class="panorama-view">
+                <div class="panorama-container">
+                  <img src="img/panorama.jpg" data-width="640" data-height="245" alt="Panorama" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -253,5 +267,10 @@
         </div>
       </div>
     </div>
+    <script>
+      $(function(){
+          $('.panorama-view').panorama360();
+      });
+    </script>
   </body>
 </html>
