@@ -246,29 +246,16 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="row g-2">
-                                                        @foreach ($kegiatan as $items)
-                                                            @if ($items->gambar_kegiatan && $items->id_jenis_kegiatan == $keg->id_jenis_kegiatan)
-                                                                <div class="col-md-4">
-                									                <img src="{{ asset('storage/' . $items->gambar_kegiatan) }}" style="object-fit: cover; width: 250px; height: 150px;">
-                                                                </div>
-                									        @endif
-                                                        @endforeach
-                                                        <div class="container-fluid mb-4">
-                                                            <div class="container py-5">
-                                                                <div class="row g-5 align-items-center">
-                                                                    <div class="col-md-5">
-                                                                        <div class="h-100" >
-                                                                            <img src="{{asset('storage/' . $keg->gambar_kegiatan)}}" class="img-fluid" style="width: 400px; height: auto; margin-left: 40px;" alt="">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
-                                                                        <h1 class="mb-4" class="text-primary">{{ $keg->nama_kegiatan }}</h1>
-                                                                        <p class="mb-4">{{ $keg->keterangan }}</p>                        
-                                                                    </div>
-                                                                </div>
+                                                    <div class="row g-5">
+                                                        <div class="col-md-5">
+                                                            <div class="h-100" >
+                                                                <img src="{{asset('storage/' . $keg->gambar_kegiatan)}}" class="img-fluid" style="width: 400px; height: auto; margin-left: 20px;" alt="">
                                                             </div>
-                                                        </div>    
+                                                        </div>
+                                                        <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
+                                                            <h1 class="mb-4" class="text-primary">{{ $keg->nama_kegiatan }}</h1>
+                                                            <p class="mb-4">{{ $keg->keterangan }}</p>                        
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -280,15 +267,13 @@
                         </div>
 
 
-
-                        <!-- MODAL BELUM MUNCUL & RAPIIN GRIDNYA -->
                         <!-- Kegiatan per kategori -->
                         @foreach ($jenis_kegiatan as $jenisKegiatan)
                         <div id="tab-{{ $jenisKegiatan->id_jenis_kegiatan }}" class="tab-pane fade p-0">
                             <div class="row g-4">
                                 @foreach ($kegiatan as $item)
                                     @if ($item->id_jenis_kegiatan == $jenisKegiatan->id_jenis_kegiatan)
-                                    <div class="col-lg-4 col-md-6"> <!-- 3 columns on large screens, 2 on medium -->
+                                    <div class="col-lg-4 col-md-6"> 
                                         <div class="destination-img" style="width: 100%; object-fit:cover;">
                                             <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $item->gambar_kegiatan) }}" style="object-fit: cover; width: 100%; height: 250px;">
                                             <div class="destination-overlay p-4 text-start">
@@ -306,14 +291,16 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="row g-2">
-                                                        @foreach ($kegiatan as $items)
-                                                            @if ($items->gambar_kegiatan && $items->id_jenis_kegiatan == $jenisKegiatan->id_jenis_kegiatan)
-                                                                <div class="col-md-4">
-                									                <img src="{{ asset('storage/' . $items->gambar_kegiatan) }}" style="object-fit: cover; width: 250px; height: 150px;">
-                                                                </div>
-                									        @endif
-                                                        @endforeach
+                                                    <div class="row g-5">
+                                                        <div class="col-md-5">
+                                                            <div class="h-100" >
+                                                                <img src="{{asset('storage/' . $keg->gambar_kegiatan)}}" class="img-fluid" style="width: 400px; height: auto; margin-left: 20px;" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
+                                                            <h1 class="mb-4" class="text-primary">{{ $keg->nama_kegiatan }}</h1>
+                                                            <p class="mb-4">{{ $keg->keterangan }}</p>                        
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
