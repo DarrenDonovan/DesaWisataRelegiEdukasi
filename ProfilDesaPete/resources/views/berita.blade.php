@@ -100,11 +100,11 @@
                 </div>
                 <div class="row g-4 justify-content-center">
                     @foreach ($berita as $item)
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-4 col-md-6 mb-3">
                         <div class="blog-item">
                             <div class="blog-img">
-                                <div class="blog-img-inner">
-                                    <img class="img-fluid w-100 rounded-top" src="img/blog-2.jpg" alt="Image">
+                                <div class="blog-img-inner" style="object-fit:cover; height: 200px">
+                                    <img class="img-fluid w-100 rounded-top" src="{{ asset('storage/' . $item->gambar_berita) }}" alt="Image">
                                     <div class="blog-icon">
                                         <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
                                     </div>
@@ -119,7 +119,7 @@
                                 <div>
                                     <p class="mb-3">Posted By: {{ $item->penulis_berita }}</p>
                                     <a href="#" class="h4">{{ $item->judul_berita }}</a>
-                                    <p class="my-3">{{ Str::limit($item->konten_berita, 50, '...') }}</p>
+                                    <p class="my-3">{!! Str::limit($item->konten_berita, 50, '...') !!}</p>
                                 </div>
                                 <a href="{{ url('detailberita/' . $item->id_berita) }}" class="btn btn-primary rounded-pill py-2 px-4 mt-auto">Baca Selengkapnya</a>
                             </div>

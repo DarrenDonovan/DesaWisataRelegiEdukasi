@@ -135,36 +135,20 @@
           <section id="blog-details" class="blog-details section">
             <div class="container">
               <article class="article">
+              <h2 class="title">{{ $berita->judul_berita }}</h2>
                 <div class="post-img">
-                  <img src="img/blog-4.jpg" alt="" class="img-fluid">
+                  <img src="{{ asset('storage/' . $berita->gambar_berita) }}" alt="" class="img-fluid mb-2" style="width: 725px">
                 </div>
-                <h2 class="title">{{ $berita->judul_berita }}</h2>
                 <div class="meta-top">
                   <ul>
                     <li class="d-flex align-items-center"><i class="bi bi-person"></i>  {{ $berita->penulis_berita }}</li>
                     <li class="d-flex align-items-center"><i class="bi bi-clock"></i>  {{ $berita->tanggal_berita }}</li>
                   </ul>
                 </div><!-- End meta top -->
-                <div class="content">
+                <div class="content mt-6 mb-6">
                     {!! $berita->konten_berita !!}
                 </div><!-- End post content -->
-
-                <div class="meta-bottom">
-                  <i class="bi bi-folder"></i>
-                  <ul class="meta-list">
-                      <li><a href="#">Business</a></li>
-                  </ul>
-              
-                  <i class="bi bi-tags"></i>
-                  <ul class="meta-list tags">
-                      <li><a href="#">Creative</a>,</li>
-                      <li><a href="#">Tips</a>,</li>
-                      <li><a href="#">Marketing</a></li>
-                  </ul>
-              </div><!-- End meta bottom -->
-
               </article>
-
             </div>
           </section><!-- /Blog Details Section -->
 
@@ -178,47 +162,15 @@
             <!-- Recent Posts Widget -->
             <div class="recent-posts-widget widget-item card p-3 border rounded">
                 <h3 class="widget-title">Recent Posts</h3>
-                
+                @foreach ($beritaterbaru as $itemBeritaTerbaru)
                 <div class="post-item d-flex border-bottom pb-2 mb-2">
-                <img src="img/blog-1.jpg" alt="" class="flex-shrink-0 me-2 rounded" width="60">
+                <img src="{{ asset('storage/' . $itemBeritaTerbaru->gambar_berita) }}" alt="" class="flex-shrink-0 me-2 rounded" width="60" height="60">
                 <div>
-                    <h4 class="h6 mb-1"><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
-                    <time datetime="2020-01-01" class="text-muted small">Jan 1, 2020</time>
+                    <h4 class="h6 mb-1"><a href="{{ url('detailberita/' . $itemBeritaTerbaru->id_berita) }}">{{ $itemBeritaTerbaru->judul_berita }}</a></h4>
+                    <time datetime="2020-01-01" class="text-muted small">{{ $itemBeritaTerbaru->tanggal_berita }}</time>
                 </div>
                 </div>
-                
-                <div class="post-item d-flex border-bottom pb-2 mb-2">
-                <img src="img/blog-2.jpg" alt="" class="flex-shrink-0 me-2 rounded" width="60">
-                <div>
-                    <h4 class="h6 mb-1"><a href="blog-details.html">Quidem autem et impedit</a></h4>
-                    <time datetime="2020-01-01" class="text-muted small">Jan 1, 2020</time>
-                </div>
-                </div>
-                
-                <div class="post-item d-flex border-bottom pb-2 mb-2">
-                <img src="img/blog-3.jpg" alt="" class="flex-shrink-0 me-2 rounded" width="60">
-                <div>
-                    <h4 class="h6 mb-1"><a href="blog-details.html">Id quia et et ut maxime similique occaecati ut</a></h4>
-                    <time datetime="2020-01-01" class="text-muted small">Jan 1, 2020</time>
-                </div>
-                </div>
-                
-                <div class="post-item d-flex border-bottom pb-2 mb-2">
-                <img src="img/blog-4.jpg" alt="" class="flex-shrink-0 me-2 rounded" width="60">
-                <div>
-                    <h4 class="h6 mb-1"><a href="blog-details.html">Laborum corporis quo dara net para</a></h4>
-                    <time datetime="2020-01-01" class="text-muted small">Jan 1, 2020</time>
-                </div>
-                </div>
-                
-                <div class="post-item d-flex">
-                <img src="img/blog-5.jpg" alt="" class="flex-shrink-0 me-2 rounded" width="60">
-                <div>
-                    <h4 class="h6 mb-1"><a href="blog-details.html">Et dolores corrupti quae illo quod dolor</a></h4>
-                    <time datetime="2020-01-01" class="text-muted small">Jan 1, 2020</time>
-                </div>
-                </div>
-                
+                @endforeach
             </div><!--/Recent Posts Widget -->
 
             <!-- Tags Widget -->
