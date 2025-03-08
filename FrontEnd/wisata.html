@@ -62,23 +62,23 @@
       }
 
       .vrContain {
-    width: 100%;
-    height: auto;
-    border: 2px solid blue; /* Tambahkan 'solid' agar border terlihat */
-    display: flex; /* Agar elemen di dalamnya mengikuti layout fleksibel */
-    justify-content: flex-end; /* Pusatkan panorama */
-    align-items: center;
-}
+        width: 100%;
+        height: auto;
+        border: 2px solid blue; /* Tambahkan 'solid' agar border terlihat */
+        display: flex; /* Agar elemen di dalamnya mengikuti layout fleksibel */
+        justify-content: flex-end; /* Pusatkan panorama */
+        align-items: center;
+      }
 
-.panorama {
-    width: 100%;
-    max-width: 700px;
-    height: auto;
-    background-color: #444;
-    padding: 10px;
-    position: relative; 
-    margin: 0 auto; 
-}
+      .panorama {
+        width: 100%;
+        max-width: 700px;
+        height: auto;
+        background-color: #444;
+        padding: 10px;
+        position: relative;
+        margin: 0 auto;
+      }
 
       .contentSidebar {
         flex: 1;
@@ -98,7 +98,7 @@
 
       .contentSidebar iframe {
         width: 100%;
-        height: calc(700px/2);
+        height: calc(700px / 2);
         border-radius: 10px;
       }
 
@@ -240,10 +240,27 @@
           <h3><strong>Jam Operasional: 08:00-20:00 (Setiap Hari)</strong></h3>
           <h3><strong>Kontak: 08123456789 (Jhon Thor)</strong></h3>
           <div class="vrContain">
-            <div class="panorama" style="width:700px;height:500px;padding:10px;top:50%;left:50%;margin-top:-260px;margin-left:-360px;background-color:#444;">
+            <div
+              class="panorama"
+              style="
+                width: 700px;
+                height: 500px;
+                padding: 10px;
+                top: 50%;
+                left: 50%;
+                margin-top: -260px;
+                margin-left: -360px;
+                background-color: #444;
+              "
+            >
               <div class="panorama-view">
                 <div class="panorama-container">
-                  <img src="img/panorama.jpg" data-width="640" data-height="245" alt="Panorama" />
+                  <img
+                    src="img/panorama.jpg"
+                    data-width="640"
+                    data-height="245"
+                    alt="Panorama"
+                  />
                 </div>
               </div>
             </div>
@@ -268,8 +285,8 @@
       </div>
     </div>
     <script>
-      $(function(){
-          $('.panorama-view').panorama360();
+      $(function () {
+        $(".panorama-view").panorama360();
       });
     </script>
   </body>
