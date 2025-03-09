@@ -1,29 +1,185 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<title>Panorama 360&deg;</title>
-	<meta name="description" content="Creative design agency that tries to make the complex feel simple." />
-	<link rel="stylesheet" href="css/site.css" media="all" />
-	<link rel="stylesheet" href="css/panorama360.css" media="all" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="js/jquery.mousewheel.min.js"></script>
-	<script src="js/jquery.panorama360.js"></script>
-	<script>
-    $(function(){
-        $('.panorama-view').panorama360();
-    });
-  </script>
-  
-</head>
-<body>
-	<div class="panorama round" style="position:absolute;width:700px;height:500px;padding:10px;top:50%;left:50%;margin-top:-260px;margin-left:-360px;background-color:#444;">
-		<div class="panorama-view">
-			<div class="panorama-container">
-				<img src="img/panorama.jpg" data-width="640" data-height="245" alt="Panorama" />
-			</div>
-		</div>
-		<!-- <a class="info round" href="http://commons.wikimedia.org/wiki/File:View_from_Sky_Tower_Akl.jpg">Sky Tower Akl</a> -->
-	</div>
-</body>
+  <head>
+    <title>css transform 3d cube panorama demo</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <style>
+      @-webkit-keyframes spin {
+        from {
+          -webkit-transform: rotateY(0);
+        }
+        to {
+          -webkit-transform: rotateY(-360deg);
+        }
+      }
+      @keyframes spin {
+        from {
+          transform: rotateY(0);
+        }
+        to {
+          transform: rotateY(-360deg);
+        }
+      }
+
+      #container,
+      #viewer {
+        width: 100%;
+        height: 100%;
+      }
+
+      #viewer {
+        position: absolute;
+        left: 50%;
+        top: 100px;
+        margin-left: -320px;
+        width: 640px;
+        height: 360px;
+        overflow: hidden;
+        -webkit-transition: -webkit-transform 3s;
+        transition: transform 3s;
+        -webkit-perspective: 600px;
+        perspective: 600px;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+      }
+      #cube {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transform-origin: 50% 50% 750px;
+        -webkit-transform: translateZ(-150px);
+        transform: translateZ(-150px);
+      }
+      #cube img {
+        position: absolute;
+        width: 1500px;
+        height: 1500px;
+        top: 50%;
+        left: 50%;
+        margin-top: -750px;
+        margin-left: -750px;
+        opacity: 0.8;
+        -webkit-transition: -webkit-transform 3s;
+        transition: transform 3s;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+      }
+      .front {
+        -webkit-transform: translateZ(750px) translateZ(-750px);
+        transform: translateZ(750px) translateZ(-750px);
+      }
+      .right {
+        -webkit-transform: translateZ(750px) rotateY(-90deg) translateZ(-750px);
+        transform: translateZ(750px) rotateY(-90deg) translateZ(-750px);
+      }
+      .left {
+        -webkit-transform: translateZ(750px) rotateY(90deg) translateZ(-750px);
+        transform: translateZ(750px) rotateY(90deg) translateZ(-750px);
+      }
+      .rear {
+        -webkit-transform: translateZ(750px) translateZ(750px) rotateY(180deg);
+        transform: translateZ(750px) translateZ(750px) rotateY(180deg);
+      }
+      .roof {
+        -webkit-transform: translateZ(750px) rotateX(-90deg) translateZ(-750px);
+        transform: translateZ(750px) rotateX(-90deg) translateZ(-750px);
+      }
+      .floor {
+        -webkit-transform: translateZ(750px) rotateX(90deg) translateZ(-750px);
+        transform: translateZ(750px) rotateX(90deg) translateZ(-750px);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="viewer">
+        <div id="cube">
+          <img class="front" src="img/texture/cube0000.jpg" alt="" />
+          <img class="right" src="img/texture/cube0001.jpg" alt="" />
+          <img class="rear" src="img/texture/cube0002.jpg" alt="" />
+          <img class="left" src="img/texture/cube0003.jpg" alt="" />
+          <img class="roof" src="img/texture/cube0004.jpg" alt="" />
+          <img class="floor" src="img/texture/cube0005.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery-2.0.2.min.js"></script>
+    <script>
+      (function () {
+        var x1,
+          y1,
+          moving = false,
+          $viewer = $("#viewer"),
+          $cube = $("#cube"),
+          w_v = $viewer.width(), // width of viewer
+          h_v = $viewer.height(), // height of viewer
+          c_yaw = 0, // current x
+          c_pitch = 0,
+          perspective = 525; // current y
+
+        $(document).on("mousedown", function (e) {
+          x1 = e.pageX;
+          y1 = e.pageY;
+
+          moving = true;
+          e.preventDefault();
+        });
+
+        $(document)
+          .on("mousemove", function (e) {
+            if (moving === true) {
+              x2 = e.pageX;
+              y2 = e.pageY;
+
+              var dist_x = x2 - x1,
+                dist_y = y2 - y1,
+                perc_x = dist_x / w_v,
+                perc_y = dist_y / h_v,
+                yaw = (Math.atan2(dist_y, perspective) / Math.PI) * 180,
+                pitch = (-Math.atan2(dist_x, perspective) / Math.PI) * 180,
+                i,
+                vendors = ["-webkit-", "-moz-", ""];
+
+              c_yaw += yaw;
+              c_pitch += pitch;
+              c_yaw = Math.min(90, c_yaw);
+              c_yaw = Math.max(-90, c_yaw);
+
+              c_pitch %= 360;
+
+              yaw = c_yaw;
+              pitch = c_pitch;
+
+              for (i in vendors) {
+                $cube.css(
+                  vendors[i] + "transform",
+                  "translateZ(-150px) rotateX(" +
+                    yaw +
+                    "deg) rotateY(" +
+                    pitch +
+                    "deg)"
+                );
+              }
+
+              x1 = x2;
+              y1 = y2;
+            }
+            e.preventDefault();
+          })
+          .on("mouseup", function (e) {
+            moving = false;
+            e.preventDefault();
+          });
+      })();
+    </script>
+  </body>
 </html>
