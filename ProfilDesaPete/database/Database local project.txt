@@ -4,7 +4,10 @@ php artisan db:seed --class=UserSeeder
 - CREATE TABLE wilayah (
     id_wilayah INT AUTO_INCREMENT PRIMARY KEY,
     nama_wilayah VARCHAR(255) NOT NULL,
-    jenis_wilayah VARCHAR(50) NOT NULL
+    jenis_wilayah VARCHAR(50) NOT NULL,
+    luas_wilayah DOUBLE NOT NULL,
+    jumlah_penduduk INT NOT NULL,
+    gambar_wilayah VARCHAR(255) NOT NULL
 );
 
 - CREATE TABLE jenis_kegiatan (
@@ -66,22 +69,24 @@ php artisan db:seed --class=UserSeeder
 
 
 **
-INSERT INTO wilayah (id_wilayah, nama_wilayah, jenis_wilayah) VALUES
-(1, 'Desa Pasir Bolang', 'Desa'),
-(2, 'Desa Cisereh', 'Desa'),
-(3, 'Desa Pasir Nangka', 'Desa'),
-(4, 'Desa Pematang', 'Desa'),
-(5, 'Desa Pete', 'Desa'),
-(6, 'Desa Tegalsari', 'Desa'),
-(7, 'Desa Mata Gara', 'Desa'),
-(8, 'Desa Marga Sari', 'Desa'),
-(9, 'Desa Sodong', 'Desa'),
-(10, 'Desa Tapos', 'Desa'),
-(11, 'Desa Bantar Panjang', 'Desa'),
-(12, 'Desa Cileles', 'Desa'),
-(13, 'Kecamatan Tigaraksa', 'Kecamatan'),
-(14, 'Kelurahan Kadu Agung', 'Kelurahan'),
-(15, 'Kelurahan Tigaraksa', 'Kelurahan');
+INSERT INTO wilayah (id_wilayah, nama_wilayah, jenis_wilayah, luas_wilayah, jumlah_penduduk, gambar_wilayah) VALUES
+(1, 'Desa Pasir Bolang', 'Desa', 429, 6055, 'profildesa/petakecamatan.png'),
+(2, 'Desa Cisereh', 'Desa', 318, 6256, 'profildesa/petakecamatan.png'),
+(3, 'Desa Pasir Nangka', 'Desa', 392, 25236, 'profildesa/petakecamatan.png'),
+(4, 'Desa Pematang', 'Desa', 268, 10720, 'profildesa/petakecamatan.png'),
+(5, 'Desa Pete', 'Desa', 404, 14915, 'profildesa/petakecamatan.png'),
+(6, 'Desa Tegalsari', 'Desa', 356, 5012, 'profildesa/petakecamatan.png'),
+(7, 'Desa Mata Gara', 'Desa', 390, 12141, 'profildesa/petakecamatan.png'),
+(8, 'Desa Marga Sari', 'Desa', 350, 15037, 'profildesa/petakecamatan.png'),
+(9, 'Desa Sodong', 'Desa', 410, 11278, 'profildesa/petakecamatan.png'),
+(10, 'Desa Tapos', 'Desa', 355, 9342, 'profildesa/petakecamatan.png'),
+(11, 'Desa Bantar Panjang', 'Desa', 578, 7651, 'profildesa/petakecamatan.png'),
+(12, 'Desa Cileles', 'Desa', 434, 8687, 'profildesa/petakecamatan.png'),
+(13, 'Kecamatan Tigaraksa', 'Kecamatan', 5279, 157113, 'profildesa/petakecamatan.png'),
+(14, 'Kelurahan Kadu Agung', 'Kelurahan', 284, 8147, 'profildesa/petakecamatan.png'),
+(15, 'Kelurahan Tigaraksa', 'Kelurahan', 311, 16636, 'profildesa/petakecamatan.png');
+
+
 
 **
 INSERT INTO jenis_kegiatan (id_jenis_kegiatan, nama_jenis_kegiatan, gambar_jenis_kegiatan) VALUES

@@ -41,8 +41,13 @@ class UserController extends Controller
             ->select('perangkat_kecamatan.id_perangkat', 'perangkat_kecamatan.nama', 'perangkat_kecamatan.jabatan', 'perangkat_kecamatan.link_facebook', 'perangkat_kecamatan.link_instagram', 'perangkat_kecamatan.link_tiktok', 'perangkat_kecamatan.gambar_perangkat')
             ->where('perangkat_kecamatan.jabatan', 'LIKE', 'Kepala Desa%')
             ->get();
+            
+        $wilayahkecamatan = DB::table('wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk')
+            ->where('wilayah.nama_wilayah', 'Kecamatan Tigaraksa')
+            ->first();
 
-        return view('about', compact('wilayah', 'about_us', 'camat', 'sekretaris', 'kasi', 'kepala_desa'));
+        return view('about', compact('wilayah', 'about_us', 'camat', 'sekretaris', 'kasi', 'kepala_desa', 'wilayahkecamatan'));
     }
 
     public function berita(){
@@ -97,11 +102,11 @@ class UserController extends Controller
 
     public function profilDesa($id){
         $wilayah = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.jenis_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.jenis_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
             ->get();
 
         $wilayaheach = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.jenis_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.jenis_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
             ->where('wilayah.id_wilayah', $id)
             ->get();
 

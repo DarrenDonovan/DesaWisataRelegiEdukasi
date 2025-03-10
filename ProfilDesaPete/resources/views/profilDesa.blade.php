@@ -243,8 +243,7 @@
       <div class="proDes">
         @foreach ($wilayaheach as $itemWilayah)
         <h2>{{ $itemWilayah->nama_wilayah }}</h2>
-        @endforeach
-        <p><strong>Batas Desa</strong></p>
+        <p><strong>Batas {{ $itemWilayah->jenis_wilayah }}</strong></p>
         <table>
           <tr>
             <td class="highlight">Utara</td>
@@ -263,17 +262,18 @@
             <td>Desa D</td>
           </tr>
         </table>
-        <p><strong>Luas Desa:</strong> 421.000 m²</p>
-        <p><strong>Jumlah Penduduk:</strong> 1.149 Jiwa</p>
+        <p><strong>Luas Desa:</strong> {{ number_format($itemWilayah->luas_wilayah, 0, ',', '.') }} Ha</p>
+        <p><strong>Jumlah Penduduk:</strong> {{ number_format($itemWilayah->jumlah_penduduk, 0, ',', '.') }} Jiwa</p>
       </div>
 
       <div class="gmbrDesa">
         <img
-          src="/img/petakecamatan.png"
+          src="{{ asset('storage/' . $itemWilayah->gambar_wilayah) }}"
           class="img-fluid rounded shadow-lg"
           alt="Gambar Desa"
         />
       </div>
+      @endforeach
     </div>
     <!-- Profil end -->
 

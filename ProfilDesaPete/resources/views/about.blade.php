@@ -231,21 +231,20 @@
             <!-- Kotak Informasi -->
         <div class="containerInfoMap">
             <div class="info">
-                <h2>Desa Pete</h2>
-                <p><strong>Batas Desa</strong></p>
+                <h2>{{ $wilayahkecamatan->nama_wilayah }}</h2>
+                <p><strong>Batas Kecamatan</strong></p>
                 <table>
                     <tr><td class="highlight">Utara</td><td>Desa A</td></tr>
                     <tr><td class="highlight">Timur</td><td>Desa B</td></tr>
                     <tr><td class="highlight">Selatan</td><td>Desa C</td></tr>
                     <tr><td class="highlight">Barat</td><td>Desa D</td></tr>
                 </table>
-                <p><strong>Luas Desa:</strong> 421.000 m²</p>
-                <p><strong>Jumlah Penduduk:</strong> 1.149 Jiwa</p>
+                <p><strong>Luas Desa:</strong> {{ number_format($wilayahkecamatan->luas_wilayah, 0, ',', '.') }} Ha</p>
+                <p><strong>Jumlah Penduduk:</strong> {{ number_format($wilayahkecamatan->jumlah_penduduk, 0, ',', '.') }} Jiwa</p>
             </div>
     
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15864.305053387168!2d106.44725213424726!3d-6.253682650011039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e42069701b7955f%3A0x75bba1ef93845b62!2sPete%2C%20Tigaraksa%2C%20Tangerang%20Regency%2C%20Banten!5e0!3m2!1sen!2sid!4v1739430678702!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126912.9796141675!2d106.38661133346228!3d-6.259697926417773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e4206f20e931b2d%3A0xef390e4510eb920c!2sKec.%20Tigaraksa%2C%20Kabupaten%20Tangerang%2C%20Banten!5e0!3m2!1sid!2sid!4v1741580904300!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>            </div>
         </div>
 
         <br>
