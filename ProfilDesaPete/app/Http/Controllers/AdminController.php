@@ -64,7 +64,7 @@ class AdminController extends Controller{
             ->get();
 
         $wilayah = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
             ->get();
 
         $profil = DB::table('profil_kecamatan')

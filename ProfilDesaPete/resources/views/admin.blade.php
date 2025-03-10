@@ -815,6 +815,78 @@
 						        </div>
 						    </div>
 						</div>
+
+						<!-- Profil Desa -->
+						<div class="d-flex justify-content-between align-items-center">
+							<h4 class="page-title mt-1">Profil Tiap Desa</h4>
+							<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalTambah_perangkat">Tambah Personil</button>	
+						</div>		
+		  			
+						<div class="container-fluid guide">
+        				    <div class="container card py-4">
+        				        <div class="row g-4">
+									@foreach ($wilayah as $itemWilayah)
+        				            <div class="col-md-6 col-lg-3">
+        				                <div class="guide-item">
+        				                    <div class="guide-img">
+        				                        <img src="{{ asset('storage/' . $itemWilayah->gambar_wilayah) }}" style="height: 300px; width:100%; object-fit:cover" class="img-fluid w-100 rounded-top" alt="Image">
+        				                    </div>
+        				                    <div class="guide-title text-center rounded-bottom p-2">
+        				                        <div class="guide-title-inner" style="height: 150px">
+        				                            <h4 class="mt-3">{{ $itemWilayah->nama_wilayah }}</h4>
+        				                            <p class="mb-3">Jumlah Penduduk: {{ $itemWilayah->jumlah_penduduk }} Jiwa</p>
+													<a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUpdate_profilWilayah{{$itemWilayah->id_wilayah}}">Edit</a> 
+        				                        </div>
+        				                    </div>
+
+											<!-- Modal Edit perangkat kecamatan -->
+											<div class="modal fade" id="modalUpdate_profilWilayah{{$itemWilayah->id_wilayah}}" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+   												<div class="modal-dialog">
+        											<div class="modal-content">
+            											<div class="modal-header">
+															<h5 class="modal-title" id="modalTitle">Edit Profil Wilayah</h5>
+															<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            											</div>
+            											<div class="modal-body">
+															<form action="" method="post" enctype="multipart/form-data">
+																@csrf
+																<div class="form-group">
+																	<label for="nama">Nama</label>
+																	<input type="text" class="form-control" name="nama" id="nama" value="" required>
+																</div>
+																<div class="form-group">
+																	<label for="jabatan">Jabatan</label>
+																	<input type="text" class="form-control" name="jabatan" id="jabatan" value="" required>
+																</div>
+																<div class="form-group">
+																	<label for="link_facebook">Link Facebook (Optional)</label>
+																	<input type="text" class="form-control" name="link_facebook" id="link_facebook">
+																</div>
+																<div class="form-group">
+																	<label for="link_instagram">Link Instagram (Optional)</label>
+																	<input type="text" class="form-control" name="link_instagram" id="link_instagram">
+																</div>
+																<div class="form-group">
+																	<label for="link_tiktok">Link Tiktok (Optional)</label>
+																	<input type="text" class="form-control" name="link_tiktok" id="link_tiktok">
+																</div>
+																<div class="form-group">
+																	<label for="gambar_perangkat">Gambar</label>
+																	<input type="file" class="form-control-file" name="gambar_perangkat" id="gambar_perangkat">
+                												</div>
+																</div>
+                												<button type="submit" class="btn btn-primary form-control">Save changes</button>
+															</form>
+						    					        </div>
+						    					    </div>
+						    					</div>
+        				                	</div>
+        				            	</div>
+										@endforeach
+									</div>
+								</div>
+							</div>
+						</div>
 		
 		
 		
