@@ -1,71 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>css transform 3d cube panorama demo</title>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
-    />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  </head>
-  <body>
-    <div id="map" style="width: 100%; height: 500px"></div>
-  </body>
-  <script>
-    var map = L.map("map").setView([0, 0], 13);
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Card</title>
+    <style>
+        /* Styling untuk card */
+        .card {
+            width: 200px;
+            height: 100px;
+            background-color: lightblue;
+            text-align: center;
+            line-height: 100px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: "&copy; OpenStreetMap contributors",
-    }).addTo(map);
+        /* Styling untuk popup */
+        .popup-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none; /* Mulai dalam keadaan tersembunyi */
+            justify-content: center;
+            align-items: center;
+        }
 
-    function onLocationFound(e) {
-      var userMarker = L.marker(e.latlng)
-        .addTo(map)
-        .bindPopup("Lokasi Anda")
-        .openPopup();
+        .popup {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+        }
 
-      console.log("Lokasi pengguna:", e.latlng); // Debugging
+        /* Tombol Close */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
 
-      // **Tentukan lokasi tujuan secara manual**
-      var destination = [-7.8014, 110.3649]; // Contoh: Kota Yogyakarta
-      console.log("Lokasi tujuan:", destination); // Debugging
+    <!-- Card -->
+    <div class="card" id="openPopup">Klik Saya</div>
 
-      getRoute(e.latlng, destination);
-    }
+    <!-- Popup -->
+    <div class="popup-container" id="popup">
+        <div class="popup">
+            <span class="close-btn" id="closePopup">&times;</span>
+            <p>Ini adalah popup!</p>
+        </div>
+    </div>
 
-    function onLocationError(e) {
-      alert("Lokasi tidak dapat ditemukan");
-    }
+    <script>
+        // Ambil elemen
+        const card = document.getElementById("openPopup");
+        const popup = document.getElementById("popup");
+        const closePopup = document.getElementById("closePopup");
 
-    map.locate({ setView: true, maxZoom: 16 });
-    map.on("locationfound", onLocationFound);
-    map.on("locationerror", onLocationError);
+        // Event listener untuk membuka popup
+        card.addEventListener("click", function() {
+            popup.style.display = "flex";
+        });
 
-    function getRoute(start, end) {
-      var osrmRoute = `https://router.project-osrm.org/route/v1/driving/${start.lng},${start.lat};${end[1]},${end[0]}?overview=full&geometries=geojson`;
+        // Event listener untuk menutup popup
+        closePopup.addEventListener("click", function() {
+            popup.style.display = "none";
+        });
 
-      console.log("Fetching route from OSRM:", osrmRoute); // Debugging
+        // Menutup popup jika klik di luar kotak popup
+        popup.addEventListener("click", function(event) {
+            if (event.target === popup) {
+                popup.style.display = "none";
+            }
+        });
+    </script>
 
-      fetch(osrmRoute)
-        .then((response) => response.json())
-        .then((data) => {
-          if (!data.routes || data.routes.length === 0) {
-            console.error("Tidak ada rute yang ditemukan.");
-            return;
-          }
-
-          var routeCoords = data.routes[0].geometry.coordinates.map((coord) => [
-            coord[1],
-            coord[0],
-          ]);
-          var routeLine = L.polyline(routeCoords, { color: "blue" }).addTo(map);
-          map.fitBounds(routeLine.getBounds());
-
-          console.log("Rute berhasil digambar:", routeCoords); // Debugging
-        })
-        .catch((error) => console.error("Error fetching route:", error));
-    }
-  </script>
+</body>
 </html>
