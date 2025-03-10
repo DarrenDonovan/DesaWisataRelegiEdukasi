@@ -61,25 +61,90 @@
         height: auto; /* Ubah dari height: 100% */
       }
 
-      .vrContain {
+      .vrContainer {
         width: 100%;
-        height: 500px;
+        max-width: 600px;
+        height: 50vh;
         display: flex; /* Agar elemen di dalamnya mengikuti layout fleksibel */
-        justify-content: flex-end; /* Pusatkan panorama */
+        justify-content: flex-start; /* Pusatkan panorama */
         align-items: center;
         position: relative;
       }
 
-      .panorama {
-        width: 100%;
-        /* max-width: 700px; */
-        height: 100%;
-        background-color: #444;
-        padding: 10px;
-        position: absolute;
-        margin: 0 auto;
-      }
-
+      @-webkit-keyframes spin {
+                from { -webkit-transform: rotateY(0); }
+                to   { -webkit-transform: rotateY(-360deg); }
+            }
+            @keyframes spin {
+                from { transform: rotateY(0); }
+                to   { transform: rotateY(-360deg); }
+            }
+            
+            #viewer {
+                position: absolute;
+                /* left: 50%; */
+                top: 0px;
+                /* margin-left: -320px; */
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                -webkit-transition: -webkit-transform 3s;
+                transition: transform 3s;
+                -webkit-perspective: 600px;
+                perspective: 1000px;
+                -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+            }
+            #cube {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+                -webkit-transform-origin: 50% 50% 750px;
+                -webkit-transform: translateZ(-150px);
+                transform: translateZ(-150px);
+            }
+            #cube img {
+                position: absolute;
+                width: 1500px;
+                height: 1500px;
+                top: 50%;
+                left: 50%;
+                margin-top: -750px;
+                margin-left: -750px;
+                opacity: 0.8;
+                -webkit-transition: -webkit-transform 3s;
+                transition: transform 3s;
+                -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            }
+            .front {
+                -webkit-transform: translateZ(750px) translateZ(-750px);
+                transform: translateZ(750px) translateZ(-750px);
+            }
+            .right {
+                -webkit-transform: translateZ(750px) rotateY(-90deg) translateZ(-750px);
+                transform: translateZ(750px) rotateY(-90deg) translateZ(-750px);
+            }
+            .left {
+                -webkit-transform: translateZ(750px) rotateY(90deg) translateZ(-750px);
+                transform: translateZ(750px) rotateY(90deg) translateZ(-750px);
+            }
+            .rear {
+                -webkit-transform: translateZ(750px) translateZ(750px) rotateY( 180deg );
+                transform: translateZ(750px) translateZ(750px) rotateY( 180deg );
+            }
+            .roof {
+                -webkit-transform: translateZ(750px) rotateX(-90deg) translateZ(-750px);
+                transform: translateZ(750px) rotateX(-90deg) translateZ(-750px);
+            }
+            .floor {
+                -webkit-transform: translateZ(750px) rotateX(90deg) translateZ(-750px);
+                transform: translateZ(750px) rotateX(90deg) translateZ(-750px);
+            }
       .contentSidebar {
         flex: 1;
         min-width: 300px;
@@ -172,85 +237,7 @@
           padding: 10px;
         }
       }
-      @-webkit-keyframes spin {
-                from { -webkit-transform: rotateY(0); }
-                to   { -webkit-transform: rotateY(-360deg); }
-            }
-            @keyframes spin {
-                from { transform: rotateY(0); }
-                to   { transform: rotateY(-360deg); }
-            }
-            
-            #crContainer, #viewer {
-                width: 100%;
-                height: 100%;
-            }
-
-            #viewer {
-                position: absolute;
-                left: 50%;
-                top: 100px;
-                margin-left: -320px;
-                width: 640px;
-                height: 360px;
-                overflow: hidden;
-                -webkit-transition: -webkit-transform 3s;
-                transition: transform 3s;
-                -webkit-perspective: 600px;
-                perspective: 600px;
-                -webkit-transform-style: preserve-3d;
-                transform-style: preserve-3d;
-            }
-            #cube {
-                width: 100%;
-                height: 100%;
-                position: relative;
-                -webkit-transform-style: preserve-3d;
-                transform-style: preserve-3d;
-                -webkit-transform-origin: 50% 50% 750px;
-                -webkit-transform: translateZ(-150px);
-                transform: translateZ(-150px);
-            }
-            #cube img {
-                position: absolute;
-                width: 1500px;
-                height: 1500px;
-                top: 50%;
-                left: 50%;
-                margin-top: -750px;
-                margin-left: -750px;
-                opacity: 0.8;
-                -webkit-transition: -webkit-transform 3s;
-                transition: transform 3s;
-                -webkit-transform-style: preserve-3d;
-                transform-style: preserve-3d;
-                -webkit-backface-visibility: hidden;
-                backface-visibility: hidden;
-            }
-            .front {
-                -webkit-transform: translateZ(750px) translateZ(-750px);
-                transform: translateZ(750px) translateZ(-750px);
-            }
-            .right {
-                -webkit-transform: translateZ(750px) rotateY(-90deg) translateZ(-750px);
-                transform: translateZ(750px) rotateY(-90deg) translateZ(-750px);
-            }
-            .left {
-                -webkit-transform: translateZ(750px) rotateY(90deg) translateZ(-750px);
-                transform: translateZ(750px) rotateY(90deg) translateZ(-750px);
-            }
-            .rear {
-                -webkit-transform: translateZ(750px) translateZ(750px) rotateY( 180deg );
-                transform: translateZ(750px) translateZ(750px) rotateY( 180deg );
-            }
-            .roof {
-                -webkit-transform: translateZ(750px) rotateX(-90deg) translateZ(-750px);
-                transform: translateZ(750px) rotateX(-90deg) translateZ(-750px);
-            }
-            .floor {
-                -webkit-transform: translateZ(750px) rotateX(90deg) translateZ(-750px);
-                transform: translateZ(750px) rotateX(90deg) translateZ(-750px);
-            }
+      
     </style>
   </head>
   <body>
@@ -314,7 +301,7 @@
           </h3>
           <h3><strong>Jam Operasional: 08:00-20:00 (Setiap Hari)</strong></h3>
           <h3><strong>Kontak: 08123456789 (Jhon Thor)</strong></h3>
-          <div id="vrContainer">
+          <div class="vrContainer">
             <div id="viewer">
                 <div id="cube">
                     <img class="front" src="img/texture/cube0000.jpg" alt="" />
@@ -346,66 +333,74 @@
         </div>
       </div>
     </div>
-    <script src="js/jquery-2.0.2.min.js"></script>
+    <!-- <script src="js/jquery-2.0.2.min.js"></script> -->
     <script>
       (function() {
-        var x1,
-            y1,
-            moving = false,
-            $viewer = $('#viewer'),
-            $cube = $('#cube'),
-            w_v = $viewer.width(), // width of viewer
-            h_v = $viewer.height(), // height of viewer
-            c_yaw = 0, // current x
-            c_pitch = 0,
-            perspective = 525; // current y
-      
-        $(document).on('mousedown', function(e) {
-          x1 = e.pageX;
-          y1 = e.pageY;
-      
-          moving = true;
-          e.preventDefault();
-        });
-      
-        $(document).on('mousemove', function(e) {
-          if( moving === true ) {
+    var x1, y1, moving = false,
+        $viewer = $('#viewer'),
+        $cube = $('#cube'),
+        w_v = $viewer.width(), 
+        h_v = $viewer.height(),
+        c_yaw = 0,
+        c_pitch = 0,
+        perspective = 525;
+
+    $viewer.on('mousedown', function(e) {
+        x1 = e.pageX;
+        y1 = e.pageY;
+        moving = true;
+        e.preventDefault();
+    });
+
+    $(document).on('mousemove', function(e) {
+        if (moving) {
             x2 = e.pageX;
             y2 = e.pageY;
-      
+
             var dist_x = x2 - x1,
                 dist_y = y2 - y1,
-                perc_x = dist_x / w_v,
-                perc_y = dist_y / h_v,
                 yaw = Math.atan2(dist_y, perspective) / Math.PI * 180,
                 pitch = -Math.atan2(dist_x, perspective) / Math.PI * 180,
-                i,
                 vendors = ['-webkit-', '-moz-', ''];
-      
+
             c_yaw += yaw;
             c_pitch += pitch;
             c_yaw = Math.min(90, c_yaw);
             c_yaw = Math.max(-90, c_yaw);
-      
             c_pitch %= 360;
-      
+
             yaw = c_yaw;
             pitch = c_pitch;
-      
-            for(i in vendors) {
-              $cube.css(vendors[i] + 'transform', 'translateZ(-150px) rotateX(' + yaw + 'deg) rotateY(' + pitch + 'deg)');
+
+            for (let i in vendors) {
+                $cube.css(vendors[i] + 'transform', `translateZ(-150px) rotateX(${yaw}deg) rotateY(${pitch}deg)`);
             }
-      
+
             x1 = x2;
             y1 = y2;
-          }
-          e.preventDefault();
-        }).on('mouseup', function(e) {
-          moving = false;
-          e.preventDefault();
-        });
-      
-      })();
+        }
+    }).on('mouseup', function() {
+        moving = false;
+    });
+
+    // Hanya aktif jika mouse ada di dalam viewer
+    $(document).on('mousemove', function(e) {
+        var offset = $viewer.offset();
+        var mouseX = e.pageX;
+        var mouseY = e.pageY;
+
+        if (
+            mouseX < offset.left || 
+            mouseX > offset.left + $viewer.width() || 
+            mouseY < offset.top || 
+            mouseY > offset.top + $viewer.height()
+        ) {
+            moving = false;
+        }
+    });
+
+})();
+
               </script>
   </body>
 </html>
