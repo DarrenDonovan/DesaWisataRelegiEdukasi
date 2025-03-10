@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    @foreach ($wilayah as $itemWilayah)
+    @foreach ($wilayaheach as $itemWilayah)
     <title>{{ $itemWilayah->nama_wilayah }}</title>
     @endforeach
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -197,7 +197,7 @@
          <!-- Navbar & Hero Start -->
         <div class="container-fluid position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="" class="navbar-brand p-0">
+                <a href="{{ url('/') }}" class="navbar-brand p-0">
                     <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Kecamatan Tigaraksa<span class="subtext">Kabupaten Tangerang</span></h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
@@ -212,10 +212,10 @@
                         <a href="{{ url('maps') }}" class="nav-item nav-link">Maps</a>
                         <a href="{{ url('berita') }}" class="nav-item nav-link">Berita</a>
                         <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile Desa</a>
+                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Profile Desa</a>
                             <div class="dropdown-menu m-0">
                                 @foreach ($wilayah as $item)
-                                <a href="{{ url($item->nama_wilayah) }}" class="dropdown-item">{{ $item->nama_wilayah }}</a>
+                                <a href="{{ url('profildesa/' . $item->id_wilayah) }}" class="dropdown-item">{{ $item->nama_wilayah }}</a>
                                 @endforeach
                             </div>
                         </div>
@@ -225,10 +225,12 @@
 
         <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb">
+    @foreach ($wilayaheach as $itemWilayah)
       <h3 class="text-white display-3 mb-4 text-center">
-        <span class="small-text d-block">Desa</span>
-        Bantar Panjang
+        <span class="small-text d-block">{{ $itemWilayah->jenis_wilayah }}</span>
+        {{ $itemWilayah->nama_wilayah }}
       </h3>
+      @endforeach
     </div>
     <!-- Header End -->
 
@@ -239,7 +241,9 @@
     </div>
     <div class="containerProDes">
       <div class="proDes">
-        <h2>Bantar Panjang</h2>
+        @foreach ($wilayaheach as $itemWilayah)
+        <h2>{{ $itemWilayah->nama_wilayah }}</h2>
+        @endforeach
         <p><strong>Batas Desa</strong></p>
         <table>
           <tr>
@@ -265,7 +269,7 @@
 
       <div class="gmbrDesa">
         <img
-          src="img/petakecamatan.png"
+          src="/img/petakecamatan.png"
           class="img-fluid rounded shadow-lg"
           alt="Gambar Desa"
         />
@@ -282,27 +286,27 @@
       <div class="gridWisata">
           <div class="cardW">
             <a href="wisata.html">
-              <img src="img/pantai.jpg" alt="Pantai"></a>
+              <img src="/img/pantai.jpg" alt="Pantai"></a>
               <div class="info">Pantai Indah</div>
           </div>
           <div class="cardW">
-              <img src="img/Gunung.jpg" alt="Gunung">
+              <img src="/img/Gunung.jpg" alt="Gunung">
               <div class="info">Gunung Sejuk</div>
           </div>
           <div class="cardW">
-              <img src="img/Hutan.jpg" alt="Hutan">
+              <img src="/img/Hutan.jpg" alt="Hutan">
               <div class="info">Hutan Hijau</div>
           </div>
           <div class="cardW">
-              <img src="img/Kota.jpg" alt="Kota">
+              <img src="/img/Kota.jpg" alt="Kota">
               <div class="info">Wisata Kota</div>
           </div>
           <div class="cardW">
-              <img src="img/candi.jpg" alt="Candi">
+              <img src="/img/candi.jpg" alt="Candi">
               <div class="info">Candi Bersejarah</div>
           </div>
           <div class="cardW">
-              <img src="img/airTerjun.jpg" alt="Air Terjun">
+              <img src="/img/airTerjun.jpg" alt="Air Terjun">
               <div class="info">Air Terjun Cantik</div>
           </div>
       </div>
@@ -316,27 +320,27 @@
   <div class="containerUMKM" style="margin-bottom: 100px;"> 
     <div class="gridUMKM">
         <div class="cardU">
-            <img src="img/jajananPasar.jpg" alt="jajananPasar">
+            <img src="/img/jajananPasar.jpg" alt="jajananPasar">
             <div class="info">Jajanan Pasar</div>
         </div>
         <div class="cardU">
-            <img src="img/kerajinanRotan.jpg" alt="kerajinanRotan">
+            <img src="/img/kerajinanRotan.jpg" alt="kerajinanRotan">
             <div class="info">Kerajinan Tangan</div>
         </div>
         <div class="cardU">
-            <img src="img/kueTradisional.jpg" alt="kueTradisional">
+            <img src="/img/kueTradisional.jpg" alt="kueTradisional">
             <div class="info">Kue Tradisional</div>
         </div>
         <div class="cardU">
-            <img src="img/olehOleh.jpg" alt="olehOleh">
+            <img src="/img/olehOleh.jpg" alt="olehOleh">
             <div class="info">Oleh-oleh Khas Daerah</div>
         </div>
         <div class="cardU">
-            <img src="img/anyaman.jpg" alt="anyaman">
+            <img src="/img/anyaman.jpg" alt="anyaman">
             <div class="info">Anyaman</div>
         </div>
         <div class="cardU">
-            <img src="img/gorengan.jpg" alt="gorengan">
+            <img src="/img/gorengan.jpg" alt="gorengan">
             <div class="info">Gorengan</div>
         </div>
     </div>

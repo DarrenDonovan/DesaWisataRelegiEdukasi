@@ -62,7 +62,7 @@
         <!-- Navbar & Hero Start -->
         <div class="container-fluid position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="" class="navbar-brand p-0">
+                <a href="{{ url('/') }}" class="navbar-brand p-0">
                     <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Kecamatan Tigaraksa<span class="subtext">Kabupaten Tangerang</span></h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
@@ -80,7 +80,7 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile Desa</a>
                             <div class="dropdown-menu m-0">
                                 @foreach ($wilayah as $item)
-                                <a href="{{ url($item->nama_wilayah) }}" class="dropdown-item">{{ $item->nama_wilayah }}</a>
+                                <a href="{{ url('profildesa/' . $item->id_wilayah) }}" class="dropdown-item">{{ $item->nama_wilayah }}</a>
                                 @endforeach
                             </div>
                         </div>

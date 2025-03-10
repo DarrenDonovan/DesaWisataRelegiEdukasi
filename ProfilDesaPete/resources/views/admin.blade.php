@@ -680,7 +680,7 @@
             										<td>{{ $itemBerita->judul_berita }}</td>
 													<td>{{ $itemBerita->penulis_berita }}</td>
 													<td>{{ $itemBerita->tanggal_berita }}</td>
-            										<td>{{ Str::limit($itemBerita->konten_berita, 40, '...') }}</td>
+            										<td>{!! Str::limit($itemBerita->konten_berita, 40, '...') !!}</td>
 													@if($itemBerita->gambar_berita)
 													<td><img src="{{ asset('storage/' . $itemBerita->gambar_berita) }}" width="100" alt=""></td>
 													@else

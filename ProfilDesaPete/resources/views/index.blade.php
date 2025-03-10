@@ -60,7 +60,7 @@
         <!-- Navbar & Hero Start -->
         <div class="container-fluid position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="" class="navbar-brand p-0">
+                <a href="{{ url('/') }}" class="navbar-brand p-0">
                     <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Kecamatan Tigaraksa<span class="subtext">Kabupaten Tangerang</span></h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
@@ -118,7 +118,7 @@
         <!-- Navbar & Hero End -->
 
         <!-- About Start -->
-        <div class="container-fluid about py-5">
+        <!-- <div class="container-fluid about py-5">
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-5">
@@ -133,49 +133,36 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- About End -->
 
-        <!-- Highlight Start -->
-        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h5 class="section-title px-3">Highlight</h5>
-            <h1 class="mb-0">Berita Terbaru Kecamatan Tigaraksa</h1>
-        </div>
-        <div class="containerBerita">
-            <div class="cardBerita">
-                <img src="img/image1.jpg" alt="Gambar">
-                <div class="card-body">
-                    <h5>Judul 1</h5>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, iste quis? Ut quod</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#">Lihat Detail</a>
-                </div>
+        <!-- BERITA -->
+        <div class="container mt-5">
+            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <h5 class="section-title px-3">Highlight</h5>
+                <h1 class="mb-0">Berita Terbaru Kecamatan Tigaraksa</h1>
             </div>
-
-            <div class="cardBerita">
-                <img src="img/image2.jpg" alt="Gambar">
-                <div class="card-body">
-                    <h5>Judul 2</h5>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur itaque</p>
+            <div class="row">
+                <!-- Berita 1 -->
+                @foreach ($berita as $itemBerita)
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ asset('storage/' . $itemBerita->gambar_berita) }}" class="card-img-top" alt="Gambar Berita">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $itemBerita->judul_berita }}</h5>
+                            <p class="text-muted">
+                                <i class="bi bi-calendar"></i> {{ $itemBerita->tanggal_berita }} &nbsp; 
+                                <i class="bi bi-person"></i> {{ $itemBerita->penulis_berita }}
+                            </p>
+                            <p class="card-text">{!! Str::limit($itemBerita->konten_berita, 50, '...') !!}</p>
+                            <a href="{{ url('detailberita/' . $itemBerita->id_berita) }}" class="btn btn-primary">Selengkapnya</a>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <a href="#">Lihat Detail</a>
-                </div>
-            </div>
-
-            <div class="cardBerita">
-                <img src="img/image3.jpg" alt="Gambar">
-                <div class="card-body">
-                    <h5>Judul 3</h5>
-                    <p>Deskripsi ini cukup panjang, mungkin lebih panjang dari yang lain.</p>
-                </div>
-                <div class="card-footer">
-                    <a href="#">Lihat Detail</a>
-                </div>
+                @endforeach
             </div>
         </div>
-        <!-- Highlight End -->
+        <!-- BERITA END -->
 
 <!-- Bisa Dibikin Grid -->
         <!-- Kegiatan Start -->

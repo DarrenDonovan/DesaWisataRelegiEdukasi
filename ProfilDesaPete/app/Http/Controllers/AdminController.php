@@ -94,9 +94,9 @@ class AdminController extends Controller{
 
     public function index(){
         $kegiatanterbaru = DB::table('kegiatan')
-        ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
-        ->select('kegiatan.*', 'jenis_kegiatan.*')
-        ->orderBy('id_kegiatan', 'desc')->first();
+            ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+            ->select('kegiatan.*', 'jenis_kegiatan.*')
+            ->orderBy('id_kegiatan', 'desc')->first();
 
         $kegiatan = DB::table('kegiatan')
             ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
@@ -123,7 +123,13 @@ class AdminController extends Controller{
             ->where('profil_kecamatan.id_wilayah', 13)
             ->first();
 
-        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah','profil', 'profilkecamatan'));
+        $berita = DB::table('berita')
+            ->select('berita.id_berita', 'berita.judul_berita', 'berita.konten_berita', 'berita.gambar_berita', 'berita.penulis_berita', 'berita.tanggal_berita', 'berita.id_wilayah')
+            ->orderBy('id_berita', 'desc')
+            ->limit(3)
+            ->get();
+
+        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah','profil', 'profilkecamatan', 'berita'));
     }
 
     //Create Admin

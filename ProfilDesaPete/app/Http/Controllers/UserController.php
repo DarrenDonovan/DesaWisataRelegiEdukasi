@@ -95,11 +95,16 @@ class UserController extends Controller
         return view('maps', compact('wilayah'));
     }
 
-    public function profilDesa(){
+    public function profilDesa($id){
         $wilayah = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.jenis_wilayah')
             ->get();
 
-        return view('profildesa', compact('wilayah'));
+        $wilayaheach = DB::table('wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.jenis_wilayah')
+            ->where('wilayah.id_wilayah', $id)
+            ->get();
+
+        return view('profildesa', compact('wilayah', 'wilayaheach'));
     }
 }
