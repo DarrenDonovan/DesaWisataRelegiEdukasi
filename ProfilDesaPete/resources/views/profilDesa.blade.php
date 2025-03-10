@@ -1,33 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    @foreach ($wilayah as $itemWilayah)
+    <title>{{ $itemWilayah->nama_wilayah }}</title>
+    @endforeach
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
 
-    <head>
-        <meta charset="utf-8">
-        <title>Travela - Tourism Website Template</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
 
-        <!-- Google Web Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet"> 
+    <!-- Icon Font Stylesheet -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
 
-        <!-- Icon Font Stylesheet -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="{{ url('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet" />
+    <link href="{{ url('lib/lightbox/css/lightbox.min.css') }}" rel="stylesheet" />
 
-        <!-- Libraries Stylesheet -->
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet" />
 
+    <!-- Template Stylesheet -->
+    <link href="{{ url('css/style.css') }}" rel="stylesheet" />
+    <link href="{{ url('css/leaflet.css') }}" rel="stylesheet" />
 
-        <!-- Customized Bootstrap Stylesheet -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>    
+    .mapBantar-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin-top: 50px;
+        position: relative;
+    }
 
-        <!-- Template Stylesheet -->
-        <link href="css/style.css" rel="stylesheet">
-    </head>
+    /* Styling  tampilan peta */
+    #mapBantar {
+        width: 100%; /* Lebarnya */
+        height: 600px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Styling tombol filter agar berada di pojok kiri atas peta */
+    /* .filter-container {
+        position: absolute;
+        top: 10px;
+        left: 20px;
+        background: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+    }
+
+    .filter-container select {
+        padding: 5px 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-left: 8px;
+    } */
+  
+      /* CARD WISATA */
+        .containerWisata {
+            max-width: 1400px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .gridWisata {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+        }
+
+        .cardW {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .cardW img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .cardW:hover img {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+        .cardW .info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            text-align: left;
+        }
+        .containerUMKM {
+            max-width: 1400px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .gridUMKM {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+        
+        .cardU {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .cardU img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .cardU:hover img {
+            /* transform: scale(1.05); */
+            cursor: pointer;
+        }
+
+        .cardU .info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            text-align: left;
+        }
+    </style>
+  </head>
 
     <body>
 
@@ -83,136 +224,221 @@
         <!-- Navbar & Hero End -->
 
         <!-- Header Start -->
-        <div class="container-fluid bg-breadcrumb">
-            <div class="container text-center py-5" style="max-width: 900px;">
-                <h3 class="text-white display-3 mb-4">Profile Desa</h1> 
-            </div>
-        </div>
-        <!-- Header End --
+    <div class="container-fluid bg-breadcrumb">
+      <h3 class="text-white display-3 mb-4 text-center">
+        <span class="small-text d-block">Desa</span>
+        Bantar Panjang
+      </h3>
+    </div>
+    <!-- Header End -->
 
-        <!-- Packages Start -->
-        <div class="container-fluid packages py-5">
-            <div class="container py-5">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h5 class="section-title px-3">Desa Desa</h5>
-                    <h1 class="mb-0">Kecamatan Tigakarsa</h1>
-                </div>
-                <div class="packages-carousel owl-carousel">
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="img/packages-4.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">Venice - Italy</h5>
-                                <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo quia quae illum aperiam fugiat voluptatem repellat</p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="img/packages-2.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">The New California</h5>
-                                <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo quia quae illum aperiam fugiat voluptatem repellat</p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="img/packages-3.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">Discover Japan</h5>
-                                <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo quia quae illum aperiam fugiat voluptatem repellat</p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="packages-item">
-                        <div class="packages-img">
-                            <img src="img/packages-1.jpg" class="img-fluid w-100 rounded-top" alt="Image">
-                        </div>
-                        <div class="packages-content bg-light">
-                            <div class="p-4 pb-0">
-                                <h5 class="mb-0">Thayland Trip</h5>
-                                <p class="mb-4">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt nemo quia quae illum aperiam fugiat voluptatem repellat</p>
-                            </div>
-                            <div class="row bg-primary rounded-bottom mx-0">
-                                <div class="col-6 text-start px-0">
-                                    <a href="#" class="btn-hover btn text-white py-2 px-4">Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Packages End -->
+    <!-- Profil -->
+    <div class="mx-auto text-center mb-5" style="max-width: 900px; margin-top: 100px;">
+      <h5 class="section-title px-3"> perkenalkan </h5>
+      <h1 class="mb-0">Profil Desa</h1>
+    </div>
+    <div class="containerProDes">
+      <div class="proDes">
+        <h2>Bantar Panjang</h2>
+        <p><strong>Batas Desa</strong></p>
+        <table>
+          <tr>
+            <td class="highlight">Utara</td>
+            <td>Desa A</td>
+          </tr>
+          <tr>
+            <td class="highlight">Timur</td>
+            <td>Desa B</td>
+          </tr>
+          <tr>
+            <td class="highlight">Selatan</td>
+            <td>Desa C</td>
+          </tr>
+          <tr>
+            <td class="highlight">Barat</td>
+            <td>Desa D</td>
+          </tr>
+        </table>
+        <p><strong>Luas Desa:</strong> 421.000 m²</p>
+        <p><strong>Jumlah Penduduk:</strong> 1.149 Jiwa</p>
+      </div>
 
-        <!-- Footer Start -->
-        <div class="container-fluid footer py-5">
-            <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Hubungi Kami</h4>
-                            <a href=""><i class="fas fa-home me-2"></i> 123 Street, New York, USA</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
-                            <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
-                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-share fa-2x text-white me-2"></i>
-                                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Company</h4>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> About</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Careers</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Blog</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Press</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Gift Cards</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Magazine</a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Support</h4>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Contact</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Legal Notice</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Privacy Policy</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Terms and Conditions</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Sitemap</a>
-                            <a href=""><i class="fas fa-angle-right me-2"></i> Cookie policy</a>
-                        </div>
-                    </div> -->
-                </div>
-            </div>
+      <div class="gmbrDesa">
+        <img
+          src="img/petakecamatan.png"
+          class="img-fluid rounded shadow-lg"
+          alt="Gambar Desa"
+        />
+      </div>
+    </div>
+    <!-- Profil end -->
+
+    <!-- Wisata start -->
+    <div class="mx-auto text-center mb-5" style="max-width: 900px; margin-top: 100px;">
+      <h5 class="section-title px-3"> Wisata </h5>
+      <h1 class="mb-0">Jelajahi Wisata Lokal</h1>
+    </div>
+    <div class="containerWisata">
+      <div class="gridWisata">
+          <div class="cardW">
+            <a href="wisata.html">
+              <img src="img/pantai.jpg" alt="Pantai"></a>
+              <div class="info">Pantai Indah</div>
+          </div>
+          <div class="cardW">
+              <img src="img/Gunung.jpg" alt="Gunung">
+              <div class="info">Gunung Sejuk</div>
+          </div>
+          <div class="cardW">
+              <img src="img/Hutan.jpg" alt="Hutan">
+              <div class="info">Hutan Hijau</div>
+          </div>
+          <div class="cardW">
+              <img src="img/Kota.jpg" alt="Kota">
+              <div class="info">Wisata Kota</div>
+          </div>
+          <div class="cardW">
+              <img src="img/candi.jpg" alt="Candi">
+              <div class="info">Candi Bersejarah</div>
+          </div>
+          <div class="cardW">
+              <img src="img/airTerjun.jpg" alt="Air Terjun">
+              <div class="info">Air Terjun Cantik</div>
+          </div>
+      </div>
+  </div>
+
+  <!-- UMKM start -->
+  <div class="mx-auto text-center mb-5" style="max-width: 900px; margin-top: 100px;">
+    <h5 class="section-title px-3"> UMKM </h5>
+    <h1 class="mb-0">Produk Khas Daerah</h1>
+  </div>
+  <div class="containerUMKM" style="margin-bottom: 100px;"> 
+    <div class="gridUMKM">
+        <div class="cardU">
+            <img src="img/jajananPasar.jpg" alt="jajananPasar">
+            <div class="info">Jajanan Pasar</div>
         </div>
-        <!-- Footer End -->
+        <div class="cardU">
+            <img src="img/kerajinanRotan.jpg" alt="kerajinanRotan">
+            <div class="info">Kerajinan Tangan</div>
+        </div>
+        <div class="cardU">
+            <img src="img/kueTradisional.jpg" alt="kueTradisional">
+            <div class="info">Kue Tradisional</div>
+        </div>
+        <div class="cardU">
+            <img src="img/olehOleh.jpg" alt="olehOleh">
+            <div class="info">Oleh-oleh Khas Daerah</div>
+        </div>
+        <div class="cardU">
+            <img src="img/anyaman.jpg" alt="anyaman">
+            <div class="info">Anyaman</div>
+        </div>
+        <div class="cardU">
+            <img src="img/gorengan.jpg" alt="gorengan">
+            <div class="info">Gorengan</div>
+        </div>
+    </div>
+</div>
+
+    <!-- PETA DESA -->
+    <!-- <div class="container-fluid packages py-5">
+      <div class="container py-5">
+          <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+              <h5 class="section-title px-3">Peta Desa</h5>
+              <h1 class="mb-0">Menampilkan Peta Desa Bantar Panjang Dengan Interest Point</h1>
+          </div>
+          <select id="categoryFilterBantar">
+              <option value="all">Semua</option>
+              <option value="Wisata">Wisata</option>
+              <option value="Kuliner">Kuliner</option>
+              <option value="Penginapan">Penginapan</option>
+          </select>
+          <div id="mapBantar"></div>
+          
+          <br>
+      </div>
+  </div> -->
+   
+    <!-- PETA END -->
+
+    <!-- Subscribe Start -->
+    <div class="container-fluid subscribe py-5">
+      <div class="container text-center py-5">
+        <div class="mx-auto text-center" style="max-width: 900px">
+          <h5 class="subscribe-title px-3">Subscribe</h5>
+          <h1 class="text-white mb-4">Our Newsletter</h1>
+          <p class="text-white mb-5">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
+            tempore nam, architecto doloremque velit explicabo? Voluptate sunt
+            eveniet fuga eligendi! Expedita laudantium fugiat corrupti eum cum
+            repellat a laborum quasi.
+          </p>
+          <div class="position-relative mx-auto">
+            <input
+              class="form-control border-primary rounded-pill w-100 py-3 ps-4 pe-5"
+              type="text"
+              placeholder="Your email"
+            />
+            <button
+              type="button"
+              class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 px-4 mt-2 me-2"
+            >
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Subscribe End -->
+
+    <!-- Footer Start -->
+    <div class="container-fluid footer py-5">
+      <div class="container py-5">
+        <div class="row g-5">
+          <div class="col-md-6 col-lg-6 col-xl-3">
+            <div class="footer-item d-flex flex-column">
+              <h4 class="mb-4 text-white">Hubungi Kami</h4>
+              <a href=""
+                ><i class="fas fa-home me-2"></i> 123 Street, New York, USA</a
+              >
+              <a href=""
+                ><i class="fas fa-envelope me-2"></i> info@example.com</a
+              >
+              <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
+              <a href="" class="mb-3"
+                ><i class="fas fa-print me-2"></i> +012 345 67890</a
+              >
+              <div class="d-flex align-items-center">
+                <i class="fas fa-share fa-2x text-white me-2"></i>
+                <a
+                  class="btn-square btn btn-primary rounded-circle mx-1"
+                  href=""
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+                <a
+                  class="btn-square btn btn-primary rounded-circle mx-1"
+                  href=""
+                  ><i class="fab fa-twitter"></i
+                ></a>
+                <a
+                  class="btn-square btn btn-primary rounded-circle mx-1"
+                  href=""
+                  ><i class="fab fa-instagram"></i
+                ></a>
+                <a
+                  class="btn-square btn btn-primary rounded-circle mx-1"
+                  href=""
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+    <!-- Footer End -->
         
         <!-- Copyright Start -->
         <div class="container-fluid copyright text-body py-4">
@@ -240,14 +466,108 @@
         <!-- JavaScript Libraries -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/lightbox/js/lightbox.min.js"></script>
+        <script src="{{ url('lib/easing/easing.min.js') }}"></script>
+        <script src="{{ url('lib/waypoints/waypoints.min.js') }}"></script>
+        <script src="{{ url('lib/owlcarousel/owl.carousel.min.js') }}"></script>
+        <script src="{{ url('lib/lightbox/js/lightbox.min.js') }}"></script>
         
 
         <!-- Template Javascript -->
-        <script src="js/main.js"></script>
-    </body>
+        <script src="{{ url('js/main.js') }}"></script>
+        <script src="{{ url('js/leaflet.js') }}"></script>
 
+    </body>
+    <script>
+ // Inisialisasi Peta
+ var mapBantar = L.map('mapBantar').setView([-6.295601184925948, 106.45126923990308], 15);
+
+// Definisi tile layer (peta jalan dan peta satelit)
+var streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+});
+
+var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: '&copy; Esri & Contributors'
+});
+
+// Tambahkan layer default (peta jalan)
+streetLayer.addTo(mapBantar);
+
+// Kontrol untuk memilih peta
+var baseMaps = {
+    "Peta Jalan": streetLayer,
+    "Peta Satelit": satelliteLayer
+};
+
+L.control.layers(baseMaps).addTo(mapBantar);
+
+// Definisi ikon custom untuk kategori
+var iconWisata = L.icon({
+    iconUrl: 'img/marker-icon-2x.png',
+    iconSize: [23, 32], // Ukuran ikon
+    iconAnchor: [16, 32], // Posisi titik ikon
+    popupAnchor: [0, -32]
+});
+
+var iconKuliner = L.icon({
+    iconUrl: 'img/marker-icon-2x.png',
+    iconSize: [23, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
+
+var iconPenginapan = L.icon({
+    iconUrl: 'img/marker-icon-2x.png',
+    iconSize: [23, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -32]
+});
+
+// Data Interest Points dengan kategori
+var interestPoints = [
+    { name: "Wisata 1", lat: -6.297656, lon: 106.441847, category: "Wisata", icon: iconWisata },
+    { name: "Wisata 2", lat: -6.301753, lon: 106.459986, category: "Wisata", icon: iconWisata },
+    { name: "Pasar Bantar Panjang", lat: -6.292268, lon: 106.441476, category: "Kuliner", icon: iconKuliner },
+    { name: "RM Ayam Geprek", lat: -6.287349, lon: 106.449960, category: "Kuliner", icon: iconKuliner },
+    { name: "Hotel Bintang", lat: -6.299345, lon: 106.451763, category: "Penginapan", icon: iconPenginapan },
+    { name: "Homestay Desa", lat: -6.293872, lon: 106.444982, category: "Penginapan", icon: iconPenginapan }
+];
+
+// Array untuk menyimpan marker
+var markers = [];
+
+// Fungsi untuk menampilkan marker berdasarkan kategori
+function addMarkers(category) {
+    // Hapus semua marker sebelum menambahkan yang baru
+    markers.forEach(marker => mapBantar.removeLayer(marker));
+    markers = [];
+
+    interestPoints.forEach(point => {
+        if (category === "all" || point.category === category) {
+            var marker = L.marker([point.lat, point.lon], { icon: point.icon }).addTo(mapBantar);
+
+            // Tooltip menggantikan Popup agar tidak ada tombol X dan menghilang otomatis
+            marker.bindTooltip(`<b>${point.name}</b><br>${point.category}`, {
+                permanent: false,
+                direction: "top",
+                opacity: 0.9
+            });
+
+            markers.push(marker);
+        }
+    });
+}
+
+// Tambahkan semua marker pertama kali
+addMarkers("all");
+
+// Event untuk filter berdasarkan kategori
+var filterDropdown = document.getElementById("categoryFilterBantar");
+if (filterDropdown) {
+    filterDropdown.addEventListener("change", function () {
+        addMarkers(this.value);
+    });
+};
+
+  </script>
 </html>

@@ -100,6 +100,6 @@ class UserController extends Controller
             ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah')
             ->get();
 
-        return view('profilDesa', compact('wilayah'));
+        return view('profildesa', compact('wilayah'));
     }
 }
