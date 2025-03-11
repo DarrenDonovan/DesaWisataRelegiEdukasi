@@ -350,6 +350,27 @@
           });
 
 
+          const ctx3 = document.getElementById('Chart3');
+          new Chart(ctx3, {
+            type: 'doughnut',
+            data: {
+              labels: {!! json_encode($kel_umur_kecamatan->pluck('kelompok_umur')) !!}, 
+              datasets: [{
+                label: 'Jumlah Orang',
+                data: {!! json_encode($kel_umur_kecamatan->pluck('jumlah_orang')) !!}, 
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.6)', 
+                  'rgba(54, 162, 235, 0.6)', 
+                  'rgba(255, 206, 86, 0.6)', 
+                  'rgba(75, 192, 192, 0.6)',
+                  'rgba(153, 102, 255, 0.6)',
+                  'rgba(0, 255, 255, 0.6)'
+                ]
+              }]
+            }
+          });
+
+
           const ctx5 = document.getElementById('Chart5');
           new Chart(ctx5, {
             type: 'pie',

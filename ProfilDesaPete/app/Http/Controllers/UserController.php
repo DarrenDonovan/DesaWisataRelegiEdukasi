@@ -125,7 +125,13 @@ class UserController extends Controller
             ->where('jenis_wilayah', 'Kecamatan')
             ->get();
 
-        return view('infografis', compact('wilayah', 'jumlah_penduduk', 'agama_kecamatan', 'wilayahNoKec'));
+        $kel_umur_kecamatan = DB::table('kel_umur_per_wilayah')
+            ->join('wilayah', 'kel_umur_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->select('kel_umur_per_wilayah.kelompok_umur', 'kel_umur_per_wilayah.jumlah_orang')
+            ->where('jenis_wilayah', 'Kecamatan')
+            ->get();
+
+        return view('infografis', compact('wilayah', 'jumlah_penduduk', 'agama_kecamatan', 'wilayahNoKec', 'kel_umur_kecamatan'));
     }
 
     public function maps(){
