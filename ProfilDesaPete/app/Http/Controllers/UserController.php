@@ -121,7 +121,7 @@ class UserController extends Controller
         $agama_kecamatan = DB::table('agama_per_wilayah')
             ->join('agama', 'agama_per_wilayah.id_agama','=', 'agama.id_agama')
             ->join('wilayah', 'agama_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->select('agama_per_wilayah.id_agama', 'agama.agama', 'agama_per_wilayah.id_wilayah', 'wilayah.nama_wilayah', 'agama_per_wilayah.jumlah_penganut')
+            ->select('agama_per_wilayah.id_agama', 'agama.agama', 'agama_per_wilayah.jumlah_penganut')
             ->where('jenis_wilayah', 'Kecamatan')
             ->get();
 
@@ -131,7 +131,21 @@ class UserController extends Controller
             ->where('jenis_wilayah', 'Kecamatan')
             ->get();
 
-        return view('infografis', compact('wilayah', 'jumlah_penduduk', 'agama_kecamatan', 'wilayahNoKec', 'kel_umur_kecamatan'));
+        $pekerjaan_kecamatan = DB::table('pekerjaan_per_wilayah')
+            ->join('pekerjaan', 'pekerjaan_per_wilayah.id_pekerjaan', '=', 'pekerjaan.id_pekerjaan')
+            ->join('wilayah', 'pekerjaan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->select('pekerjaan_per_wilayah.id_pekerjaan', 'pekerjaan.pekerjaan', 'pekerjaan_per_wilayah.jumlah_pekerja')
+            ->where('jenis_wilayah', 'Kecamatan')
+            ->get();
+
+        $pendidikan_kecamatan = DB::table('pendidikan_per_wilayah')
+            ->join('pendidikan', 'pendidikan_per_wilayah.id_pendidikan', '=', 'pendidikan.id_pendidikan')
+            ->join('wilayah', 'pendidikan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->select('pendidikan_per_wilayah.id_pendidikan', 'pendidikan.pendidikan', 'pendidikan_per_wilayah.jumlah_orang')
+            ->where('jenis_wilayah', 'Kecamatan')
+            ->get();
+
+        return view('infografis', compact('wilayah', 'jumlah_penduduk', 'agama_kecamatan', 'wilayahNoKec', 'kel_umur_kecamatan', 'pekerjaan_kecamatan', 'pendidikan_kecamatan'));
     }
 
     public function maps(){

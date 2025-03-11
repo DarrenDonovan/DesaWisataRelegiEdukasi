@@ -89,6 +89,35 @@ php artisan db:seed --class=UserSeeder
     FOREIGN KEY (id_wilayah) REFERENCES wilayah(id_wilayah)
 );
 
+- CREATE TABLE pekerjaan (
+    id_pekerjaan INT PRIMARY KEY,
+    pekerjaan VARCHAR(255) NOT NULL
+);
+
+- CREATE TABLE pekerjaan_per_wilayah (
+    id INT PRIMARY KEY,
+    id_pekerjaan INT NOT NULL,
+    id_wilayah INT NOT NULL,
+    jumlah_pekerja INT NOT NULL,
+    FOREIGN KEY (id_pekerjaan) REFERENCES pekerjaan(id_pekerjaan),
+    FOREIGN KEY (id_wilayah) REFERENCES wilayah(id_wilayah)
+);
+
+- CREATE TABLE pendidikan (
+    id_pendidikan INT PRIMARY KEY,
+    pendidikan VARCHAR(255) NOT NULL
+);
+
+- CREATE TABLE pendidikan_per_wilayah (
+    id INT PRIMARY KEY,
+    id_pendidikan INT NOT NULL,
+    id_wilayah INT NOT NULL,
+    jumlah_orang INT NOT NULL,
+    FOREIGN KEY (id_pendidikan) REFERENCES pendidikan(id_pendidikan),
+    FOREIGN KEY (id_wilayah) REFERENCES wilayah(id_wilayah)
+);
+
+
 **
 INSERT INTO wilayah (id_wilayah, nama_wilayah, jenis_wilayah, luas_wilayah, jumlah_penduduk, gambar_wilayah) VALUES
 (1, 'Desa Pasir Bolang', 'Desa', 429, 6055, 'profildesa/petakecamatan.png'),
@@ -248,5 +277,48 @@ INSERT INTO kel_umur_per_wilayah (id, id_wilayah, kelompok_umur, jumlah_orang) V
 (5, 13, '41 - 55 Tahun', 3562),
 (6, 13, 'Diatas 55 Tahun', 999);
 
+
+**
+INSERT INTO pekerjaan (id_pekerjaan, pekerjaan) VALUES
+(1, 'Petani'),
+(2, 'Nelayan'),
+(3, 'Guru'),
+(4, 'Dokter'),
+(5, 'Pegawai Negeri'),
+(6, 'Wiraswasta');
+
+
+**
+INSERT INTO pekerjaan_per_wilayah (id, id_pekerjaan, id_wilayah, jumlah_orang) VALUES
+(1, 1, 13, 5000),  
+(2, 2, 13, 1200),  
+(3, 3, 13, 800),   
+(4, 4, 13, 300),   
+(5, 5, 13, 1500), 
+(6, 6, 13, 2000);
+
+
+**
+INSERT INTO pendidikan (id_pendidikan, pendidikan) VALUES
+(1, 'Tidak Sekolah'),
+(2, 'SD'),
+(3, 'SMP'),
+(4, 'SMA'),
+(5, 'Diploma'),
+(6, 'Sarjana'),
+(7, 'Magister'),
+(8, 'Doktor');
+
+
+**
+INSERT INTO pendidikan_per_wilayah (id, id_pendidikan, id_wilayah, jumlah_orang) VALUES
+(1, 1, 13, 500),   
+(2, 2, 13, 4000),  
+(3, 3, 13, 3500),  
+(4, 4, 13, 2800),  
+(5, 5, 13, 1500),  
+(6, 6, 13, 2000),  
+(7, 7, 13, 500),   
+(8, 8, 13, 100);   
 
 

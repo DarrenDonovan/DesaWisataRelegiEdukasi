@@ -218,7 +218,7 @@
         <!-- Berdasarkan kelompok umur  -->
         <div class="container-fluid testimonial" id="berdasarkan-umur">
             <div class="container">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <div class="mx-auto text-center mb-5" style="max-width: 600px;">
                     <h1 class="mb-0">Berdasarkan Kelompok Umur</h1>
                     <div>
                       <canvas id="Chart3"></canvas>
@@ -244,10 +244,10 @@
         <!-- Berdasarkan agama  -->
         <div class="container-fluid testimonial" id="berdasarkan-agama">
             <div class="container">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <div class="mx-auto text-center mb-5" style="max-width: 600px;">
                     <h1 class="mb-0">Berdasarkan Agama</h1>
                     <div>
-                      <canvas id="Chart5"></canvas>
+                      <canvas id="Chart5" width="300" height="300"></canvas>
                     </div>
                 </div>
             </div>
@@ -371,6 +371,27 @@
           });
 
 
+          const ctx4 = document.getElementById('Chart4');
+          new Chart(ctx4, {
+            type: 'bar',
+            data: {
+              labels: {!! json_encode($pekerjaan_kecamatan->pluck('pekerjaan')) !!},
+              datasets: [{
+                label: 'Jumlah Pekerja',
+                data: {!! json_encode($pekerjaan_kecamatan->pluck('jumlah_pekerja')) !!},
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+
+
           const ctx5 = document.getElementById('Chart5');
           new Chart(ctx5, {
             type: 'pie',
@@ -392,6 +413,25 @@
           });
 
 
+          const ctx6 = document.getElementById('Chart6');
+          new Chart(ctx6, {
+            type: 'bar',
+            data: {
+              labels: {!! json_encode($pendidikan_kecamatan->pluck('pendidikan')) !!},
+              datasets: [{
+                label: 'Jumlah Orang',
+                data: {!! json_encode($pendidikan_kecamatan->pluck('jumlah_orang')) !!},
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
         </script>
 
 
