@@ -240,7 +240,7 @@
                     <tr><td class="highlight">Barat</td><td>Desa D</td></tr>
                 </table>
                 <p><strong>Luas Desa:</strong> {{ number_format($wilayahkecamatan->luas_wilayah, 0, ',', '.') }} Ha</p>
-                <p><strong>Jumlah Penduduk:</strong> {{ number_format($wilayahkecamatan->jumlah_penduduk, 0, ',', '.') }} Jiwa</p>
+                <p><strong>Jumlah Penduduk:</strong> {{ number_format($jumlah_penduduk, 0, ',', '.') }} Jiwa</p>
             </div>
     
             <div class="map-container">

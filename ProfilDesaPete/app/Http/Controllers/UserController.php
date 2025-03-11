@@ -47,7 +47,11 @@ class UserController extends Controller
             ->where('wilayah.nama_wilayah', 'Kecamatan Tigaraksa')
             ->first();
 
-        return view('about', compact('wilayah', 'about_us', 'camat', 'sekretaris', 'kasi', 'kepala_desa', 'wilayahkecamatan'));
+        $jumlah_penduduk = DB::table('wilayah')
+            ->whereIn('jenis_wilayah', ['Desa', 'Kelurahan'])
+            ->sum('jumlah_penduduk');
+
+        return view('about', compact('wilayah', 'about_us', 'camat', 'sekretaris', 'kasi', 'kepala_desa', 'wilayahkecamatan', 'jumlah_penduduk'));
     }
 
     public function berita(){
