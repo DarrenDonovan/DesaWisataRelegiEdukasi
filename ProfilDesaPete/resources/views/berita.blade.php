@@ -73,7 +73,7 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile Desa</a>
                             <div class="dropdown-menu m-0">
-                                @foreach ($wilayah as $item)
+                                @foreach ($wilayahNoKec as $item)
                                 <a href="{{ url('profildesa/' . $item->id_wilayah) }}" class="dropdown-item">{{ $item->nama_wilayah }}</a>
                                 @endforeach
                             </div>

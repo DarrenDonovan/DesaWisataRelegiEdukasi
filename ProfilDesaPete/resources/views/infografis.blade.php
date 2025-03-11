@@ -73,7 +73,7 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile Desa</a>
                             <div class="dropdown-menu m-0">
-                                @foreach ($wilayah as $item)
+                                @foreach ($wilayahNoKec as $item)
                                 <a href="{{ url('profildesa/' . $item->id_wilayah) }}" class="dropdown-item">{{ $item->nama_wilayah }}</a>
                                 @endforeach
                             </div>
@@ -103,7 +103,7 @@
                             <div class="col-12">
                                 <a href="#jumlah-penduduk" class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
                                     <div class="service-content text-end">
-                                        <h5 class="mb-4">Jumlah Penduduk dan Kepala Keluarga</h5>
+                                        <h5 class="mb-4">Jumlah Penduduk</h5>
                                         <p class="mb-0">
                                             Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
                                         </p>
@@ -186,12 +186,15 @@
         <!-- Services End -->
 
         <!-- Jumlah penduduk dan kepala keluarga -->
-        <div class="container-fluid testimonial py-5" id="jumlah-penduduk">
-            <div class="container py-5">
+        <div class="container-fluid testimonial" id="jumlah-penduduk">
+            <div class="container">
                 <div class="container-fluid testimonial py-5">
                     <div class="container py-5">
                         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                            <h1 class="mb-0" >Jumlah Penduduk dan Kepala Keluarga</h1>
+                            <h1 class="mb-0" >Jumlah Penduduk</h1>
+                            <div>
+                              <canvas id="Chart1"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -200,50 +203,65 @@
         <!-- END -->
 
          <!--  Berdasarkan Dusun-->
-        <div class="container-fluid testimonial py-5" id="berdasarkan-dusun">
-            <div class="container py-5">
+        <div class="container-fluid testimonial" id="berdasarkan-dusun">
+            <div class="container">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                     <h1 class="mb-0">Berdasarkan Dusun</h1>
+                    <div>
+                      <canvas id="Chart2"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- END -->
 
         <!-- Berdasarkan kelompok umur  -->
-        <div class="container-fluid testimonial py-5" id="berdasarkan-umur">
-            <div class="container py-5">
+        <div class="container-fluid testimonial" id="berdasarkan-umur">
+            <div class="container">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                     <h1 class="mb-0">Berdasarkan Kelompok Umur</h1>
+                    <div>
+                      <canvas id="Chart3"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- END -->
 
          <!-- Berdasarkan pekerjaan  -->
-         <div class="container-fluid testimonial py-5" id="berdasarkan-pekerjaan">
-            <div class="container py-5">
+         <div class="container-fluid testimonial" id="berdasarkan-pekerjaan">
+            <div class="container">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                     <h1 class="mb-0">Berdasarkan Pekerjaan</h1>
+                    <div>
+                      <canvas id="Chart4"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- END -->
 
         <!-- Berdasarkan agama  -->
-        <div class="container-fluid testimonial py-5" id="berdasarkan-agama">
-            <div class="container py-5">
+        <div class="container-fluid testimonial" id="berdasarkan-agama">
+            <div class="container">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                     <h1 class="mb-0">Berdasarkan Agama</h1>
+                    <div>
+                      <canvas id="Chart5"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- END -->
 
         <!-- Berdasarkan pendidikan  -->
-        <div class="container-fluid testimonial py-5" id="berdasarkan-pendidikan">
-            <div class="container py-5">
+        <div class="container-fluid testimonial" id="berdasarkan-pendidikan">
+            <div class="container">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                     <h1 class="mb-0">Berdasarkan Pendidikan</h1>
+                    <div>
+                      <canvas id="Chart6"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -310,6 +328,52 @@
 
         <!-- Template Javascript -->
         <script src="{{ url('js/main.js') }}"></script>
+        <script>
+          const ctx1 = document.getElementById('Chart1');
+          new Chart(ctx1, {
+            type: 'bar',
+            data: {
+              labels: {!! json_encode($jumlah_penduduk->pluck('nama_wilayah')) !!},
+              datasets: [{
+                label: 'Jumlah Penduduk',
+                data: {!! json_encode($jumlah_penduduk->pluck('jumlah_penduduk')) !!},
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+
+
+          const ctx5 = document.getElementById('Chart5');
+          new Chart(ctx5, {
+            type: 'pie',
+            data: {
+              labels: {!! json_encode($agama_kecamatan->pluck('agama')) !!}, 
+              datasets: [{
+                label: 'Jumlah Penganut',
+                data: {!! json_encode($agama_kecamatan->pluck('jumlah_penganut')) !!}, 
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.6)', 
+                  'rgba(54, 162, 235, 0.6)', 
+                  'rgba(255, 206, 86, 0.6)', 
+                  'rgba(75, 192, 192, 0.6)',
+                  'rgba(153, 102, 255, 0.6)',
+                  'rgba(0, 255, 255, 0.6)'
+                ]
+              }]
+            }
+          });
+
+
+        </script>
+
+
     </body>
 
 </html>

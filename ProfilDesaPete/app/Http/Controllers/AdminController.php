@@ -112,6 +112,12 @@ class AdminController extends Controller{
             ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah')
             ->get();
 
+        $wilayahNoKec = DB::table('wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
+            ->where('wilayah.jenis_wilayah', '!=', 'Kecamatan')
+            ->get();
+
+
         $profil = DB::table('profil_kecamatan')
             ->join('wilayah', 'wilayah.id_wilayah', '=', 'profil_kecamatan.id_wilayah')
             ->select('profil_kecamatan.id_profil', 'profil_kecamatan.id_wilayah', 'profil_kecamatan.deskripsi', 'profil_kecamatan.logo_wilayah', 'wilayah.nama_wilayah')
@@ -129,7 +135,7 @@ class AdminController extends Controller{
             ->limit(3)
             ->get();
 
-        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah','profil', 'profilkecamatan', 'berita'));
+        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah','profil', 'profilkecamatan', 'berita', 'wilayahNoKec'));
     }
 
     //Create Admin
