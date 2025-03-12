@@ -87,8 +87,18 @@ class AdminController extends Controller{
             ->select('berita.id_berita', 'berita.judul_berita', 'berita.konten_berita', 'berita.gambar_berita', 'berita.penulis_berita', 'berita.tanggal_berita', 'berita.id_wilayah', 'wilayah.nama_wilayah')
             ->orderBy('id_berita', 'desc')
             ->paginate(5);
+
+        $wilayahNoKec = DB::table('wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
+            ->where('wilayah.jenis_wilayah', '!=', 'Kecamatan')
+            ->get();
+
+        $jumlah_penduduk = DB::table('wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.jumlah_penduduk')
+            ->whereIn('jenis_wilayah', ['Desa', 'Kelurahan'])
+            ->get();
                     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users', 'about', 'perangkat_kecamatan', 'berita'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'jumlah_penduduk'));
     }
 
 
@@ -265,6 +275,7 @@ class AdminController extends Controller{
     }
 
 
+
     //Data Update
     public function updateKegiatan(Request $request, $id){
 
@@ -304,52 +315,11 @@ class AdminController extends Controller{
             $imagePath = $request->file('gambar_kegiatan')->store('kegiatan', 'public');
             $updateData['gambar_kegiatan'] = $imagePath;
         }
-
-        DB::enableQueryLog(); // Start query logging
-        $affectedRows = DB::table('kegiatan')->where('id_kegiatan', $id)->update($updateData);
-        dd(DB::getQueryLog()); // Show the actual SQL query
         
         
         Session::flash('message', 'Data Berhasil Diupdate!');
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
     }
-
-    public function updateProfil(Request $request, $id){
-        $request->validate([
-            'deskripsi' => 'required|string',
-            'logo_wilayah' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
-        ]);
-
-        $user = Auth::user();
-
-        $profil = DB::table('profil_kecamatan')
-            ->where('id_profil', $id)
-            ->where('profil_kecamatan.id_wilayah', $user->id_wilayah)
-            ->first();
-
-        if (!$profil) {
-            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
-        }
-
-        $updateData = [
-            'deskripsi' => $request->deskripsi,
-        ];
-
-        if ($request->hasFile('logo_wilayah')) {
-            if ($profil->logo_wilayah) {
-                Storage::disk('public')->delete($profil->logo_wilayah);
-            }
-
-            $imagePath = $request->file('logo_wilayah')->store('profil', 'public');
-            $updateData['logo_wilayah'] = $imagePath;
-        }
-
-        DB::table('profil_kecamatan')->where('id_profil', $id)->update($updateData);
-
-        Session::flash('message', 'Data Berhasil Diupdate!');
-        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
-    }
-
 
     public function updateAboutUs(Request $request){
         $request -> validate([
@@ -472,6 +442,29 @@ class AdminController extends Controller{
         }
 
         DB::table('berita')->where('id_berita', $id)->update($updateData);
+
+        Session::flash('message', 'Data Berhasil Diupdate!');
+        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+    }
+
+    public function updateJumlahPenduduk(Request $request, $id){
+        $request -> validate([
+            'jumlah_penduduk' => 'required|integer'
+        ]);
+
+        $wilayah = DB::table('wilayah')
+            ->where('wilayah.id_wilayah', $id)
+            ->first();
+        
+        if(!$wilayah){
+            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+        }
+
+        $updateData = [
+            'jumlah_penduduk' => $request->jumlah_penduduk
+        ];
+
+        DB::table('wilayah')->where('id_wilayah', $id)->update($updateData);
 
         Session::flash('message', 'Data Berhasil Diupdate!');
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');

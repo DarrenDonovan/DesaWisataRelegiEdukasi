@@ -158,36 +158,7 @@
 						@if (Session::has('message'))
 							<p class="alert alert-success mt-2">{{ Session::get('message') }}</p>
 						@endif
-
-							<!-- Modal Edit profil -->
-							@if($profil)
-							<div class="modal fade" id="modalEdit_profil" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
-   									<div class="modal-dialog">
-        								<div class="modal-content">
-            								<div class="modal-header">
-												<h5 class="modal-title" id="modalTitle">Edit Profil</h5>
-												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            								</div>
-            								<div class="modal-body">
-												<form action="{{ route('admin.updateProfil', $profil->id_profil)}}" method="post" enctype="multipart/form-data">
-													@csrf
-													<div class="form-group">
-														<label for="deskripsi">Deskripsi</label>
-														<textarea name="deskripsi" class="form-control" id="deskripsi" cols="50" rows="4" required>{{ $profil->deskripsi }}</textarea>					
-													</div>
-													<div class="form-group">
-														<label for="logo_wilayah">Gambar Kegiatan</label>
-														<input type="file" class="form-control-file" name="logo_wilayah" id="logo_wilayah">
-                									</div>
-													<button type="submit" class="btn btn-primary form-control">Save changes</button>
-												</form>
-								            </div>
-								        </div>
-								    </div>
-								</div>
-								@endif
-
-
+						
 						<!-- Kegiatan Terbaru -->
 						<h4 class="page-title mt-2">Kegiatan Terbaru</h4>
 						<div class="row">
@@ -776,33 +747,104 @@
 						    </div>
 						</div>
 
-		
-		
-		
-		
-		
-										
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						<div class="row row-card-no-pd">
+						<!-- Edit Chart Data -->
+					@if(Auth::check() && Auth::user()->role==='superadmin')
+					<div class="d-flex justify-content-between align-items-center">
+						<h4 class="page-title mt-1">Infografis</h4>
+					</div>	
+						<div class="row">
+							<div class="col">
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">BarChart Jumlah Penduduk Kecamatan Tigaraksa</h4>
+									</div>
+									<div class="card-body">
+										<canvas id="Chart1"></canvas>
+									</div>
+								</div>
+							</div>
+
+						<div class="row">
+							<div class="col">
+								<div class="card">
+									<div class="card-body">
+										<table class="table table-striped mt-3">
+											<tbody>
+        										<tr>
+													<th>Nama Wilayah</th>
+													@foreach ($jumlah_penduduk as $jumlahPenduduk)
+            											<td>{{ $jumlahPenduduk->nama_wilayah }}</td>
+													@endforeach
+												</tr>
+												<tr>
+													<th>Jumlah Penduduk</th>
+            										@foreach ($jumlah_penduduk as $jumlahPenduduk)
+            											<td>{{ $jumlahPenduduk->jumlah_penduduk }}</td>
+													@endforeach
+												</tr>
+												<tr>
+													<th>Action</th>
+            										@foreach ($jumlah_penduduk as $jumlahPenduduk)
+            											<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_JumlahPenduduk{{$jumlahPenduduk->id_wilayah}}">Edit</a></td>
+														</td>
+														<!-- Modal Edit Berita -->
+														<div class="modal fade" id="modalUpdate_JumlahPenduduk{{$jumlahPenduduk->id_wilayah}}" tabindex="-1" aria-labelledby="modalTitle{{$jumlahPenduduk->id_wilayah}}" aria-hidden="true">
+   															<div class="modal-dialog">
+        														<div class="modal-content">
+            														<div class="modal-header">
+																		<h5 class="modal-title" id="modalTitle">Edit Jumlah Penduduk</h5>
+																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            														</div>
+            														<div class="modal-body">
+																		<form action="{{ route('admin.updateJumlahPenduduk', $jumlahPenduduk->id_wilayah) }}" method="post" enctype="multipart/form-data">
+																			@csrf
+																			<div class="form-group">
+																				<label for="nama_wilayah">Nama Wilayah</label>
+																				<input type="text" class="form-control" name="nama_wilayah" id="judul_berita" value="{{ $jumlahPenduduk->nama_wilayah }}" disabled>
+																			</div>
+																			<div class="form-group">
+																				<label for="jumlah_penduduk">Jumlah Penduduk</label>
+																				<input type="text" class="form-control" name="jumlah_penduduk" id="jumlah_penduduk" value="{{ $jumlahPenduduk->jumlah_penduduk }}" required>
+                															</div>
+                															<button type="submit" class="btn btn-primary form-control">Save changes</button>
+																		</form>
+														            </div>
+														        </div>
+														    </div>
+														</div>
+													@endforeach
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						@endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 							<div class="col-md-4">
 								<div class="card">
 									<div class="card-body">
@@ -860,66 +902,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-3">
-								<div class="card card-stats">
-									<div class="card-body">
-										<p class="fw-bold mt-1">Statistic</p>
-										<div class="row">
-											<div class="col-5">
-												<div class="icon-big text-center icon-warning">
-													<i class="la la-pie-chart text-warning"></i>
-												</div>
-											</div>
-											<div class="col-7 d-flex align-items-center">
-												<div class="numbers">
-													<p class="card-category">Number</p>
-													<h4 class="card-title">150GB</h4>
-												</div>
-											</div>
-										</div>
-										<hr/>
-										<div class="row">
-											<div class="col-5">
-												<div class="icon-big text-center">
-													<i class="la la-heart-o text-primary"></i>
-												</div>
-											</div>
-											<div class="col-7 d-flex align-items-center">
-												<div class="numbers">
-													<p class="card-category">Followers</p>
-													<h4 class="card-title">+45K</h4>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-4">
-								<div class="card">
-									<div class="card-header">
-										<h4 class="card-title">Users Statistics</h4>
-										<p class="card-category">
-										Users statistics this month</p>
-									</div>
-									<div class="card-body">
-										<div id="monthlyChart" class="chart chart-pie"></div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-8">
-								<div class="card">
-									<div class="card-header">
-										<h4 class="card-title">2018 Sales</h4>
-										<p class="card-category">
-										Number of products sold</p>
-									</div>
-									<div class="card-body">
-										<div id="salesChart" class="chart"></div>
-									</div>
-								</div>
-							</div>
+							
 							<div class="col-md-6">
 								<div class="card">
 									<div class="card-header ">
@@ -1148,4 +1131,28 @@
 <script src="{{url('js/admin/ready.min.js"></script>
 <script src="{{url('js/admin/demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+	const ctx1 = document.getElementById('Chart1');
+	new Chart(ctx1, {
+	  type: 'bar',
+	  data: {
+	    labels: {!! json_encode($jumlah_penduduk->pluck('nama_wilayah')) !!},
+	    datasets: [{
+	      label: 'Jumlah Penduduk',
+	      data: {!! json_encode($jumlah_penduduk->pluck('jumlah_penduduk')) !!},
+	      borderWidth: 1
+	    }]
+	  },
+	  options: {
+	    scales: {
+	      y: {
+	        beginAtZero: true
+	      }
+	    }
+	  }
+	});
+</script>
 </html>

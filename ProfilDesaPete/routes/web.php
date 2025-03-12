@@ -63,8 +63,6 @@ Route::get('admin/delete/{id}', [AdminController::class, 'deleteKegiatan'])->nam
 
 Route::post('admin/createKegiatan', [AdminController::class, 'createKegiatan'])->name('admin.createKegiatan');
 
-Route::post('/admin/updateProfil/{id}', [AdminController::class, 'updateProfil'])->name('admin.updateProfil');
-
 Route::post('/admin/updateAboutUs', [AdminController::class, 'updateAboutUs'])->name('admin.updateAboutUs');
 
 //Route untuk Perangkat Kecamatan
@@ -76,3 +74,5 @@ Route::get('admin/deletePerangkat/{id}', [AdminController::class, 'deletePerangk
 Route::post('admin/createBerita', [AdminController::class, 'createBerita'])->name('admin.createBerita');
 Route::post('admin/updateBerita/{id}', [AdminController::class, 'updateBerita'])->name('admin.updateBerita');
 Route::get('admin/deleteBerita/{id}', [AdminController::class, 'deleteBerita'])->name('admin.deleteBerita');
+
+Route::post('admin/updateJumlahPenduduk/{id}', [AdminController::class, 'updateJumlahPenduduk'])->name('admin.updateJumlahPenduduk');
