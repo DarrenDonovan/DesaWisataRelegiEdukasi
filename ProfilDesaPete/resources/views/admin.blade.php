@@ -747,7 +747,8 @@
 						    </div>
 						</div>
 
-						<!-- Edit Chart Data -->
+					<!-- Edit Chart Data -->
+					<!-- Barchart Jumlah Penduduk -->
 					@if(Auth::check() && Auth::user()->role==='superadmin')
 					<div class="d-flex justify-content-between align-items-center">
 						<h4 class="page-title mt-1">Infografis</h4>
@@ -763,7 +764,6 @@
 									</div>
 								</div>
 							</div>
-
 						<div class="row">
 							<div class="col">
 								<div class="card">
@@ -787,7 +787,7 @@
             										@foreach ($jumlah_penduduk as $jumlahPenduduk)
             											<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_JumlahPenduduk{{$jumlahPenduduk->id_wilayah}}">Edit</a></td>
 														</td>
-														<!-- Modal Edit Berita -->
+														<!-- Modal Edit Jumlah Penduduk -->
 														<div class="modal fade" id="modalUpdate_JumlahPenduduk{{$jumlahPenduduk->id_wilayah}}" tabindex="-1" aria-labelledby="modalTitle{{$jumlahPenduduk->id_wilayah}}" aria-hidden="true">
    															<div class="modal-dialog">
         														<div class="modal-content">
@@ -800,7 +800,7 @@
 																			@csrf
 																			<div class="form-group">
 																				<label for="nama_wilayah">Nama Wilayah</label>
-																				<input type="text" class="form-control" name="nama_wilayah" id="judul_berita" value="{{ $jumlahPenduduk->nama_wilayah }}" disabled>
+																				<input type="text" class="form-control" name="nama_wilayah" id="nama_wilayah" value="{{ $jumlahPenduduk->nama_wilayah }}" disabled>
 																			</div>
 																			<div class="form-group">
 																				<label for="jumlah_penduduk">Jumlah Penduduk</label>
@@ -821,249 +821,149 @@
 							</div>
 						</div>
 						@endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<div class="col-md-4">
-								<div class="card">
-									<div class="card-body">
-										<p class="fw-bold mt-1">My Balance</p>
-										<h4><b>$ 3,018</b></h4>
-										<a href="#" class="btn btn-primary btn-full text-left mt-3 mb-3"><i class="la la-plus"></i> Add Balance</a>
-									</div>
-									<div class="card-footer">
-										<ul class="nav">
-											<li class="nav-item"><a class="btn btn-default btn-link" href="#"><i class="la la-history"></i> History</a></li>
-											<li class="nav-item ml-auto"><a class="btn btn-default btn-link" href="#"><i class="la la-refresh"></i> Refresh</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-5">
-								<div class="card">
-									<div class="card-body">
-										<div class="progress-card">
-											<div class="d-flex justify-content-between mb-1">
-												<span class="text-muted">Profit</span>
-												<span class="text-muted fw-bold"> $3K</span>
-											</div>
-											<div class="progress mb-2" style="height: 7px;">
-												<div class="progress-bar bg-success" role="progressbar" style="width: 78%" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="78%"></div>
-											</div>
-										</div>
-										<div class="progress-card">
-											<div class="d-flex justify-content-between mb-1">
-												<span class="text-muted">Orders</span>
-												<span class="text-muted fw-bold"> 576</span>
-											</div>
-											<div class="progress mb-2" style="height: 7px;">
-												<div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="65%"></div>
-											</div>
-										</div>
-										<div class="progress-card">
-											<div class="d-flex justify-content-between mb-1">
-												<span class="text-muted">Tasks Complete</span>
-												<span class="text-muted fw-bold"> 70%</span>
-											</div>
-											<div class="progress mb-2" style="height: 7px;">
-												<div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="70%"></div>
-											</div>
-										</div>
-										<div class="progress-card">
-											<div class="d-flex justify-content-between mb-1">
-												<span class="text-muted">Open Rate</span>
-												<span class="text-muted fw-bold"> 60%</span>
-											</div>
-											<div class="progress mb-2" style="height: 7px;">
-												<div class="progress-bar bg-warning" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" data-toggle="tooltip" data-placement="top" title="60%"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
 							
+							<!-- Sebaran Penduduk berdasarkan kelompok umur -->
 							<div class="col-md-6">
 								<div class="card">
 									<div class="card-header ">
-										<h4 class="card-title">Table</h4>
-										<p class="card-category">Users Table</p>
+										<h4 class="card-title">Sebaran Penduduk Berdasarkan Kelompok Umur</h4>
 									</div>
 									<div class="card-body">
-										<table class="table table-head-bg-success table-striped table-hover">
+										<canvas id="Chart3"></canvas>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="card">
+									<div class="card-header ">
+										<h4 class="card-title">Tabel Data Penduduk Berdasarkan Kelompok Umur</h4>
+									</div>
+									<div class="card-body">
+										<table class="table table-striped mt-3">
 											<thead>
 												<tr>
-													<th scope="col">#</th>
-													<th scope="col">First</th>
-													<th scope="col">Last</th>
-													<th scope="col">Handle</th>
+													<th scope="col">Kelompok Umur</th>
+													<th scope="col">Jumlah Penduduk</th>
+													<th scope="col">Action</th>
 												</tr>
 											</thead>
 											<tbody>
-												<tr>
-													<td>1</td>
-													<td>Mark</td>
-													<td>Otto</td>
-													<td>@mdo</td>
+												@foreach($kel_umur_penduduk as $kelompok_umur)
+        										<tr>
+            										<td>{{ $kelompok_umur->kelompok_umur }}</td>
+													<td>{{ $kelompok_umur->jumlah_orang }}</td>
+													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_KelompokUmur{{$kelompok_umur->id}}">Edit</a></td>
+													<!-- Modal Edit Kelompok Umur -->
+													<div class="modal fade" id="modalUpdate_KelompokUmur{{$kelompok_umur->id}}" tabindex="-1" aria-labelledby="modalTitle{{$kelompok_umur->id}}" aria-hidden="true">
+   														<div class="modal-dialog">
+        													<div class="modal-content">
+            													<div class="modal-header">
+																	<h5 class="modal-title" id="modalTitle">Edit Kelompok Umur</h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            													</div>
+            													<div class="modal-body">
+																	<form action="{{ route('admin.updateKelompokUmur', $kelompok_umur->id) }}" method="post" enctype="multipart/form-data">
+																		@csrf
+																		<div class="form-group">
+																			<label for="kelompok_umur">Kelompok Umur</label>
+																			<input type="text" class="form-control" name="kelompok_umur" id="kelompok_umur" value="{{ $kelompok_umur->kelompok_umur}}" disabled>
+																		</div>
+																		<div class="form-group">
+																			<label for="jumlah_penduduk">Jumlah Penduduk</label>
+																			<input type="text" class="form-control" name="jumlah_penduduk" id="jumlah_penduduk" value="{{ $kelompok_umur->jumlah_orang }}" required>
+                														</div>
+                														<button type="submit" class="btn btn-primary form-control">Save changes</button>
+																	</form>
+													            </div>
+													        </div>
+													    </div>
+													</div>
 												</tr>
-												<tr>
-													<td>2</td>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
-													<td>3</td>
-													<td colspan="2">Larry the Bird</td>
-													<td>@twitter</td>
-												</tr>
+												@endforeach
 											</tbody>
 										</table>
 									</div>
 								</div>
 							</div>
+		  					
+							<!-- Sebaran Penduduk berdasarkan pekerjaan -->
 							<div class="col-md-6">
-								<div class="card card-tasks">
+								<div class="card">
 									<div class="card-header ">
-										<h4 class="card-title">Tasks</h4>
-										<p class="card-category">To Do List</p>
+										<h4 class="card-title">Sebaran Penduduk Berdasarkan Pekerjaan</h4>
 									</div>
-									<div class="card-body ">
-										<div class="table-full-width">
-											<table class="table">
-												<thead>
-													<tr>
-														<th>
-															<div class="form-check">
-																<label class="form-check-label">
-																	<input class="form-check-input  select-all-checkbox" type="checkbox" data-select="checkbox" data-target=".task-select">
-																	<span class="form-check-sign"></span>
-																</label>
-															</div>
-														</th>
-														<th>Task</th>
-														<th>Action</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<td>
-															<div class="form-check">
-																<label class="form-check-label">
-																	<input class="form-check-input task-select" type="checkbox">
-																	<span class="form-check-sign"></span>
-																</label>
-															</div>
-														</td>
-														<td>Planning new project structure</td>
-														<td class="td-actions text-right">
-															<div class="form-button-action">
-																<button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
-																	<i class="la la-edit"></i>
-																</button>
-																<button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
-																	<i class="la la-times"></i>
-																</button>
-															</div>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="form-check">
-																<label class="form-check-label">
-																	<input class="form-check-input task-select" type="checkbox">
-																	<span class="form-check-sign"></span>
-																</label>
-															</div>
-														</td>
-														<td>Update Fonts</td>
-														<td class="td-actions text-right">
-															<div class="form-button-action">
-																<button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
-																	<i class="la la-edit"></i>
-																</button>
-																<button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
-																	<i class="la la-times"></i>
-																</button>
-															</div>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="form-check">
-																<label class="form-check-label">
-																	<input class="form-check-input task-select" type="checkbox">
-																	<span class="form-check-sign"></span>
-																</label>
-															</div>
-														</td>
-														<td>Add new Post
-														</td>
-														<td class="td-actions text-right">
-															<div class="form-button-action">
-																<button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
-																	<i class="la la-edit"></i>
-																</button>
-																<button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
-																	<i class="la la-times"></i>
-																</button>
-															</div>
-														</td>
-													</tr>
-													<tr>
-														<td>
-															<div class="form-check">
-																<label class="form-check-label">
-																	<input class="form-check-input task-select" type="checkbox">
-																	<span class="form-check-sign"></span>
-																</label>
-															</div>
-														</td>
-														<td>Finalise the design proposal</td>
-														<td class="td-actions text-right">
-															<div class="form-button-action">
-																<button type="button" data-toggle="tooltip" title="Edit Task" class="btn btn-link <btn-simple-primary">
-																	<i class="la la-edit"></i>
-																</button>
-																<button type="button" data-toggle="tooltip" title="Remove" class="btn btn-link btn-simple-danger">
-																	<i class="la la-times"></i>
-																</button>
-															</div>
-														</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-									<div class="card-footer ">
-										<div class="stats">
-											<i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
-										</div>
+									<div class="card-body">
+										<canvas id="Chart4"></canvas>
 									</div>
 								</div>
 							</div>
+							<div class="col-md-6">
+								<div class="card">
+									<div class="card-header ">
+										<h4 class="card-title">Tabel Data Penduduk Berdasarkan Pekerjaan</h4>
+									</div>
+									<div class="card-body">
+										<table class="table table-striped mt-3">
+											<thead>
+												<tr>
+													<th scope="col">Nama Pekerjaan</th>
+													<th scope="col">Jumlah Pekerja</th>
+													<th scope="col">Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												@foreach($pekerjaan_penduduk as $pekerjaanPenduduk)
+        										<tr>
+            										<td>{{ $pekerjaanPenduduk->pekerjaan }}</td>
+													<td>{{ $pekerjaanPenduduk->jumlah_pekerja }}</td>
+													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_pekerjaanPenduduk{{$pekerjaanPenduduk->id}}">Edit</a></td>
+													<!-- Modal Edit Kelompok Umur -->
+													<div class="modal fade" id="modalUpdate_pekerjaanPenduduk{{$pekerjaanPenduduk->id}}" tabindex="-1" aria-labelledby="modalTitle{{$pekerjaanPenduduk->id}}" aria-hidden="true">
+   														<div class="modal-dialog">
+        													<div class="modal-content">
+            													<div class="modal-header">
+																	<h5 class="modal-title" id="modalTitle">Edit Pekerjaan Penduduk</h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            													</div>
+            													<div class="modal-body">
+																	<form action="{{ route('admin.updatePekerjaanPenduduk', $pekerjaanPenduduk->id) }}" method="post" enctype="multipart/form-data">
+																		@csrf
+																		<div class="form-group">
+																			<label for="pekerjaan">Pekerjaan</label>
+																			<input type="text" class="form-control" name="pekerjaan" id="pekerjaan" value="{{ $pekerjaanPenduduk->pekerjaan}}" disabled>
+																		</div>
+																		<div class="form-group">
+																			<label for="jumlah_pekerja">Jumlah Penduduk</label>
+																			<input type="text" class="form-control" name="jumlah_pekerja" id="jumlah_pekerja" value="{{ $pekerjaanPenduduk->jumlah_pekerja }}" required>
+                														</div>
+                														<button type="submit" class="btn btn-primary form-control">Save changes</button>
+																	</form>
+													            </div>
+													        </div>
+													    </div>
+													</div>
+												</tr>
+												@endforeach
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+
 						</div>
 					
+
+
+
+
+
+
+
+
+
+
+
+
 				</div>
 				<footer class="footer">
 					<div class="container-fluid">
@@ -1154,5 +1054,45 @@
 	    }
 	  }
 	});
+
+	const ctx3 = document.getElementById('Chart3');
+          new Chart(ctx3, {
+            type: 'doughnut',
+            data: {
+              labels: {!! json_encode($kel_umur_penduduk->pluck('kelompok_umur')) !!}, 
+              datasets: [{
+                label: 'Jumlah Orang',
+                data: {!! json_encode($kel_umur_penduduk->pluck('jumlah_orang')) !!}, 
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.6)', 
+                  'rgba(54, 162, 235, 0.6)', 
+                  'rgba(255, 206, 86, 0.6)', 
+                  'rgba(75, 192, 192, 0.6)',
+                  'rgba(153, 102, 255, 0.6)',
+                  'rgba(0, 255, 255, 0.6)'
+                ]
+              }]
+            }
+          });
+
+		  const ctx4 = document.getElementById('Chart4');
+          new Chart(ctx4, {
+            type: 'bar',
+            data: {
+              labels: {!! json_encode($pekerjaan_penduduk->pluck('pekerjaan')) !!},
+              datasets: [{
+                label: 'Jumlah Pekerja',
+                data: {!! json_encode($pekerjaan_penduduk->pluck('jumlah_pekerja')) !!},
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
 </script>
 </html>
