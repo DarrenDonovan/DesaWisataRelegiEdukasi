@@ -76,3 +76,7 @@ Route::post('admin/updateBerita/{id}', [AdminController::class, 'updateBerita'])
 Route::get('admin/deleteBerita/{id}', [AdminController::class, 'deleteBerita'])->name('admin.deleteBerita');
 
 Route::post('admin/updateJumlahPenduduk/{id}', [AdminController::class, 'updateJumlahPenduduk'])->name('admin.updateJumlahPenduduk');
+
+Route::post('admin/updateKelompokUmur/{id}', [AdminController::class, 'updateKelompokUmur'])->name('admin.updateKelompokUmur');
+
+Route::post('admin/updatePekerjaanPenduduk/{id}', [AdminController::class, 'updatePekerjaanPenduduk'])->name('admin.updatePekerjaanPenduduk');
