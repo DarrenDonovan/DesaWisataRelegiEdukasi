@@ -7,6 +7,7 @@ php artisan db:seed --class=UserSeeder
     jenis_wilayah VARCHAR(50) NOT NULL,
     luas_wilayah DOUBLE NOT NULL,
     jumlah_penduduk INT NOT NULL,
+    jumlah_dusun INT NOT NULL,
     gambar_wilayah VARCHAR(255) NOT NULL
 );
 
@@ -119,23 +120,22 @@ php artisan db:seed --class=UserSeeder
 
 
 **
-INSERT INTO wilayah (id_wilayah, nama_wilayah, jenis_wilayah, luas_wilayah, jumlah_penduduk, gambar_wilayah) VALUES
-(1, 'Desa Pasir Bolang', 'Desa', 429, 6055, 'profildesa/petakecamatan.png'),
-(2, 'Desa Cisereh', 'Desa', 318, 6256, 'profildesa/petakecamatan.png'),
-(3, 'Desa Pasir Nangka', 'Desa', 392, 25236, 'profildesa/petakecamatan.png'),
-(4, 'Desa Pematang', 'Desa', 268, 10720, 'profildesa/petakecamatan.png'),
-(5, 'Desa Pete', 'Desa', 404, 14915, 'profildesa/petakecamatan.png'),
-(6, 'Desa Tegalsari', 'Desa', 356, 5012, 'profildesa/petakecamatan.png'),
-(7, 'Desa Mata Gara', 'Desa', 390, 12141, 'profildesa/petakecamatan.png'),
-(8, 'Desa Marga Sari', 'Desa', 350, 15037, 'profildesa/petakecamatan.png'),
-(9, 'Desa Sodong', 'Desa', 410, 11278, 'profildesa/petakecamatan.png'),
-(10, 'Desa Tapos', 'Desa', 355, 9342, 'profildesa/petakecamatan.png'),
-(11, 'Desa Bantar Panjang', 'Desa', 578, 7651, 'profildesa/petakecamatan.png'),
-(12, 'Desa Cileles', 'Desa', 434, 8687, 'profildesa/petakecamatan.png'),
-(13, 'Kecamatan Tigaraksa', 'Kecamatan', 5279, 157113, 'profildesa/petakecamatan.png'),
-(14, 'Kelurahan Kadu Agung', 'Kelurahan', 284, 8147, 'profildesa/petakecamatan.png'),
-(15, 'Kelurahan Tigaraksa', 'Kelurahan', 311, 16636, 'profildesa/petakecamatan.png');
-
+INSERT INTO wilayah (id_wilayah, nama_wilayah, jenis_wilayah, luas_wilayah, jumlah_penduduk, jumlah_dusun, gambar_wilayah) VALUES
+(1, 'Desa Pasir Bolang', 'Desa', 429, 6055, 3, 'profildesa/petakecamatan.png'),
+(2, 'Desa Cisereh', 'Desa', 318, 6256, 4, 'profildesa/petakecamatan.png'),
+(3, 'Desa Pasir Nangka', 'Desa', 392, 25236, 5, 'profildesa/petakecamatan.png'),
+(4, 'Desa Pematang', 'Desa', 268, 10720, 2, 'profildesa/petakecamatan.png'),
+(5, 'Desa Pete', 'Desa', 404, 14915, 3, 'profildesa/petakecamatan.png'),
+(6, 'Desa Tegalsari', 'Desa', 356, 5012, 2, 'profildesa/petakecamatan.png'),
+(7, 'Desa Mata Gara', 'Desa', 390, 12141, 4, 'profildesa/petakecamatan.png'),
+(8, 'Desa Marga Sari', 'Desa', 350, 15037, 5, 'profildesa/petakecamatan.png'),
+(9, 'Desa Sodong', 'Desa', 410, 11278, 3, 'profildesa/petakecamatan.png'),
+(10, 'Desa Tapos', 'Desa', 355, 9342, 2, 'profildesa/petakecamatan.png'),
+(11, 'Desa Bantar Panjang', 'Desa', 578, 7651, 4, 'profildesa/petakecamatan.png'),
+(12, 'Desa Cileles', 'Desa', 434, 8687, 3, 'profildesa/petakecamatan.png'),
+(13, 'Kecamatan Tigaraksa', 'Kecamatan', 5279, 157113, 10, 'profildesa/petakecamatan.png'),
+(14, 'Kelurahan Kadu Agung', 'Kelurahan', 284, 8147, 2, 'profildesa/petakecamatan.png'),
+(15, 'Kelurahan Tigaraksa', 'Kelurahan', 311, 16636, 3, 'profildesa/petakecamatan.png');
 
 
 **

@@ -118,6 +118,11 @@ class UserController extends Controller
             ->whereIn('jenis_wilayah', ['Desa', 'Kelurahan'])
             ->get();
 
+        $jumlah_dusun = DB::table('wilayah')
+            ->select('wilayah.nama_wilayah', 'wilayah.jumlah_dusun')
+            ->whereIn('jenis_wilayah', ['Desa', 'Kelurahan'])
+            ->get();
+
         $agama_kecamatan = DB::table('agama_per_wilayah')
             ->join('agama', 'agama_per_wilayah.id_agama','=', 'agama.id_agama')
             ->join('wilayah', 'agama_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
@@ -145,7 +150,7 @@ class UserController extends Controller
             ->where('jenis_wilayah', 'Kecamatan')
             ->get();
 
-        return view('infografis', compact('wilayah', 'jumlah_penduduk', 'agama_kecamatan', 'wilayahNoKec', 'kel_umur_kecamatan', 'pekerjaan_kecamatan', 'pendidikan_kecamatan'));
+        return view('infografis', compact('wilayah', 'jumlah_penduduk', 'agama_kecamatan', 'wilayahNoKec', 'kel_umur_kecamatan', 'pekerjaan_kecamatan', 'pendidikan_kecamatan', 'jumlah_dusun'));
     }
 
     public function maps(){

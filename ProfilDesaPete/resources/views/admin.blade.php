@@ -749,10 +749,11 @@
 
 					<!-- Edit Chart Data -->
 					<!-- Barchart Jumlah Penduduk -->
-					@if(Auth::check() && Auth::user()->role==='superadmin')
 					<div class="d-flex justify-content-between align-items-center">
 						<h4 class="page-title mt-1">Infografis</h4>
 					</div>	
+					@if(Auth::check() && Auth::user()->role==='superadmin')
+					<!-- Chart Jumlah Penduduk di Kecamatan -->
 						<div class="row">
 							<div class="col">
 								<div class="card">
@@ -805,6 +806,74 @@
 																			<div class="form-group">
 																				<label for="jumlah_penduduk">Jumlah Penduduk</label>
 																				<input type="text" class="form-control" name="jumlah_penduduk" id="jumlah_penduduk" value="{{ $jumlahPenduduk->jumlah_penduduk }}" required>
+                															</div>
+                															<button type="submit" class="btn btn-primary form-control">Save changes</button>
+																		</form>
+														            </div>
+														        </div>
+														    </div>
+														</div>
+													@endforeach
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Chart Jumlah Dusun di Kecamatan -->
+						<div class="row">
+							<div class="col">
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">BarChart Jumlah Dusun Kecamatan Tigaraksa</h4>
+									</div>
+									<div class="card-body">
+										<canvas id="Chart2"></canvas>
+									</div>
+								</div>
+							</div>
+						<div class="row">
+							<div class="col">
+								<div class="card">
+									<div class="card-body">
+										<table class="table table-striped mt-3">
+											<tbody>
+        										<tr>
+													<th>Nama Dusun</th>
+													@foreach ($jumlah_dusun as $jumlahDusun)
+            											<td>{{ $jumlahDusun->nama_wilayah }}</td>
+													@endforeach
+												</tr>
+												<tr>
+													<th>Jumlah Dusun</th>
+            										@foreach ($jumlah_dusun as $jumlahDusun)
+            											<td>{{ $jumlahDusun->jumlah_dusun }}</td>
+													@endforeach
+												</tr>
+												<tr>
+													<th>Action</th>
+            										@foreach ($jumlah_dusun as $jumlahDusun)
+            											<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_JumlahDusun{{$jumlahDusun->id_wilayah}}">Edit</a></td>
+														</td>
+														<!-- Modal Edit Jumlah Penduduk -->
+														<div class="modal fade" id="modalUpdate_JumlahDusun{{$jumlahDusun->id_wilayah}}" tabindex="-1" aria-labelledby="modalTitle{{$jumlahDusun->id_wilayah}}" aria-hidden="true">
+   															<div class="modal-dialog">
+        														<div class="modal-content">
+            														<div class="modal-header">
+																		<h5 class="modal-title" id="modalTitle">Edit Jumlah Dusun</h5>
+																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            														</div>
+            														<div class="modal-body">
+																		<form action="{{ route('admin.updateJumlahDusun', $jumlahDusun->id_wilayah) }}" method="post" enctype="multipart/form-data">
+																			@csrf
+																			<div class="form-group">
+																				<label for="nama_wilayah">Nama Wilayah</label>
+																				<input type="text" class="form-control" name="nama_wilayah" id="nama_wilayah" value="{{ $jumlahDusun->nama_wilayah }}" disabled>
+																			</div>
+																			<div class="form-group">
+																				<label for="jumlah_dusun">Jumlah Dusun</label>
+																				<input type="text" class="form-control" name="jumlah_dusun" id="jumlah_dusun" value="{{ $jumlahDusun->jumlah_dusun }}" required>
                 															</div>
                 															<button type="submit" class="btn btn-primary form-control">Save changes</button>
 																		</form>
@@ -950,6 +1019,134 @@
 								</div>
 							</div>
 
+							<!-- Sebaran Penduduk berdasarkan agama -->
+							<div class="col-md-6">
+								<div class="card">
+									<div class="card-header ">
+										<h4 class="card-title">Sebaran Penduduk Berdasarkan Agama</h4>
+									</div>
+									<div class="card-body">
+										<canvas id="Chart5"></canvas>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="card">
+									<div class="card-header ">
+										<h4 class="card-title">Tabel Data Penduduk Berdasarkan Pekerjaan</h4>
+									</div>
+									<div class="card-body">
+										<table class="table table-striped mt-3">
+											<thead>
+												<tr>
+													<th scope="col">Agama</th>
+													<th scope="col">Jumlah Penganut</th>
+													<th scope="col">Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												@foreach($agama_penduduk as $agamaPenduduk)
+        										<tr>
+            										<td>{{ $agamaPenduduk->agama }}</td>
+													<td>{{ $agamaPenduduk->jumlah_penganut }}</td>
+													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_agamaPenduduk{{$agamaPenduduk->id}}">Edit</a></td>
+													<!-- Modal Edit Kelompok Umur -->
+													<div class="modal fade" id="modalUpdate_agamaPenduduk{{$agamaPenduduk->id}}" tabindex="-1" aria-labelledby="modalTitle{{$agamaPenduduk->id}}" aria-hidden="true">
+   														<div class="modal-dialog">
+        													<div class="modal-content">
+            													<div class="modal-header">
+																	<h5 class="modal-title" id="modalTitle">Edit Agama Penduduk</h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            													</div>
+            													<div class="modal-body">
+																	<form action="{{ route('admin.updateAgamaPenduduk', $agamaPenduduk->id) }}" method="post" enctype="multipart/form-data">
+																		@csrf
+																		<div class="form-group">
+																			<label for="agama">Agama</label>
+																			<input type="text" class="form-control" name="agama" id="agama" value="{{ $agamaPenduduk->agama}}" disabled>
+																		</div>
+																		<div class="form-group">
+																			<label for="jumlah_penganut">Jumlah Penganut</label>
+																			<input type="text" class="form-control" name="jumlah_penganut" id="jumlah_penganut" value="{{ $agamaPenduduk->jumlah_penganut }}" required>
+                														</div>
+                														<button type="submit" class="btn btn-primary form-control">Save changes</button>
+																	</form>
+													            </div>
+													        </div>
+													    </div>
+													</div>
+												</tr>
+												@endforeach
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+
+							<!-- Sebaran Penduduk berdasarkan pendidikan -->
+							<div class="col-md-6">
+								<div class="card">
+									<div class="card-header ">
+										<h4 class="card-title">Sebaran Penduduk Berdasarkan Pendidikan</h4>
+									</div>
+									<div class="card-body">
+										<canvas id="Chart6"></canvas>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="card">
+									<div class="card-header ">
+										<h4 class="card-title">Tabel Data Penduduk Berdasarkan Pendidikan</h4>
+									</div>
+									<div class="card-body">
+										<table class="table table-striped mt-3">
+											<thead>
+												<tr>
+													<th scope="col">Tingkat Pendidikan</th>
+													<th scope="col">Jumlah Orang</th>
+													<th scope="col">Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												@foreach($pendidikan_penduduk as $pendidikanPenduduk)
+        										<tr>
+            										<td>{{ $pendidikanPenduduk->pendidikan }}</td>
+													<td>{{ $pendidikanPenduduk->jumlah_orang }}</td>
+													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_pendidikanPenduduk{{$pendidikanPenduduk->id}}">Edit</a></td>
+													<!-- Modal Edit Kelompok Umur -->
+													<div class="modal fade" id="modalUpdate_pendidikanPenduduk{{$pendidikanPenduduk->id}}" tabindex="-1" aria-labelledby="modalTitle{{$pendidikanPenduduk->id}}" aria-hidden="true">
+   														<div class="modal-dialog">
+        													<div class="modal-content">
+            													<div class="modal-header">
+																	<h5 class="modal-title" id="modalTitle">Edit Pendidikan Penduduk</h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            													</div>
+            													<div class="modal-body">
+																	<form action="{{ route('admin.updatePendidikanPenduduk', $pendidikanPenduduk->id) }}" method="post" enctype="multipart/form-data">
+																		@csrf
+																		<div class="form-group">
+																			<label for="pendidikan">Tingkat Pendidikan</label>
+																			<input type="text" class="form-control" name="pendidikan" id="pendidikan" value="{{ $pendidikanPenduduk->pendidikan}}" disabled>
+																		</div>
+																		<div class="form-group">
+																			<label for="jumlah_penduduk">Jumlah Penduduk</label>
+																			<input type="text" class="form-control" name="jumlah_penduduk" id="jumlah_penduduk" value="{{ $pendidikanPenduduk->jumlah_orang }}" required>
+                														</div>
+                														<button type="submit" class="btn btn-primary form-control">Save changes</button>
+																	</form>
+													            </div>
+													        </div>
+													    </div>
+													</div>
+												</tr>
+												@endforeach
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+
 						</div>
 					
 
@@ -1055,6 +1252,26 @@
 	  }
 	});
 
+	const ctx2 = document.getElementById('Chart2');
+          new Chart(ctx2, {
+            type: 'bar',
+            data: {
+              labels: {!! json_encode($jumlah_dusun->pluck('nama_wilayah')) !!},
+              datasets: [{
+                label: 'Jumlah Penduduk',
+                data: {!! json_encode($jumlah_dusun->pluck('jumlah_dusun')) !!},
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+
 	const ctx3 = document.getElementById('Chart3');
           new Chart(ctx3, {
             type: 'doughnut',
@@ -1094,5 +1311,46 @@
               }
             }
           });
+
+		  const ctx5 = document.getElementById('Chart5');
+          new Chart(ctx5, {
+            type: 'pie',
+            data: {
+              labels: {!! json_encode($agama_penduduk->pluck('agama')) !!}, 
+              datasets: [{
+                label: 'Jumlah Penganut',
+                data: {!! json_encode($agama_penduduk->pluck('jumlah_penganut')) !!}, 
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.6)', 
+                  'rgba(54, 162, 235, 0.6)', 
+                  'rgba(255, 206, 86, 0.6)', 
+                  'rgba(75, 192, 192, 0.6)',
+                  'rgba(153, 102, 255, 0.6)',
+                  'rgba(0, 255, 255, 0.6)'
+                ]
+              }]
+            }
+          });
+
+		  const ctx6 = document.getElementById('Chart6');
+          new Chart(ctx6, {
+            type: 'bar',
+            data: {
+              labels: {!! json_encode($pendidikan_penduduk->pluck('pendidikan')) !!},
+              datasets: [{
+                label: 'Jumlah Orang',
+                data: {!! json_encode($pendidikan_penduduk->pluck('jumlah_orang')) !!},
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+
 </script>
 </html>

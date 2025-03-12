@@ -38,48 +38,7 @@
     <link href="{{ url('css/style.css') }}" rel="stylesheet" />
     <link href="{{ url('css/leaflet.css') }}" rel="stylesheet" />
 
-    <style>    
-    .mapBantar-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        margin-top: 50px;
-        position: relative;
-    }
-
-    /* Styling  tampilan peta */
-    #mapBantar {
-        width: 100%; /* Lebarnya */
-        height: 600px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Styling tombol filter agar berada di pojok kiri atas peta */
-    /* .filter-container {
-        position: absolute;
-        top: 10px;
-        left: 20px;
-        background: white;
-        padding: 10px 15px;
-        border-radius: 5px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        z-index: 1000;
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-    }
-
-    .filter-container select {
-        padding: 5px 10px;
-        font-size: 14px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-        cursor: pointer;
-        margin-left: 8px;
-    } */
-  
+    <style>  
       /* CARD WISATA */
         .containerWisata {
             max-width: 1400px;
@@ -124,6 +83,8 @@
             background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
             text-align: left;
         }
+
+        /* UMKM CSS */
         .containerUMKM {
             max-width: 1400px;
             margin: auto;
@@ -167,11 +128,61 @@
             background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
             text-align: left;
         }
+
+        .umkm-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            text-align: center;
+
+            /* Efek transisi */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        .umkm-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+
+            /* Efek transisi */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+
+        /* Saat popup aktif */
+        .umkm-popup.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .umkm-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .close-btn {
+            background: red;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
     </style>
   </head>
 
     <body>
-
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -277,6 +288,137 @@
     </div>
     <!-- Profil end -->
 
+    <!-- Infografis start -->
+    <div class="container-fluid bg-light service py-5">
+      <div class="container py-5">
+          <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+              <h5 class="section-title px-3">Demografi</h5>
+              <h1 class="mb-0">Penduduk</h1>
+          </div>
+          <div class="row g-4">
+              <div class="col-lg-6">
+                  <div class="row g-4">
+                      <div class="col-12">
+                          <a href="#berdasarkan-dusun" class="service-content-inner d-flex justify-content-end align-items-center bg-white border border-primary rounded p-4 pe-0">
+                              <div class="service-content text-end">
+                                  <h5 class="mb-4">Berdasarkan Dusun</h5>
+                                  <p class="mb-0">Dolor sit amet consectetur adipisicing elit...</p>
+                              </div>
+                              <div class="service-icon p-4">
+                                  <i class="fa fa-hotel fa-4x text-primary"></i>
+                              </div>
+                          </a>
+                      </div>
+                      
+                      <div class="col-12">
+                          <a href="#berdasarkan-umur" class="service-content-inner d-flex justify-content-end align-items-center bg-white border border-primary rounded p-4 pe-0">
+                              <div class="service-content text-end">
+                                  <h5 class="mb-4">Berdasarkan Kelompok Umur</h5>
+                                  <p class="mb-0">Dolor sit amet consectetur adipisicing elit...</p>
+                              </div>
+                              <div class="service-icon p-4">
+                                  <i class="fa fa-user fa-4x text-primary"></i>
+                              </div>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-6">
+                  <div class="row g-4">
+                      <div class="col-12">
+                          <a href="#berdasarkan-pekerjaan" class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
+                              <div class="service-icon p-4">
+                                  <i class="fa fa-globe fa-4x text-primary"></i>
+                              </div>
+                              <div class="service-content">
+                                  <h5 class="mb-4">Berdasarkan Pekerjaan</h5>
+                                  <p class="mb-0">Dolor sit amet consectetur adipisicing elit...</p>
+                              </div>
+                          </a>
+                      </div>
+                      <div class="col-12">
+                          <a href="#berdasarkan-agama" class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
+                              <div class="service-icon p-4">
+                                  <i class="fa fa-hotel fa-4x text-primary"></i>
+                              </div>
+                              <div class="service-content">
+                                  <h5 class="mb-4">Berdasarkan Agama</h5>
+                                  <p class="mb-0">Dolor sit amet consectetur adipisicing elit...</p>
+                              </div>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+  
+          <div class="d-flex justify-content-center mt-4">
+              <a href="#berdasarkan-pendidikan" class="service-content-inner d-flex align-items-center justify-content-center bg-white border border-primary rounded p-4" style="width: 50%;">
+                  <div class="service-icon p-4">
+                      <i class="fa fa-user fa-4x text-primary"></i>
+                  </div>
+                  <div class="service-content text-center">
+                      <h5 class="mb-4">Berdasarkan Pendidikan</h5>
+                      <p class="mb-0">Dolor sit amet consectetur adipisicing elit...</p>
+                  </div>
+              </a>
+          </div>  
+      </div>
+  </div>
+
+   <!--  Berdasarkan Dusun-->
+  <div class="container-fluid testimonial py-5" id="berdasarkan-dusun">
+      <div class="container py-5">
+          <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+              <h1 class="mb-0">Berdasarkan Dusun</h1>
+          </div>
+      </div>
+  </div>
+  <!-- END -->
+
+  <!-- Berdasarkan kelompok umur  -->
+  <div class="container-fluid testimonial py-5" id="berdasarkan-umur">
+      <div class="container py-5">
+          <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+              <h1 class="mb-0">Berdasarkan Kelompok Umur</h1>
+          </div>
+      </div>
+  </div>
+  <!-- END -->
+
+   <!-- Berdasarkan pekerjaan  -->
+   <div class="container-fluid testimonial py-5" id="berdasarkan-pekerjaan">
+      <div class="container py-5">
+          <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+              <h1 class="mb-0">Berdasarkan Pekerjaan</h1>
+          </div>
+      </div>
+  </div>
+  <!-- END -->
+
+  <!-- Berdasarkan agama  -->
+  <div class="container-fluid testimonial py-5" id="berdasarkan-agama">
+      <div class="container py-5">
+          <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+              <h1 class="mb-0">Berdasarkan Agama</h1>
+          </div>
+      </div>
+  </div>
+  <!-- END -->
+
+  <!-- Berdasarkan pendidikan  -->
+  <div class="container-fluid testimonial py-5" id="berdasarkan-pendidikan">
+      <div class="container py-5">
+          <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+              <h1 class="mb-0">Berdasarkan Pendidikan</h1>
+          </div>
+      </div>
+  </div>
+  <!-- END -->
+
+  <!-- Infografis END -->
+
+
+
     <!-- Wisata start -->
     <div class="mx-auto text-center mb-5" style="max-width: 900px; margin-top: 100px;">
       <h5 class="section-title px-3"> Wisata </h5>
@@ -319,83 +461,41 @@
   </div>
   <div class="containerUMKM" style="margin-bottom: 100px;"> 
     <div class="gridUMKM">
-        <div class="cardU">
+        <div class="cardU" onclick="showUmkmPopup('Jajanan Pasar', 'Aneka jajanan pasar khas daerah dengan cita rasa tradisional.')">
             <img src="/img/jajananPasar.jpg" alt="jajananPasar">
             <div class="info">Jajanan Pasar</div>
         </div>
-        <div class="cardU">
+        <div class="cardU" onclick="showUmkmPopup('Kerajinan Tangan', 'Kerajinan tangan khas daerah dari bahan alami.')">
             <img src="/img/kerajinanRotan.jpg" alt="kerajinanRotan">
             <div class="info">Kerajinan Tangan</div>
         </div>
-        <div class="cardU">
+        <div class="cardU" onclick="showUmkmPopup('Kue Tradisional', 'Aneka kue tradisional yang lezat dan khas.')">
             <img src="/img/kueTradisional.jpg" alt="kueTradisional">
             <div class="info">Kue Tradisional</div>
         </div>
-        <div class="cardU">
+        <div class="cardU" onclick="showUmkmPopup('Oleh-oleh Khas Daerah', 'Berbagai oleh-oleh khas daerah yang bisa dibawa pulang.')">
             <img src="/img/olehOleh.jpg" alt="olehOleh">
             <div class="info">Oleh-oleh Khas Daerah</div>
         </div>
-        <div class="cardU">
+        <div class="cardU" onclick="showUmkmPopup('Anyaman', 'Produk anyaman dari bahan alami berkualitas tinggi.')">
             <img src="/img/anyaman.jpg" alt="anyaman">
             <div class="info">Anyaman</div>
         </div>
-        <div class="cardU">
+        <div class="cardU" onclick="showUmkmPopup('Anyaman', 'Produk anyaman dari bahan alami berkualitas tinggi.')">
             <img src="/img/gorengan.jpg" alt="gorengan">
             <div class="info">Gorengan</div>
         </div>
     </div>
 </div>
 
-    <!-- PETA DESA -->
-    <!-- <div class="container-fluid packages py-5">
-      <div class="container py-5">
-          <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-              <h5 class="section-title px-3">Peta Desa</h5>
-              <h1 class="mb-0">Menampilkan Peta Desa Bantar Panjang Dengan Interest Point</h1>
-          </div>
-          <select id="categoryFilterBantar">
-              <option value="all">Semua</option>
-              <option value="Wisata">Wisata</option>
-              <option value="Kuliner">Kuliner</option>
-              <option value="Penginapan">Penginapan</option>
-          </select>
-          <div id="mapBantar"></div>
-          
-          <br>
-      </div>
-  </div> -->
-   
-    <!-- PETA END -->
+<!-- POPUP -->
+<div class="umkm-overlay" id="umkm-overlay" onclick="closeUmkmPopup()"></div>
+<div class="umkm-popup" id="umkm-popup">
+    <h2 id="umkm-popup-title"></h2>
+    <p id="umkm-popup-content"></p>
+    <button class="close-btn" onclick="closeUmkmPopup()">Tutup</button>
+</div>
 
-    <!-- Subscribe Start -->
-    <div class="container-fluid subscribe py-5">
-      <div class="container text-center py-5">
-        <div class="mx-auto text-center" style="max-width: 900px">
-          <h5 class="subscribe-title px-3">Subscribe</h5>
-          <h1 class="text-white mb-4">Our Newsletter</h1>
-          <p class="text-white mb-5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-            tempore nam, architecto doloremque velit explicabo? Voluptate sunt
-            eveniet fuga eligendi! Expedita laudantium fugiat corrupti eum cum
-            repellat a laborum quasi.
-          </p>
-          <div class="position-relative mx-auto">
-            <input
-              class="form-control border-primary rounded-pill w-100 py-3 ps-4 pe-5"
-              type="text"
-              placeholder="Your email"
-            />
-            <button
-              type="button"
-              class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 px-4 mt-2 me-2"
-            >
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Subscribe End -->
 
     <!-- Footer Start -->
     <div class="container-fluid footer py-5">
@@ -404,44 +504,22 @@
           <div class="col-md-6 col-lg-6 col-xl-3">
             <div class="footer-item d-flex flex-column">
               <h4 class="mb-4 text-white">Hubungi Kami</h4>
-              <a href=""
-                ><i class="fas fa-home me-2"></i> 123 Street, New York, USA</a
-              >
-              <a href=""
-                ><i class="fas fa-envelope me-2"></i> info@example.com</a
-              >
+              <a href=""><i class="fas fa-home me-2"></i> 123 Street, New York, USA</a>
+              <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
               <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
-              <a href="" class="mb-3"
-                ><i class="fas fa-print me-2"></i> +012 345 67890</a
-              >
+              <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
               <div class="d-flex align-items-center">
                 <i class="fas fa-share fa-2x text-white me-2"></i>
-                <a
-                  class="btn-square btn btn-primary rounded-circle mx-1"
-                  href=""
-                  ><i class="fab fa-facebook-f"></i
-                ></a>
-                <a
-                  class="btn-square btn btn-primary rounded-circle mx-1"
-                  href=""
-                  ><i class="fab fa-twitter"></i
-                ></a>
-                <a
-                  class="btn-square btn btn-primary rounded-circle mx-1"
-                  href=""
-                  ><i class="fab fa-instagram"></i
-                ></a>
-                <a
-                  class="btn-square btn btn-primary rounded-circle mx-1"
-                  href=""
-                  ><i class="fab fa-linkedin-in"></i
-                ></a>
+                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
+                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
+                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
               </div>
             </div>
           </div>
-            </div>
-          </div>
         </div>
+      </div>
+    </div>
     <!-- Footer End -->
         
         <!-- Copyright Start -->
@@ -482,96 +560,23 @@
 
     </body>
     <script>
- // Inisialisasi Peta
- var mapBantar = L.map('mapBantar').setView([-6.295601184925948, 106.45126923990308], 15);
+    function showUmkmPopup(title, content) {
+    let popup = document.getElementById('umkm-popup');
+    let overlay = document.getElementById('umkm-overlay');
 
-// Definisi tile layer (peta jalan dan peta satelit)
-var streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
-});
+    document.getElementById('umkm-popup-title').innerText = title;
+    document.getElementById('umkm-popup-content').innerText = content;
 
-var satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: '&copy; Esri & Contributors'
-});
-
-// Tambahkan layer default (peta jalan)
-streetLayer.addTo(mapBantar);
-
-// Kontrol untuk memilih peta
-var baseMaps = {
-    "Peta Jalan": streetLayer,
-    "Peta Satelit": satelliteLayer
-};
-
-L.control.layers(baseMaps).addTo(mapBantar);
-
-// Definisi ikon custom untuk kategori
-var iconWisata = L.icon({
-    iconUrl: 'img/marker-icon-2x.png',
-    iconSize: [23, 32], // Ukuran ikon
-    iconAnchor: [16, 32], // Posisi titik ikon
-    popupAnchor: [0, -32]
-});
-
-var iconKuliner = L.icon({
-    iconUrl: 'img/marker-icon-2x.png',
-    iconSize: [23, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32]
-});
-
-var iconPenginapan = L.icon({
-    iconUrl: 'img/marker-icon-2x.png',
-    iconSize: [23, 32],
-    iconAnchor: [16, 32],
-    popupAnchor: [0, -32]
-});
-
-// Data Interest Points dengan kategori
-var interestPoints = [
-    { name: "Wisata 1", lat: -6.297656, lon: 106.441847, category: "Wisata", icon: iconWisata },
-    { name: "Wisata 2", lat: -6.301753, lon: 106.459986, category: "Wisata", icon: iconWisata },
-    { name: "Pasar Bantar Panjang", lat: -6.292268, lon: 106.441476, category: "Kuliner", icon: iconKuliner },
-    { name: "RM Ayam Geprek", lat: -6.287349, lon: 106.449960, category: "Kuliner", icon: iconKuliner },
-    { name: "Hotel Bintang", lat: -6.299345, lon: 106.451763, category: "Penginapan", icon: iconPenginapan },
-    { name: "Homestay Desa", lat: -6.293872, lon: 106.444982, category: "Penginapan", icon: iconPenginapan }
-];
-
-// Array untuk menyimpan marker
-var markers = [];
-
-// Fungsi untuk menampilkan marker berdasarkan kategori
-function addMarkers(category) {
-    // Hapus semua marker sebelum menambahkan yang baru
-    markers.forEach(marker => mapBantar.removeLayer(marker));
-    markers = [];
-
-    interestPoints.forEach(point => {
-        if (category === "all" || point.category === category) {
-            var marker = L.marker([point.lat, point.lon], { icon: point.icon }).addTo(mapBantar);
-
-            // Tooltip menggantikan Popup agar tidak ada tombol X dan menghilang otomatis
-            marker.bindTooltip(`<b>${point.name}</b><br>${point.category}`, {
-                permanent: false,
-                direction: "top",
-                opacity: 0.9
-            });
-
-            markers.push(marker);
-        }
-    });
+    popup.classList.add('show');
+    overlay.classList.add('show');
 }
 
-// Tambahkan semua marker pertama kali
-addMarkers("all");
+function closeUmkmPopup() {
+    let popup = document.getElementById('umkm-popup');
+    let overlay = document.getElementById('umkm-overlay');
 
-// Event untuk filter berdasarkan kategori
-var filterDropdown = document.getElementById("categoryFilterBantar");
-if (filterDropdown) {
-    filterDropdown.addEventListener("change", function () {
-        addMarkers(this.value);
-    });
-};
-
-  </script>
+    popup.classList.remove('show');
+    overlay.classList.remove('show');
+}
+</script>
 </html>

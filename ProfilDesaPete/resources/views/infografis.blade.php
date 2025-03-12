@@ -350,6 +350,27 @@
           });
 
 
+          const ctx2 = document.getElementById('Chart2');
+          new Chart(ctx2, {
+            type: 'bar',
+            data: {
+              labels: {!! json_encode($jumlah_dusun->pluck('nama_wilayah')) !!},
+              datasets: [{
+                label: 'Jumlah Penduduk',
+                data: {!! json_encode($jumlah_dusun->pluck('jumlah_dusun')) !!},
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+
+
           const ctx3 = document.getElementById('Chart3');
           new Chart(ctx3, {
             type: 'doughnut',
