@@ -118,6 +118,14 @@ php artisan db:seed --class=UserSeeder
     FOREIGN KEY (id_wilayah) REFERENCES wilayah(id_wilayah)
 );
 
+- CREATE TABLE dusun_per_wilayah (
+    id_dusun INT PRIMARY KEY,
+    id_wilayah INT NOT NULL,
+    nama_dusun VARCHAR(255) NOT NULL,
+    jumlah_penduduk INT NOT NULL,
+    FOREIGN KEY (id_wilayah) REFERENCES wilayah(id_wilayah)
+);
+
 
 **
 INSERT INTO wilayah (id_wilayah, nama_wilayah, jenis_wilayah, luas_wilayah, jumlah_penduduk, jumlah_dusun, gambar_wilayah) VALUES
@@ -320,5 +328,79 @@ INSERT INTO pendidikan_per_wilayah (id, id_pendidikan, id_wilayah, jumlah_orang)
 (6, 6, 13, 2000),  
 (7, 7, 13, 500),   
 (8, 8, 13, 100);   
+
+
+**
+INSERT INTO dusun_per_wilayah (id_dusun, id_wilayah, nama_dusun, jumlah_penduduk) VALUES
+(1, 1, 'Dusun A', 1500),
+(2, 1, 'Dusun B', 2000),
+(3, 1, 'Dusun C', 2555),
+
+(4, 2, 'Dusun D', 1800),
+(5, 2, 'Dusun E', 2200),
+(6, 2, 'Dusun F', 2256),
+(7, 2, 'Dusun G', 1000),
+
+(8, 3, 'Dusun H', 5000),
+(9, 3, 'Dusun I', 6000),
+(10, 3, 'Dusun J', 7000),
+(11, 3, 'Dusun K', 4500),
+(12, 3, 'Dusun L', 2750),
+
+(13, 4, 'Dusun M', 5200),
+(14, 4, 'Dusun N', 5520),
+
+(15, 5, 'Dusun O', 7000),
+(16, 5, 'Dusun P', 7915),
+(17, 5, 'Dusun Q', 1000),
+
+(18, 6, 'Dusun R', 2500),
+(19, 6, 'Dusun S', 2512),
+
+(20, 7, 'Dusun T', 3200),
+(21, 7, 'Dusun U', 4000),
+(22, 7, 'Dusun V', 4941),
+(23, 7, 'Dusun W', 1000),
+
+(24, 8, 'Dusun X', 3000),
+(25, 8, 'Dusun Y', 3500),
+(26, 8, 'Dusun Z', 4000),
+(27, 8, 'Dusun AA', 4537),
+(28, 8, 'Dusun AB', 2000),
+
+(29, 9, 'Dusun AC', 3750),
+(30, 9, 'Dusun AD', 4000),
+(31, 9, 'Dusun AE', 3528),
+
+(32, 10, 'Dusun AF', 4500),
+(33, 10, 'Dusun AG', 4842),
+
+(34, 11, 'Dusun AH', 2800),
+(35, 11, 'Dusun AI', 3200),
+(36, 11, 'Dusun AJ', 1651),
+(37, 11, 'Dusun AK', 1000),
+
+(38, 12, 'Dusun AL', 4000),
+(39, 12, 'Dusun AM', 4687),
+(40, 12, 'Dusun AN', 1000),
+
+(41, 13, 'Dusun AO', 10000),
+(42, 13, 'Dusun AP', 15000),
+(43, 13, 'Dusun AQ', 20000),
+(44, 13, 'Dusun AR', 12000),
+(45, 13, 'Dusun AS', 13000),
+(46, 13, 'Dusun AT', 11000),
+(47, 13, 'Dusun AU', 17000),
+(48, 13, 'Dusun AV', 18000),
+(49, 13, 'Dusun AW', 8000),
+(50, 13, 'Dusun AX', 9000),
+
+(51, 14, 'Dusun AY', 4000),
+(52, 14, 'Dusun AZ', 4147),
+
+(53, 15, 'Dusun BA', 6000),
+(54, 15, 'Dusun BB', 7036),
+(55, 15, 'Dusun BC', 3600);
+
 
 

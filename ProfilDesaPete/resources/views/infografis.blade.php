@@ -356,8 +356,8 @@
             data: {
               labels: {!! json_encode($jumlah_dusun->pluck('nama_wilayah')) !!},
               datasets: [{
-                label: 'Jumlah Penduduk',
-                data: {!! json_encode($jumlah_dusun->pluck('jumlah_dusun')) !!},
+                label: 'Jumlah Dusun',
+                data: {!! json_encode($jumlah_dusun->pluck('total_dusun')) !!},
                 borderWidth: 1
               }]
             },
