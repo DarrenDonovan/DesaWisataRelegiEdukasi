@@ -890,6 +890,72 @@
 							</div>
 						</div>
 						@endif
+
+						@if(Auth::check() && Auth::user()->role==='admin')
+						<!-- Chart Jumlah Penduduk di Dusun setiap wilayah -->
+						<div class="col-md-6">
+								<div class="card">
+									<div class="card-header ">
+										<h4 class="card-title">BarChart Jumlah Penduduk Dusun di {{ $wilayaheach->nama_wilayah }}</h4>
+									</div>
+									<div class="card-body">
+										<canvas id="Chart7"></canvas>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="card">
+									<div class="card-header ">
+										<h4 class="card-title">Tabel Data Jumlah Penduduk Dusun di {{ $wilayaheach->nama_wilayah }}</h4>
+									</div>
+									<div class="card-body">
+										<table class="table table-striped mt-3">
+											<thead>
+												<tr>
+													<th scope="col">Nama Dusun</th>
+													<th scope="col">Jumlah Penduduk</th>
+													<th scope="col">Action</th>
+												</tr>
+											</thead>
+											<tbody>
+												@foreach($jumlah_dusun_per_wilayah as $dusunPerWilayah)
+        										<tr>
+            										<td>{{ $dusunPerWilayah->nama_dusun }}</td>
+													<td>{{ $dusunPerWilayah->jumlah_penduduk }}</td>
+													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_dusunPerWilayah{{$dusunPerWilayah->id_dusun}}">Edit</a></td>
+													<!-- Modal Edit Kelompok Umur -->
+													<div class="modal fade" id="modalUpdate_dusunPerWilayah{{$dusunPerWilayah->id_dusun}}" tabindex="-1" aria-labelledby="modalTitle{{$dusunPerWilayah->id_dusun}}" aria-hidden="true">
+   														<div class="modal-dialog">
+        													<div class="modal-content">
+            													<div class="modal-header">
+																	<h5 class="modal-title" id="modalTitle">Edit Dusun Per Wilayah</h5>
+																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            													</div>
+            													<div class="modal-body">
+																	<form action="{{ route('admin.updateDusunPerWilayah', $dusunPerWilayah->id_dusun) }}" method="post" enctype="multipart/form-data">
+																		@csrf
+																		<div class="form-group">
+																			<label for="nama_dusun">Nama Dusun</label>
+																			<input type="text" class="form-control" name="nama_dusun" id="nama_dusun" value="{{ $dusunPerWilayah->nama_dusun}}" disabled>
+																		</div>
+																		<div class="form-group">
+																			<label for="jumlah_penduduk">Jumlah Penduduk</label>
+																			<input type="text" class="form-control" name="jumlah_penduduk" id="jumlah_penduduk" value="{{ $dusunPerWilayah->jumlah_penduduk }}" required>
+                														</div>
+                														<button type="submit" class="btn btn-primary form-control">Save changes</button>
+																	</form>
+													            </div>
+													        </div>
+													    </div>
+													</div>
+												</tr>
+												@endforeach
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						@endif
 							
 							<!-- Sebaran Penduduk berdasarkan kelompok umur -->
 							<div class="col-md-6">
@@ -1258,7 +1324,7 @@
             data: {
               labels: {!! json_encode($jumlah_dusun->pluck('nama_wilayah')) !!},
               datasets: [{
-                label: 'Jumlah Penduduk',
+                label: 'Jumlah Dusun',
                 data: {!! json_encode($jumlah_dusun->pluck('jumlah_dusun')) !!},
                 borderWidth: 1
               }]
@@ -1340,6 +1406,26 @@
               datasets: [{
                 label: 'Jumlah Orang',
                 data: {!! json_encode($pendidikan_penduduk->pluck('jumlah_orang')) !!},
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+
+		  const ctx7 = document.getElementById('Chart7');
+          new Chart(ctx7, {
+            type: 'bar',
+            data: {
+              labels: {!! json_encode($jumlah_dusun_per_wilayah->pluck('nama_dusun')) !!},
+              datasets: [{
+                label: 'Jumlah Pekerja',
+                data: {!! json_encode($jumlah_dusun_per_wilayah->pluck('jumlah_penduduk')) !!},
                 borderWidth: 1
               }]
             },

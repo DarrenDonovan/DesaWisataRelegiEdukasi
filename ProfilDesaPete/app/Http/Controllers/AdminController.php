@@ -67,6 +67,11 @@ class AdminController extends Controller{
             ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
             ->get();
 
+        $wilayaheach = DB::table('wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
+            ->where('wilayah.id_wilayah', $user->id_wilayah)
+            ->first();
+
         $profil = DB::table('profil_kecamatan')
             ->join('wilayah', 'wilayah.id_wilayah', '=', 'profil_kecamatan.id_wilayah')
             ->select('profil_kecamatan.id_profil', 'profil_kecamatan.id_wilayah', 'profil_kecamatan.deskripsi', 'profil_kecamatan.logo_wilayah', 'wilayah.nama_wilayah')
@@ -129,8 +134,14 @@ class AdminController extends Controller{
             ->select('pendidikan_per_wilayah.id', 'pendidikan_per_wilayah.id_pendidikan', 'pendidikan.pendidikan', 'pendidikan_per_wilayah.jumlah_orang')
             ->where('pendidikan_per_wilayah.id_wilayah', $user->id_wilayah)
             ->get();
+
+        $jumlah_dusun_per_wilayah = DB::table('dusun_per_wilayah')
+            ->join('wilayah', 'dusun_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->select('wilayah.id_wilayah', 'dusun_per_wilayah.id_dusun', 'dusun_per_wilayah.nama_dusun', 'dusun_per_wilayah.jumlah_penduduk')
+            ->where('dusun_per_wilayah.id_wilayah', $user->id_wilayah)
+            ->get();
                     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'jumlah_penduduk', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'jumlah_dusun', 'agama_penduduk', 'pendidikan_penduduk'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'jumlah_penduduk', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'jumlah_dusun', 'agama_penduduk', 'pendidikan_penduduk', 'jumlah_dusun_per_wilayah', 'wilayaheach'));
     }
 
 
@@ -525,6 +536,30 @@ class AdminController extends Controller{
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
     }
 
+    public function updateDusunPerWilayah(Request $request, $id){
+        $request -> validate([
+            'jumlah_penduduk' => 'required|integer'
+        ]);
+
+        $dusun_per_wilayah = DB::table('dusun_per_wilayah')
+            ->join('wilayah', 'dusun_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->where('dusun_per_wilayah.id_dusun', $id)
+            ->first();
+        
+        if(!$dusun_per_wilayah){
+            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+        }
+
+        $updateData = [
+            'jumlah_penduduk' => $request->jumlah_penduduk
+        ];
+
+        DB::table('dusun_per_wilayah')->where('id_dusun', $id)->update($updateData);
+
+        Session::flash('message', 'Data Berhasil Diupdate!');
+        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+    }
+
     public function updateKelompokUmur(Request $request, $id){
         $request -> validate([
             'jumlah_penduduk' => 'required|integer'
@@ -532,7 +567,7 @@ class AdminController extends Controller{
 
         $kel_umur = DB::table('kel_umur_per_wilayah')
             ->join('wilayah', 'kel_umur_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->where('wilayah.id_wilayah', $id)
+            ->where('kel_umur_per_wilayah.id', $id)
             ->get();
         
         if(!$kel_umur){
@@ -556,7 +591,7 @@ class AdminController extends Controller{
 
         $pekerjaan_penduduk = DB::table('pekerjaan_per_wilayah')
             ->join('wilayah', 'pekerjaan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->where('wilayah.id_wilayah', $id)
+            ->where('pekerjaan_per_wilayah.id', $id)
             ->get();
         
         if(!$pekerjaan_penduduk){
@@ -580,7 +615,7 @@ class AdminController extends Controller{
 
         $agama_penduduk = DB::table('agama_per_wilayah')
             ->join('wilayah', 'agama_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->where('wilayah.id_wilayah', $id)
+            ->where('agama_per_wilayah.id', $id)
             ->get();
         
         if(!$agama_penduduk){
@@ -604,7 +639,7 @@ class AdminController extends Controller{
 
         $pendidikan_penduduk = DB::table('pendidikan_per_wilayah')
             ->join('wilayah', 'pendidikan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->where('wilayah.id_wilayah', $id)
+            ->where('pendidikan_per_wilayah.id', $id)
             ->get();
         
         if(!$pendidikan_penduduk){
