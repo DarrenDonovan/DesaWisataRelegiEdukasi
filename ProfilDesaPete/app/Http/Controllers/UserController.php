@@ -161,11 +161,16 @@ class UserController extends Controller
             ->get();
 
         $wilayahNoKec = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah', 'wilayah.longitude', 'wilayah.latitude')
             ->where('wilayah.jenis_wilayah', '!=', 'Kecamatan')
             ->get();
 
-        return view('maps', compact('wilayah', 'wilayahNoKec'));
+        $lokasi_wilayah = DB::table('wilayah')
+            ->select(['nama_wilayah', 'latitude', 'longitude', 'jenis_wilayah'])
+            ->where('jenis_wilayah', '!=', 'Kecamatan')
+            ->get();
+
+        return view('maps', compact('wilayah', 'wilayahNoKec', 'lokasi_wilayah'));
     }
 
     public function profilDesa($id){
