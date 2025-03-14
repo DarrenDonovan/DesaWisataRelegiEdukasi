@@ -1,295 +1,468 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantai Indah</title>
 
-    <head>
-        <meta charset="utf-8">
-        <title>test</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
+    <link rel="stylesheet" href="styles.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
 
-        <!-- Google Web Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600&family=Roboto&display=swap" rel="stylesheet"> 
+    <!-- 360 ESSENTIALS -->
+    <link rel="stylesheet" href="css/site.css" media="all" />
+    <link rel="stylesheet" href="css/panorama360.css" media="all" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/jquery.mousewheel.min.js"></script>
+    <script src="js/jquery.panorama360.js"></script>
 
-        <!-- Icon Font Stylesheet -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        /* Reset Default */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-        <!-- Libraries Stylesheet -->
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+/* Hero Section */
+.hero {
+    position: relative;
+    background: url('img/pantai.jpg') center/cover no-repeat;
+    height: 500px; /* Sesuaikan tinggi */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
+}
+
+/* Tombol Kembali */
+.back-button {
+    position: absolute;
+    top: 20px;  /* Jarak dari atas */
+    left: 20px; /* Jarak dari kiri */
+    font-size: 24px;
+    background: rgba(255, 255, 255, 0.7);
+    color: black;
+    padding: 10px 15px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: 0.3s;
+    z-index: 3;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 1);
+}
 
 
-        <!-- Customized Bootstrap Stylesheet -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+.hero-text h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
 
-        <!-- Template Stylesheet -->
-        <link href="css/style.css" rel="stylesheet">
-    </head>
+.hero-text h1 {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
 
-    <body>
+.hero-text p {
+    font-size: 18px;
+    line-height: 1.5;
+}
 
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
+/* 360 */
+.explore-360 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    max-width: 1200px;
+    margin: auto;
+    gap: 20px;
+}
+
+.text-container {
+    flex: 1;
+    max-width: 500px;
+}
+
+.text-container h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.text-container p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.feature-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-placeholder {
+    width: 100%;
+    height: 300px;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #777;
+}
+
+@-webkit-keyframes spin {
+                from { -webkit-transform: rotateY(0); }
+                to   { -webkit-transform: rotateY(-360deg); }
+            }
+            @keyframes spin {
+                from { transform: rotateY(0); }
+                to   { transform: rotateY(-360deg); }
+            }
+            
+            .vrContainer {
+        width: 100%;
+        max-width: 600px;
+        height: 50vh;
+        display: flex; /* Agar elemen di dalamnya mengikuti layout fleksibel */
+        justify-content: flex-start; /* Pusatkan panorama */
+        align-items: center;
+        position: relative;
+      }
+
+            #viewer {
+                position: absolute;
+                /* left: 50%; */
+                top: 0px;
+                /* margin-left: -320px; */
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                -webkit-transition: -webkit-transform 3s;
+                transition: transform 3s;
+                -webkit-perspective: 600px;
+                perspective: 1000px;
+                -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+            }
+            #cube {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                transform-style: preserve-3d;
+                -webkit-transform-style: preserve-3d;
+                transform-origin: 50% 50% 750px;
+                -webkit-transform-origin: 50% 50% 750px;
+                transform: translateZ(-150px);
+                -webkit-transform: translateZ(-150px);
+            }
+
+            #cube img {
+                position: absolute;
+                width: 1500px;
+                height: 1500px;
+                top: 50%;
+                left: 50%;
+                margin-top: -750px;
+                margin-left: -750px;
+                opacity: 0.8;
+                -webkit-transition: -webkit-transform 3s;
+                transition: transform 3s;
+                -webkit-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            }
+            .front {
+                -webkit-transform: translateZ(750px) translateZ(-750px);
+                transform: translateZ(750px) translateZ(-750px);
+            }
+            .right {
+                -webkit-transform: translateZ(750px) rotateY(-90deg) translateZ(-750px);
+                transform: translateZ(750px) rotateY(-90deg) translateZ(-750px);
+            }
+            .left {
+                -webkit-transform: translateZ(750px) rotateY(90deg) translateZ(-750px);
+                transform: translateZ(750px) rotateY(90deg) translateZ(-750px);
+            }
+            .rear {
+                -webkit-transform: translateZ(750px) translateZ(750px) rotateY( 180deg );
+                transform: translateZ(750px) translateZ(750px) rotateY( 180deg );
+            }
+            .roof {
+                -webkit-transform: translateZ(750px) rotateX(-90deg) translateZ(-750px);
+                transform: translateZ(750px) rotateX(-90deg) translateZ(-750px);
+            }
+            .floor {
+                -webkit-transform: translateZ(750px) rotateX(90deg) translateZ(-750px);
+                transform: translateZ(750px) rotateX(90deg) translateZ(-750px);
+            }
+
+/* Responsif  */
+@media (max-width: 768px) {
+    .explore-360 {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .feature-placeholder {
+        height: 250px;
+    }
+}
+
+/* MAP */
+.explore-map {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    max-width: 1200px;
+    margin: auto;
+    gap: 20px;
+}
+
+.explore-map .text-container {
+    flex: 1;
+    max-width: 500px;
+}
+
+.explore-map .text-container h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.explore-map .text-container p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.map-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 300px;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #777;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .explore-map {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .map-placeholder {
+        height: 250px;
+    }
+  
+
+/* CONTENT PAKETAN */
+.contentPaketan {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .paket {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        padding: 10px;
+      }
+
+      .paket img {
+        width: 100%;
+        border-radius: 10px;
+      }
+
+      .btn {
+        background-color: #13357b;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+        width: 100%;
+      }
+
+      .btn:hover {
+        background-color: #0a2a5c;
+      }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="overlay"></div>
+
+        <!-- Tombol Kembali -->
+        <a href="javascript:history.back()" class="back-button">
+            &#8592;
+        </a>
+
+        <div class="hero-text">
+            <h4>Wisata</h4>
+            <h1>Pantai Indah</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam hic iste ex quas quae atque numquam sunt architecto adipisci assumenda perspiciatis maiores nobis placeat, maxime id eos nemo odio consequatur.</p>
+        </div>
+    </header>
+
+    <!-- Container 360 -->
+<section class="explore-360">
+    <div class="text-container">
+        <h2>Jelajahi Pantai Indah dalam 360°</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ab laboriosam vel ratione atque modi provident saepe culpa, necessitatibus quas aperiam quia? Ab dolor atque sed quidem soluta. Neque, voluptate?</p>
+    </div>
+
+    <div class="vrContainer">
+        <div id="viewer">
+            <div id="cube">
+                <img class="front" src="img/texture/cube0000.jpg" alt="" />
+                <img class="right" src="img/texture/cube0001.jpg" alt="" />
+                <img class="rear" src="img/texture/cube0002.jpg" alt="" />
+                <img class="left" src="img/texture/cube0003.jpg" alt="" />
+                <img class="roof" src="img/texture/cube0004.jpg" alt="" />
+                <img class="floor" src="img/texture/cube0005.jpg" alt="" />
             </div>
         </div>
-        <!-- Spinner End -->
+    </div>
+    
+</section>
 
-       
-        <div class="container-fluid bg-primary px-5 d-none d-lg-block">
-            <div class="row gx-0 justify-content-end"> <!-- Tambahkan justify-content-end -->
-                <div class="col-lg-4 text-end"> <!-- Gunakan text-end agar teks sejajar ke kanan -->
-                    <div class="d-inline-flex align-items-center" style="height: 45px;">
-                        <a href="#"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Topbar End -->
+<!-- Container Map dengan Tracking -->
+<section class="explore-map">
+    <div class="text-container">
+        <h2>Telusuri Hokkaido dengan Peta Interaktif</h2>
+        <p>Gunakan peta interaktif ini untuk menjelajahi berbagai tempat menarik di Hokkaido. Lihat rute perjalanan, tempat wisata, dan kuliner terbaik di sekitarnya.</p>
+    </div>
 
-        <!-- Navbar & Hero Start -->
-        <div class="container-fluid position-relative p-0">
-            <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-                <a href="" class="navbar-brand p-0">
-                    <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Kecamatan Tigaraksa <span class="subtext">Kabupaten Tangerang</span></h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto py-0">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
-                        <a href="infografis.html" class="nav-item nav-link active">Infografis</a>
-                        <a href="maps.html" class="nav-item nav-link">Maps</a>
-                        <a href="berita.html" class="nav-item nav-link">Berita</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile Desa</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="BantarPanjang.html" class="dropdown-item">Desa Bantar Panjang </a>
-                                <a href="Cileles.html" class="dropdown-item">Desa Cileles</a>
-                                <a href="Cisereh.html" class="dropdown-item">Desa Cisereh</a>
-                                <a href="KaduAgung.html" class="dropdown-item">Desa Kadu Agung</a>
-                                <a href="MargaSari.html" class="dropdown-item">Desa Marga Sari</a>
-                                <a href="MataGara.html" class="dropdown-item">Desa Mata Gara</a>
-                                <a href="PasirBolang.html" class="dropdown-item">Desa Pasir Bolang</a>
-                                <a href="PasirNangka.html" class="dropdown-item">Desa Pasir Nangka</a>
-                                <a href="Pematang.html" class="dropdown-item">Desa Pematang</a>
-                                <a href="Pete.html" class="dropdown-item">Desa Pete</a>
-                                <a href="Sodong.html" class="dropdown-item">Desa Sodong</a>
-                                <a href="Tapos.html" class="dropdown-item">Desa Tapos</a>
-                                <a href="KaduAgung.html" class="dropdown-item">Kelurahan Kadu Agung</a>
-                                <a href="Tigaraksa.html" class="dropdown-item">Kelurahan Tigaraksa</a>
-                            </div>
-                        </div>
-                    </div>
-            </nav>
-        </div>
-        <!-- Navbar & Hero End -->
+    <div class="map-container">
+        <iframe src="rute.html" width="100%" height="400px" style="border-radius: 10px; border: none;"></iframe>
+    </div>
+    
+</section>
 
-        <!-- Header Start -->
-        <div class="container-fluid bg-breadcrumb">
-            <div class="container text-center py-5" style="max-width: 900px;">
-                <h3 class="text-white display-3 mb-4">Infografis</h1>
-            </div>
-        </div>
-        <!-- Header End -->
+<!-- CONTAINER PAKETAN -->
+<div class="contentPaketan">
+    <div class="paket">
+      <img src="img/packages-1.jpg" alt="Hidden Gems Jogja" />
+      <button class="btn">Hidden Gems [Klik Sini]</button>
+    </div>
+    <div class="paket">
+      <img src="img/packages-2.jpg" alt="Wisata Keluarga" />
+      <button class="btn">Wisata Keluarga [Klik Sini]</button>
+    </div>
+    <div class="paket">
+      <img src="img/packages-3.jpg" alt="Jogja Magelang 2H1M" />
+      <button class="btn">Wisata 2H1M [Klik Sini]</button>
+    </div>
+  </div>
 
-        <!-- Services Start -->
-        <div class="container-fluid bg-light service py-5">
-            <div class="container py-5">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h5 class="section-title px-3">Demografi</h5>
-                    <h1 class="mb-0">Penduduk</h1>
-                </div>
-                <div class="row g-4">
-                    <div class="col-lg-6">
-                        <div class="row g-4">
-                            <div class="col-12">
-                                <a href="#berdasarkan-dusun" class="service-content-inner d-flex justify-content-end align-items-center bg-white border border-primary rounded p-4 pe-0">
-                                    <div class="service-content text-end">
-                                        <h5 class="mb-4">Berdasarkan Dusun</h5>
-                                        <p class="mb-0">Dolor sit amet consectetur adipisicing elit...</p>
-                                    </div>
-                                    <div class="service-icon p-4">
-                                        <i class="fa fa-hotel fa-4x text-primary"></i>
-                                    </div>
-                                </a>
-                            </div>
-                            
-                            <div class="col-12">
-                                <a href="#berdasarkan-umur" class="service-content-inner d-flex justify-content-end align-items-center bg-white border border-primary rounded p-4 pe-0">
-                                    <div class="service-content text-end">
-                                        <h5 class="mb-4">Berdasarkan Kelompok Umur</h5>
-                                        <p class="mb-0">Dolor sit amet consectetur adipisicing elit...</p>
-                                    </div>
-                                    <div class="service-icon p-4">
-                                        <i class="fa fa-user fa-4x text-primary"></i>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="row g-4">
-                            <div class="col-12">
-                                <a href="#berdasarkan-pekerjaan" class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
-                                    <div class="service-icon p-4">
-                                        <i class="fa fa-globe fa-4x text-primary"></i>
-                                    </div>
-                                    <div class="service-content">
-                                        <h5 class="mb-4">Berdasarkan Pekerjaan</h5>
-                                        <p class="mb-0">Dolor sit amet consectetur adipisicing elit...</p>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12">
-                                <a href="#berdasarkan-agama" class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 ps-0">
-                                    <div class="service-icon p-4">
-                                        <i class="fa fa-hotel fa-4x text-primary"></i>
-                                    </div>
-                                    <div class="service-content">
-                                        <h5 class="mb-4">Berdasarkan Agama</h5>
-                                        <p class="mb-0">Dolor sit amet consectetur adipisicing elit...</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        
-                <div class="d-flex justify-content-center mt-4">
-                    <a href="#berdasarkan-pendidikan" class="service-content-inner d-flex align-items-center justify-content-center bg-white border border-primary rounded p-4" style="width: 50%;">
-                        <div class="service-icon p-4">
-                            <i class="fa fa-user fa-4x text-primary"></i>
-                        </div>
-                        <div class="service-content text-center">
-                            <h5 class="mb-4">Berdasarkan Pendidikan</h5>
-                            <p class="mb-0">Dolor sit amet consectetur adipisicing elit...</p>
-                        </div>
-                    </a>
-                </div>
-                
-            </div>
-        </div>
-        
-        <!-- Services End -->
+  <script>
+    (function() {
+  var x1, y1, moving = false,
+      $viewer = $('#viewer'),
+      $cube = $('#cube'),
+      w_v = $viewer.width(), 
+      h_v = $viewer.height(),
+      c_yaw = 0,
+      c_pitch = 0,
+      perspective = 525;
 
-         <!--  Berdasarkan Dusun-->
-        <div class="container-fluid testimonial py-5" id="berdasarkan-dusun">
-            <div class="container py-5">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h1 class="mb-0">Berdasarkan Dusun</h1>
-                </div>
-            </div>
-        </div>
-        <!-- END -->
+  $viewer.on('mousedown', function(e) {
+      x1 = e.pageX;
+      y1 = e.pageY;
+      moving = true;
+      e.preventDefault();
+  });
 
-        <!-- Berdasarkan kelompok umur  -->
-        <div class="container-fluid testimonial py-5" id="berdasarkan-umur">
-            <div class="container py-5">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h1 class="mb-0">Berdasarkan Kelompok Umur</h1>
-                </div>
-            </div>
-        </div>
-        <!-- END -->
+  $(document).on('mousemove', function(e) {
+      if (moving) {
+          x2 = e.pageX;
+          y2 = e.pageY;
 
-         <!-- Berdasarkan pekerjaan  -->
-         <div class="container-fluid testimonial py-5" id="berdasarkan-pekerjaan">
-            <div class="container py-5">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h1 class="mb-0">Berdasarkan Pekerjaan</h1>
-                </div>
-            </div>
-        </div>
-        <!-- END -->
+          var dist_x = x2 - x1,
+              dist_y = y2 - y1,
+              yaw = Math.atan2(dist_y, perspective) / Math.PI * 180,
+              pitch = -Math.atan2(dist_x, perspective) / Math.PI * 180,
+              vendors = ['-webkit-', '-moz-', ''];
 
-        <!-- Berdasarkan agama  -->
-        <div class="container-fluid testimonial py-5" id="berdasarkan-agama">
-            <div class="container py-5">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h1 class="mb-0">Berdasarkan Agama</h1>
-                </div>
-            </div>
-        </div>
-        <!-- END -->
+          c_yaw += yaw;
+          c_pitch += pitch;
+          c_yaw = Math.min(90, c_yaw);
+          c_yaw = Math.max(-90, c_yaw);
+          c_pitch %= 360;
 
-        <!-- Berdasarkan pendidikan  -->
-        <div class="container-fluid testimonial py-5" id="berdasarkan-pendidikan">
-            <div class="container py-5">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h1 class="mb-0">Berdasarkan Pendidikan</h1>
-                </div>
-            </div>
-        </div>
-        <!-- END -->
+          yaw = c_yaw;
+          pitch = c_pitch;
 
+          for (let i in vendors) {
+              $cube.css(vendors[i] + 'transform', `translateZ(-150px) rotateX(${yaw}deg) rotateY(${pitch}deg)`);
+          }
 
-        <!-- Footer Start -->
-        <div class="container-fluid footer py-5">
-            <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-md-6 col-lg-6 col-xl-3">
-                        <div class="footer-item d-flex flex-column">
-                            <h4 class="mb-4 text-white">Hubungi Kami</h4>
-                            <a href=""><i class="fas fa-home me-2"></i> Tangerang, Banten, Indonesia</a>
-                            <a href=""><i class="fas fa-envelope me-2"></i> info@example.com</a>
-                            <a href=""><i class="fas fa-phone me-2"></i> +012 345 67890</a>
-                            <a href="" class="mb-3"><i class="fas fa-print me-2"></i> +012 345 67890</a>
-                            <div class="d-flex align-items-center">
-                                <i class="fas fa-share fa-2x text-white me-2"></i>
-                                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="btn-square btn btn-primary rounded-circle mx-1" href=""><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End -->
-        
-        <!-- Copyright Start -->
-        <div class="container-fluid copyright text-body py-4">
-            <div class="container">
-                <div class="row g-4 align-items-center">
-                    <div class="col-md-6 text-center text-md-end mb-md-0">
-                        <i class="fas fa-copyright me-2"></i><a class="text-white" href="#">Your Site Name</a>, All right reserved.
-                    </div>
-                    <div class="col-md-6 text-center text-md-start">
-                        <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
-                        <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
-                        <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                        Designed By <a class="text-white" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a href="https://themewagon.com">ThemeWagon</a>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Copyright End -->
+          x1 = x2;
+          y1 = y2;
+      }
+  }).on('mouseup', function() {
+      moving = false;
+  });
 
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>   
+  // Hanya aktif jika mouse ada di dalam viewer
+  $(document).on('mousemove', function(e) {
+      var offset = $viewer.offset();
+      var mouseX = e.pageX;
+      var mouseY = e.pageY;
 
-        
-        <!-- JavaScript Libraries -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/lightbox/js/lightbox.min.js"></script>
-        
+      if (
+          mouseX < offset.left || 
+          mouseX > offset.left + $viewer.width() || 
+          mouseY < offset.top || 
+          mouseY > offset.top + $viewer.height()
+      ) {
+          moving = false;
+      }
+  });
 
-        <!-- Template Javascript -->
-        <script src="js/main.js"></script>
-    </body>
+})();
+
+            </script>
+</body>
 
 </html>

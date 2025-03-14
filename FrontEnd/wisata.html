@@ -21,47 +21,132 @@
     <link href="css/style.css" rel="stylesheet" />
     <style>
       * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
 
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f5f5f5;
-      }
+/* Hero Section */
+.hero {
+    position: relative;
+    background: url('img/pantai.jpg') center/cover no-repeat;
+    height: 500px; /* Sesuaikan tinggi */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 20px;
+}
 
-      /* NAVBAR */
-      .container-fluid {
-        padding: 9px;
-        height: 60px;
-      }
-      .container-fluid i {
-        font-size: 30px;
-      }
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
 
-      /* CONTAINER UTAMA */
-      .containerUtama {
-        display: flex;
-        align-items: stretch;
-        flex-direction: column;
-        gap: 20px;
-        padding: 20px;
-        height: auto;
-      }
+.hero-text {
+    position: relative;
+    z-index: 2;
+}
 
-      .contain {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-        background: white;
-        padding: 30px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        height: auto; /* Ubah dari height: 100% */
-      }
+/* Tombol Kembali */
+.back-button {
+    position: absolute;
+    top: 20px;  /* Jarak dari atas */
+    left: 20px; /* Jarak dari kiri */
+    font-size: 24px;
+    background: rgba(255, 255, 255, 0.7);
+    color: black;
+    padding: 10px 15px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: 0.3s;
+    z-index: 3;
+}
 
-      .vrContainer {
+.back-button:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+
+.hero-text h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+.hero-text h1 {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ddd;
+}
+
+.hero-text p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+/* 360 */
+.explore-360 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    max-width: 1200px;
+    margin: auto;
+    gap: 20px;
+}
+
+.text-container {
+    flex: 1;
+    max-width: 500px;
+}
+
+.text-container h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.text-container p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.feature-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.feature-placeholder {
+    width: 100%;
+    height: 300px;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #777;
+}
+
+@-webkit-keyframes spin {
+                from { -webkit-transform: rotateY(0); }
+                to   { -webkit-transform: rotateY(-360deg); }
+            }
+            @keyframes spin {
+                from { transform: rotateY(0); }
+                to   { transform: rotateY(-360deg); }
+            }
+
+            .vrContainer {
         width: 100%;
         max-width: 600px;
         height: 50vh;
@@ -71,16 +156,7 @@
         position: relative;
       }
 
-      @-webkit-keyframes spin {
-                from { -webkit-transform: rotateY(0); }
-                to   { -webkit-transform: rotateY(-360deg); }
-            }
-            @keyframes spin {
-                from { transform: rotateY(0); }
-                to   { transform: rotateY(-360deg); }
-            }
-            
-            #viewer {
+      #viewer {
                 position: absolute;
                 /* left: 50%; */
                 top: 0px;
@@ -147,47 +223,80 @@
                 -webkit-transform: translateZ(750px) rotateX(90deg) translateZ(-750px);
                 transform: translateZ(750px) rotateX(90deg) translateZ(-750px);
             }
-      .contentSidebar {
-        flex: 1;
-        min-width: 300px;
-        display: flex; /* Tambahkan ini */
-        flex-direction: column; /* Supaya elemen di dalamnya vertikal */
-        gap: 10px; /* Beri jarak antar elemen */
-      }
 
-      .contentSidebar img {
-        width: 100%; /* Pastikan gambar menyesuaikan lebarnya */
-        height: auto;
-        border-radius: 10px;
-        margin-top: 30px;
-        margin-bottom: 25px;
-      }
+            
+/* Responsif  */
+@media (max-width: 768px) {
+    .explore-360 {
+        flex-direction: column;
+        text-align: center;
+    }
 
-      .contentSidebar iframe {
-        width: 100%;
-        height: calc(700px / 2);
-        border-radius: 10px;
-      }
+    .feature-placeholder {
+        height: 250px;
+    }
+}
 
-      .contenDesk {
-        flex: 2;
-        padding: 20px;
-      }
+/* MAP */
+.explore-map {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    max-width: 1200px;
+    height: 500px;
+    margin: auto;
+    gap: 20px;
+}
 
-      .contenDesk h2 {
-        font-size: 25px;
-        margin-bottom: 10px;
-      }
+.explore-map .text-container {
+    flex: 1;
+    max-width: 500px;
+    padding-right: 50px;
+}
 
-      .contenDesk h3 {
-        font-size: 16px;
-      }
+.explore-map .text-container h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
 
-      .contenDesk p {
-        line-height: 1.6;
-      }
+.explore-map .text-container p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+}
 
-      /* CONTENT PAKETAN */
+.map-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 300px;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #777;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .explore-map {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .map-placeholder {
+        height: 250px;
+    }
+  } 
+    /* CONTENT PAKETAN */
       .contentPaketan {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -243,75 +352,58 @@
     </style>
   </head>
   <body>
-    <!-- NAVBAR -->
-    <div class="container-fluid bg-primary px-5 d-none d-lg-block">
-      <div class="row gx-0 justify-content-start">
-        <div class="col-lg-4 text-start">
-          <div class="d-inline-flex align-items-center" style="height: 45px">
-            <a href="BantarPanjang.html">
-              <small class="me-3 text-light">
-                <i class="bi bi-chevron-left me-2"></i>
-              </small>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+   <!-- Hero Section -->
+   <header class="hero">
+    <div class="overlay"></div>
 
-    <!-- CONTAINER UTAMA -->
-    <div class="containerUtama">
-      <!-- CONTAINER ATAS -->
-      <div class="contain">
-        <div class="contentSidebar">
-          <img src="img/pantai.jpg" alt="Pantai Indah" />
-          <iframe src="rute.html" width="100%" height="400px" style="border-radius: 10px; border: none;"></iframe>
+    <!-- Tombol Kembali -->
+    <a href="BantarPanjang.html" class="back-button">
+      &#8592;
+  </a>
+  
+
+    <div class="hero-text">
+        <h4>Wisata</h4>
+        <h1>Pantai Indah</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam hic iste ex quas quae atque numquam sunt architecto adipisci assumenda perspiciatis maiores nobis placeat, maxime id eos nemo odio consequatur.</p>
+    </div>
+</header>
+
+<!-- Container 360 -->
+<section class="explore-360">
+<div class="text-container">
+    <h2>Jelajahi Pantai Indah dalam 360°</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ab laboriosam vel ratione atque modi provident saepe culpa, necessitatibus quas aperiam quia? Ab dolor atque sed quidem soluta. Neque, voluptate?</p>
+</div>
+
+<div class="vrContainer">
+    <div id="viewer">
+        <div id="cube">
+            <img class="front" src="img/texture/cube0000.jpg" alt="" />
+            <img class="right" src="img/texture/cube0001.jpg" alt="" />
+            <img class="rear" src="img/texture/cube0002.jpg" alt="" />
+            <img class="left" src="img/texture/cube0003.jpg" alt="" />
+            <img class="roof" src="img/texture/cube0004.jpg" alt="" />
+            <img class="floor" src="img/texture/cube0005.jpg" alt="" />
         </div>
-        <div class="contenDesk">
-          <h2><strong>Pantai Indah</strong></h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente
-            voluptates velit, a cumque necessitatibus pariatur, possimus
-            reprehenderit non, sit harum ipsa cupiditate. Labore minima modi
-            natus placeat perferendis quae ipsa. Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Qui temporibus nisi, illum, voluptas
-            omnis libero esse sunt iste, minima vero delectus! Libero dolorum
-            magnam consequuntur commodi pariatur quasi consectetur aut! Lorem
-            ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus
-            recusandae molestiae neque officiis reprehenderit, sed repellat
-            natus placeat quia. Aliquam, hic. Ipsa, quis officia autem commodi
-            non sequi necessitatibus expedita. Lorem ipsum dolor sit, amet
-            consectetur adipisicing elit. Doloremque fugiat autem, esse
-            reiciendis tempore quas minima ducimus optio maxime eligendi quo
-            perferendis voluptatem deleniti dicta velit ab nihil vero
-            accusantium. Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Nulla id magnam ipsa. Qui, reprehenderit atque, ducimus a
-            voluptate similique amet enim cumque temporibus sed error
-            repellendus quas aperiam non beatae! Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Dolores provident perferendis aut id
-            quidem molestias non rem voluptates. Eius, ex voluptatibus!
-            Quibusdam vel voluptates neque quod accusantium consectetur officiis
-            ratione?
-          </p>
-          <h3>
-            <strong>Fasilitas: Kamar mandi, gratis pakaian renang, dll</strong>
-          </h3>
-          <h3><strong>Jam Operasional: 08:00-20:00 (Setiap Hari)</strong></h3>
-          <h3><strong>Kontak: 08123456789 (Jhon Thor)</strong></h3>
-          <div class="vrContainer">
-            <div id="viewer">
-                <div id="cube">
-                    <img class="front" src="img/texture/cube0000.jpg" alt="" />
-                    <img class="right" src="img/texture/cube0001.jpg" alt="" />
-                    <img class="rear" src="img/texture/cube0002.jpg" alt="" />
-                    <img class="left" src="img/texture/cube0003.jpg" alt="" />
-                    <img class="roof" src="img/texture/cube0004.jpg" alt="" />
-                    <img class="floor" src="img/texture/cube0005.jpg" alt="" />
-                </div>
-            </div>
-        </div>
-          </div>
-        </div>
-      </div>
+    </div>
+</div>
+
+</section>
+
+<!-- Container Map dengan Tracking -->
+<section class="explore-map">
+<div class="text-container">
+    <h2>Telusuri Pantai dengan Peta Interaktif</h2>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi necessitatibus ipsum dignissimos harum debitis non qui sapiente, voluptates accusamus laborum quos voluptatum tempora culpa sequi quibusdam! Eaque labore ipsa excepturi.</p>
+</div>
+
+<div class="map-container">
+    <iframe src="rute.html" width="100%" height="400px" style="border-radius: 10px; border: none;"></iframe>
+</div>
+
+</section>
+
 
       <!-- CONTAINER PAKETAN -->
       <div class="contentPaketan">
