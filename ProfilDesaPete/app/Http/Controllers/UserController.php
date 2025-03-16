@@ -118,9 +118,11 @@ class UserController extends Controller
             ->whereIn('jenis_wilayah', ['Desa', 'Kelurahan'])
             ->get();
 
-        $jumlah_dusun = DB::table('wilayah')
-            ->select('wilayah.nama_wilayah', 'wilayah.jumlah_dusun')
-            ->whereIn('jenis_wilayah', ['Desa', 'Kelurahan'])
+        $jumlah_dusun = DB::table('dusun_per_wilayah')
+            ->join('wilayah', 'dusun_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
+            ->select('wilayah.nama_wilayah', DB::raw('COUNT(*) as total_dusun'))
+            ->groupBy('wilayah.nama_wilayah')
             ->get();
 
         $agama_kecamatan = DB::table('agama_per_wilayah')
@@ -159,11 +161,16 @@ class UserController extends Controller
             ->get();
 
         $wilayahNoKec = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah', 'wilayah.longitude', 'wilayah.latitude')
             ->where('wilayah.jenis_wilayah', '!=', 'Kecamatan')
             ->get();
 
-        return view('maps', compact('wilayah', 'wilayahNoKec'));
+        $lokasi_wilayah = DB::table('wilayah')
+            ->select(['nama_wilayah', 'latitude', 'longitude', 'jenis_wilayah'])
+            ->where('jenis_wilayah', '!=', 'Kecamatan')
+            ->get();
+
+        return view('maps', compact('wilayah', 'wilayahNoKec', 'lokasi_wilayah'));
     }
 
     public function profilDesa($id){
@@ -181,6 +188,41 @@ class UserController extends Controller
             ->where('wilayah.id_wilayah', $id)
             ->get();
 
-        return view('profildesa', compact('wilayah', 'wilayaheach', 'wilayahNoKec'));
+
+
+        $jumlah_dusun = DB::table('dusun_per_wilayah')
+            ->join('wilayah', 'dusun_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->select('wilayah.id_wilayah', 'dusun_per_wilayah.id_dusun', 'dusun_per_wilayah.nama_dusun', 'dusun_per_wilayah.jumlah_penduduk')
+            ->where('dusun_per_wilayah.id_wilayah', $id)
+            ->get();
+
+        $kel_umur_penduduk = DB::table('kel_umur_per_wilayah')
+            ->join('wilayah', 'kel_umur_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->select('kel_umur_per_wilayah.id', 'kel_umur_per_wilayah.kelompok_umur', 'kel_umur_per_wilayah.jumlah_orang')
+            ->where('kel_umur_per_wilayah.id_wilayah', $id)
+            ->get();
+
+        $pekerjaan_penduduk = DB::table('pekerjaan_per_wilayah')
+            ->join('pekerjaan', 'pekerjaan_per_wilayah.id_pekerjaan', '=', 'pekerjaan.id_pekerjaan')
+            ->join('wilayah', 'pekerjaan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->select('pekerjaan_per_wilayah.id', 'pekerjaan_per_wilayah.id_pekerjaan', 'pekerjaan.pekerjaan', 'pekerjaan_per_wilayah.jumlah_pekerja')
+            ->where('pekerjaan_per_wilayah.id_wilayah', $id)
+            ->get();
+
+        $agama_penduduk = DB::table('agama_per_wilayah')
+            ->join('agama', 'agama_per_wilayah.id_agama','=', 'agama.id_agama')
+            ->join('wilayah', 'agama_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->select('agama_per_wilayah.id', 'agama_per_wilayah.id_agama', 'agama.agama', 'agama_per_wilayah.jumlah_penganut')
+            ->where('agama_per_wilayah.id_wilayah', $id)
+            ->get();
+
+        $pendidikan_penduduk = DB::table('pendidikan_per_wilayah')
+            ->join('pendidikan', 'pendidikan_per_wilayah.id_pendidikan', '=', 'pendidikan.id_pendidikan')
+            ->join('wilayah', 'pendidikan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->select('pendidikan_per_wilayah.id', 'pendidikan_per_wilayah.id_pendidikan', 'pendidikan.pendidikan', 'pendidikan_per_wilayah.jumlah_orang')
+            ->where('pendidikan_per_wilayah.id_wilayah', $id)
+            ->get();
+
+        return view('profildesa', compact('wilayah', 'wilayaheach', 'wilayahNoKec', 'jumlah_dusun', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'agama_penduduk', 'pendidikan_penduduk'));
     }
 }

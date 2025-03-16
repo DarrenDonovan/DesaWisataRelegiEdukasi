@@ -177,6 +177,93 @@
 
         <!-- Template Javascript -->
         <script src="{{ url('js/main.js') }}"></script>
+
+        <script>
+            // PETA
+// Pastikan script hanya berjalan jika elemen dengan ID "map" ada
+if (document.getElementById("map")) {
+  // Inisialisasi Peta
+  var map = L.map("map").setView([-6.256097964960715, 106.4710449399145], 12); // Pastikan koordinat sesuai lokasi
+
+  // Definisi tile layer (peta jalan dan peta satelit)
+  var streetLayer = L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    {
+      attribution: "&copy; OpenStreetMap contributors",
+    }
+  );
+
+  var satelliteLayer = L.tileLayer(
+    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    {
+      attribution: "&copy; Esri & Contributors",
+    }
+  );
+
+  // Tambahkan layer default (peta jalan)
+  streetLayer.addTo(map);
+
+  // Kontrol untuk memilih peta
+  var baseMaps = {
+    "Peta Jalan": streetLayer,
+    "Peta Satelit": satelliteLayer,
+  };
+
+  L.control.layers(baseMaps).addTo(map);
+
+  // Data Interest Points dengan kategori Desa dan Kelurahan
+  var interestPoints = [
+    @foreach ($lokasi_wilayah as $lokasi)
+    {
+      name: "{{ $lokasi->nama_wilayah }}",
+      lat: {{ $lokasi->latitude }},
+      lon: {{ $lokasi->longitude }},
+      category: "{{ $lokasi->jenis_wilayah }}",
+    }@if (!$loop->last),@endif
+    @endforeach
+];
+
+console.log(interestPoints);
+
+  // Array untuk menyimpan marker
+  var markers = [];
+
+  // Fungsi untuk menampilkan marker berdasarkan kategori
+  function addMarkers(category) {
+    // Hapus semua marker sebelum menambahkan yang baru
+    markers.forEach((marker) => map.removeLayer(marker));
+    markers = [];
+
+    interestPoints.forEach((point) => {
+      if (category === "all" || point.category === category) {
+        var marker = L.marker([point.lat, point.lon]).addTo(map);
+
+        // Tooltip menggantikan Popup agar tidak ada tombol X dan menghilang otomatis
+        marker.bindTooltip(`<b>${point.name}</b><br>${point.category}`, {
+          permanent: false, // Tooltip hanya muncul saat cursor di atas
+          direction: "top", // Menampilkan tooltip di atas marker
+          opacity: 0.9, // Sedikit transparan agar terlihat bagus
+        });
+
+        markers.push(marker);
+      }
+    });
+  }
+
+  // Tambahkan semua marker pertama kali
+  addMarkers("all");
+
+  // Event untuk filter berdasarkan kategori (jika elemen ada)
+  var categoryFilter = document.getElementById("categoryFilter");
+  if (categoryFilter) {
+    categoryFilter.addEventListener("change", function () {
+      addMarkers(this.value);
+    });
+  }
+}
+
+// PETA END
+        </script>
         
     
     </body>
