@@ -103,7 +103,7 @@
                             <div class="col-12">
                                 <a href="#jumlah-penduduk" class="service-content-inner d-flex align-items-center bg-white border border-primary rounded p-4 pe-0">
                                     <div class="service-content text-end">
-                                        <h5 class="mb-4">Jumlah Penduduk</h5>
+                                        <h5 class="mb-4">Jumlah Penduduk per Wilayah</h5>
                                         <p class="mb-0">
                                             Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
                                         </p>
@@ -117,12 +117,12 @@
                             <div class="col-12">
                                 <a href="#berdasarkan-dusun" class="service-content-inner d-flex align-items-center  bg-white border border-primary rounded p-4 pe-0">
                                     <div class="service-content text-end">
-                                        <h5 class="mb-4">Berdasarkan Dusun</h5>
+                                        <h5 class="mb-4">Berdasarkan Jenis Kelamin</h5>
                                         <p class="mb-0">Dolor sit amet consectetur adipisicing elit. Non alias eum, suscipit expedita corrupti officiis debitis possimus nam laudantium beatae quidem dolore consequuntur voluptate rem reiciendis, omnis sequi harum earum.
                                         </p>
                                     </div>
                                     <div class="service-icon p-4">
-                                        <i class="fa fa-hotel fa-4x text-primary"></i>
+                                        <i class="fa fa-user fa-4x text-primary"></i>
                                     </div>
                                 </a>
                             </div>
@@ -191,7 +191,7 @@
                 <div class="container-fluid testimonial py-5">
                     <div class="container py-5">
                         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                            <h1 class="mb-0" >Jumlah Penduduk</h1>
+                            <h1 class="mb-0" >Jumlah Penduduk per Wilayah</h1>
                             <div>
                               <canvas id="Chart1"></canvas>
                             </div>
@@ -206,7 +206,7 @@
         <div class="container-fluid testimonial" id="berdasarkan-dusun">
             <div class="container">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h1 class="mb-0">Berdasarkan Dusun</h1>
+                    <h1 class="mb-0">Berdasarkan Jenis Kelamin</h1>
                     <div>
                       <canvas id="Chart2"></canvas>
                     </div>
@@ -333,10 +333,10 @@
           new Chart(ctx1, {
             type: 'bar',
             data: {
-              labels: {!! json_encode($jumlah_penduduk->pluck('nama_wilayah')) !!},
+              labels: {!! json_encode($jenis_kelamin->pluck('nama_wilayah')) !!},
               datasets: [{
                 label: 'Jumlah Penduduk',
-                data: {!! json_encode($jumlah_penduduk->pluck('jumlah_penduduk')) !!},
+                data: {!! json_encode($jenis_kelamin->pluck('jumlah_penduduk')) !!},
                 borderWidth: 1
               }]
             },

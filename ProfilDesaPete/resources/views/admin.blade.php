@@ -773,46 +773,14 @@
 											<tbody>
         										<tr>
 													<th>Nama Wilayah</th>
-													@foreach ($jumlah_penduduk as $jumlahPenduduk)
+													@foreach ($jenis_kelamin as $jumlahPenduduk)
             											<td>{{ $jumlahPenduduk->nama_wilayah }}</td>
 													@endforeach
 												</tr>
 												<tr>
 													<th>Jumlah Penduduk</th>
-            										@foreach ($jumlah_penduduk as $jumlahPenduduk)
+            										@foreach ($jenis_kelamin as $jumlahPenduduk)
             											<td>{{ $jumlahPenduduk->jumlah_penduduk }}</td>
-													@endforeach
-												</tr>
-												<tr>
-													<th>Action</th>
-            										@foreach ($jumlah_penduduk as $jumlahPenduduk)
-            											<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_JumlahPenduduk{{$jumlahPenduduk->id_wilayah}}">Edit</a></td>
-														</td>
-														<!-- Modal Edit Jumlah Penduduk -->
-														<div class="modal fade" id="modalUpdate_JumlahPenduduk{{$jumlahPenduduk->id_wilayah}}" tabindex="-1" aria-labelledby="modalTitle{{$jumlahPenduduk->id_wilayah}}" aria-hidden="true">
-   															<div class="modal-dialog">
-        														<div class="modal-content">
-            														<div class="modal-header">
-																		<h5 class="modal-title" id="modalTitle">Edit Jumlah Penduduk</h5>
-																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            														</div>
-            														<div class="modal-body">
-																		<form action="{{ route('admin.updateJumlahPenduduk', $jumlahPenduduk->id_wilayah) }}" method="post" enctype="multipart/form-data">
-																			@csrf
-																			<div class="form-group">
-																				<label for="nama_wilayah">Nama Wilayah</label>
-																				<input type="text" class="form-control" name="nama_wilayah" id="nama_wilayah" value="{{ $jumlahPenduduk->nama_wilayah }}" disabled>
-																			</div>
-																			<div class="form-group">
-																				<label for="jumlah_penduduk">Jumlah Penduduk</label>
-																				<input type="text" class="form-control" name="jumlah_penduduk" id="jumlah_penduduk" value="{{ $jumlahPenduduk->jumlah_penduduk }}" required>
-                															</div>
-                															<button type="submit" class="btn btn-primary form-control">Save changes</button>
-																		</form>
-														            </div>
-														        </div>
-														    </div>
-														</div>
 													@endforeach
 												</tr>
 											</tbody>
@@ -1302,10 +1270,10 @@
 	new Chart(ctx1, {
 	  type: 'bar',
 	  data: {
-	    labels: {!! json_encode($jumlah_penduduk->pluck('nama_wilayah')) !!},
+	    labels: {!! json_encode($jenis_kelamin->pluck('nama_wilayah')) !!},
 	    datasets: [{
 	      label: 'Jumlah Penduduk',
-	      data: {!! json_encode($jumlah_penduduk->pluck('jumlah_penduduk')) !!},
+	      data: {!! json_encode($jenis_kelamin->pluck('jumlah_penduduk')) !!},
 	      borderWidth: 1
 	    }]
 	  },

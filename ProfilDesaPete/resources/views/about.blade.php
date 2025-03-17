@@ -234,10 +234,10 @@
                 <h2>{{ $wilayahkecamatan->nama_wilayah }}</h2>
                 <p><strong>Batas Kecamatan</strong></p>
                 <table>
-                    <tr><td class="highlight">Utara</td><td>Desa A</td></tr>
-                    <tr><td class="highlight">Timur</td><td>Desa B</td></tr>
-                    <tr><td class="highlight">Selatan</td><td>Desa C</td></tr>
-                    <tr><td class="highlight">Barat</td><td>Desa D</td></tr>
+                    <tr><td class="highlight">Utara</td><td>Kecamatan Cikupa - Balaraja</td></tr>
+                    <tr><td class="highlight">Timur</td><td>Kecamatan Cikupa - Panongan </td></tr>
+                    <tr><td class="highlight">Selatan</td><td>Kecamatan Jambe - Kabupaten Bogor</td></tr>
+                    <tr><td class="highlight">Barat</td><td>Kecamatan Solear - Cisoka</td></tr>
                 </table>
                 <p><strong>Luas Desa:</strong> {{ number_format($wilayahkecamatan->luas_wilayah, 0, ',', '.') }} Ha</p>
                 <p><strong>Jumlah Penduduk:</strong> {{ number_format($jumlah_penduduk, 0, ',', '.') }} Jiwa</p>

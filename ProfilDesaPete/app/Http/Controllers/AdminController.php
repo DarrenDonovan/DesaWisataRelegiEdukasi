@@ -114,6 +114,12 @@ class AdminController extends Controller{
             ->where('kel_umur_per_wilayah.id_wilayah', $user->id_wilayah)
             ->get();
 
+        $jenis_kelamin = DB::table('jenis_kelamin_per_wilayah')
+            ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
+            ->select('wilayah.nama_wilayah', DB::raw('(jenis_kelamin_per_wilayah.penduduk_laki + jenis_kelamin_per_wilayah.penduduk_perempuan) as jumlah_penduduk'))
+            ->get();
+
         $pekerjaan_penduduk = DB::table('pekerjaan_per_wilayah')
             ->join('pekerjaan', 'pekerjaan_per_wilayah.id_pekerjaan', '=', 'pekerjaan.id_pekerjaan')
             ->join('wilayah', 'pekerjaan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
@@ -141,7 +147,7 @@ class AdminController extends Controller{
             ->where('dusun_per_wilayah.id_wilayah', $user->id_wilayah)
             ->get();
                     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'jumlah_penduduk', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'jumlah_dusun', 'agama_penduduk', 'pendidikan_penduduk', 'jumlah_dusun_per_wilayah', 'wilayaheach'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'jumlah_penduduk', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'jumlah_dusun', 'agama_penduduk', 'pendidikan_penduduk', 'jumlah_dusun_per_wilayah', 'wilayaheach', 'jenis_kelamin'));
     }
 
 
