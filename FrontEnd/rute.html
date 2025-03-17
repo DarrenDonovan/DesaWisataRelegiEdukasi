@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base target="_top">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
     <title>Tracking Rute</title>
     
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
     
     <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
         html, body {
             height: 100%;
             margin: 0;
@@ -25,68 +31,142 @@
         .leaflet-routing-container {
             display: none !important;
         }
+        
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: url('img/pantai.jpg') center/cover no-repeat;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-text h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #ddd;
+        }
+        .hero-text h1 {
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+        .hero-text p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        
+        /* Tombol Kembali */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            background: rgba(255, 255, 255, 0.7);
+            color: black;
+            padding: 10px 15px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: 0.3s;
+            z-index: 3;
+        }
+        .back-button:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+        
+        /* Map Section */
+        #map {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="overlay"></div>
+        <a href="wisata.html" class="back-button">&#8592;</a>
+        <div class="hero-text">
+            <h4>Wisata</h4>
+            <h1>Pantai Indah</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam hic iste ex quas quae atque numquam sunt architecto adipisci assumenda perspiciatis maiores nobis placeat, maxime id eos nemo odio consequatur.</p>
+        </div>
+    </header>
+    
+    <!-- Map Section -->
+    <div id="map"></div>
+    
+    <script>
+        const map = L.map('map');
 
-<div id="map"></div>
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">Traking Maps</a>'
+        }).addTo(map);
 
-<script>
-    const map = L.map('map');
+        const userMarker = L.marker([-6.2514908482756955, 106.62807214954837]).addTo(map)
+            .bindPopup("Lokasi Anda");
 
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">Traking Maps</a>'
-    }).addTo(map);
+        const routingControl = L.Routing.control({
+            waypoints: [
+                L.latLng(-6.2514908482756955, 106.62807214954837),
+                L.latLng(-6.240647427622811, 106.62874609187763)
+            ],
+            createMarker: function() { return null; },
+            routeWhileDragging: true,
+            show: false // Menyembunyikan panel instruksi
+        }).addTo(map);
 
-    const userMarker = L.marker([-6.2514908482756955, 106.62807214954837]).addTo(map)
-        .bindPopup("Lokasi Anda");
-
-    const routingControl = L.Routing.control({
-        waypoints: [
-            L.latLng(-6.2514908482756955, 106.62807214954837),
-            L.latLng(-6.240647427622811, 106.62874609187763)
-        ],
-        createMarker: function() { return null; },
-        routeWhileDragging: true,
-        show: false // Menyembunyikan panel instruksi
-    }).addTo(map);
-
-    // Fokus ke rute saat peta pertama kali dimuat
-    routingControl.on('routesfound', function(e) {
-        const bounds = L.latLngBounds(e.routes[0].coordinates.map(coord => [coord.lat, coord.lng]));
-        map.fitBounds(bounds, { padding: [20, 20] }); // Supaya pas di layar
-    });
-
-    function updateUserLocation(position) {
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
-        userMarker.setLatLng([lat, lng]).update();
-
-        routingControl.setWaypoints([
-            L.latLng(lat, lng),
-            L.latLng(-6.240647427622811, 106.62874609187763)
-        ]);
-
-        // Update tampilan peta agar tetap fokus ke rute terbaru
+        // Fokus ke rute saat peta pertama kali dimuat
         routingControl.on('routesfound', function(e) {
             const bounds = L.latLngBounds(e.routes[0].coordinates.map(coord => [coord.lat, coord.lng]));
             map.fitBounds(bounds, { padding: [20, 20] });
         });
-    }
 
-    function errorHandler(error) {
-        console.log("Error getting location:", error);
-    }
+        function updateUserLocation(position) {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            userMarker.setLatLng([lat, lng]).update();
 
-    if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(updateUserLocation, errorHandler, {
-            enableHighAccuracy: true
-        });
-    } else {
-        alert("Geolocation tidak didukung oleh browser ini.");
-    }
-</script>
+            routingControl.setWaypoints([
+                L.latLng(lat, lng),
+                L.latLng(-6.240647427622811, 106.62874609187763)
+            ]);
 
+            // Update tampilan peta agar tetap fokus ke rute terbaru
+            routingControl.on('routesfound', function(e) {
+                const bounds = L.latLngBounds(e.routes[0].coordinates.map(coord => [coord.lat, coord.lng]));
+                map.fitBounds(bounds, { padding: [20, 20] });
+            });
+        }
+
+        function errorHandler(error) {
+            console.log("Error getting location:", error);
+        }
+
+        if (navigator.geolocation) {
+            navigator.geolocation.watchPosition(updateUserLocation, errorHandler, {
+                enableHighAccuracy: true
+            });
+        } else {
+            alert("Geolocation tidak didukung oleh browser ini.");
+        }
+    </script>
 </body>
 </html>
