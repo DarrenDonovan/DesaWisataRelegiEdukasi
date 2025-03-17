@@ -37,6 +37,59 @@
     <link rel="stylesheet" href="css/leaflet.css" />
 
     <style>  
+
+          /* PROFILE DESA */
+      .small-text {
+        font-size: 0.7em; /* Ukuran lebih kecil */
+        font-weight: normal; /* Supaya gak terlalu tebal */
+      }
+
+      .containerProDes {
+        display: flex;
+        width: 80%;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        margin: 0 auto; /* Ini bikin container ke tengah */
+        align-items: center;
+        justify-content: center; /* Biar konten di dalamnya juga tengah */
+      }
+
+      .proDes {
+        width: 50%;
+        padding: 20px;
+      }
+
+      .gmbrDesa {
+        width: 50%;
+      }
+      .gmbrDesa img {
+        width: 100%;
+        height: 90%;
+        border: none;
+      }
+      .proDes h2 {
+        margin-top: 0;
+        color: #222;
+        font-size: 35px;
+      }
+      .proDes p {
+        font-size: 20px;
+      }
+      .proDes table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 15px;
+      }
+      .proDes td {
+        padding: 8px 0;
+      }
+      .proDes {
+        font-weight: bold;
+        color: #333;
+      }
+
       /* CARD WISATA */
         .containerWisata {
             max-width: 1400px;
@@ -54,6 +107,7 @@
             position: relative;
             overflow: hidden;
             border-radius: 10px;
+            width: 100%;
         }
 
         .cardW img {
@@ -81,6 +135,8 @@
             background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
             text-align: left;
         }
+        
+
 
         /* UMKM CSS */
         .containerUMKM {
@@ -91,7 +147,7 @@
 
         .gridUMKM {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
         }
         
@@ -127,56 +183,151 @@
             text-align: left;
         }
         .umkm-popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    text-align: center;
-    
-    /* Efek transisi */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-}
-
-.umkm-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    
-    /* Efek transisi */
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-}
-
-/* Saat popup aktif */
-.umkm-popup.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-.umkm-overlay.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-
-        .close-btn {
-            background: red;
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            text-align: center;
+            
+            /* Efek transisi */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
         }
+
+          .umkm-overlay {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: rgba(0, 0, 0, 0.5);
+              
+              /* Efek transisi */
+              opacity: 0;
+              visibility: hidden;
+              transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+          }
+
+          /* Saat popup aktif */
+          .umkm-popup.show {
+              opacity: 1;
+              visibility: visible;
+          }
+
+          .umkm-overlay.show {
+              opacity: 1;
+              visibility: visible;
+          }
+
+          .close-btn {
+               background: red;
+               color: white;
+               padding: 5px 10px;
+               border: none;
+               cursor: pointer;
+               border-radius: 5px;
+          }   
+          
+          @media (max-width: 1080px) {
+            .navbar{
+              position: fixed !important;
+              width: 100%;
+              display: flex;
+            }
+            .navbar-brand {
+              margin-left: -20px;
+              display: flex;
+              align-items: center; /* Menjaga teks tetap sejajar dengan ikon */
+            }
+            .navbar-brand h1{
+              font-size: 25px;
+            }
+            .navbar-brand .subtext {
+              color: #13357b;
+              font-size: 15px;
+            }
+            
+            /* PROFIL DESA */
+            .containerProDes {
+                flex-direction: column; /* Elemen ditumpuk ke bawah */
+                align-items: center;
+            }
+
+            .proDes, .gmbrDesa {
+                width: 100%; /* Supaya lebar penuh di layar kecil */
+                text-align: center;
+            }
+            .proDes p {
+              font-size: 15px;
+            }
+
+            /* WISATA */
+            .containerWisata{
+              margin-top: -20px;
+            }
+            .gridWisata {
+              grid-template-columns: repeat(2, 1fr); /* Tetap 2 kolom di HP */
+              padding: 8px;
+            }
+
+            .cardW img {
+                height: 150px; /* Buat gambar lebih kecil */
+                
+            }
+
+            .cardW .info {
+                font-size: 14px; /* Ukuran teks lebih kecil di HP */
+                padding: 8px;
+            }
+            
+            /* UMKM */
+            .gridUMKM {
+              grid-template-columns: repeat (3, 1fr);
+              padding: 8px;
+              gap: 5px;
+              margin-top: -30px;
+            }
+
+            .cardU img {
+              height: 100px;
+            }
+
+            .cardU .info {
+              font-size: 14px;
+              
+            }
+
+            /* INFOGRAFIS */
+            .service-content-inner {
+                padding: 2rem !important; /* Mengurangi padding */
+            }
+
+            .service-icon i {
+                font-size: 2.5rem !important; /* Mengurangi ukuran ikon */
+            }
+
+            .service-content h5 {
+                font-size: 1rem !important; /* Mengurangi ukuran teks judul */
+            }
+
+            .service-content p {
+                font-size: 0.875rem !important; /* Mengurangi ukuran teks paragraf */
+            }
+
+            .service-content-inner .p-4 {
+                padding: 1rem !important; /* Mengurangi padding untuk elemen di dalamnya */
+            }
+
+            .d-flex.justify-content-center a {
+                width: 80% !important; /* Mengurangi lebar tombol di layar kecil */
+            }
+        }
+
     </style>
   </head>
 

@@ -1475,57 +1475,6 @@ table {
   width: 100%;
 }
 
-/* PROFILE DESA */
-.small-text {
-  font-size: 0.7em; /* Ukuran lebih kecil */
-  font-weight: normal; /* Supaya gak terlalu tebal */
-}
-
-.containerProDes {
-  display: flex;
-  width: 80%;
-  background: white;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  margin: 0 auto; /* Ini bikin container ke tengah */
-  align-items: center;
-  justify-content: center; /* Biar konten di dalamnya juga tengah */
-}
-
-.proDes {
-  width: 50%;
-  padding: 20px;
-}
-
-.gmbrDesa {
-  width: 50%;
-}
-.gmbrDesa img {
-  width: 100%;
-  height: 90%;
-  border: none;
-}
-.proDes h2 {
-  margin-top: 0;
-  color: #222;
-  font-size: 35px;
-}
-.proDes p {
-  font-size: 20px;
-}
-.proDes table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 15px;
-}
-.proDes td {
-  padding: 8px 0;
-}
-.proDes {
-  font-weight: bold;
-  color: #333;
-}
 
 .meta-bottom {
   display: flex;
@@ -1556,9 +1505,6 @@ table {
   font-size: 16px;
   color: #777;
 }
-
- 
- 
 
 /* Pastikan wrapper memenuhi tinggi layar */
 .wrapper {
