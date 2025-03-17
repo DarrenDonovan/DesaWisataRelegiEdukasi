@@ -164,7 +164,7 @@ class UserController extends Controller
             ->where('jenis_wilayah', 'Kecamatan')
             ->get();
 
-        return view('infografis', compact('wilayah', 'jumlah_penduduk', 'agama_kecamatan', 'wilayahNoKec', 'kel_umur_kecamatan', 'pekerjaan_kecamatan', 'pendidikan_kecamatan', 'jumlah_dusun', 'jenis_kelamin', 'rasio_jenis_kelamin'));
+        return view('infografis', compact('wilayah', 'jumlah_penduduk', 'agama_kecamatan', 'wilayahNoKec', 'kel_umur_kecamatan', 'pekerjaan_kecamatan', 'pendidikan_kecamatan', 'jenis_kelamin', 'rasio_jenis_kelamin'));
     }
 
     public function maps(){

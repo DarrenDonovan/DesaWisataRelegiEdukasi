@@ -128,6 +128,23 @@ php artisan db:seed --class=UserSeeder
     FOREIGN KEY (id_wilayah) REFERENCES wilayah(id_wilayah)
 );
 
+- CREATE TABLE wisata (
+    id_wisata INT PRIMARY KEY,
+    id_wilayah INT NOT NULL,
+    nama_tempat VARCHAR(255) NOT NULL,
+    gambar_wisata VARCHAR(255),
+    latitude DECIMAL(20,18) NOT NULL,
+    longitude DECIMAL(20,18) NOT NULL,
+    FOREIGN KEY (id_wilayah) REFERENCES wilayah(id_wilayah)
+);
+
+- CREATE TABLE jenis_kelamin_per_wilayah (
+    id_wilayah INT NOT NULL,
+    penduduk_laki INT NOT NULL,
+    penduduk_perempuan INT NOT NULL,
+    FOREIGN KEY (id_wilayah) REFERENCES wilayah(id_wilayah)
+);
+
 
 **
 INSERT INTO wilayah (id_wilayah, nama_wilayah, jenis_wilayah, luas_wilayah, jumlah_penduduk, jumlah_dusun, latitude, longitude, gambar_wilayah) VALUES
@@ -404,6 +421,24 @@ INSERT INTO dusun_per_wilayah (id_dusun, id_wilayah, nama_dusun, jumlah_penduduk
 (53, 15, 'Dusun BA', 6000),
 (54, 15, 'Dusun BB', 7036),
 (55, 15, 'Dusun BC', 3600);
+
+
+**
+INSERT INTO jenis_kelamin_per_wilayah (id_wilayah, penduduk_laki, penduduk_perempuan) VALUES
+(1, 3138, 3053),
+(2, 3337, 3064),
+(3, 13076, 12732),
+(4, 5712, 5487),
+(5, 7688, 7425),
+(6, 2710, 2507),
+(7, 6286, 6189),
+(8, 7760, 7503),
+(9, 5885, 5750),
+(10, 4906, 4708),
+(11, 4131, 3959),
+(12, 4637, 4449),
+(14, 4185, 4149),
+(15, 8588, 8581);
 
 
 
