@@ -120,6 +120,19 @@ class AdminController extends Controller{
             ->select('wilayah.nama_wilayah', DB::raw('(jenis_kelamin_per_wilayah.penduduk_laki + jenis_kelamin_per_wilayah.penduduk_perempuan) as jumlah_penduduk'))
             ->get();
 
+        $data_jenis_kelamin = DB::table('jenis_kelamin_per_wilayah')
+            ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
+            ->select([
+                DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_laki) as penduduk_laki'),
+                DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_perempuan) as penduduk_perempuan')
+            ])
+            ->first();
+        $rasio_jenis_kelamin = [
+            'Laki-Laki' => $data_jenis_kelamin->penduduk_laki,
+            'Perempuan' => $data_jenis_kelamin->penduduk_perempuan,
+        ];
+
         $pekerjaan_penduduk = DB::table('pekerjaan_per_wilayah')
             ->join('pekerjaan', 'pekerjaan_per_wilayah.id_pekerjaan', '=', 'pekerjaan.id_pekerjaan')
             ->join('wilayah', 'pekerjaan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
@@ -147,7 +160,7 @@ class AdminController extends Controller{
             ->where('dusun_per_wilayah.id_wilayah', $user->id_wilayah)
             ->get();
                     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'jumlah_penduduk', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'jumlah_dusun', 'agama_penduduk', 'pendidikan_penduduk', 'jumlah_dusun_per_wilayah', 'wilayaheach', 'jenis_kelamin'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'jumlah_penduduk', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'jumlah_dusun', 'agama_penduduk', 'pendidikan_penduduk', 'jumlah_dusun_per_wilayah', 'wilayaheach', 'jenis_kelamin', 'data_jenis_kelamin', 'rasio_jenis_kelamin'));
     }
 
 

@@ -301,11 +301,11 @@
                       <div class="col-12">
                           <a href="#berdasarkan-dusun" class="service-content-inner d-flex justify-content-end align-items-center bg-white border border-primary rounded p-4 pe-0">
                               <div class="service-content text-end">
-                                  <h5 class="mb-4">Berdasarkan Dusun</h5>
+                                  <h5 class="mb-4">Berdasarkan Jenis Kelamin</h5>
                                   <p class="mb-0">Dolor sit amet consectetur adipisicing elit...</p>
                               </div>
                               <div class="service-icon p-4">
-                                  <i class="fa fa-hotel fa-4x text-primary"></i>
+                                  <i class="fa fa-user fa-4x text-primary"></i>
                               </div>
                           </a>
                       </div>
@@ -368,8 +368,8 @@
    <!--  Berdasarkan Dusun-->
   <div class="container-fluid testimonial py-5" id="berdasarkan-dusun">
       <div class="container py-5">
-          <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-              <h1 class="mb-0">Berdasarkan Dusun</h1>
+          <div class="mx-auto text-center mb-5" style="max-width: 500px;">
+              <h1 class="mb-0">Berdasarkan Jenis Kelamin</h1>
               <canvas id="Chart2"></canvas>
           </div>
       </div>
@@ -585,23 +585,19 @@ function closeUmkmPopup() {
     overlay.classList.remove('show');
 }
 
-        const ctx2 = document.getElementById('Chart2');
+      const ctx2 = document.getElementById('Chart2');
           new Chart(ctx2, {
-            type: 'bar',
+            type: 'pie',
             data: {
-              labels: {!! json_encode($jumlah_dusun->pluck('nama_dusun')) !!},
+              labels: ['Laki-Laki', 'Perempuan'], 
               datasets: [{
                 label: 'Jumlah Penduduk',
-                data: {!! json_encode($jumlah_dusun->pluck('jumlah_penduduk')) !!},
-                borderWidth: 1
+                data: {!! json_encode(array_values($rasio_jenis_kelamin)) !!}, 
+                backgroundColor: [
+				          'rgba(54, 162, 235, 0.6)',
+                  'rgba(255, 99, 132, 0.6)' 
+                ]
               }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
             }
           });
 

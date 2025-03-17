@@ -205,7 +205,7 @@
          <!--  Berdasarkan Dusun-->
         <div class="container-fluid testimonial" id="berdasarkan-dusun">
             <div class="container">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <div class="mx-auto text-center mb-5" style="max-width: 500px;">
                     <h1 class="mb-0">Berdasarkan Jenis Kelamin</h1>
                     <div>
                       <canvas id="Chart2"></canvas>
@@ -352,23 +352,20 @@
 
           const ctx2 = document.getElementById('Chart2');
           new Chart(ctx2, {
-            type: 'bar',
+            type: 'pie',
             data: {
-              labels: {!! json_encode($jumlah_dusun->pluck('nama_wilayah')) !!},
+              labels: ['Laki-Laki', 'Perempuan'], 
               datasets: [{
-                label: 'Jumlah Dusun',
-                data: {!! json_encode($jumlah_dusun->pluck('total_dusun')) !!},
-                borderWidth: 1
+                label: 'Jumlah Penduduk',
+                data: {!! json_encode(array_values($rasio_jenis_kelamin)) !!}, 
+                backgroundColor: [
+				  'rgba(54, 162, 235, 0.6)',
+                  'rgba(255, 99, 132, 0.6)' 
+                ]
               }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
             }
           });
+
 
 
           const ctx3 = document.getElementById('Chart3');

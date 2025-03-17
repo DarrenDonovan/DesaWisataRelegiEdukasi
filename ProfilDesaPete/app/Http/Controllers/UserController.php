@@ -118,25 +118,24 @@ class UserController extends Controller
             ->whereIn('jenis_wilayah', ['Desa', 'Kelurahan'])
             ->get();
 
-        $jumlah_penduduk2 = DB::table('wilayah')
-            ->join('kel_umur_per_wilayah', 'wilayah.id_wilayah', '=', 'kel_umur_per_wilayah.id_wilayah')
-            ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
-            ->select('wilayah.nama_wilayah', DB::raw('SUM(kel_umur_per_wilayah.jumlah_orang) as jumlah_penduduk'))
-            ->groupBy('wilayah.nama_wilayah')
-            ->get();
-
         $jenis_kelamin = DB::table('jenis_kelamin_per_wilayah')
             ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
             ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
             ->select('wilayah.nama_wilayah', DB::raw('(jenis_kelamin_per_wilayah.penduduk_laki + jenis_kelamin_per_wilayah.penduduk_perempuan) as jumlah_penduduk'))
             ->get();
 
-        $jumlah_dusun = DB::table('dusun_per_wilayah')
-            ->join('wilayah', 'dusun_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+        $data_jenis_kelamin = DB::table('jenis_kelamin_per_wilayah')
+            ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
             ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
-            ->select('wilayah.nama_wilayah', DB::raw('COUNT(*) as total_dusun'))
-            ->groupBy('wilayah.nama_wilayah')
-            ->get();
+            ->select([
+                DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_laki) as penduduk_laki'),
+                DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_perempuan) as penduduk_perempuan')
+            ])
+            ->first();
+        $rasio_jenis_kelamin = [
+            'Laki-Laki' => $data_jenis_kelamin->penduduk_laki,
+            'Perempuan' => $data_jenis_kelamin->penduduk_perempuan,
+        ];
 
         $agama_kecamatan = DB::table('agama_per_wilayah')
             ->join('agama', 'agama_per_wilayah.id_agama','=', 'agama.id_agama')
@@ -165,7 +164,7 @@ class UserController extends Controller
             ->where('jenis_wilayah', 'Kecamatan')
             ->get();
 
-        return view('infografis', compact('wilayah', 'jumlah_penduduk', 'agama_kecamatan', 'wilayahNoKec', 'kel_umur_kecamatan', 'pekerjaan_kecamatan', 'pendidikan_kecamatan', 'jumlah_dusun', 'jumlah_penduduk2', 'jenis_kelamin'));
+        return view('infografis', compact('wilayah', 'jumlah_penduduk', 'agama_kecamatan', 'wilayahNoKec', 'kel_umur_kecamatan', 'pekerjaan_kecamatan', 'pendidikan_kecamatan', 'jumlah_dusun', 'jenis_kelamin', 'rasio_jenis_kelamin'));
     }
 
     public function maps(){
@@ -201,7 +200,18 @@ class UserController extends Controller
             ->where('wilayah.id_wilayah', $id)
             ->get();
 
-
+        $data_jenis_kelamin = DB::table('jenis_kelamin_per_wilayah')
+            ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
+            ->select([
+                DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_laki) as penduduk_laki'),
+                DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_perempuan) as penduduk_perempuan')
+            ])
+            ->where('jenis_kelamin_per_wilayah.id_wilayah', $id)
+            ->first();
+        $rasio_jenis_kelamin = [
+            'Laki-Laki' => $data_jenis_kelamin->penduduk_laki,
+            'Perempuan' => $data_jenis_kelamin->penduduk_perempuan,];
 
         $jumlah_dusun = DB::table('dusun_per_wilayah')
             ->join('wilayah', 'dusun_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
@@ -236,7 +246,7 @@ class UserController extends Controller
             ->where('pendidikan_per_wilayah.id_wilayah', $id)
             ->get();
 
-        return view('profildesa', compact('wilayah', 'wilayaheach', 'wilayahNoKec', 'jumlah_dusun', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'agama_penduduk', 'pendidikan_penduduk'));
+        return view('profildesa', compact('wilayah', 'wilayaheach', 'wilayahNoKec', 'jumlah_dusun', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'agama_penduduk', 'pendidikan_penduduk', 'rasio_jenis_kelamin'));
     }
 
     public function wisata(){

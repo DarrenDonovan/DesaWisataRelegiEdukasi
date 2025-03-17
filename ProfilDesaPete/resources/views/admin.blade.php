@@ -159,6 +159,77 @@
 							<p class="alert alert-success mt-2">{{ Session::get('message') }}</p>
 						@endif
 						
+							<div class="row mt-4">
+								<div class="col-md-4">
+									<div class="card">
+										<div class="card-header">
+											<h4 class="card-title text-center mb-1">Jumlah Penduduk</h4>
+											<div class="card-body">
+		  										<p>1000</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="card">
+										<div class="card-header">
+											<h4 class="card-title text-center mb-1">Jumlah Penduduk</h4>
+											<div class="card-body">
+		  										<p>1000</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="card">
+										<div class="card-header">
+											<h4 class="card-title text-center mb-1">Jumlah Penduduk</h4>
+											<div class="card-body">
+		  										<p>1000</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						<!-- Chart Jumlah Penduduk di Kecamatan -->
+						<div class="row">
+							<div class="col">
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">BarChart Jumlah Penduduk Kecamatan Tigaraksa</h4>
+									</div>
+									<div class="card-body">
+										<canvas id="Chart1"></canvas>
+									</div>
+								</div>
+							</div>
+						<div class="row">
+							<div class="col">
+								<div class="card">
+									<div class="card-body">
+										<table class="table table-striped mt-3">
+											<tbody>
+        										<tr>
+													<th>Nama Wilayah</th>
+													@foreach ($jenis_kelamin as $jumlahPenduduk)
+            											<td>{{ $jumlahPenduduk->nama_wilayah }}</td>
+													@endforeach
+												</tr>
+												<tr>
+													<th>Jumlah Penduduk</th>
+            										@foreach ($jenis_kelamin as $jumlahPenduduk)
+            											<td>{{ $jumlahPenduduk->jumlah_penduduk }}</td>
+													@endforeach
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
 						<!-- Kegiatan Terbaru -->
 						<h4 class="page-title mt-2">Kegiatan Terbaru</h4>
 						<div class="row">
@@ -752,112 +823,44 @@
 					<div class="d-flex justify-content-between align-items-center">
 						<h4 class="page-title mt-1">Infografis</h4>
 					</div>	
-					@if(Auth::check() && Auth::user()->role==='superadmin')
-					<!-- Chart Jumlah Penduduk di Kecamatan -->
-						<div class="row">
-							<div class="col">
+						<!-- Chart Sebaran Penduduk Berdasarkan Jenis Kelamin -->
+						<div class="col-md-6">
 								<div class="card">
-									<div class="card-header">
-										<h4 class="card-title">BarChart Jumlah Penduduk Kecamatan Tigaraksa</h4>
-									</div>
-									<div class="card-body">
-										<canvas id="Chart1"></canvas>
-									</div>
-								</div>
-							</div>
-						<div class="row">
-							<div class="col">
-								<div class="card">
-									<div class="card-body">
-										<table class="table table-striped mt-3">
-											<tbody>
-        										<tr>
-													<th>Nama Wilayah</th>
-													@foreach ($jenis_kelamin as $jumlahPenduduk)
-            											<td>{{ $jumlahPenduduk->nama_wilayah }}</td>
-													@endforeach
-												</tr>
-												<tr>
-													<th>Jumlah Penduduk</th>
-            										@foreach ($jenis_kelamin as $jumlahPenduduk)
-            											<td>{{ $jumlahPenduduk->jumlah_penduduk }}</td>
-													@endforeach
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Chart Jumlah Dusun di Kecamatan -->
-						<div class="row">
-							<div class="col">
-								<div class="card">
-									<div class="card-header">
-										<h4 class="card-title">BarChart Jumlah Dusun Kecamatan Tigaraksa</h4>
+									<div class="card-header ">
+										<h4 class="card-title">Sebaran Penduduk Berdasarkan Kelompok Umur</h4>
 									</div>
 									<div class="card-body">
 										<canvas id="Chart2"></canvas>
 									</div>
 								</div>
 							</div>
-						<div class="row">
-							<div class="col">
+							<div class="col-md-6">
 								<div class="card">
+									<div class="card-header ">
+										<h4 class="card-title">Tabel Data Penduduk Berdasarkan Kelompok Umur</h4>
+									</div>
 									<div class="card-body">
 										<table class="table table-striped mt-3">
+											<thead>
+												<tr>
+													<th scope="col">Jenis Kelamin</th>
+													<th scope="col">Jumlah Penduduk</th>
+												</tr>
+											</thead>
 											<tbody>
         										<tr>
-													<th>Nama Dusun</th>
-													@foreach ($jumlah_dusun as $jumlahDusun)
-            											<td>{{ $jumlahDusun->nama_wilayah }}</td>
-													@endforeach
+            										<td><p>Laki-Laki</p></td>
+													<td>{{ $rasio_jenis_kelamin->penduduk_laki }}</td>
 												</tr>
-												<tr>
-													<th>Jumlah Dusun</th>
-            										@foreach ($jumlah_dusun as $jumlahDusun)
-            											<td>{{ $jumlahDusun->jumlah_dusun }}</td>
-													@endforeach
-												</tr>
-												<tr>
-													<th>Action</th>
-            										@foreach ($jumlah_dusun as $jumlahDusun)
-            											<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_JumlahDusun{{$jumlahDusun->id_wilayah}}">Edit</a></td>
-														</td>
-														<!-- Modal Edit Jumlah Penduduk -->
-														<div class="modal fade" id="modalUpdate_JumlahDusun{{$jumlahDusun->id_wilayah}}" tabindex="-1" aria-labelledby="modalTitle{{$jumlahDusun->id_wilayah}}" aria-hidden="true">
-   															<div class="modal-dialog">
-        														<div class="modal-content">
-            														<div class="modal-header">
-																		<h5 class="modal-title" id="modalTitle">Edit Jumlah Dusun</h5>
-																		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            														</div>
-            														<div class="modal-body">
-																		<form action="{{ route('admin.updateJumlahDusun', $jumlahDusun->id_wilayah) }}" method="post" enctype="multipart/form-data">
-																			@csrf
-																			<div class="form-group">
-																				<label for="nama_wilayah">Nama Wilayah</label>
-																				<input type="text" class="form-control" name="nama_wilayah" id="nama_wilayah" value="{{ $jumlahDusun->nama_wilayah }}" disabled>
-																			</div>
-																			<div class="form-group">
-																				<label for="jumlah_dusun">Jumlah Dusun</label>
-																				<input type="text" class="form-control" name="jumlah_dusun" id="jumlah_dusun" value="{{ $jumlahDusun->jumlah_dusun }}" required>
-                															</div>
-                															<button type="submit" class="btn btn-primary form-control">Save changes</button>
-																		</form>
-														            </div>
-														        </div>
-														    </div>
-														</div>
-													@endforeach
+                                                <tr>
+            										<td><p>Perempuan</p></td>
+													<td>{{ $rasio_jenis_kelamin->penduduk_perempuan }}</td>
 												</tr>
 											</tbody>
 										</table>
 									</div>
 								</div>
 							</div>
-						</div>
-						@endif
 
 						@if(Auth::check() && Auth::user()->role==='admin')
 						<!-- Chart Jumlah Penduduk di Dusun setiap wilayah -->
@@ -1288,23 +1291,20 @@
 
 	const ctx2 = document.getElementById('Chart2');
           new Chart(ctx2, {
-            type: 'bar',
+            type: 'pie',
             data: {
-              labels: {!! json_encode($jumlah_dusun->pluck('nama_wilayah')) !!},
+              labels: ['Laki-Laki', 'Perempuan'], 
               datasets: [{
-                label: 'Jumlah Dusun',
-                data: {!! json_encode($jumlah_dusun->pluck('jumlah_dusun')) !!},
-                borderWidth: 1
+                label: 'Jumlah Penduduk',
+                data: {!! json_encode(array_values($rasio_jenis_kelamin)) !!}, 
+                backgroundColor: [
+				  'rgba(54, 162, 235, 0.6)',
+                  'rgba(255, 99, 132, 0.6)' 
+                ]
               }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
             }
           });
+
 
 	const ctx3 = document.getElementById('Chart3');
           new Chart(ctx3, {
