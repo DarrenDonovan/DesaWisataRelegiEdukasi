@@ -432,7 +432,7 @@
     <div class="containerWisata">
       <div class="gridWisata">
           <div class="cardW">
-            <a href="wisata.html">
+            <a href="{{ url('wisata') }}">
               <img src="/img/pantai.jpg" alt="Pantai"></a>
               <div class="info">Pantai Indah</div>
           </div>

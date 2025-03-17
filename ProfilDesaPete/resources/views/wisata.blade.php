@@ -6,7 +6,7 @@
     <title>Detail Wisata</title>
 
     <!-- Bootstrap CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{{ url('css/bootstrap.min.css') }}" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="css/site.css" media="all" />
     <link rel="stylesheet" href="css/panorama360.css" media="all" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="js/jquery.mousewheel.min.js"></script>
-    <script src="js/jquery.panorama360.js"></script>
+    <script src="{{ url('js/jquery.mousewheel.min.js') }}"></script>
+    <script src="{{ url('js/jquery.panorama360.js') }}"></script>
     <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet" />
+    <link href="{{ url('css/style.css') }}" rel="stylesheet" />
     <style>
       * {
     margin: 0;
@@ -357,7 +357,7 @@
     <div class="overlay"></div>
 
     <!-- Tombol Kembali -->
-    <a href="BantarPanjang.html" class="back-button">
+    <a href="{{ url('/') }}" class="back-button">
       &#8592;
   </a>
   
@@ -399,7 +399,7 @@
 </div>
 
 <div class="map-container">
-    <iframe src="rute.html" width="100%" height="400px" style="border-radius: 10px; border: none;"></iframe>
+    <iframe src="{{ url('rute') }}" width="100%" height="400px" style="border-radius: 10px; border: none;"></iframe>
 </div>
 
 </section>

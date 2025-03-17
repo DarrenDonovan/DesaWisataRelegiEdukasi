@@ -118,6 +118,13 @@ class UserController extends Controller
             ->whereIn('jenis_wilayah', ['Desa', 'Kelurahan'])
             ->get();
 
+        $jumlah_penduduk2 = DB::table('wilayah')
+            ->join('kel_umur_per_wilayah', 'wilayah.id_wilayah', '=', 'kel_umur_per_wilayah.id_wilayah')
+            ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
+            ->select('wilayah.nama_wilayah', DB::raw('SUM(kel_umur_per_wilayah.jumlah_orang) as jumlah_penduduk'))
+            ->groupBy('wilayah.nama_wilayah')
+            ->get();
+
         $jumlah_dusun = DB::table('dusun_per_wilayah')
             ->join('wilayah', 'dusun_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
             ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
@@ -152,7 +159,7 @@ class UserController extends Controller
             ->where('jenis_wilayah', 'Kecamatan')
             ->get();
 
-        return view('infografis', compact('wilayah', 'jumlah_penduduk', 'agama_kecamatan', 'wilayahNoKec', 'kel_umur_kecamatan', 'pekerjaan_kecamatan', 'pendidikan_kecamatan', 'jumlah_dusun'));
+        return view('infografis', compact('wilayah', 'jumlah_penduduk', 'agama_kecamatan', 'wilayahNoKec', 'kel_umur_kecamatan', 'pekerjaan_kecamatan', 'pendidikan_kecamatan', 'jumlah_dusun', 'jumlah_penduduk2'));
     }
 
     public function maps(){
@@ -228,5 +235,11 @@ class UserController extends Controller
 
     public function wisata(){
 
+        return view('wisata');
+    }
+
+    public function rute(){
+        
+        return view('rute');
     }
 }

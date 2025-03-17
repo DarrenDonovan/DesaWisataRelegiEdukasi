@@ -37,6 +37,7 @@ Route::get('berita', [UserController::class, 'berita'])->name('berita');
 Route::get('berita/detailberita/{id}', [UserController::class, 'detailberita'])->name('detailberita');
 Route::get('profildesa/{id}', [UserController::class, 'profildesa'])->name('profildesa');
 Route::get('wisata', [UserController::class, 'wisata'])->name('wisata');
+Route::get('rute', [UserController::class, 'rute'])->name('rute');
 
 //Admin Dashboard Landpage
 Route::get('admin', [AdminController::class, 'admin'])->middleware('auth')->name('admin');
