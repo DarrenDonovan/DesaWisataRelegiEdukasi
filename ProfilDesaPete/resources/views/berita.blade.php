@@ -122,7 +122,7 @@
                                     <a href="#" class="h4">{{ $item->judul_berita }}</a>
                                     <p class="my-3">{!! Str::limit($item->konten_berita, 50, '...') !!}</p>
                                 </div>
-                                <a href="{{ url('detailberita/' . $item->id_berita) }}" class="btn btn-primary rounded-pill py-2 px-4 mt-auto">Baca Selengkapnya</a>
+                                <a href="{{ url('berita/detailberita/' . $item->id_berita) }}" class="btn btn-primary rounded-pill py-2 px-4 mt-auto">Baca Selengkapnya</a>
                             </div>
 
                         </div>

@@ -225,4 +225,8 @@ class UserController extends Controller
 
         return view('profildesa', compact('wilayah', 'wilayaheach', 'wilayahNoKec', 'jumlah_dusun', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'agama_penduduk', 'pendidikan_penduduk'));
     }
+
+    public function wisata(){
+
+    }
 }
