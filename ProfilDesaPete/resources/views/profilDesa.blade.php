@@ -366,9 +366,9 @@
   </div>
 
    <!--  Berdasarkan Dusun-->
-  <div class="container-fluid testimonial py-5" id="berdasarkan-dusun">
+  <div class="container-fluid testimonial py-5" id="berdasarkan-jen-kel">
       <div class="container py-5">
-          <div class="mx-auto text-center mb-5" style="max-width: 500px;">
+          <div class="mx-auto text-center" style="max-width: 500px;">
               <h1 class="mb-0">Berdasarkan Jenis Kelamin</h1>
               <canvas id="Chart2"></canvas>
           </div>
@@ -379,7 +379,7 @@
   <!-- Berdasarkan kelompok umur  -->
   <div class="container-fluid testimonial py-5" id="berdasarkan-umur">
       <div class="container py-5">
-          <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+          <div class="mx-auto text-center" style="max-width: 600px;">
               <h1 class="mb-0">Berdasarkan Kelompok Umur</h1>
               <canvas id="Chart3"></canvas>
           </div>
@@ -390,9 +390,9 @@
    <!-- Berdasarkan pekerjaan  -->
    <div class="container-fluid testimonial py-5" id="berdasarkan-pekerjaan">
       <div class="container py-5">
-          <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+          <div class="mx-auto text-center" style="max-width: 900px;">
               <h1 class="mb-0">Berdasarkan Pekerjaan</h1>
-              <canvas id="Chart4"></canvas>
+              <canvas id=""></canvas>
           </div>
       </div>
   </div>
@@ -401,9 +401,9 @@
   <!-- Berdasarkan agama  -->
   <div class="container-fluid testimonial py-5" id="berdasarkan-agama">
       <div class="container py-5">
-          <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+          <div class="mx-auto text-center" style="max-width: 900px;">
               <h1 class="mb-0">Berdasarkan Agama</h1>
-              <canvas id="Chart5"></canvas>
+              <canvas id=""></canvas>
           </div>
       </div>
   </div>
@@ -412,9 +412,9 @@
   <!-- Berdasarkan pendidikan  -->
   <div class="container-fluid testimonial py-5" id="berdasarkan-pendidikan">
       <div class="container py-5">
-          <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+          <div class="mx-auto text-center" style="max-width: 900px;">
               <h1 class="mb-0">Berdasarkan Pendidikan</h1>
-              <canvas id="Chart6"></canvas>
+              <canvas id=""></canvas>
           </div>
       </div>
   </div>
@@ -621,64 +621,6 @@ function closeUmkmPopup() {
             }
           });
 
-		  const ctx4 = document.getElementById('Chart4');
-          new Chart(ctx4, {
-            type: 'bar',
-            data: {
-              labels: {!! json_encode($pekerjaan_penduduk->pluck('pekerjaan')) !!},
-              datasets: [{
-                label: 'Jumlah Pekerja',
-                data: {!! json_encode($pekerjaan_penduduk->pluck('jumlah_pekerja')) !!},
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
-
-		  const ctx5 = document.getElementById('Chart5');
-          new Chart(ctx5, {
-            type: 'pie',
-            data: {
-              labels: {!! json_encode($agama_penduduk->pluck('agama')) !!}, 
-              datasets: [{
-                label: 'Jumlah Penganut',
-                data: {!! json_encode($agama_penduduk->pluck('jumlah_penganut')) !!}, 
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.6)', 
-                  'rgba(54, 162, 235, 0.6)', 
-                  'rgba(255, 206, 86, 0.6)', 
-                  'rgba(75, 192, 192, 0.6)',
-                  'rgba(153, 102, 255, 0.6)',
-                  'rgba(0, 255, 255, 0.6)'
-                ]
-              }]
-            }
-          });
-
-		  const ctx6 = document.getElementById('Chart6');
-          new Chart(ctx6, {
-            type: 'bar',
-            data: {
-              labels: {!! json_encode($pendidikan_penduduk->pluck('pendidikan')) !!},
-              datasets: [{
-                label: 'Jumlah Orang',
-                data: {!! json_encode($pendidikan_penduduk->pluck('jumlah_orang')) !!},
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
+		  
 </script>
 </html>

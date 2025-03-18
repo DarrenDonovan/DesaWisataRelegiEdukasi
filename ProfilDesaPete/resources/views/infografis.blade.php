@@ -234,7 +234,7 @@
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                     <h1 class="mb-0">Berdasarkan Pekerjaan</h1>
                     <div>
-                      <canvas id="Chart4"></canvas>
+                      <canvas id=""></canvas>
                     </div>
                 </div>
             </div>
@@ -247,7 +247,7 @@
                 <div class="mx-auto text-center mb-5" style="max-width: 600px;">
                     <h1 class="mb-0">Berdasarkan Agama</h1>
                     <div>
-                      <canvas id="Chart5" width="300" height="300"></canvas>
+                      <canvas id=""></canvas>
                     </div>
                 </div>
             </div>
@@ -260,7 +260,7 @@
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                     <h1 class="mb-0">Berdasarkan Pendidikan</h1>
                     <div>
-                      <canvas id="Chart6"></canvas>
+                      <canvas id=""></canvas>
                     </div>
                 </div>
             </div>
@@ -388,68 +388,6 @@
             }
           });
 
-
-          const ctx4 = document.getElementById('Chart4');
-          new Chart(ctx4, {
-            type: 'bar',
-            data: {
-              labels: {!! json_encode($pekerjaan_kecamatan->pluck('pekerjaan')) !!},
-              datasets: [{
-                label: 'Jumlah Pekerja',
-                data: {!! json_encode($pekerjaan_kecamatan->pluck('jumlah_pekerja')) !!},
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
-
-
-          const ctx5 = document.getElementById('Chart5');
-          new Chart(ctx5, {
-            type: 'pie',
-            data: {
-              labels: {!! json_encode($agama_kecamatan->pluck('agama')) !!}, 
-              datasets: [{
-                label: 'Jumlah Penganut',
-                data: {!! json_encode($agama_kecamatan->pluck('jumlah_penganut')) !!}, 
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.6)', 
-                  'rgba(54, 162, 235, 0.6)', 
-                  'rgba(255, 206, 86, 0.6)', 
-                  'rgba(75, 192, 192, 0.6)',
-                  'rgba(153, 102, 255, 0.6)',
-                  'rgba(0, 255, 255, 0.6)'
-                ]
-              }]
-            }
-          });
-
-
-          const ctx6 = document.getElementById('Chart6');
-          new Chart(ctx6, {
-            type: 'bar',
-            data: {
-              labels: {!! json_encode($pendidikan_kecamatan->pluck('pendidikan')) !!},
-              datasets: [{
-                label: 'Jumlah Orang',
-                data: {!! json_encode($pendidikan_kecamatan->pluck('jumlah_orang')) !!},
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
         </script>
 
 

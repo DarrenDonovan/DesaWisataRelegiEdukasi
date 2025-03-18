@@ -53,6 +53,36 @@ class AdminController extends Controller{
                 ->orderBy('id_kegiatan', 'desc')
                 ->paginate(5);
         }
+
+        //berita
+        if($user->role == 'superadmin'){
+            $berita = DB::table('berita')
+                ->join('wilayah', 'berita.id_wilayah', '=', 'wilayah.id_wilayah')
+                ->select('berita.id_berita', 'berita.judul_berita', 'berita.konten_berita', 'berita.gambar_berita', 'berita.penulis_berita', 'berita.tanggal_berita', 'berita.id_wilayah', 'wilayah.nama_wilayah')
+                ->orderBy('id_berita', 'desc')
+                ->paginate(5);
+        }
+        else{
+            $berita = DB::table('berita')
+                ->join('wilayah', 'berita.id_wilayah', '=', 'wilayah.id_wilayah')
+                ->select('berita.id_berita', 'berita.judul_berita', 'berita.konten_berita', 'berita.gambar_berita', 'berita.penulis_berita', 'berita.tanggal_berita', 'berita.id_wilayah', 'wilayah.nama_wilayah')
+                ->where('berita.id_wilayah', $user->id_wilayah)
+                ->orderBy('id_berita', 'desc')
+                ->paginate(5);
+        }
+
+        //perngkat kecamatan
+        if($user->role == 'superadmin'){
+        $perangkat_kecamatan = DB::table('perangkat_kecamatan')
+            ->select('perangkat_kecamatan.id_perangkat', 'perangkat_kecamatan.nama', 'perangkat_kecamatan.jabatan', 'perangkat_kecamatan.link_facebook', 'perangkat_kecamatan.link_instagram', 'perangkat_kecamatan.link_tiktok', 'perangkat_kecamatan.gambar_perangkat')
+            ->get();
+        }
+        else{
+            $perangkat_kecamatan = DB::table('perangkat_kecamatan')
+            ->select('perangkat_kecamatan.id_perangkat', 'perangkat_kecamatan.nama', 'perangkat_kecamatan.jabatan', 'perangkat_kecamatan.link_facebook', 'perangkat_kecamatan.link_instagram', 'perangkat_kecamatan.link_tiktok', 'perangkat_kecamatan.gambar_perangkat')
+            ->where('perangkat_kecamatan.id_wilayah', $user->id_wilayah)
+            ->get();
+        }
         
         $users = DB::table('users')
             ->select('users.id', 'users.name')
@@ -83,15 +113,9 @@ class AdminController extends Controller{
             ->select('about_us.id_about', 'about_us.id_wilayah', 'about_us.visi', 'about_us.misi', 'about_us.gambar_about', 'about_us.bagan_organisasi', 'wilayah.nama_wilayah')
             ->first();
 
-        $perangkat_kecamatan = DB::table('perangkat_kecamatan')
-            ->select('perangkat_kecamatan.id_perangkat', 'perangkat_kecamatan.nama', 'perangkat_kecamatan.jabatan', 'perangkat_kecamatan.link_facebook', 'perangkat_kecamatan.link_instagram', 'perangkat_kecamatan.link_tiktok', 'perangkat_kecamatan.gambar_perangkat')
-            ->get();
+        
 
-        $berita = DB::table('berita')
-            ->join('wilayah', 'berita.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->select('berita.id_berita', 'berita.judul_berita', 'berita.konten_berita', 'berita.gambar_berita', 'berita.penulis_berita', 'berita.tanggal_berita', 'berita.id_wilayah', 'wilayah.nama_wilayah')
-            ->orderBy('id_berita', 'desc')
-            ->paginate(5);
+      
 
         $wilayahNoKec = DB::table('wilayah')
             ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
@@ -100,11 +124,6 @@ class AdminController extends Controller{
 
         $jumlah_penduduk = DB::table('wilayah')
             ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.jumlah_penduduk')
-            ->whereIn('jenis_wilayah', ['Desa', 'Kelurahan'])
-            ->get();
-
-        $jumlah_dusun = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.jumlah_dusun')
             ->whereIn('jenis_wilayah', ['Desa', 'Kelurahan'])
             ->get();
 
@@ -153,14 +172,8 @@ class AdminController extends Controller{
             ->select('pendidikan_per_wilayah.id', 'pendidikan_per_wilayah.id_pendidikan', 'pendidikan.pendidikan', 'pendidikan_per_wilayah.jumlah_orang')
             ->where('pendidikan_per_wilayah.id_wilayah', $user->id_wilayah)
             ->get();
-
-        $jumlah_dusun_per_wilayah = DB::table('dusun_per_wilayah')
-            ->join('wilayah', 'dusun_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->select('wilayah.id_wilayah', 'dusun_per_wilayah.id_dusun', 'dusun_per_wilayah.nama_dusun', 'dusun_per_wilayah.jumlah_penduduk')
-            ->where('dusun_per_wilayah.id_wilayah', $user->id_wilayah)
-            ->get();
                     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'jumlah_penduduk', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'jumlah_dusun', 'agama_penduduk', 'pendidikan_penduduk', 'jumlah_dusun_per_wilayah', 'wilayaheach', 'jenis_kelamin', 'data_jenis_kelamin', 'rasio_jenis_kelamin'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'jumlah_penduduk', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'agama_penduduk', 'pendidikan_penduduk', 'wilayaheach', 'jenis_kelamin', 'data_jenis_kelamin', 'rasio_jenis_kelamin'));
     }
 
 
@@ -527,53 +540,6 @@ class AdminController extends Controller{
         ];
 
         DB::table('wilayah')->where('id_wilayah', $id)->update($updateData);
-
-        Session::flash('message', 'Data Berhasil Diupdate!');
-        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
-    }
-
-    public function updateJumlahDusun(Request $request, $id){
-        $request -> validate([
-            'jumlah_dusun' => 'required|integer'
-        ]);
-
-        $wilayah = DB::table('wilayah')
-            ->where('wilayah.id_wilayah', $id)
-            ->first();
-        
-        if(!$wilayah){
-            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
-        }
-
-        $updateData = [
-            'jumlah_dusun' => $request->jumlah_dusun
-        ];
-
-        DB::table('wilayah')->where('id_wilayah', $id)->update($updateData);
-
-        Session::flash('message', 'Data Berhasil Diupdate!');
-        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
-    }
-
-    public function updateDusunPerWilayah(Request $request, $id){
-        $request -> validate([
-            'jumlah_penduduk' => 'required|integer'
-        ]);
-
-        $dusun_per_wilayah = DB::table('dusun_per_wilayah')
-            ->join('wilayah', 'dusun_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->where('dusun_per_wilayah.id_dusun', $id)
-            ->first();
-        
-        if(!$dusun_per_wilayah){
-            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
-        }
-
-        $updateData = [
-            'jumlah_penduduk' => $request->jumlah_penduduk
-        ];
-
-        DB::table('dusun_per_wilayah')->where('id_dusun', $id)->update($updateData);
 
         Session::flash('message', 'Data Berhasil Diupdate!');
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');

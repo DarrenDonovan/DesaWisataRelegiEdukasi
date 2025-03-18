@@ -158,7 +158,7 @@
 						@if (Session::has('message'))
 							<p class="alert alert-success mt-2">{{ Session::get('message') }}</p>
 						@endif
-						
+						<!-- Informasi Umum Admin Dashboard -->
 							<div class="row mt-4">
 								<div class="col-md-4">
 									<div class="card">
@@ -228,6 +228,46 @@
 								</div>
 							</div>
 						</div>
+
+
+						<!-- Chart Sebaran Penduduk Berdasarkan Jenis Kelamin -->
+						<div class="col-md-6">
+								<div class="card">
+									<div class="card-header ">
+										<h4 class="card-title">Sebaran Penduduk Berdasarkan Kelompok Umur</h4>
+									</div>
+									<div class="card-body">
+										<canvas id="Chart2"></canvas>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="card">
+									<div class="card-header ">
+										<h4 class="card-title">Tabel Data Penduduk Berdasarkan Kelompok Umur</h4>
+									</div>
+									<div class="card-body">
+										<table class="table table-striped mt-3">
+											<thead>
+												<tr>
+													<th scope="col">Jenis Kelamin</th>
+													<th scope="col">Jumlah Penduduk</th>
+												</tr>
+											</thead>
+											<tbody>
+        										<tr>
+            										<td><p>Laki-Laki</p></td>
+													<td>{{ $data_jenis_kelamin->penduduk_laki }}</td>
+												</tr>
+                                                <tr>
+            										<td><p>Perempuan</p></td>
+													<td>{{ $data_jenis_kelamin->penduduk_perempuan }}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
 
 
 						<!-- Kegiatan Terbaru -->
@@ -543,7 +583,7 @@
 
 						<!-- Perangkat Kecamatan -->
 						<div class="d-flex justify-content-between align-items-center">
-							<h4 class="page-title mt-1">Perangkat Kecamatan</h4>
+							<h4 class="page-title mt-1">Perangkat {{ $wilayaheach->nama_wilayah }}</h4>
 							<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalTambah_perangkat">Tambah Personil</button>	
 						</div>		
 		  			
@@ -823,111 +863,7 @@
 					<div class="d-flex justify-content-between align-items-center">
 						<h4 class="page-title mt-1">Infografis</h4>
 					</div>	
-						<!-- Chart Sebaran Penduduk Berdasarkan Jenis Kelamin -->
-						<div class="col-md-6">
-								<div class="card">
-									<div class="card-header ">
-										<h4 class="card-title">Sebaran Penduduk Berdasarkan Kelompok Umur</h4>
-									</div>
-									<div class="card-body">
-										<canvas id="Chart2"></canvas>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="card">
-									<div class="card-header ">
-										<h4 class="card-title">Tabel Data Penduduk Berdasarkan Kelompok Umur</h4>
-									</div>
-									<div class="card-body">
-										<table class="table table-striped mt-3">
-											<thead>
-												<tr>
-													<th scope="col">Jenis Kelamin</th>
-													<th scope="col">Jumlah Penduduk</th>
-												</tr>
-											</thead>
-											<tbody>
-        										<tr>
-            										<td><p>Laki-Laki</p></td>
-													<td>{{ $rasio_jenis_kelamin->penduduk_laki }}</td>
-												</tr>
-                                                <tr>
-            										<td><p>Perempuan</p></td>
-													<td>{{ $rasio_jenis_kelamin->penduduk_perempuan }}</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-
-						@if(Auth::check() && Auth::user()->role==='admin')
-						<!-- Chart Jumlah Penduduk di Dusun setiap wilayah -->
-						<div class="col-md-6">
-								<div class="card">
-									<div class="card-header ">
-										<h4 class="card-title">BarChart Jumlah Penduduk Dusun di {{ $wilayaheach->nama_wilayah }}</h4>
-									</div>
-									<div class="card-body">
-										<canvas id="Chart7"></canvas>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="card">
-									<div class="card-header ">
-										<h4 class="card-title">Tabel Data Jumlah Penduduk Dusun di {{ $wilayaheach->nama_wilayah }}</h4>
-									</div>
-									<div class="card-body">
-										<table class="table table-striped mt-3">
-											<thead>
-												<tr>
-													<th scope="col">Nama Dusun</th>
-													<th scope="col">Jumlah Penduduk</th>
-													<th scope="col">Action</th>
-												</tr>
-											</thead>
-											<tbody>
-												@foreach($jumlah_dusun_per_wilayah as $dusunPerWilayah)
-        										<tr>
-            										<td>{{ $dusunPerWilayah->nama_dusun }}</td>
-													<td>{{ $dusunPerWilayah->jumlah_penduduk }}</td>
-													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_dusunPerWilayah{{$dusunPerWilayah->id_dusun}}">Edit</a></td>
-													<!-- Modal Edit Kelompok Umur -->
-													<div class="modal fade" id="modalUpdate_dusunPerWilayah{{$dusunPerWilayah->id_dusun}}" tabindex="-1" aria-labelledby="modalTitle{{$dusunPerWilayah->id_dusun}}" aria-hidden="true">
-   														<div class="modal-dialog">
-        													<div class="modal-content">
-            													<div class="modal-header">
-																	<h5 class="modal-title" id="modalTitle">Edit Dusun Per Wilayah</h5>
-																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            													</div>
-            													<div class="modal-body">
-																	<form action="{{ route('admin.updateDusunPerWilayah', $dusunPerWilayah->id_dusun) }}" method="post" enctype="multipart/form-data">
-																		@csrf
-																		<div class="form-group">
-																			<label for="nama_dusun">Nama Dusun</label>
-																			<input type="text" class="form-control" name="nama_dusun" id="nama_dusun" value="{{ $dusunPerWilayah->nama_dusun}}" disabled>
-																		</div>
-																		<div class="form-group">
-																			<label for="jumlah_penduduk">Jumlah Penduduk</label>
-																			<input type="text" class="form-control" name="jumlah_penduduk" id="jumlah_penduduk" value="{{ $dusunPerWilayah->jumlah_penduduk }}" required>
-                														</div>
-                														<button type="submit" class="btn btn-primary form-control">Save changes</button>
-																	</form>
-													            </div>
-													        </div>
-													    </div>
-													</div>
-												</tr>
-												@endforeach
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						@endif
-							
+	
 							<!-- Sebaran Penduduk berdasarkan kelompok umur -->
 							<div class="col-md-6">
 								<div class="card">
@@ -991,198 +927,7 @@
 									</div>
 								</div>
 							</div>
-		  					
-							<!-- Sebaran Penduduk berdasarkan pekerjaan -->
-							<div class="col-md-6">
-								<div class="card">
-									<div class="card-header ">
-										<h4 class="card-title">Sebaran Penduduk Berdasarkan Pekerjaan</h4>
-									</div>
-									<div class="card-body">
-										<canvas id="Chart4"></canvas>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="card">
-									<div class="card-header ">
-										<h4 class="card-title">Tabel Data Penduduk Berdasarkan Pekerjaan</h4>
-									</div>
-									<div class="card-body">
-										<table class="table table-striped mt-3">
-											<thead>
-												<tr>
-													<th scope="col">Nama Pekerjaan</th>
-													<th scope="col">Jumlah Pekerja</th>
-													<th scope="col">Action</th>
-												</tr>
-											</thead>
-											<tbody>
-												@foreach($pekerjaan_penduduk as $pekerjaanPenduduk)
-        										<tr>
-            										<td>{{ $pekerjaanPenduduk->pekerjaan }}</td>
-													<td>{{ $pekerjaanPenduduk->jumlah_pekerja }}</td>
-													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_pekerjaanPenduduk{{$pekerjaanPenduduk->id}}">Edit</a></td>
-													<!-- Modal Edit Kelompok Umur -->
-													<div class="modal fade" id="modalUpdate_pekerjaanPenduduk{{$pekerjaanPenduduk->id}}" tabindex="-1" aria-labelledby="modalTitle{{$pekerjaanPenduduk->id}}" aria-hidden="true">
-   														<div class="modal-dialog">
-        													<div class="modal-content">
-            													<div class="modal-header">
-																	<h5 class="modal-title" id="modalTitle">Edit Pekerjaan Penduduk</h5>
-																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            													</div>
-            													<div class="modal-body">
-																	<form action="{{ route('admin.updatePekerjaanPenduduk', $pekerjaanPenduduk->id) }}" method="post" enctype="multipart/form-data">
-																		@csrf
-																		<div class="form-group">
-																			<label for="pekerjaan">Pekerjaan</label>
-																			<input type="text" class="form-control" name="pekerjaan" id="pekerjaan" value="{{ $pekerjaanPenduduk->pekerjaan}}" disabled>
-																		</div>
-																		<div class="form-group">
-																			<label for="jumlah_pekerja">Jumlah Penduduk</label>
-																			<input type="text" class="form-control" name="jumlah_pekerja" id="jumlah_pekerja" value="{{ $pekerjaanPenduduk->jumlah_pekerja }}" required>
-                														</div>
-                														<button type="submit" class="btn btn-primary form-control">Save changes</button>
-																	</form>
-													            </div>
-													        </div>
-													    </div>
-													</div>
-												</tr>
-												@endforeach
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-
-							<!-- Sebaran Penduduk berdasarkan agama -->
-							<div class="col-md-6">
-								<div class="card">
-									<div class="card-header ">
-										<h4 class="card-title">Sebaran Penduduk Berdasarkan Agama</h4>
-									</div>
-									<div class="card-body">
-										<canvas id="Chart5"></canvas>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="card">
-									<div class="card-header ">
-										<h4 class="card-title">Tabel Data Penduduk Berdasarkan Pekerjaan</h4>
-									</div>
-									<div class="card-body">
-										<table class="table table-striped mt-3">
-											<thead>
-												<tr>
-													<th scope="col">Agama</th>
-													<th scope="col">Jumlah Penganut</th>
-													<th scope="col">Action</th>
-												</tr>
-											</thead>
-											<tbody>
-												@foreach($agama_penduduk as $agamaPenduduk)
-        										<tr>
-            										<td>{{ $agamaPenduduk->agama }}</td>
-													<td>{{ $agamaPenduduk->jumlah_penganut }}</td>
-													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_agamaPenduduk{{$agamaPenduduk->id}}">Edit</a></td>
-													<!-- Modal Edit Kelompok Umur -->
-													<div class="modal fade" id="modalUpdate_agamaPenduduk{{$agamaPenduduk->id}}" tabindex="-1" aria-labelledby="modalTitle{{$agamaPenduduk->id}}" aria-hidden="true">
-   														<div class="modal-dialog">
-        													<div class="modal-content">
-            													<div class="modal-header">
-																	<h5 class="modal-title" id="modalTitle">Edit Agama Penduduk</h5>
-																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            													</div>
-            													<div class="modal-body">
-																	<form action="{{ route('admin.updateAgamaPenduduk', $agamaPenduduk->id) }}" method="post" enctype="multipart/form-data">
-																		@csrf
-																		<div class="form-group">
-																			<label for="agama">Agama</label>
-																			<input type="text" class="form-control" name="agama" id="agama" value="{{ $agamaPenduduk->agama}}" disabled>
-																		</div>
-																		<div class="form-group">
-																			<label for="jumlah_penganut">Jumlah Penganut</label>
-																			<input type="text" class="form-control" name="jumlah_penganut" id="jumlah_penganut" value="{{ $agamaPenduduk->jumlah_penganut }}" required>
-                														</div>
-                														<button type="submit" class="btn btn-primary form-control">Save changes</button>
-																	</form>
-													            </div>
-													        </div>
-													    </div>
-													</div>
-												</tr>
-												@endforeach
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-
-							<!-- Sebaran Penduduk berdasarkan pendidikan -->
-							<div class="col-md-6">
-								<div class="card">
-									<div class="card-header ">
-										<h4 class="card-title">Sebaran Penduduk Berdasarkan Pendidikan</h4>
-									</div>
-									<div class="card-body">
-										<canvas id="Chart6"></canvas>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="card">
-									<div class="card-header ">
-										<h4 class="card-title">Tabel Data Penduduk Berdasarkan Pendidikan</h4>
-									</div>
-									<div class="card-body">
-										<table class="table table-striped mt-3">
-											<thead>
-												<tr>
-													<th scope="col">Tingkat Pendidikan</th>
-													<th scope="col">Jumlah Orang</th>
-													<th scope="col">Action</th>
-												</tr>
-											</thead>
-											<tbody>
-												@foreach($pendidikan_penduduk as $pendidikanPenduduk)
-        										<tr>
-            										<td>{{ $pendidikanPenduduk->pendidikan }}</td>
-													<td>{{ $pendidikanPenduduk->jumlah_orang }}</td>
-													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_pendidikanPenduduk{{$pendidikanPenduduk->id}}">Edit</a></td>
-													<!-- Modal Edit Kelompok Umur -->
-													<div class="modal fade" id="modalUpdate_pendidikanPenduduk{{$pendidikanPenduduk->id}}" tabindex="-1" aria-labelledby="modalTitle{{$pendidikanPenduduk->id}}" aria-hidden="true">
-   														<div class="modal-dialog">
-        													<div class="modal-content">
-            													<div class="modal-header">
-																	<h5 class="modal-title" id="modalTitle">Edit Pendidikan Penduduk</h5>
-																	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            													</div>
-            													<div class="modal-body">
-																	<form action="{{ route('admin.updatePendidikanPenduduk', $pendidikanPenduduk->id) }}" method="post" enctype="multipart/form-data">
-																		@csrf
-																		<div class="form-group">
-																			<label for="pendidikan">Tingkat Pendidikan</label>
-																			<input type="text" class="form-control" name="pendidikan" id="pendidikan" value="{{ $pendidikanPenduduk->pendidikan}}" disabled>
-																		</div>
-																		<div class="form-group">
-																			<label for="jumlah_penduduk">Jumlah Penduduk</label>
-																			<input type="text" class="form-control" name="jumlah_penduduk" id="jumlah_penduduk" value="{{ $pendidikanPenduduk->jumlah_orang }}" required>
-                														</div>
-                														<button type="submit" class="btn btn-primary form-control">Save changes</button>
-																	</form>
-													            </div>
-													        </div>
-													    </div>
-													</div>
-												</tr>
-												@endforeach
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
+	
 
 						</div>
 					
@@ -1323,86 +1068,6 @@
                   'rgba(0, 255, 255, 0.6)'
                 ]
               }]
-            }
-          });
-
-		  const ctx4 = document.getElementById('Chart4');
-          new Chart(ctx4, {
-            type: 'bar',
-            data: {
-              labels: {!! json_encode($pekerjaan_penduduk->pluck('pekerjaan')) !!},
-              datasets: [{
-                label: 'Jumlah Pekerja',
-                data: {!! json_encode($pekerjaan_penduduk->pluck('jumlah_pekerja')) !!},
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
-
-		  const ctx5 = document.getElementById('Chart5');
-          new Chart(ctx5, {
-            type: 'pie',
-            data: {
-              labels: {!! json_encode($agama_penduduk->pluck('agama')) !!}, 
-              datasets: [{
-                label: 'Jumlah Penganut',
-                data: {!! json_encode($agama_penduduk->pluck('jumlah_penganut')) !!}, 
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.6)', 
-                  'rgba(54, 162, 235, 0.6)', 
-                  'rgba(255, 206, 86, 0.6)', 
-                  'rgba(75, 192, 192, 0.6)',
-                  'rgba(153, 102, 255, 0.6)',
-                  'rgba(0, 255, 255, 0.6)'
-                ]
-              }]
-            }
-          });
-
-		  const ctx6 = document.getElementById('Chart6');
-          new Chart(ctx6, {
-            type: 'bar',
-            data: {
-              labels: {!! json_encode($pendidikan_penduduk->pluck('pendidikan')) !!},
-              datasets: [{
-                label: 'Jumlah Orang',
-                data: {!! json_encode($pendidikan_penduduk->pluck('jumlah_orang')) !!},
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
-
-		  const ctx7 = document.getElementById('Chart7');
-          new Chart(ctx7, {
-            type: 'bar',
-            data: {
-              labels: {!! json_encode($jumlah_dusun_per_wilayah->pluck('nama_dusun')) !!},
-              datasets: [{
-                label: 'Jumlah Pekerja',
-                data: {!! json_encode($jumlah_dusun_per_wilayah->pluck('jumlah_penduduk')) !!},
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
             }
           });
 

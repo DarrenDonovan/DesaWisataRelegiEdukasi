@@ -56,7 +56,9 @@ php artisan db:seed --class=UserSeeder
     link_facebook VARCHAR(255),
     link_instagram VARCHAR(255),
     link_tiktok VARCHAR(255),
+    id_wilayah INT,
     gambar_perangkat VARCHAR(255)
+    FOREIGN KEY (id_wiayah) REFERENCES wilayah(id_wilayah)
 );
 
 - CREATE TABLE berita (
@@ -216,20 +218,31 @@ INSERT INTO about_us (id_about, id_wilayah, visi, misi, gambar_about, bagan_orga
 <p>Misi ini menjadi pedoman utama dalam merancang kebijakan dan program pembangunan di Kecamatan Tigaraksa, Tangerang</p>' , 'about_us/tentang-kami.jpg', 'bagan_organisasi/tigaraksa.jpg');
 
 **
-INSERT INTO perangkat_kecamatan (id_perangkat, nama, jabatan, link_facebook, link_instagram, link_tiktok, gambar_perangkat)
+INSERT INTO perangkat_kecamatan (id_perangkat, nama, jabatan, link_facebook, link_instagram, link_tiktok, id_wilayah, gambar_perangkat)
 VALUES
-(1, 'Ahmad Setiawan', 'Camat', 'https://facebook.com/ahmadsetiawan', 'https://instagram.com/ahmadsetiawan', 'https://tiktok.com/@ahmadsetiawan', 'perangkat_kecamatan/camat_ahmad.jpg'),
-(2, 'Budi Santoso', 'Sekretaris Kecamatan', 'https://facebook.com/budisantoso', 'https://instagram.com/budisantoso', 'https://tiktok.com/@budisantoso', 'perangkat_kecamatan/sekretaris_budi.jpg'),
-(3, 'Citra Dewi', 'Kasi Pemerintahan', 'https://facebook.com/citradewi', 'https://instagram.com/citrapemerintahan', 'https://tiktok.com/@citradewi', 'perangkat_kecamatan/kasi_pemerintahan.jpg'),
-(4, 'Dedi Prasetyo', 'Kasi Pembangunan dan Perekonomian', 'https://facebook.com/dediprasetyo', 'https://instagram.com/dediprasetyo', 'https://tiktok.com/@dediprasetyo', 'perangkat_kecamatan/kasi_pembangunan.jpg'),
-(5, 'Eka Sari', 'Kasi Kesejahteraan Sosial', 'https://facebook.com/ekasari', 'https://instagram.com/ekasari', 'https://tiktok.com/@ekasari', 'perangkat_kecamatan/kasi_kesejahteraan.jpg'),
-(6, 'Farhan Hakim', 'Kasi Ketenteraman dan Ketertiban Umum', 'https://facebook.com/farhanhakim', 'https://instagram.com/farhanhakim', 'https://tiktok.com/@farhanhakim', 'perangkat_kecamatan/kasi_ketertiban.jpg'),
-(7, 'Gina Lestari', 'Kasi Pelayanan Umum', 'https://facebook.com/ginalestari', 'https://instagram.com/ginalestari', 'https://tiktok.com/@ginalestari', 'perangkat_kecamatan/kasi_pelayanan.jpg'),
-(8, 'Hendra Wijaya', 'Kepala Desa Pasir Nangka', 'https://facebook.com/hendrawijaya', 'https://instagram.com/hendrawijaya', 'https://tiktok.com/@hendrawijaya', 'perangkat_kecamatan/kepala_pasirnangka.jpg'),
-(9, 'Indah Permata', 'Kepala Desa Margasari', 'https://facebook.com/indahpermata', 'https://instagram.com/indahpermata', 'https://tiktok.com/@indahpermata', 'perangkat_kecamatan/kepala_margasari.jpg'),
-(10, 'Joko Susilo', 'Kepala Desa Tapos', 'https://facebook.com/jokosusilo', 'https://instagram.com/jokosusilo', 'https://tiktok.com/@jokosusilo', 'perangkat_kecamatan/kepala_tapos.jpg'),
-(11, 'Kartika Dewi', 'Kepala Desa Matagara', 'https://facebook.com/kartikadewi', 'https://instagram.com/kartikadewi', 'https://tiktok.com/@kartikadewi', 'perangkat_kecamatan/kepala_matagara.jpg'),
-(12, 'Lukman Hakim', 'Kepala Desa Cileles', 'https://facebook.com/lukmanhakim', 'https://instagram.com/lukmanhakim', 'https://tiktok.com/@lukmanhakim', 'perangkat_kecamatan/kepala_cileles.jpg');
+(1, 'Ahmad Setiawan', 'Camat', 'https://facebook.com/ahmadsetiawan', 'https://instagram.com/ahmadsetiawan', 'https://tiktok.com/@ahmadsetiawan', ,'perangkat_kecamatan/camat_ahmad.jpg'),
+(2, 'Budi Santoso', 'Sekretaris Kecamatan', 'https://facebook.com/budisantoso', 'https://instagram.com/budisantoso','https://tiktok.com/@budisantoso', , 'perangkat_kecamatan/sekretaris_budi.jpg'),
+(3, 'Citra Dewi', 'Kasi Pemerintahan', 'https://facebook.com/citradewi', 'https://instagram.com/citrapemerintahan', 'https://tiktok.com/@citradewi', , 'perangkat_kecamatan/kasi_pemerintahan.jpg'),
+(4, 'Dedi Prasetyo', 'Kasi Pembangunan dan Perekonomian', 'https://facebook.com/dediprasetyo', , 'https://instagram.com/dediprasetyo', 'https://tiktok.com/@dediprasetyo', 'perangkat_kecamatan/kasi_pembangunan.jpg'),
+(5, 'Eka Sari', 'Kasi Kesejahteraan Sosial', 'https://facebook.com/ekasari', 'https://instagram.com/ekasari', 'https://tiktok.com/@ekasari', , 'perangkat_kecamatan/kasi_kesejahteraan.jpg'),
+(6, 'Farhan Hakim', 'Kasi Ketenteraman dan Ketertiban Umum', 'https://facebook.com/farhanhakim', 'https://instagram.com/farhanhakim', 'https://tiktok.com/@farhanhakim', , 'perangkat_kecamatan/kasi_ketertiban.jpg'),
+(7, 'Gina Lestari', 'Kasi Pelayanan Umum', 'https://facebook.com/ginalestari', 'https://instagram.com/ginalestari', 'https://tiktok.com/@ginalestari', , 'perangkat_kecamatan/kasi_pelayanan.jpg'),
+(8, 'Hendra Wijaya', 'Kepala Desa Pasir Nangka', 'https://facebook.com/hendrawijaya', 'https://instagram.com/hendrawijaya', 'https://tiktok.com/@hendrawijaya', 3, 'perangkat_kecamatan/kepala_pasirnangka.jpg'),
+(9, 'Indah Permata', 'Kepala Desa Margasari', 'https://facebook.com/indahpermata', 'https://instagram.com/indahpermata', 'https://tiktok.com/@indahpermata', 8, 'perangkat_kecamatan/kepala_margasari.jpg'),
+(10, 'Joko Susilo', 'Kepala Desa Tapos', 'https://facebook.com/jokosusilo', 'https://instagram.com/jokosusilo', 'https://tiktok.com/@jokosusilo', , 'perangkat_kecamatan/kepala_tapos.jpg'),
+(11, 'Kartika Dewi', 'Kepala Desa Matagara', 'https://facebook.com/kartikadewi', 'https://instagram.com/kartikadewi', 'https://tiktok.com/@kartikadewi', 7, 'perangkat_kecamatan/kepala_matagara.jpg'),
+(12, 'Lukman Hakim', 'Kepala Desa Cileles', 'https://facebook.com/lukmanhakim', 'https://instagram.com/lukmanhakim', 'https://tiktok.com/@lukmanhakim', 12, 'perangkat_kecamatan/kepala_cileles.jpg'),
+(13, 'Mulyadi Saputra', 'Kepala Desa Pasir Bolang', 'https://facebook.com/mulyadisp', 'https://instagram.com/mulyadisp', 'https://tiktok.com/@mulyadisp', 1, 'perangkat_kecamatan/kepala_pasirbolang.jpg'),
+(14, 'Rina Astuti', 'Kepala Desa Cisereh', 'https://facebook.com/rinaastuti', 'https://instagram.com/rinaastuti', 'https://tiktok.com/@rinaastuti', 2, 'perangkat_kecamatan/kepala_cisereh.jpg'),
+(15, 'Samsul Bahri', 'Kepala Desa Pematang', 'https://facebook.com/samsulbahri', 'https://instagram.com/samsulbahri', 'https://tiktok.com/@samsulbahri', 4, 'perangkat_kecamatan/kepala_pematang.jpg'),
+(16, 'Nurul Hidayah', 'Kepala Desa Pete', 'https://facebook.com/nurulhidayah', 'https://instagram.com/nurulhidayah', 'https://tiktok.com/@nurulhidayah', 5, 'perangkat_kecamatan/kepala_pete.jpg'),
+(17, 'Herman Wijaya', 'Kepala Desa Tegalsari', 'https://facebook.com/hermanwijaya', 'https://instagram.com/hermanwijaya', 'https://tiktok.com/@hermanwijaya', 6, 'perangkat_kecamatan/kepala_tegalsari.jpg'),
+(18, 'Sri Lestari', 'Kepala Desa Sodong', 'https://facebook.com/srilestari', 'https://instagram.com/srilestari', 'https://tiktok.com/@srilestari', 9, 'perangkat_kecamatan/kepala_sodong.jpg'),
+(19, 'Wahyu Prasetyo', 'Kepala Desa Tapos', 'https://facebook.com/wahyuprasetyo', 'https://instagram.com/wahyuprasetyo', 'https://tiktok.com/@wahyuprasetyo', 10, 'perangkat_kecamatan/kepala_tapos.jpg'),
+(20, 'Yulianto Kusuma', 'Kepala Desa Bantar Panjang', 'https://facebook.com/yuliantokusuma', 'https://instagram.com/yuliantokusuma', 'https://tiktok.com/@yuliantokusuma', 11, 'perangkat_kecamatan/kepala_bantarpanjang.jpg'),
+(21, 'Dewi Kartikasari', 'Kepala Kelurahan Kadu Agung', 'https://facebook.com/dewikartikasari', 'https://instagram.com/dewikartikasari', 'https://tiktok.com/@dewikartikasari', 14, 'perangkat_kecamatan/kepala_kaduagung.jpg'),
+(22, 'Arif Ramadhan', 'Kepala Kelurahan Tigaraksa', 'https://facebook.com/ariframadhan', 'https://instagram.com/ariframadhan', 'https://tiktok.com/@ariframadhan', 15, 'perangkat_kecamatan/kepala_tigaraksa.jpg');
+
 
 **
 INSERT INTO berita (judul_berita, konten_berita, gambar_berita, tanggal_berita, penulis_berita, id_wilayah) VALUES
@@ -297,13 +310,125 @@ INSERT INTO jumlah_penganut (id, id_agama, id_wilayah, jumlah_penganut) VALUES
 
 
 **
-INSERT INTO kel_umur_per_wilayah (id, id_wilayah, kelompok_umur, jumlah_orang) VALUES
-(1, 13, '0 - 9 Tahun', 589),
-(2, 13, '10 - 17 Tahun', 12300),
-(3, 13, '18 - 25 Tahun', 8879),
-(4, 13, '26 - 40 Tahun', 4501),
-(5, 13, '41 - 55 Tahun', 3562),
-(6, 13, 'Diatas 55 Tahun', 999);
+INSERT INTO kel_umur_per_wilayah (id_wilayah, kelompok_umur, jumlah_orang) VALUES
+(13, '0 - 4 Tahun', 10119),
+(13, '5 - 9 Tahun', 15656),
+(13, '10 - 14 Tahun', 15693),
+(13, '15 - 19 Tahun', 12747),
+(13, '20 - 24 Tahun', 14259),
+(13, '25 - 29 Tahun', 13755),
+(13, '30 - 34 Tahun', 13939),
+(13, '35 - 39 Tahun', 12870),
+(13, '40 - 44 Tahun', 14019),
+(13, '45 - 49 Tahun', 12430),
+(13, '50 - 54 Tahun', 10567),
+(13, '55 - 59 Tahun', 6294),
+(13, '60 - 64 Tahun', 3818),
+(13, '65 - 69 Tahun', 2473),
+(13, '70 - 74 Tahun', 1468),
+(13, '75+ Tahun', 1488);
+
+INSERT INTO kel_umur_per_wilayah (id_wilayah, kelompok_umur, jumlah_orang) VALUES
+(1, '0 - 4 Tahun', 5000), (1, '5 - 9 Tahun', 7500), (1, '10 - 14 Tahun', 8000), 
+(1, '15 - 19 Tahun', 7000), (1, '20 - 24 Tahun', 8500), (1, '25 - 29 Tahun', 9000), 
+(1, '30 - 34 Tahun', 8700), (1, '35 - 39 Tahun', 8200), (1, '40 - 44 Tahun', 8800), 
+(1, '45 - 49 Tahun', 7600), (1, '50 - 54 Tahun', 6400), (1, '55 - 59 Tahun', 4200), 
+(1, '60 - 64 Tahun', 2500), (1, '65 - 69 Tahun', 1500), (1, '70 - 74 Tahun', 900), 
+(1, '75+ Tahun', 1000),
+
+(2, '0 - 4 Tahun', 5200), (2, '5 - 9 Tahun', 7800), (2, '10 - 14 Tahun', 8300), 
+(2, '15 - 19 Tahun', 7100), (2, '20 - 24 Tahun', 8600), (2, '25 - 29 Tahun', 9100), 
+(2, '30 - 34 Tahun', 8800), (2, '35 - 39 Tahun', 8300), (2, '40 - 44 Tahun', 8900), 
+(2, '45 - 49 Tahun', 7700), (2, '50 - 54 Tahun', 6500), (2, '55 - 59 Tahun', 4300), 
+(2, '60 - 64 Tahun', 2600), (2, '65 - 69 Tahun', 1600), (2, '70 - 74 Tahun', 950), 
+(2, '75+ Tahun', 1100),
+
+(3, '0 - 4 Tahun', 10000), (3, '5 - 9 Tahun', 15000), (3, '10 - 14 Tahun', 15500), 
+(3, '15 - 19 Tahun', 12500), (3, '20 - 24 Tahun', 14000), (3, '25 - 29 Tahun', 13500), 
+(3, '30 - 34 Tahun', 13800), (3, '35 - 39 Tahun', 12700), (3, '40 - 44 Tahun', 13900), 
+(3, '45 - 49 Tahun', 12300), (3, '50 - 54 Tahun', 10400), (3, '55 - 59 Tahun', 6200), 
+(3, '60 - 64 Tahun', 3800), (3, '65 - 69 Tahun', 2400), (3, '70 - 74 Tahun', 1400), 
+(3, '75+ Tahun', 1500),
+
+(4, '0 - 4 Tahun', 5500), (4, '5 - 9 Tahun', 7900), (4, '10 - 14 Tahun', 8400),
+(4, '15 - 19 Tahun', 7200), (4, '20 - 24 Tahun', 8700), (4, '25 - 29 Tahun', 9200),
+(4, '30 - 34 Tahun', 8900), (4, '35 - 39 Tahun', 8400), (4, '40 - 44 Tahun', 9000),
+(4, '45 - 49 Tahun', 7800), (4, '50 - 54 Tahun', 6600), (4, '55 - 59 Tahun', 4400),
+(4, '60 - 64 Tahun', 2700), (4, '65 - 69 Tahun', 1700), (4, '70 - 74 Tahun', 970),
+(4, '75+ Tahun', 1200),
+
+(5, '0 - 4 Tahun', 6000), (5, '5 - 9 Tahun', 8100), (5, '10 - 14 Tahun', 8700),
+(5, '15 - 19 Tahun', 7300), (5, '20 - 24 Tahun', 8800), (5, '25 - 29 Tahun', 9300),
+(5, '30 - 34 Tahun', 9000), (5, '35 - 39 Tahun', 8500), (5, '40 - 44 Tahun', 9100),
+(5, '45 - 49 Tahun', 7900), (5, '50 - 54 Tahun', 6700), (5, '55 - 59 Tahun', 4500),
+(5, '60 - 64 Tahun', 2800), (5, '65 - 69 Tahun', 1800), (5, '70 - 74 Tahun', 990),
+(5, '75+ Tahun', 1300),
+
+(14, '0 - 4 Tahun', 5900), (14, '5 - 9 Tahun', 8200), (14, '10 - 14 Tahun', 8800),
+(14, '15 - 19 Tahun', 7400), (14, '20 - 24 Tahun', 8900), (14, '25 - 29 Tahun', 9400),
+(14, '30 - 34 Tahun', 9100), (14, '35 - 39 Tahun', 8600), (14, '40 - 44 Tahun', 9200),
+(14, '45 - 49 Tahun', 8000), (14, '50 - 54 Tahun', 6800), (14, '55 - 59 Tahun', 4600),
+(14, '60 - 64 Tahun', 2900), (14, '65 - 69 Tahun', 1900), (14, '70 - 74 Tahun', 1000),
+(14, '75+ Tahun', 1400),
+
+(15, '0 - 4 Tahun', 6200), (15, '5 - 9 Tahun', 8300), (15, '10 - 14 Tahun', 8900),
+(15, '15 - 19 Tahun', 7500), (15, '20 - 24 Tahun', 9000), (15, '25 - 29 Tahun', 9500),
+(15, '30 - 34 Tahun', 9200), (15, '35 - 39 Tahun', 8700), (15, '40 - 44 Tahun', 9300),
+(15, '45 - 49 Tahun', 8100), (15, '50 - 54 Tahun', 6900), (15, '55 - 59 Tahun', 4700),
+(15, '60 - 64 Tahun', 3000), (15, '65 - 69 Tahun', 2000), (15, '70 - 74 Tahun', 1050),
+(15, '75+ Tahun', 1500);
+
+INSERT INTO kel_umur_per_wilayah (id_wilayah, kelompok_umur, jumlah_orang) VALUES
+(6, '0 - 4 Tahun', 6100), (6, '5 - 9 Tahun', 8400), (6, '10 - 14 Tahun', 9000),
+(6, '15 - 19 Tahun', 7600), (6, '20 - 24 Tahun', 9100), (6, '25 - 29 Tahun', 9600),
+(6, '30 - 34 Tahun', 9300), (6, '35 - 39 Tahun', 8800), (6, '40 - 44 Tahun', 9400),
+(6, '45 - 49 Tahun', 8200), (6, '50 - 54 Tahun', 7000), (6, '55 - 59 Tahun', 4800),
+(6, '60 - 64 Tahun', 3100), (6, '65 - 69 Tahun', 2100), (6, '70 - 74 Tahun', 1100),
+(6, '75+ Tahun', 1600),
+
+(7, '0 - 4 Tahun', 6200), (7, '5 - 9 Tahun', 8500), (7, '10 - 14 Tahun', 9100),
+(7, '15 - 19 Tahun', 7700), (7, '20 - 24 Tahun', 9200), (7, '25 - 29 Tahun', 9700),
+(7, '30 - 34 Tahun', 9400), (7, '35 - 39 Tahun', 8900), (7, '40 - 44 Tahun', 9500),
+(7, '45 - 49 Tahun', 8300), (7, '50 - 54 Tahun', 7100), (7, '55 - 59 Tahun', 4900),
+(7, '60 - 64 Tahun', 3200), (7, '65 - 69 Tahun', 2200), (7, '70 - 74 Tahun', 1150),
+(7, '75+ Tahun', 1700),
+
+(8, '0 - 4 Tahun', 6300), (8, '5 - 9 Tahun', 8600), (8, '10 - 14 Tahun', 9200),
+(8, '15 - 19 Tahun', 7800), (8, '20 - 24 Tahun', 9300), (8, '25 - 29 Tahun', 9800),
+(8, '30 - 34 Tahun', 9500), (8, '35 - 39 Tahun', 9000), (8, '40 - 44 Tahun', 9600),
+(8, '45 - 49 Tahun', 8400), (8, '50 - 54 Tahun', 7200), (8, '55 - 59 Tahun', 5000),
+(8, '60 - 64 Tahun', 3300), (8, '65 - 69 Tahun', 2300), (8, '70 - 74 Tahun', 1200),
+(8, '75+ Tahun', 1800),
+
+(9, '0 - 4 Tahun', 6400), (9, '5 - 9 Tahun', 8700), (9, '10 - 14 Tahun', 9300),
+(9, '15 - 19 Tahun', 7900), (9, '20 - 24 Tahun', 9400), (9, '25 - 29 Tahun', 9900),
+(9, '30 - 34 Tahun', 9600), (9, '35 - 39 Tahun', 9100), (9, '40 - 44 Tahun', 9700),
+(9, '45 - 49 Tahun', 8500), (9, '50 - 54 Tahun', 7300), (9, '55 - 59 Tahun', 5100),
+(9, '60 - 64 Tahun', 3400), (9, '65 - 69 Tahun', 2400), (9, '70 - 74 Tahun', 1250),
+(9, '75+ Tahun', 1900),
+
+(10, '0 - 4 Tahun', 6500), (10, '5 - 9 Tahun', 8800), (10, '10 - 14 Tahun', 9400),
+(10, '15 - 19 Tahun', 8000), (10, '20 - 24 Tahun', 9500), (10, '25 - 29 Tahun', 10000),
+(10, '30 - 34 Tahun', 9700), (10, '35 - 39 Tahun', 9200), (10, '40 - 44 Tahun', 9800),
+(10, '45 - 49 Tahun', 8600), (10, '50 - 54 Tahun', 7400), (10, '55 - 59 Tahun', 5200),
+(10, '60 - 64 Tahun', 3500), (10, '65 - 69 Tahun', 2500), (10, '70 - 74 Tahun', 1300),
+(10, '75+ Tahun', 2000),
+
+(11, '0 - 4 Tahun', 6600), (11, '5 - 9 Tahun', 8900), (11, '10 - 14 Tahun', 9500),
+(11, '15 - 19 Tahun', 8100), (11, '20 - 24 Tahun', 9600), (11, '25 - 29 Tahun', 10100),
+(11, '30 - 34 Tahun', 9800), (11, '35 - 39 Tahun', 9300), (11, '40 - 44 Tahun', 9900),
+(11, '45 - 49 Tahun', 8700), (11, '50 - 54 Tahun', 7500), (11, '55 - 59 Tahun', 5300),
+(11, '60 - 64 Tahun', 3600), (11, '65 - 69 Tahun', 2600), (11, '70 - 74 Tahun', 1350),
+(11, '75+ Tahun', 2100),
+
+(12, '0 - 4 Tahun', 6700), (12, '5 - 9 Tahun', 9000), (12, '10 - 14 Tahun', 9600),
+(12, '15 - 19 Tahun', 8200), (12, '20 - 24 Tahun', 9700), (12, '25 - 29 Tahun', 10200),
+(12, '30 - 34 Tahun', 9900), (12, '35 - 39 Tahun', 9400), (12, '40 - 44 Tahun', 10000),
+(12, '45 - 49 Tahun', 8800), (12, '50 - 54 Tahun', 7600), (12, '55 - 59 Tahun', 5400),
+(12, '60 - 64 Tahun', 3700), (12, '65 - 69 Tahun', 2700), (12, '70 - 74 Tahun', 1400),
+(12, '75+ Tahun', 2200);
+
+
 
 
 **
@@ -348,79 +473,6 @@ INSERT INTO pendidikan_per_wilayah (id, id_pendidikan, id_wilayah, jumlah_orang)
 (6, 6, 13, 2000),  
 (7, 7, 13, 500),   
 (8, 8, 13, 100);   
-
-
-**
-INSERT INTO dusun_per_wilayah (id_dusun, id_wilayah, nama_dusun, jumlah_penduduk) VALUES
-(1, 1, 'Dusun A', 1500),
-(2, 1, 'Dusun B', 2000),
-(3, 1, 'Dusun C', 2555),
-
-(4, 2, 'Dusun D', 1800),
-(5, 2, 'Dusun E', 2200),
-(6, 2, 'Dusun F', 2256),
-(7, 2, 'Dusun G', 1000),
-
-(8, 3, 'Dusun H', 5000),
-(9, 3, 'Dusun I', 6000),
-(10, 3, 'Dusun J', 7000),
-(11, 3, 'Dusun K', 4500),
-(12, 3, 'Dusun L', 2750),
-
-(13, 4, 'Dusun M', 5200),
-(14, 4, 'Dusun N', 5520),
-
-(15, 5, 'Dusun O', 7000),
-(16, 5, 'Dusun P', 7915),
-(17, 5, 'Dusun Q', 1000),
-
-(18, 6, 'Dusun R', 2500),
-(19, 6, 'Dusun S', 2512),
-
-(20, 7, 'Dusun T', 3200),
-(21, 7, 'Dusun U', 4000),
-(22, 7, 'Dusun V', 4941),
-(23, 7, 'Dusun W', 1000),
-
-(24, 8, 'Dusun X', 3000),
-(25, 8, 'Dusun Y', 3500),
-(26, 8, 'Dusun Z', 4000),
-(27, 8, 'Dusun AA', 4537),
-(28, 8, 'Dusun AB', 2000),
-
-(29, 9, 'Dusun AC', 3750),
-(30, 9, 'Dusun AD', 4000),
-(31, 9, 'Dusun AE', 3528),
-
-(32, 10, 'Dusun AF', 4500),
-(33, 10, 'Dusun AG', 4842),
-
-(34, 11, 'Dusun AH', 2800),
-(35, 11, 'Dusun AI', 3200),
-(36, 11, 'Dusun AJ', 1651),
-(37, 11, 'Dusun AK', 1000),
-
-(38, 12, 'Dusun AL', 4000),
-(39, 12, 'Dusun AM', 4687),
-(40, 12, 'Dusun AN', 1000),
-
-(41, 13, 'Dusun AO', 10000),
-(42, 13, 'Dusun AP', 15000),
-(43, 13, 'Dusun AQ', 20000),
-(44, 13, 'Dusun AR', 12000),
-(45, 13, 'Dusun AS', 13000),
-(46, 13, 'Dusun AT', 11000),
-(47, 13, 'Dusun AU', 17000),
-(48, 13, 'Dusun AV', 18000),
-(49, 13, 'Dusun AW', 8000),
-(50, 13, 'Dusun AX', 9000),
-
-(51, 14, 'Dusun AY', 4000),
-(52, 14, 'Dusun AZ', 4147),
-
-(53, 15, 'Dusun BA', 6000),
-(54, 15, 'Dusun BB', 7036),
-(55, 15, 'Dusun BC', 3600);
 
 
 **
