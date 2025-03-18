@@ -33,6 +33,65 @@
         <!-- Leaflet JS -->
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+        <style>
+            
+            @media (max-width: 450px){
+                /* HERO  SECTION */
+                .p-3 h4{
+                    font-size: 15px;
+                }
+                .p-3 h1 {
+                    font-size: 25px;
+                }
+                .fs-5 {
+                    font-size: 15px !important;
+                }
+                .search-bar {
+                    width: 90% !important; 
+                    top: -40%; 
+                }
+
+                .search-bar .position-relative {
+                    padding: 15px !important; 
+                }
+
+                .search-bar input {
+                    font-size: 14px !important; 
+                    padding: 10px 15px !important; 
+                }
+
+                .search-bar button {
+                    font-size: 12px !important; 
+                    padding: 10px 12px !important; 
+                    right: 10px !important;
+                }
+                /* BERITA */
+                .mx-auto h5{
+                font-size: 15px;
+                }
+                .mx-auto h1 {
+                font-size: 19px;
+                }
+
+                .card-title {
+                    font-size: 15px; /* Sesuaikan ukuran judul berita */
+                }
+
+                .card-text {
+                    font-size: 13px; /* Kecilkan teks isi berita */
+                }
+
+                .btn-primary {
+                    font-size: 13px;
+                    padding: 8px 12px; /* Kurangi padding tombol */
+                }
+                /* KEGIATAN */
+                .nav-pills span{
+                    font-size: 15px !important;
+                }
+            }
+
+        </style>
     </head>
 
     <body>
@@ -131,25 +190,6 @@
             </div>
         </div>
 
-        <!-- About Start -->
-        <!-- <div class="container-fluid about py-5">
-            <div class="container py-5">
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-5">
-                        <div class="h-100" >
-                            <img src="img/logokab.png" class="img-fluid" style="width: 400px; height: auto; margin-left: 100px;" alt="">
-                        </div>
-                    </div>
-                    <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
-                        <h5 class="section-about-title pe-3">Sejarah</h5>
-                        <h1 class="mb-4" class="text-primary">Kecamatan Tigaraksa</h1>
-                        <p class="mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem ducimus cum ullam quod aspernatur aut iusto aliquam veritatis, quae mollitia tempora explicabo similique modi impedit odit saepe debitis. Nostrum, eos.</p>                        
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- About End -->
-
         <!-- BERITA -->
         <div class="container mt-5">
             <div class="mx-auto text-center mb-5" style="max-width: 900px;">
@@ -158,8 +198,8 @@
             </div>
             <div class="row">
                 <!-- Berita 1 -->
-                <div class="col-md-4">
-                    <div class="card">
+                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                    <div class="card h-100">
                         <img src="img/blog-1.jpg" class="card-img-top" alt="Gambar Berita">
                         <div class="card-body">
                             <h5 class="card-title">Desa Belajar Pengelolaan Sampah</h5>
@@ -172,10 +212,10 @@
                         </div>
                     </div>
                 </div>
-    
+        
                 <!-- Berita 2 -->
-                <div class="col-md-4">
-                    <div class="card">
+                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                    <div class="card h-100">
                         <img src="img/blog-2.jpg" class="card-img-top" alt="Gambar Berita">
                         <div class="card-body">
                             <h5 class="card-title">Vaksinasi Rabies Serentak</h5>
@@ -188,10 +228,10 @@
                         </div>
                     </div>
                 </div>
-    
+        
                 <!-- Berita 3 -->
-                <div class="col-md-4">
-                    <div class="card">
+                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                    <div class="card h-100">
                         <img src="img/blog-3.jpg" class="card-img-top" alt="Gambar Berita">
                         <div class="card-body">
                             <h5 class="card-title">Pemberantasan Sarang Nyamuk</h5>
@@ -206,7 +246,7 @@
                 </div>
             </div>
         </div>
-        <!-- BERITA END -->
+        
 
         <!-- Kegiatan Start -->
         <div class="container-fluid destination py-5">
