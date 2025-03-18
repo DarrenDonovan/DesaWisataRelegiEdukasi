@@ -212,13 +212,7 @@ class UserController extends Controller
         $rasio_jenis_kelamin = [
             'Laki-Laki' => $data_jenis_kelamin->penduduk_laki,
             'Perempuan' => $data_jenis_kelamin->penduduk_perempuan,];
-
-        $jumlah_dusun = DB::table('dusun_per_wilayah')
-            ->join('wilayah', 'dusun_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->select('wilayah.id_wilayah', 'dusun_per_wilayah.id_dusun', 'dusun_per_wilayah.nama_dusun', 'dusun_per_wilayah.jumlah_penduduk')
-            ->where('dusun_per_wilayah.id_wilayah', $id)
-            ->get();
-
+            
         $kel_umur_penduduk = DB::table('kel_umur_per_wilayah')
             ->join('wilayah', 'kel_umur_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
             ->select('kel_umur_per_wilayah.id', 'kel_umur_per_wilayah.kelompok_umur', 'kel_umur_per_wilayah.jumlah_orang')
@@ -246,7 +240,7 @@ class UserController extends Controller
             ->where('pendidikan_per_wilayah.id_wilayah', $id)
             ->get();
 
-        return view('profildesa', compact('wilayah', 'wilayaheach', 'wilayahNoKec', 'jumlah_dusun', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'agama_penduduk', 'pendidikan_penduduk', 'rasio_jenis_kelamin'));
+        return view('profildesa', compact('wilayah', 'wilayaheach', 'wilayahNoKec', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'agama_penduduk', 'pendidikan_penduduk', 'rasio_jenis_kelamin'));
     }
 
     public function wisata(){

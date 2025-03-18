@@ -79,8 +79,6 @@ Route::get('admin/deleteBerita/{id}', [AdminController::class, 'deleteBerita'])-
 
 Route::post('admin/updateJumlahPenduduk/{id}', [AdminController::class, 'updateJumlahPenduduk'])->name('admin.updateJumlahPenduduk');
 
-Route::post('admin/updateJumlahDusun/{id}', [AdminController::class, 'updateJumlahDusun'])->name('admin.updateJumlahDusun');
-
 Route::post('admin/updateKelompokUmur/{id}', [AdminController::class, 'updateKelompokUmur'])->name('admin.updateKelompokUmur');
 
 Route::post('admin/updatePekerjaanPenduduk/{id}', [AdminController::class, 'updatePekerjaanPenduduk'])->name('admin.updatePekerjaanPenduduk');
@@ -88,5 +86,3 @@ Route::post('admin/updatePekerjaanPenduduk/{id}', [AdminController::class, 'upda
 Route::post('admin/updateAgamaPenduduk/{id}', [AdminController::class, 'updateAgamaPenduduk'])->name('admin.updateAgamaPenduduk');
 
 Route::post('admin/updatePendidikanPenduduk/{id}', [AdminController::class, 'updatePendidikanPenduduk'])->name('admin.updatePendidikanPenduduk');
-
-Route::post('admin/updateDusunPerWilayah/{id}', [AdminController::class, 'updateDusunPerWilayah'])->name('admin.updateDusunPerWilayah');
