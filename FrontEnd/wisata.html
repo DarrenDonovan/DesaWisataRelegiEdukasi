@@ -378,147 +378,201 @@
     </style>
   </head>
   <body>
-   <!-- Hero Section -->
-   <header class="hero">
-    <div class="overlay"></div>
-
-    <!-- Tombol Kembali -->
-    <a href="BantarPanjang.html" class="back-button">
-      &#8592;
-  </a>
-  
-
-    <div class="hero-text">
-        <h4>Wisata</h4>
-        <h1>Pantai Indah</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam hic iste ex quas quae atque numquam sunt architecto adipisci assumenda perspiciatis maiores nobis placeat, maxime id eos nemo odio consequatur.</p>
-    </div>
-</header>
-
-<!-- Container 360 -->
-<section class="explore-360">
-<div class="text-container">
-    <h2>Jelajahi Pantai Indah dalam 360°</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ab laboriosam vel ratione atque modi provident saepe culpa, necessitatibus quas aperiam quia? Ab dolor atque sed quidem soluta. Neque, voluptate?</p>
-</div>
-
-<div class="vrContainer">
-    <div id="viewer">
-        <div id="cube">
-            <img class="front" src="img/texture/cube0000.jpg" alt="" />
-            <img class="right" src="img/texture/cube0001.jpg" alt="" />
-            <img class="rear" src="img/texture/cube0002.jpg" alt="" />
-            <img class="left" src="img/texture/cube0003.jpg" alt="" />
-            <img class="roof" src="img/texture/cube0004.jpg" alt="" />
-            <img class="floor" src="img/texture/cube0005.jpg" alt="" />
-        </div>
-    </div>
-</div>
-
-</section>
-
-<!-- Container Map dengan Tracking -->
-<section class="explore-map">
-<div class="text-container">
-    <h2>Telusuri Pantai dengan Peta Interaktif</h2>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi necessitatibus ipsum dignissimos harum debitis non qui sapiente, voluptates accusamus laborum quos voluptatum tempora culpa sequi quibusdam! Eaque labore ipsa excepturi.</p>
-    <a href="rute.html" target="_blank" class="btn-detail">Lihat Peta Lengkap</a>
-</div>
-
-<div class="map-container">
-    <div id="map" style="height: 500px; width: 100%; border-radius: 10px;"></div>
-    
-</div>
-
-</section>
-
-
-      <!-- CONTAINER PAKETAN -->
-      <div class="mx-auto text-center mb-5">
-        <h5 class="section-title px-3"> Paket Wisata</h5>
-      <div class="contentPaketan">
-        <div class="paket">
-          <img src="img/packages-1.jpg" alt="Hidden Gems Jogja" />
-          <a href="NapakReligi.html" class="btn"> Napak Religi </a>
-        </div>
-        <div class="paket">
-          <img src="img/packages-2.jpg" alt="Wisata Keluarga" />
-          <a href="WarisanBudaya.html" class="btn"> Warisan Budaya </a>
-        </div>
-        <div class="paket">
-          <img src="img/packages-3.jpg" alt="Jogja Magelang 2H1M" />
-          <a href="Pertualangan.html" class="btn"> Pertualangan Tersembunyi </a>
-        </div>
-      </div>
-    </div>
-    <!-- <script src="js/jquery-2.0.2.min.js"></script> -->
-    <script>
-      (function() {
-    var x1, y1, moving = false,
-        $viewer = $('#viewer'),
-        $cube = $('#cube'),
-        w_v = $viewer.width(), 
-        h_v = $viewer.height(),
-        c_yaw = 0,
-        c_pitch = 0,
-        perspective = 525;
-
-    $viewer.on('mousedown', function(e) {
-        x1 = e.pageX;
-        y1 = e.pageY;
-        moving = true;
-        e.preventDefault();
-    });
-
-    $(document).on('mousemove', function(e) {
-        if (moving) {
-            x2 = e.pageX;
-            y2 = e.pageY;
-
-            var dist_x = x2 - x1,
-                dist_y = y2 - y1,
-                yaw = Math.atan2(dist_y, perspective) / Math.PI * 180,
-                pitch = -Math.atan2(dist_x, perspective) / Math.PI * 180,
-                vendors = ['-webkit-', '-moz-', ''];
-
-            c_yaw += yaw;
-            c_pitch += pitch;
-            c_yaw = Math.min(90, c_yaw);
-            c_yaw = Math.max(-90, c_yaw);
-            c_pitch %= 360;
-
-            yaw = c_yaw;
-            pitch = c_pitch;
-
-            for (let i in vendors) {
-                $cube.css(vendors[i] + 'transform', `translateZ(-150px) rotateX(${yaw}deg) rotateY(${pitch}deg)`);
-            }
-
-            x1 = x2;
-            y1 = y2;
-        }
-    }).on('mouseup', function() {
-        moving = false;
-    });
-
-    // Hanya aktif jika mouse ada di dalam viewer
-    $(document).on('mousemove', function(e) {
-        var offset = $viewer.offset();
-        var mouseX = e.pageX;
-        var mouseY = e.pageY;
-
-        if (
-            mouseX < offset.left || 
-            mouseX > offset.left + $viewer.width() || 
-            mouseY < offset.top || 
-            mouseY > offset.top + $viewer.height()
-        ) {
-            moving = false;
-        }
-    });
-
-})();
-
-              </script>
-  </body>
-</html>
+    <!-- Hero Section -->
+    <header class="hero">
+     <div class="overlay"></div>
+ 
+     <!-- Tombol Kembali -->
+     <a href="BantarPanjang.html" class="back-button">
+       &#8592;
+   </a>
+   
+ 
+     <div class="hero-text">
+         <h4>Wisata</h4>
+         <h1>Pantai Indah</h1>
+         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam hic iste ex quas quae atque numquam sunt architecto adipisci assumenda perspiciatis maiores nobis placeat, maxime id eos nemo odio consequatur.</p>
+     </div>
+ </header>
+ 
+ <!-- Container 360 -->
+ <section class="explore-360">
+ <div class="text-container">
+     <h2>Jelajahi Pantai Indah dalam 360°</h2>
+     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ab laboriosam vel ratione atque modi provident saepe culpa, necessitatibus quas aperiam quia? Ab dolor atque sed quidem soluta. Neque, voluptate?</p>
+ </div>
+ 
+ <div class="vrContainer">
+     <div id="viewer">
+         <div id="cube">
+             <img class="front" src="img/texture/cube0000.jpg" alt="" />
+             <img class="right" src="img/texture/cube0001.jpg" alt="" />
+             <img class="rear" src="img/texture/cube0002.jpg" alt="" />
+             <img class="left" src="img/texture/cube0003.jpg" alt="" />
+             <img class="roof" src="img/texture/cube0004.jpg" alt="" />
+             <img class="floor" src="img/texture/cube0005.jpg" alt="" />
+         </div>
+     </div>
+ </div>
+ 
+ </section>
+ 
+ <!-- Container Map dengan Tracking -->
+ <section class="explore-map">
+ <div class="text-container">
+     <h2>Telusuri Pantai dengan Peta Interaktif</h2>
+     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi necessitatibus ipsum dignissimos harum debitis non qui sapiente, voluptates accusamus laborum quos voluptatum tempora culpa sequi quibusdam! Eaque labore ipsa excepturi.</p>
+     <a href="rute.html" target="_blank" class="btn-detail">Lihat Peta Lengkap</a>
+ </div>
+ 
+ <div class="map-container">
+     <div id="map" style="height: 500px; width: 100%; border-radius: 10px;"></div>
+ </div>
+ 
+ <script>
+     const map = L.map('map').setView([-6.2514908482756955, 106.62807214954837], 13);
+ 
+     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+         maxZoom: 19,
+         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">Tracking Maps</a>'
+     }).addTo(map);
+ 
+     const userMarker = L.marker([-6.2514908482756955, 106.62807214954837]).addTo(map)
+         .bindPopup("Lokasi Anda");
+ 
+     const routingControl = L.Routing.control({
+         waypoints: [
+             L.latLng(-6.2514908482756955, 106.62807214954837),
+             L.latLng(-6.240647427622811, 106.62874609187763)
+         ],
+         createMarker: function() { return null; },
+         routeWhileDragging: true,
+         show: false // Menyembunyikan panel instruksi
+     }).addTo(map);
+ 
+     routingControl.on('routesfound', function(e) {
+         const bounds = L.latLngBounds(e.routes[0].coordinates.map(coord => [coord.lat, coord.lng]));
+         map.fitBounds(bounds, { padding: [20, 20] });
+     });
+ 
+     function updateUserLocation(position) {
+         const lat = position.coords.latitude;
+         const lng = position.coords.longitude;
+         userMarker.setLatLng([lat, lng]).update();
+ 
+         routingControl.setWaypoints([
+             L.latLng(lat, lng),
+             L.latLng(-6.240647427622811, 106.62874609187763)
+         ]);
+ 
+         routingControl.on('routesfound', function(e) {
+             const bounds = L.latLngBounds(e.routes[0].coordinates.map(coord => [coord.lat, coord.lng]));
+             map.fitBounds(bounds, { padding: [20, 20] });
+         });
+     }
+ 
+     function errorHandler(error) {
+         console.log("Error getting location:", error);
+     }
+ 
+     if (navigator.geolocation) {
+         navigator.geolocation.watchPosition(updateUserLocation, errorHandler, {
+             enableHighAccuracy: true
+         });
+     } else {
+         alert("Geolocation tidak didukung oleh browser ini.");
+     }
+ </script>
+ 
+ </section>
+ 
+ 
+       <!-- CONTAINER PAKETAN -->
+       <div class="mx-auto text-center mb-5">
+         <h5 class="section-title px-3"> Paket Wisata</h5>
+       <div class="contentPaketan">
+         <div class="paket">
+           <img src="img/packages-1.jpg" alt="Hidden Gems Jogja" />
+           <a href="NapakReligi.html" class="btn"> Napak Religi </a>
+         </div>
+         <div class="paket">
+           <img src="img/packages-2.jpg" alt="Wisata Keluarga" />
+           <a href="WarisanBudaya.html" class="btn"> Warisan Budaya </a>
+         </div>
+         <div class="paket">
+           <img src="img/packages-3.jpg" alt="Jogja Magelang 2H1M" />
+           <a href="Pertualangan.html" class="btn"> Pertualangan Tersembunyi </a>
+         </div>
+       </div>
+     </div>
+     <!-- <script src="js/jquery-2.0.2.min.js"></script> -->
+     <script>
+       (function() {
+     var x1, y1, moving = false,
+         $viewer = $('#viewer'),
+         $cube = $('#cube'),
+         w_v = $viewer.width(), 
+         h_v = $viewer.height(),
+         c_yaw = 0,
+         c_pitch = 0,
+         perspective = 525;
+ 
+     $viewer.on('mousedown', function(e) {
+         x1 = e.pageX;
+         y1 = e.pageY;
+         moving = true;
+         e.preventDefault();
+     });
+ 
+     $(document).on('mousemove', function(e) {
+         if (moving) {
+             x2 = e.pageX;
+             y2 = e.pageY;
+ 
+             var dist_x = x2 - x1,
+                 dist_y = y2 - y1,
+                 yaw = Math.atan2(dist_y, perspective) / Math.PI * 180,
+                 pitch = -Math.atan2(dist_x, perspective) / Math.PI * 180,
+                 vendors = ['-webkit-', '-moz-', ''];
+ 
+             c_yaw += yaw;
+             c_pitch += pitch;
+             c_yaw = Math.min(90, c_yaw);
+             c_yaw = Math.max(-90, c_yaw);
+             c_pitch %= 360;
+ 
+             yaw = c_yaw;
+             pitch = c_pitch;
+ 
+             for (let i in vendors) {
+                 $cube.css(vendors[i] + 'transform', translateZ(-150px) rotateX(${yaw}deg) rotateY(${pitch}deg));
+             }
+ 
+             x1 = x2;
+             y1 = y2;
+         }
+     }).on('mouseup', function() {
+         moving = false;
+     });
+ 
+     // Hanya aktif jika mouse ada di dalam viewer
+     $(document).on('mousemove', function(e) {
+         var offset = $viewer.offset();
+         var mouseX = e.pageX;
+         var mouseY = e.pageY;
+ 
+         if (
+             mouseX < offset.left || 
+             mouseX > offset.left + $viewer.width() || 
+             mouseY < offset.top || 
+             mouseY > offset.top + $viewer.height()
+         ) {
+             moving = false;
+         }
+     });
+ 
+ })();
+ 
+               </script>
+   </body>
+ </html>
