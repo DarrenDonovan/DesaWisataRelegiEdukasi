@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Paket Wisata</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" />
+    
+    <!-- 360 Essentials -->
+    <link rel="stylesheet" href="css/site.css" media="all" />
+    <link rel="stylesheet" href="css/panorama360.css" media="all" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/jquery.mousewheel.min.js"></script>
+    <script src="js/jquery.panorama360.js"></script>
+
+    <!-- Leaflet Map Scripts -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    
+    <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            background: url('img/tour-booking-bg.jpg') center/cover no-repeat;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-text h4, .hero-text h1 {
+            color: #ddd;
+        }
+
+        .hero-text h1 {
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .hero-text h4 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        /* Tombol Kembali */
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            background: rgba(255, 255, 255, 0.7);
+            color: black;
+            padding: 10px 15px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: 0.3s;
+            z-index: 3;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .photo-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .popup-gallery {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 100;
+        }
+        .popup-gallery img {
+            width: 80px;
+            height: 80px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+  </head>
+  <body>
+     <!-- Hero Section -->
+     <header class="hero">
+        <div class="overlay"></div>
+        
+        <!-- Tombol Kembali -->
+        <a href="wisata.html" class="back-button">&#8592;</a>
+        
+        <div class="hero-text">
+          <h4>Wisata</h4>
+          <h1> Warisan Budaya</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam hic iste ex quas quae atque numquam sunt architecto adipisci assumenda perspiciatis maiores nobis placeat, maxime id eos nemo odio consequatur.</p>
+        </div>
+      </header>
+
+    <!-- Photo Gallery -->
+    <div class="container my-5">
+        <div class="row g-3">
+          <div class="col-md-6">
+            <div class="photo-card large">
+              <img src="img/gallery-10.jpg" alt="Main Image" class="img-fluid" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="row g-3">
+              <div class="col-6">
+                <div class="photo-card">
+                  <img src="img/gallery-7.jpg" alt="Photo 1" class="img-fluid" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="photo-card">
+                  <img src="img/gallery-6.jpg" alt="Photo 2" class="img-fluid" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="photo-card">
+                  <img src="img/gallery-8.jpg" alt="Photo 3" class="img-fluid" />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="photo-card" id="photo4">
+                  <img src="img/gallery-9.jpg" alt="Photo 4" class="img-fluid" />
+                  <div class="popup-gallery" id="popup">
+                    <img src="img/gallery-1.jpg" alt="Extra 1" />
+                    <img src="img/gallery-2.jpg" alt="Extra 2" />
+                    <img src="img/gallery-3.jpg" alt="Extra 3" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <script>
+        document.getElementById("photo4").addEventListener("mouseenter", function() {
+          document.getElementById("popup").style.display = "block";
+        });
+        document.getElementById("photo4").addEventListener("mouseleave", function() {
+          document.getElementById("popup").style.display = "none";
+        });
+      </script>
+
+      <div class="container my-5 text-center">
+        <h5 class="section-title px-3">Warisan Budaya</h5>
+        <div class="contentPaketan p-4 shadow-lg rounded bg-light">
+            <p class="px-4" style="font-size: 16px;">
+                "Warisan Budaya" adalah perjalanan untuk mengenal lebih dalam kekayaan tradisi dan sejarah 
+                yang masih terjaga hingga kini. Dari rumah adat yang sarat makna, tarian khas yang menggambarkan 
+                filosofi hidup, hingga kerajinan tangan yang diwariskan turun-temurun—setiap destinasi menghadirkan 
+                pengalaman budaya yang unik. Jelajahi jejak peradaban yang masih lestari dan rasakan sendiri keindahan 
+                serta nilai-nilai luhur yang tertanam dalam kehidupan masyarakat setempat.
+            </p>
+            <p class="px-4" style="font-size: 16px;">
+                Beberapa destinasi yang termasuk dalam Warisan Budaya meliputi:
+            </p>
+            <ul class="list-group list-group-flush px-4" style="font-size: 15px;">
+                <li class="list-group-item">🏡 Rumah adat yang mencerminkan kearifan lokal</li>
+                <li class="list-group-item">🎭 Pertunjukan seni tradisional seperti tari dan wayang</li>
+                <li class="list-group-item">🛖 Kampung budaya yang masih mempertahankan tradisi leluhur</li>
+                <li class="list-group-item">🎨 Kerajinan tangan khas seperti batik dan ukiran</li>
+                <li class="list-group-item">🍽️ Kuliner khas daerah yang memiliki nilai sejarah</li>
+            </ul>
+        </div>
+      </div>
+
+      <div class="container mt-4 ">
+        <div class="row g-4">
+            <!-- Destinasi 1 -->
+            <div class="col-md-4 text-center">
+                <img src="img/MasjidAgung.jpg" class="img-fluid rounded" alt="Masjid Agung" style="width: 100%; max-height: 200px; object-fit: cover;">
+                <h6 class="mt-2">Masjid Agung</h6>
+                <p class="small">Salah satu masjid bersejarah yang menjadi pusat kajian Islam.</p>
+            </div>
+            <!-- Destinasi 2 -->
+            <div class="col-md-4 text-center">
+                <img src="img/Candi.jpeg" class="img-fluid rounded" alt="Candi Borobudur" style="width: 100%; max-height: 200px; object-fit: cover;">
+                <h6 class="mt-2">Candi </h6>
+                <p class="small">Candi Buddha terbesar yang menjadi pusat ziarah spiritual.</p>
+            </div>
+            <!-- Destinasi 3 -->
+            <div class="col-md-4 text-center">
+                <img src="img/makam.jpeg" class="img-fluid rounded" alt="Makam Sunan Gunung Jati" style="width: 100%; max-height: 200px; object-fit: cover;">
+                <h6 class="mt-2">Makam Syekh Mubarok</h6>
+                <p class="small">Salah satu makam Wali Songo yang sering dikunjungi peziarah.</p>
+            </div>
+        </div>
+    </div>
+    
+
+
+<!-- Bootstrap JS -->
+<script src="js/bootstrap.bundle.min.js"></script>
+</html>

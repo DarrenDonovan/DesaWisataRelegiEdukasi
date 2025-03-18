@@ -427,62 +427,8 @@
 
 <div class="map-container">
     <div id="map" style="height: 500px; width: 100%; border-radius: 10px;"></div>
+    
 </div>
-
-<script>
-    const map = L.map('map').setView([-6.2514908482756955, 106.62807214954837], 13);
-
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">Tracking Maps</a>'
-    }).addTo(map);
-
-    const userMarker = L.marker([-6.2514908482756955, 106.62807214954837]).addTo(map)
-        .bindPopup("Lokasi Anda");
-
-    const routingControl = L.Routing.control({
-        waypoints: [
-            L.latLng(-6.2514908482756955, 106.62807214954837),
-            L.latLng(-6.240647427622811, 106.62874609187763)
-        ],
-        createMarker: function() { return null; },
-        routeWhileDragging: true,
-        show: false // Menyembunyikan panel instruksi
-    }).addTo(map);
-
-    routingControl.on('routesfound', function(e) {
-        const bounds = L.latLngBounds(e.routes[0].coordinates.map(coord => [coord.lat, coord.lng]));
-        map.fitBounds(bounds, { padding: [20, 20] });
-    });
-
-    function updateUserLocation(position) {
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
-        userMarker.setLatLng([lat, lng]).update();
-
-        routingControl.setWaypoints([
-            L.latLng(lat, lng),
-            L.latLng(-6.240647427622811, 106.62874609187763)
-        ]);
-
-        routingControl.on('routesfound', function(e) {
-            const bounds = L.latLngBounds(e.routes[0].coordinates.map(coord => [coord.lat, coord.lng]));
-            map.fitBounds(bounds, { padding: [20, 20] });
-        });
-    }
-
-    function errorHandler(error) {
-        console.log("Error getting location:", error);
-    }
-
-    if (navigator.geolocation) {
-        navigator.geolocation.watchPosition(updateUserLocation, errorHandler, {
-            enableHighAccuracy: true
-        });
-    } else {
-        alert("Geolocation tidak didukung oleh browser ini.");
-    }
-</script>
 
 </section>
 
@@ -493,15 +439,15 @@
       <div class="contentPaketan">
         <div class="paket">
           <img src="img/packages-1.jpg" alt="Hidden Gems Jogja" />
-          <a href="PaketWisata.html" class="btn">Hidden Gems [Klik Sini]</a>
+          <a href="NapakReligi.html" class="btn"> Napak Religi </a>
         </div>
         <div class="paket">
           <img src="img/packages-2.jpg" alt="Wisata Keluarga" />
-          <a href="PaketWisata.html" class="btn">Hidden Gems [Klik Sini]</a>
+          <a href="WarisanBudaya.html" class="btn"> Warisan Budaya </a>
         </div>
         <div class="paket">
           <img src="img/packages-3.jpg" alt="Jogja Magelang 2H1M" />
-          <a href="PaketWisata.html" class="btn">Hidden Gems [Klik Sini]</a>
+          <a href="Pertualangan.html" class="btn"> Pertualangan Tersembunyi </a>
         </div>
       </div>
     </div>
