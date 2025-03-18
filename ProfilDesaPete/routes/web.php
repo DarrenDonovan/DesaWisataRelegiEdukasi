@@ -81,6 +81,8 @@ Route::post('admin/updateJumlahPenduduk/{id}', [AdminController::class, 'updateJ
 
 Route::post('admin/updateKelompokUmur/{id}', [AdminController::class, 'updateKelompokUmur'])->name('admin.updateKelompokUmur');
 
+Route::post('admin/updateJenisKelaminWilayah/{id}', [AdminController::class, 'updateJenisKelaminWilayah'])->name('admin.updateJenisKelaminWilayah');
+
 Route::post('admin/updatePekerjaanPenduduk/{id}', [AdminController::class, 'updatePekerjaanPenduduk'])->name('admin.updatePekerjaanPenduduk');
 
 Route::post('admin/updateAgamaPenduduk/{id}', [AdminController::class, 'updateAgamaPenduduk'])->name('admin.updateAgamaPenduduk');

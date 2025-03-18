@@ -152,6 +152,20 @@ class AdminController extends Controller{
             'Perempuan' => $data_jenis_kelamin->penduduk_perempuan,
         ];
 
+        $data_jenis_kelamin_wilayah = DB::table('jenis_kelamin_per_wilayah')
+            ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
+            ->where('jenis_kelamin_per_wilayah.id_wilayah', $user->id_wilayah)
+            ->select([
+                DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_laki) as penduduk_laki'),
+                DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_perempuan) as penduduk_perempuan')
+            ])
+            ->first();
+        $rasio_jenis_kelamin_wilayah = [
+            'Laki-Laki' => $data_jenis_kelamin_wilayah->penduduk_laki,
+            'Perempuan' => $data_jenis_kelamin_wilayah->penduduk_perempuan,
+        ];
+
         $pekerjaan_penduduk = DB::table('pekerjaan_per_wilayah')
             ->join('pekerjaan', 'pekerjaan_per_wilayah.id_pekerjaan', '=', 'pekerjaan.id_pekerjaan')
             ->join('wilayah', 'pekerjaan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
@@ -173,7 +187,7 @@ class AdminController extends Controller{
             ->where('pendidikan_per_wilayah.id_wilayah', $user->id_wilayah)
             ->get();
                     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'jumlah_penduduk', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'agama_penduduk', 'pendidikan_penduduk', 'wilayaheach', 'jenis_kelamin', 'data_jenis_kelamin', 'rasio_jenis_kelamin'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'jumlah_penduduk', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'agama_penduduk', 'pendidikan_penduduk', 'wilayaheach', 'jenis_kelamin', 'data_jenis_kelamin', 'rasio_jenis_kelamin', 'data_jenis_kelamin_wilayah', 'rasio_jenis_kelamin_wilayah'));
     }
 
 
@@ -564,6 +578,32 @@ class AdminController extends Controller{
         ];
 
         DB::table('kel_umur_per_wilayah')->where('id', $id)->update($updateData);
+
+        Session::flash('message', 'Data Berhasil Diupdate!');
+        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+    }
+
+    public function updateJenisKelaminWilayah(Request $request, $id){
+        $request -> validate([
+            'penduduk_laki' => 'integer',
+            'penduduk_perempuan' => 'integer'
+        ]);
+
+        $jenis_kelamin_wilayah = DB::table('jenis_kelamin_per_wilayah')
+            ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->where('jenis_kelamin_per_wilayah.id_wilayah', $id)
+            ->get();
+        
+        if(!$jenis_kelamin_wilayah){
+            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+        }
+
+        $updateData = [
+            'penduduk_laki' => $request->penduduk_laki,
+            'penduduk_perempuan' => $request->penduduk_perempuan
+        ];
+
+        DB::table('jenis_kelamin_per_wilayah')->where('id_wilayah', $id)->update($updateData);
 
         Session::flash('message', 'Data Berhasil Diupdate!');
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');

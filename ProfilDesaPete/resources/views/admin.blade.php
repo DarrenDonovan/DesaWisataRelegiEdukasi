@@ -583,7 +583,7 @@
 
 						<!-- Perangkat Kecamatan -->
 						<div class="d-flex justify-content-between align-items-center">
-							<h4 class="page-title mt-1">Perangkat {{ $wilayaheach->nama_wilayah }}</h4>
+							<h4 class="page-title mt-1">Perangkat {{ $wilayaheach->nama_wilayah	 }}</h4>
 							<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalTambah_perangkat">Tambah Personil</button>	
 						</div>		
 		  			
@@ -927,6 +927,73 @@
 									</div>
 								</div>
 							</div>
+
+							<!-- Chart Sebaran Penduduk Berdasarkan Jenis Kelamin per wilayah -->
+						<div class="col-md-6">
+								<div class="card">
+									<div class="card-header ">
+										<h4 class="card-title">Sebaran Penduduk {{ $wilayaheach->nama_wilayah }} Berdasarkan Jenis Kelamin</h4>
+									</div>
+									<div class="card-body">
+										<canvas id="Chart4"></canvas>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="card">
+									<div class="card-header ">
+										<h4 class="card-title">Tabel Data Penduduk {{ $wilayaheach->nama_wilayah }} Berdasarkan Kelompok Umur</h4>
+									</div>
+									<div class="card-body">
+										<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalUpdate_JenisKelaminWilayah{{$wilayaheach->id_wilayah}}">Edit</button>	
+										<table class="table table-striped mt-3">
+											<thead>
+												<tr>
+													<th scope="col">Jenis Kelamin</th>
+													<th scope="col">Jumlah Penduduk</th>
+												</tr>
+											</thead>
+											<tbody>
+        										<tr>
+            										<td><p>Laki-Laki</p></td>
+													<td>{{ $data_jenis_kelamin_wilayah->penduduk_laki }}</td>
+												</tr>
+                                                <tr>
+            										<td><p>Perempuan</p></td>
+													<td>{{ $data_jenis_kelamin_wilayah->penduduk_perempuan }}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+
+							<!-- Modal Edit Kelompok Umur -->
+							<div class="modal fade" id="modalUpdate_JenisKelaminWilayah{{$wilayaheach->id_wilayah}}" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+   								<div class="modal-dialog">
+        							<div class="modal-content">
+            							<div class="modal-header">
+											<h5 class="modal-title" id="modalTitle">Edit Jumlah Penduduk {{ $wilayaheach->nama_wilayah }}</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            							</div>
+            							<div class="modal-body">
+											<form action="{{ route('admin.updateJenisKelaminWilayah', $wilayaheach->id_wilayah) }}" method="post" enctype="multipart/form-data">
+												@csrf
+												<div class="form-group">
+													<label for="penduduk_laki">Jumlah Penduduk Laki-Laki</label>
+													<input type="text" class="form-control" name="penduduk_laki" id="penduduk_laki" value="{{ $data_jenis_kelamin_wilayah->penduduk_laki }}">
+												</div>
+												<div class="form-group">
+													<label for="penduduk_perempuan">Jumlah Penduduk Perempuan</label>
+													<input type="text" class="form-control" name="penduduk_perempuan" id="penduduk_perempuan" value="{{ $data_jenis_kelamin_wilayah->penduduk_perempuan }}">
+                								</div>
+                								<button type="submit" class="btn btn-primary form-control">Save changes</button>
+											</form>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+
 	
 
 						</div>
@@ -1066,6 +1133,22 @@
                   'rgba(75, 192, 192, 0.6)',
                   'rgba(153, 102, 255, 0.6)',
                   'rgba(0, 255, 255, 0.6)'
+                ]
+              }]
+            }
+          });
+
+		  const ctx4 = document.getElementById('Chart4');
+          new Chart(ctx4, {
+            type: 'pie',
+            data: {
+              labels: ['Laki-Laki', 'Perempuan'], 
+              datasets: [{
+                label: 'Jumlah Penduduk',
+                data: {!! json_encode(array_values($rasio_jenis_kelamin_wilayah)) !!}, 
+                backgroundColor: [
+				  'rgba(54, 162, 235, 0.6)',
+                  'rgba(255, 99, 132, 0.6)' 
                 ]
               }]
             }
