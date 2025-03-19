@@ -512,6 +512,7 @@
 						    </div>
 						</div>
 
+						@if(Auth::check() && Auth::user()->role==='superadmin')
 						<!-- About Us -->
 						<div class="d-flex justify-content-between align-items-center mt-4">
 							<h4 class="page-title mt-1">About Us</h4>
@@ -580,10 +581,69 @@
 								    </div>
 								</div>
 							</div>
+						@endif
+
+						<!-- Profil Desa -->
+						@if(Auth::check() && Auth::user()->role==='admin')
+						<div class="d-flex justify-content-between align-items-center mt-4">
+							<h4 class="page-title mt-1">Profil {{ $wilayaheach->nama_wilayah }}</h4>
+							<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalEdit_profil">Edit Profil</button>	
+						</div>	
+							<div class="row">
+								<div class="col-md-4">
+									<div class="card">
+										<div class="card-header">
+											<h4 class="card-title text-center mb-1">Gambar</h4>
+											<img src="{{ asset('storage/' . $wilayaheach->gambar_wilayah) }}" width="275" alt="">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-8">
+									<div class="card">
+										<div class="card-header">
+											<h4 class="card-title">Konten Profil</h4>
+											<p class="card-category">{{ $wilayaheach->nama_wilayah }}</p>
+										</div>
+										<div class="card-body">
+											<h4 class="card-title">Batas Desa</h4>
+											<p>Utara : {{ $wilayaheach->batas_utara }}</p>
+											<p>Timur: {{ $wilayaheach->batas_timur }}</p>
+											<p>Selatan : {{ $wilayaheach->batas_selatan }}</p>
+											<p>Barat: {{ $wilayaheach->batas_barat }}</p>
+											<p>Luas Wilayah : {{ $wilayaheach->luas_wilayah }} Ha</p>
+											@foreach($jumlah_penduduk as $jumlahPenduduk)
+											<p>Jumlah Penduduk : {{ $jumlahPenduduk->jumlah_penduduk }} Jiwa</p>
+											@endforeach
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="modal fade" id="modalEdit_profil" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+   								<div class="modal-dialog">
+        							<div class="modal-content">
+            							<div class="modal-header">
+											<h5 class="modal-title" id="modalTitle">Edit Tentang Kami</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            							</div>
+            							<div class="modal-body">
+											<form action="{{ route('admin.updateProfil', $wilayaheach->id_wilayah) }}" method="post" enctype="multipart/form-data">
+												@csrf
+												<div class="form-group">
+													<label for="gambar_wilayah">Gambar Kegiatan</label>
+													<input type="file" class="form-control-file" name="gambar_wilayah" id="gambar_wilayah">
+                								</div>
+												<button type="submit" class="btn btn-primary form-control">Save changes</button>
+											</form>
+								        </div>
+								    </div>
+								</div>
+							</div>
+						@endif
 
 						<!-- Perangkat Kecamatan -->
 						<div class="d-flex justify-content-between align-items-center">
-							<h4 class="page-title mt-1">Perangkat {{ $wilayaheach->nama_wilayah	 }}</h4>
+							<h4 class="page-title mt-1">Perangkat {{ $wilayaheach->nama_wilayah	}}</h4>
 							<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalTambah_perangkat">Tambah Personil</button>	
 						</div>		
 		  			
@@ -863,6 +923,74 @@
 					<div class="d-flex justify-content-between align-items-center">
 						<h4 class="page-title mt-1">Infografis</h4>
 					</div>	
+
+		  					<!-- Chart Sebaran Penduduk Berdasarkan Jenis Kelamin per wilayah -->
+						@if(Auth::check() && Auth::user()->role==='admin')
+						<div class="col-md-6">
+								<div class="card">
+									<div class="card-header ">
+										<h4 class="card-title">Sebaran Penduduk {{ $wilayaheach->nama_wilayah }} Berdasarkan Jenis Kelamin</h4>
+									</div>
+									<div class="card-body">
+										<canvas id="Chart4"></canvas>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="card">
+									<div class="card-header ">
+										<h4 class="card-title">Tabel Data Penduduk {{ $wilayaheach->nama_wilayah }} Berdasarkan Kelompok Umur</h4>
+									</div>
+									<div class="card-body">
+										<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalUpdate_JenisKelaminWilayah{{$wilayaheach->id_wilayah}}">Edit</button>	
+										<table class="table table-striped mt-3">
+											<thead>
+												<tr>
+													<th scope="col">Jenis Kelamin</th>
+													<th scope="col">Jumlah Penduduk</th>
+												</tr>
+											</thead>
+											<tbody>
+        										<tr>
+            										<td><p>Laki-Laki</p></td>
+													<td>{{ $data_jenis_kelamin_wilayah->penduduk_laki }}</td>
+												</tr>
+                                                <tr>
+            										<td><p>Perempuan</p></td>
+													<td>{{ $data_jenis_kelamin_wilayah->penduduk_perempuan }}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+
+							<!-- Modal Edit Penduduk berdasarakan Jenis Kelamin -->
+							<div class="modal fade" id="modalUpdate_JenisKelaminWilayah{{$wilayaheach->id_wilayah}}" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+   								<div class="modal-dialog">
+        							<div class="modal-content">
+            							<div class="modal-header">
+											<h5 class="modal-title" id="modalTitle">Edit Jumlah Penduduk {{ $wilayaheach->nama_wilayah }}</h5>
+											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            							</div>
+            							<div class="modal-body">
+											<form action="{{ route('admin.updateJenisKelaminWilayah', $wilayaheach->id_wilayah) }}" method="post" enctype="multipart/form-data">
+												@csrf
+												<div class="form-group">
+													<label for="penduduk_laki">Jumlah Penduduk Laki-Laki</label>
+													<input type="text" class="form-control" name="penduduk_laki" id="penduduk_laki" value="{{ $data_jenis_kelamin_wilayah->penduduk_laki }}">
+												</div>
+												<div class="form-group">
+													<label for="penduduk_perempuan">Jumlah Penduduk Perempuan</label>
+													<input type="text" class="form-control" name="penduduk_perempuan" id="penduduk_perempuan" value="{{ $data_jenis_kelamin_wilayah->penduduk_perempuan }}">
+                								</div>
+                								<button type="submit" class="btn btn-primary form-control">Save changes</button>
+											</form>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+		  				@endif
 	
 							<!-- Sebaran Penduduk berdasarkan kelompok umur -->
 							<div class="col-md-6">
@@ -928,73 +1056,7 @@
 								</div>
 							</div>
 
-							<!-- Chart Sebaran Penduduk Berdasarkan Jenis Kelamin per wilayah -->
-						<div class="col-md-6">
-								<div class="card">
-									<div class="card-header ">
-										<h4 class="card-title">Sebaran Penduduk {{ $wilayaheach->nama_wilayah }} Berdasarkan Jenis Kelamin</h4>
-									</div>
-									<div class="card-body">
-										<canvas id="Chart4"></canvas>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="card">
-									<div class="card-header ">
-										<h4 class="card-title">Tabel Data Penduduk {{ $wilayaheach->nama_wilayah }} Berdasarkan Kelompok Umur</h4>
-									</div>
-									<div class="card-body">
-										<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalUpdate_JenisKelaminWilayah{{$wilayaheach->id_wilayah}}">Edit</button>	
-										<table class="table table-striped mt-3">
-											<thead>
-												<tr>
-													<th scope="col">Jenis Kelamin</th>
-													<th scope="col">Jumlah Penduduk</th>
-												</tr>
-											</thead>
-											<tbody>
-        										<tr>
-            										<td><p>Laki-Laki</p></td>
-													<td>{{ $data_jenis_kelamin_wilayah->penduduk_laki }}</td>
-												</tr>
-                                                <tr>
-            										<td><p>Perempuan</p></td>
-													<td>{{ $data_jenis_kelamin_wilayah->penduduk_perempuan }}</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
 
-							<!-- Modal Edit Kelompok Umur -->
-							<div class="modal fade" id="modalUpdate_JenisKelaminWilayah{{$wilayaheach->id_wilayah}}" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
-   								<div class="modal-dialog">
-        							<div class="modal-content">
-            							<div class="modal-header">
-											<h5 class="modal-title" id="modalTitle">Edit Jumlah Penduduk {{ $wilayaheach->nama_wilayah }}</h5>
-											<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            							</div>
-            							<div class="modal-body">
-											<form action="{{ route('admin.updateJenisKelaminWilayah', $wilayaheach->id_wilayah) }}" method="post" enctype="multipart/form-data">
-												@csrf
-												<div class="form-group">
-													<label for="penduduk_laki">Jumlah Penduduk Laki-Laki</label>
-													<input type="text" class="form-control" name="penduduk_laki" id="penduduk_laki" value="{{ $data_jenis_kelamin_wilayah->penduduk_laki }}">
-												</div>
-												<div class="form-group">
-													<label for="penduduk_perempuan">Jumlah Penduduk Perempuan</label>
-													<input type="text" class="form-control" name="penduduk_perempuan" id="penduduk_perempuan" value="{{ $data_jenis_kelamin_wilayah->penduduk_perempuan }}">
-                								</div>
-                								<button type="submit" class="btn btn-primary form-control">Save changes</button>
-											</form>
-							            </div>
-							        </div>
-							    </div>
-							</div>
-
-	
 
 						</div>
 					

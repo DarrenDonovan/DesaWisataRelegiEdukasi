@@ -98,15 +98,10 @@ class AdminController extends Controller{
             ->get();
 
         $wilayaheach = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.gambar_wilayah', 'wilayah.batas_utara', 'wilayah.batas_barat', 'wilayah.batas_timur', 'wilayah.batas_selatan') 
             ->where('wilayah.id_wilayah', $user->id_wilayah)
             ->first();
 
-        $profil = DB::table('profil_kecamatan')
-            ->join('wilayah', 'wilayah.id_wilayah', '=', 'profil_kecamatan.id_wilayah')
-            ->select('profil_kecamatan.id_profil', 'profil_kecamatan.id_wilayah', 'profil_kecamatan.deskripsi', 'profil_kecamatan.logo_wilayah', 'wilayah.nama_wilayah')
-            ->where('profil_kecamatan.id_wilayah', $user->id_wilayah)
-            ->first();
 
         $about = DB::table('about_us')
             ->join('wilayah', 'wilayah.id_wilayah', '=', 'about_us.id_wilayah')
@@ -122,9 +117,11 @@ class AdminController extends Controller{
             ->where('wilayah.jenis_wilayah', '!=', 'Kecamatan')
             ->get();
 
-        $jumlah_penduduk = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.jumlah_penduduk')
-            ->whereIn('jenis_wilayah', ['Desa', 'Kelurahan'])
+        $jumlah_penduduk = DB::table('jenis_kelamin_per_wilayah')
+            ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
+            ->select('wilayah.nama_wilayah', DB::raw('(jenis_kelamin_per_wilayah.penduduk_laki + jenis_kelamin_per_wilayah.penduduk_perempuan) as jumlah_penduduk'))
+            ->where('jenis_kelamin_per_wilayah.id_wilayah', $user->id_wilayah)
             ->get();
 
         $kel_umur_penduduk = DB::table('kel_umur_per_wilayah')
@@ -187,7 +184,7 @@ class AdminController extends Controller{
             ->where('pendidikan_per_wilayah.id_wilayah', $user->id_wilayah)
             ->get();
                     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'profil', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'jumlah_penduduk', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'agama_penduduk', 'pendidikan_penduduk', 'wilayaheach', 'jenis_kelamin', 'data_jenis_kelamin', 'rasio_jenis_kelamin', 'data_jenis_kelamin_wilayah', 'rasio_jenis_kelamin_wilayah'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'jumlah_penduduk', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'agama_penduduk', 'pendidikan_penduduk', 'wilayaheach', 'jenis_kelamin', 'data_jenis_kelamin', 'rasio_jenis_kelamin', 'data_jenis_kelamin_wilayah', 'rasio_jenis_kelamin_wilayah'));
     }
 
 
@@ -216,25 +213,13 @@ class AdminController extends Controller{
             ->where('wilayah.jenis_wilayah', '!=', 'Kecamatan')
             ->get();
 
-
-        $profil = DB::table('profil_kecamatan')
-            ->join('wilayah', 'wilayah.id_wilayah', '=', 'profil_kecamatan.id_wilayah')
-            ->select('profil_kecamatan.id_profil', 'profil_kecamatan.id_wilayah', 'profil_kecamatan.deskripsi', 'profil_kecamatan.logo_wilayah', 'wilayah.nama_wilayah')
-            ->first();
-
-        $profilkecamatan = DB::table('profil_kecamatan')
-            ->join('wilayah', 'wilayah.id_wilayah', '=', 'profil_kecamatan.id_wilayah')
-            ->select('profil_kecamatan.id_profil', 'profil_kecamatan.id_wilayah', 'profil_kecamatan.deskripsi', 'profil_kecamatan.logo_wilayah', 'wilayah.nama_wilayah')
-            ->where('profil_kecamatan.id_wilayah', 13)
-            ->first();
-
         $berita = DB::table('berita')
             ->select('berita.id_berita', 'berita.judul_berita', 'berita.konten_berita', 'berita.gambar_berita', 'berita.penulis_berita', 'berita.tanggal_berita', 'berita.id_wilayah')
             ->orderBy('id_berita', 'desc')
             ->limit(3)
             ->get();
 
-        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah','profil', 'profilkecamatan', 'berita', 'wilayahNoKec'));
+        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'berita', 'wilayahNoKec'));
     }
 
     //Create Admin
@@ -448,6 +433,36 @@ class AdminController extends Controller{
         }
 
         DB::table('about_us')->where('id_about', $about_us->id_about)->update($updateData);
+
+        Session::flash('message', 'Data Berhasil Diupdate!');
+        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+    }
+
+    public function updateProfil(Request $request, $id){
+        $request->validate([
+            'gambar_wilayah' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        $wilayah = DB::table('wilayah')
+            ->where('id_wilayah', $id)
+            ->first();
+        
+        if (!$wilayah) {
+            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+        }
+
+        $updateData = [];
+
+        if ($request->hasFile('gambar_wilayah')) {
+            if ($wilayah->gambar_wilayah) {
+                Storage::disk('public')->delete($wilayah->gambar_wilayah);
+            }
+
+            $imagePath = $request->file('gambar_wilayah')->store('profilwilayah', 'public');
+            $updateData['gambar_wilayah'] = $imagePath;
+        }
+
+        DB::table('wilayah')->where('id_wilayah', $id)->update($updateData);
 
         Session::flash('message', 'Data Berhasil Diupdate!');
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
