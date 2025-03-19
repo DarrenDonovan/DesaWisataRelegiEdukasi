@@ -28,6 +28,22 @@
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
 
+        <style>
+            .visi-container, .misi-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Agar lebih responsif di layar kecil */
+        @media (max-width: 768px) {
+            .visi-container, .misi-container {
+                padding: 20px;
+            }
+        }
+
+        </style>
+
     </head>
 
     <body>
@@ -109,41 +125,49 @@
             <div class="container py-5">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-5">
-                        <div class="h-100" style="border: 50px solid; border-color: transparent #13357B transparent #13357B;">
-                            <img src="img/tentang-kami.jpg" class="img-fluid w-100 h-100" alt="">
+                        <div class="h-100">
+                            <img src="img/logokab.png" class="img-fluid w-100 h-100" alt="">
                         </div>
                     </div>
                     <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8))">
-                        <h5 class="section-about-title pe-3">Visi dan Misi Kecamatan Tigakarsa</h5>
-                        <h1 class="mb-4"> Visi </h1>
-                        <p class="mb-4">Visi Kecamatan Tigaraksa bertujuan memberikan arah strategis bagi pembangunan daerah yang berkelanjutan sebagai berikut:</p>
-                        <p><strong>"Terwujudnya kehidupan masyarakat Kecamatan Tigaraksa yang cerdas, religius, dan berwawasan kemandirian"</strong></p>
-                        <ul>
-                            <li><strong>Cerdas:</strong> Masyarakat memiliki wawasan, keterampilan, serta pendidikan yang mendukung kualitas hidup</li>
-                            <li><strong>Religius:</strong> Nilai-nilai agama menjadi landasan dalam kehidupan masyarakat dan kebijakan pemerintah</li>
-                            <li><strong>Berwawasan Kemandirian:</strong> Masyarakat mampu berpikir kreatif, inovatif, serta mandiri dalam menghadapi tantangan</li>
-                        </ul>
-                        <p class="mb-4">Visi ini menjadi pedoman dalam menyusun program prioritas dan kegiatan pembangunan di Kecamatan Tigaraksa </p>
-                        <h1 class="mb-4"> Misi </h1>
-                        <ul>
-                            <li>Meningkatkan fasilitas pendidikan dan layanan kesehatan masyarakat</li>
-                            <li>Mendorong pertumbuhan ekonomi berbasis UMKM sesuai potensi wilayah</li>
-                            <li>Mewujudkan kesejahteraan sosial dengan nilai-nilai religius dalam pemerintahan</li>
-                            <li>Mempercepat pembangunan infrastruktur jalan, jembatan, dan fasilitas umum</li>
-                            <li>Meningkatkan ketertiban dan keamanan melalui koordinasi yang efektif</li>
-                            <li>Mengembangkan kapasitas aparatur kecamatan, desa, dan kelurahan dalam pelayanan publik</li>
-                        </ul>
-                        <p class="mb-4">Misi ini menjadi pedoman utama dalam merancang kebijakan dan program pembangunan di Kecamatan Tigaraksa</p>            
-                        <!-- <a class="btn btn-primary rounded-pill py-3 px-5 mt-2" href="">Detail</a> -->
+                        <h3 class="section-about-title pe-3">Kecamatan Tigaraksa</h3>
+
+                        <!-- Container untuk Visi -->
+                        <div class="visi-container p-4 mb-4">
+                            <h1 class="mb-4">Visi</h1>
+                            <p class="mb-4">Visi Kecamatan Tigaraksa bertujuan memberikan arah strategis bagi pembangunan daerah yang berkelanjutan sebagai berikut:</p>
+                            <p><strong>"Terwujudnya kehidupan masyarakat Kecamatan Tigaraksa yang cerdas, religius, dan berwawasan kemandirian"</strong></p>
+                            <ul>
+                                <li><strong>Cerdas:</strong> Masyarakat memiliki wawasan, keterampilan, serta pendidikan yang mendukung kualitas hidup</li>
+                                <li><strong>Religius:</strong> Nilai-nilai agama menjadi landasan dalam kehidupan masyarakat dan kebijakan pemerintah</li>
+                                <li><strong>Berwawasan Kemandirian:</strong> Masyarakat mampu berpikir kreatif, inovatif, serta mandiri dalam menghadapi tantangan</li>
+                            </ul>
+                            <p class="mb-0">Visi ini menjadi pedoman dalam menyusun program prioritas dan kegiatan pembangunan di Kecamatan Tigaraksa.</p>
+                        </div>
+
+                        <!-- Container untuk Misi -->
+                        <div class="misi-container p-4">
+                            <h1 class="mb-4">Misi</h1>
+                            <ul>
+                                <li>Meningkatkan fasilitas pendidikan dan layanan kesehatan masyarakat</li>
+                                <li>Mendorong pertumbuhan ekonomi berbasis UMKM sesuai potensi wilayah</li>
+                                <li>Mewujudkan kesejahteraan sosial dengan nilai-nilai religius dalam pemerintahan</li>
+                                <li>Mempercepat pembangunan infrastruktur jalan, jembatan, dan fasilitas umum</li>
+                                <li>Meningkatkan ketertiban dan keamanan melalui koordinasi yang efektif</li>
+                                <li>Mengembangkan kapasitas aparatur kecamatan, desa, dan kelurahan dalam pelayanan publik</li>
+                            </ul>
+                            <p class="mb-0">Misi ini menjadi pedoman utama dalam merancang kebijakan dan program pembangunan di Kecamatan Tigaraksa.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- About End -->
 
+
         <!-- Struktu organisasi -->
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h5 class="section-title px-3"> Bagan Organisasi</h5>
+            <h3 class="section-title px-3"> Bagan Organisasi</h3>
             <h1 class="mb-0"> Struktur Pemerintahan Kecamatan </h1>
             <img src="img/struktur.jpg" alt="Struktur Pemerintahan Kecamatan" class="img-fluid mt-3" style="max-width: 100%; height: auto;">
         </div>
@@ -153,7 +177,7 @@
          <div class="container-fluid guide py-5">
             <div class="container py-5">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h5 class="section-title px-3"> Perangkat Kecamatan </h5>
+                    <h3 class="section-title px-3"> Perangkat Kecamatan </h3>
                     <h1 class="mb-0"> Daftar nama dan Jabatan </h1>
                 </div>
                 <br>
@@ -416,7 +440,7 @@
         <!-- Perangkat End -->
 
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h5 class="section-title px-3"> Lokasi Desa </h5>
+            <h3 class="section-title px-3"> Lokasi Desa </h3>
             <h1 class="mb-0"> Peta Lokasi Desa </h1>
         </div>
         
