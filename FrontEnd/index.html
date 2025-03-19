@@ -34,8 +34,38 @@
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
         <style>
-            
+            .navbar-brand .m-0 {
+                font-size: 28px;
+            }
+            @media (max-width: 380px) {
+                .navbar-brand .fa {
+                    font-size: 20px !important;
+                    margin-right: 10px !important;
+                }
+                .navbar-brand .m-0 {
+                    font-size: 20px !important;
+                }
+                .navbar-brand .subtext {
+                    font-size: 15px !important;
+                    margin-left: 25px;
+                }
+                .navbar-toggler {
+                    font-size: 15px;
+                    /* padding-left: 5px !important; */
+                    padding: 0.3rem 0.6rem !important; /* Mengurangi padding */
+                }
+                .collapse {
+                    font-size: 20px;
+                }
+                
+            }
             @media (max-width: 450px){
+                .navbar-brand .m-0 {
+                    font-size: 23px;
+                }
+                .navbar-brand .subtext {
+                    font-size: 18px;
+                }
                 /* HERO  SECTION */
                 .p-3 h4{
                     font-size: 15px;
@@ -90,7 +120,20 @@
                     font-size: 15px !important;
                 }
             }
+            @media (max-width: 992px) {
+                .navbar-brand .subtext {
+                    color: #13357b !important;
+                }
+            }
 
+            @media (min-width: 2560px) {
+                .navbar-brand .m-0{
+                    font-size: 40px;
+                }
+                .navbar-brand .subtext{ 
+                    font-size: 35px;
+                }
+            } 
         </style>
     </head>
 
@@ -105,15 +148,7 @@
         <!-- Spinner End -->
 
         <!-- Topbar Start -->
-        <div class="container-fluid bg-primary px-5 d-none d-lg-block">
-            <div class="row gx-0 justify-content-end"> <!-- Tambahkan justify-content-end -->
-                <div class="col-lg-4 text-end"> <!-- Gunakan text-end agar teks sejajar ke kanan -->
-                    <div class="d-inline-flex align-items-center" style="height: 45px;">
-                        <a href="#"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         
         <!-- Topbar End -->
 
@@ -153,6 +188,7 @@
                                 <a href="Tigaraksa.html" class="dropdown-item">Kelurahan Tigaraksa</a>
                             </div>
                         </div>
+                        <a href="#" class="nav-item nav-link">Login</a>
                     </div>
             </nav>
 
