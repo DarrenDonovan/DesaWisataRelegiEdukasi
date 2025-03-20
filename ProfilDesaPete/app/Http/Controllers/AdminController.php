@@ -21,7 +21,7 @@ class AdminController extends Controller{
             $kegiatanterbaru = DB::table('kegiatan')
                 ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
                 ->join('wilayah', 'kegiatan.id_wilayah', '=', 'wilayah.id_wilayah')
-                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
+                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah', 'kegiatan.tanggal_kegiatan')
                 ->orderBy('id_kegiatan', 'desc')
                 ->first();
         }
@@ -29,7 +29,7 @@ class AdminController extends Controller{
             $kegiatanterbaru = DB::table('kegiatan')
                 ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
                 ->join('wilayah', 'kegiatan.id_wilayah', '=', 'wilayah.id_wilayah')
-                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
+                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah', 'kegiatan.tanggal_kegiatan')
                 ->where('kegiatan.id_wilayah', $user->id_wilayah)
                 ->orderBy('id_kegiatan', 'desc')
                 ->first();
@@ -40,7 +40,7 @@ class AdminController extends Controller{
             $kegiatan = DB::table('kegiatan')
                 ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
                 ->join('wilayah', 'kegiatan.id_wilayah','=', 'wilayah.id_wilayah')
-                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
+                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah', 'kegiatan.tanggal_kegiatan')
                 ->orderBy('id_kegiatan', 'desc')
                 ->paginate(5);
         }
@@ -48,7 +48,7 @@ class AdminController extends Controller{
             $kegiatan = DB::table('kegiatan')
                 ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
                 ->join('wilayah', 'kegiatan.id_wilayah','=', 'wilayah.id_wilayah')
-                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah')
+                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah', 'kegiatan.tanggal_kegiatan')
                 ->where('kegiatan.id_wilayah', $user->id_wilayah)
                 ->orderBy('id_kegiatan', 'desc')
                 ->paginate(5);
@@ -73,15 +73,32 @@ class AdminController extends Controller{
 
         //perngkat kecamatan
         if($user->role == 'superadmin'){
-        $perangkat_kecamatan = DB::table('perangkat_kecamatan')
-            ->select('perangkat_kecamatan.id_perangkat', 'perangkat_kecamatan.nama', 'perangkat_kecamatan.jabatan', 'perangkat_kecamatan.link_facebook', 'perangkat_kecamatan.link_instagram', 'perangkat_kecamatan.link_tiktok', 'perangkat_kecamatan.gambar_perangkat')
-            ->get();
+            $perangkat_kecamatan = DB::table('perangkat_kecamatan')
+                ->select('perangkat_kecamatan.id_perangkat', 'perangkat_kecamatan.nama', 'perangkat_kecamatan.jabatan', 'perangkat_kecamatan.link_facebook', 'perangkat_kecamatan.link_instagram', 'perangkat_kecamatan.link_tiktok', 'perangkat_kecamatan.gambar_perangkat')
+                ->get();
         }
         else{
             $perangkat_kecamatan = DB::table('perangkat_kecamatan')
-            ->select('perangkat_kecamatan.id_perangkat', 'perangkat_kecamatan.nama', 'perangkat_kecamatan.jabatan', 'perangkat_kecamatan.link_facebook', 'perangkat_kecamatan.link_instagram', 'perangkat_kecamatan.link_tiktok', 'perangkat_kecamatan.gambar_perangkat')
-            ->where('perangkat_kecamatan.id_wilayah', $user->id_wilayah)
-            ->get();
+                ->select('perangkat_kecamatan.id_perangkat', 'perangkat_kecamatan.nama', 'perangkat_kecamatan.jabatan', 'perangkat_kecamatan.link_facebook', 'perangkat_kecamatan.link_instagram', 'perangkat_kecamatan.link_tiktok', 'perangkat_kecamatan.gambar_perangkat')
+                ->where('perangkat_kecamatan.id_wilayah', $user->id_wilayah)
+                ->get();
+        }
+
+         //Daftar Wisata
+         if($user->role == 'superadmin'){
+            $wisata = DB::table('wisata')
+                ->join('wilayah', 'wisata.id_wilayah', '=', 'wilayah.id_wilayah')
+                ->select('wisata.id_wisata', 'wisata.id_wilayah', 'wilayah.nama_wilayah', 'wisata.nama_tempat', 'wisata.keterangan', 'wisata.gambar_wisata', 'wisata.latitude', 'wisata.longitude')
+                ->orderBy('wisata.id_wilayah', 'asc')
+                ->paginate(5);
+        }
+        else{
+            $wisata = DB::table('wisata')
+                ->join('wilayah', 'wisata.id_wilayah', '=', 'wilayah.id_wilayah')
+                ->select('wisata.id_wisata', 'wisata.id_wilayah', 'wilayah.nama_wilayah', 'wisata.nama_tempat', 'wisata.keterangan', 'wisata.gambar_wisata', 'wisata.latitude', 'wisata.longitude')
+                ->where('wisata.id_wilayah', $user->id_wilayah)
+                ->orderBy('wisata.id_wilayah', 'asc')
+                ->paginate(5);   
         }
         
         $users = DB::table('users')
@@ -168,7 +185,7 @@ class AdminController extends Controller{
             'Perempuan' => $data_jenis_kelamin_wilayah->penduduk_perempuan,
         ];
                     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'jumlah_penduduk', 'kel_umur_penduduk', 'wilayaheach', 'jenis_kelamin', 'data_jenis_kelamin', 'rasio_jenis_kelamin', 'data_jenis_kelamin_wilayah', 'rasio_jenis_kelamin_wilayah'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'wisata', 'jumlah_penduduk', 'kel_umur_penduduk', 'wilayaheach', 'jenis_kelamin', 'data_jenis_kelamin', 'rasio_jenis_kelamin', 'data_jenis_kelamin_wilayah', 'rasio_jenis_kelamin_wilayah'));
     }
 
 

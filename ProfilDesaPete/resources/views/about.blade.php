@@ -238,9 +238,9 @@
                     <tr><td class="highlight">Timur</td><td>Kecamatan Cikupa - Panongan </td></tr>
                     <tr><td class="highlight">Selatan</td><td>Kecamatan Jambe - Kabupaten Bogor</td></tr>
                     <tr><td class="highlight">Barat</td><td>Kecamatan Solear - Cisoka</td></tr>
+                    <tr><td class="highlight">Luas Desa</td><td>{{ number_format($wilayahkecamatan->luas_wilayah, 0, ',', '.') }} Ha</td></tr>
+                    <tr><td class="highlight">Jumlah Penduduk</td><td>{{ number_format($jumlah_penduduk, 0, ',', '.') }} Jiwa</td></tr>
                 </table>
-                <p><strong>Luas Desa:</strong> {{ number_format($wilayahkecamatan->luas_wilayah, 0, ',', '.') }} Ha</p>
-                <p><strong>Jumlah Penduduk:</strong> {{ number_format($jumlah_penduduk, 0, ',', '.') }} Jiwa</p>
             </div>
     
             <div class="map-container">
