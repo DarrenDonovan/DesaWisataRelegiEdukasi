@@ -11,14 +11,14 @@
   };
   spinner(0);
 
-  // Sticky Navbar
   $(window).scroll(function () {
     if ($(this).scrollTop() > 45) {
-      $(".navbar").addClass("sticky-top shadow-sm");
+        $(".navbar").addClass("sticky-top shadow-sm").css("height", "95px"); 
     } else {
-      $(".navbar").removeClass("sticky-top shadow-sm");
+        $(".navbar").removeClass("sticky-top shadow-sm");
     }
-  });
+});
+
 
   // International Tour carousel
   $(".InternationalTour-carousel").owlCarousel({

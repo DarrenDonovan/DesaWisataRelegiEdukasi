@@ -40,13 +40,25 @@
                 left: 0;
                 width: 100%;
                 z-index: 1000; /* Agar tetap di atas elemen lain */
-                }
+                    border: 2px solid red; 
+}
+
+.navbar-nav {
+    border: 2px solid blue;
+}
+                
 
             .navbar-brand .m-0 {
                 font-size: 28px;
             }
             @media (max-width: 992px) {
-                
+
+                .navbar-brand .fa {
+                    font-size: 25px !important;
+                }
+                .navbar-brand .subtext {
+                    margin-left: 35px !important;
+                }
                 .navbar-toggler.scrolled {
                     color: #13357b !important;
                     border-color: #13357b !important;
@@ -60,6 +72,7 @@
                 .navbar-brand h1 .subtext.scrolled {
                     color: #13357b !important;
                     border-color: #13357b !important;
+                    
                 }
                 .navbar-nav {
                     background-color: #ffff;
@@ -76,8 +89,8 @@
             }
             @media (max-width: 380px) {
                 /* NAVBAR */
-                .navbar-brand .fa {
-                    font-size: 20px !important;
+                .navbar-brand .fa { 
+                    font-size: 20px !important; /*logo*/
                     margin-right: 10px !important;
                 }
                 .navbar-brand h1 {
@@ -193,7 +206,11 @@
                 }
             }
             
+            @media (min-width: 1098) {
+                
 
+
+            }
             @media (min-width: 2560px) {
                 .navbar-brand .m-0{
                     font-size: 40px;
@@ -230,9 +247,9 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="collapse navbar-collapse h-100 " id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="index.html" class="nav-item nav-link active">Home</a>
+                        <a href="index.html" class="nav-item nav-link active h-">Home</a>
                         <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
                         <a href="infografis.html" class="nav-item nav-link">Infografis</a>
                         <a href="maps.html" class="nav-item nav-link">Maps</a>
@@ -293,7 +310,7 @@
                 </div>
             </div>
         </div>
-
+        </div>
         <!-- BERITA -->
         <div class="container mt-5">
             <div class="mx-auto text-center mb-5" style="max-width: 900px;">
