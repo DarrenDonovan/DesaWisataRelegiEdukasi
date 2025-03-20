@@ -1344,7 +1344,7 @@
   color: white;
   min-width: var(--size);
   height: var(--size);
-  display: flex;
+  display: flex;#13357b
   align-items: center;
   justify-content: center;
   cursor: pointer;

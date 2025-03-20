@@ -257,20 +257,20 @@
         <p><strong>Batas {{ $itemWilayah->jenis_wilayah }}</strong></p>
         <table>
           <tr>
-            <td class="highlight">Utara</td>
-            <td>Desa A</td>
+            <td class="highlight">Utara :</td>
+            <td>{{ $itemWilayah->batas_utara }}</td>
           </tr>
           <tr>
-            <td class="highlight">Timur</td>
-            <td>Desa B</td>
+            <td class="highlight">Timur :</td>
+            <td>{{ $itemWilayah->batas_timur }}</td>
           </tr>
           <tr>
-            <td class="highlight">Selatan</td>
-            <td>Desa C</td>
+            <td class="highlight">Selatan :</td>
+            <td>{{ $itemWilayah->batas_selatan }}</td>
           </tr>
           <tr>
-            <td class="highlight">Barat</td>
-            <td>Desa D</td>
+            <td class="highlight">Barat :</td>
+            <td>{{ $itemWilayah->batas_barat }}</td>
           </tr>
         </table>
         <p><strong>Luas Desa:</strong> {{ number_format($itemWilayah->luas_wilayah, 0, ',', '.') }} Ha</p>

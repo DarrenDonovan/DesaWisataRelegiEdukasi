@@ -196,7 +196,8 @@ class UserController extends Controller
             ->get();
 
         $wilayaheach = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.jenis_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
+            ->join('jenis_kelamin_per_wilayah', 'wilayah.id_wilayah', '=', 'jenis_kelamin_per_wilayah.id_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.jenis_wilayah', 'wilayah.luas_wilayah','wilayah.batas_utara', 'wilayah.batas_timur','wilayah.batas_barat', 'wilayah.batas_selatan', 'wilayah.gambar_wilayah', DB::raw('(jenis_kelamin_per_wilayah.penduduk_laki + jenis_kelamin_per_wilayah.penduduk_perempuan) as jumlah_penduduk'))
             ->where('wilayah.id_wilayah', $id)
             ->get();
 

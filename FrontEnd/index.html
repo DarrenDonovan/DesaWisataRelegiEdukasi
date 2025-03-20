@@ -34,8 +34,110 @@
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
         <style>
-            
+            .navbar {
+                position: fixed !important; /* Pastikan navbar tetap fixed */
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000; /* Agar tetap di atas elemen lain */
+                }
+
+            .navbar-brand .m-0 {
+                font-size: 28px;
+            }
+            @media (max-width: 992px) {
+                
+                .navbar-toggler.scrolled {
+                    color: #13357b !important;
+                    border-color: #13357b !important;
+                }
+
+                .navbar-brand h1.scrolled {
+                    color: #13357b !important;
+                    border-color: #13357b !important;
+                }
+
+                .navbar-brand h1 .subtext.scrolled {
+                    color: #13357b !important;
+                    border-color: #13357b !important;
+                }
+                .navbar-nav {
+                    background-color: #ffff;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+                .navbar-brand h1 {
+                    color: #ffff !important;
+                }
+                .navbar-toggler  {
+                    color: #ffff !important;
+                    border-color: #ffff !important;
+                }
+            }
+            @media (max-width: 380px) {
+                /* NAVBAR */
+                .navbar-brand .fa {
+                    font-size: 20px !important;
+                    margin-right: 10px !important;
+                }
+                .navbar-brand h1 {
+                    font-size: 20px !important;
+                    color: #ffff !important;
+                }
+                .navbar-brand h1 .subtext {
+                    font-size: 15px !important;
+                    margin-left: 25px !important;
+                    color: #ffff !important;
+                }
+
+                .navbar-toggler  {
+                    font-size: 15px;
+                    padding: 0.3rem 0.6rem !important; 
+                    color: #ffff !important;
+                    border-color: #ffff !important;
+                }
+                
+                .collapse {
+                    font-size: 20px;
+                }
+
+
+                /* FOOTER */
+                .footer {
+                    padding: 20px 10px; /* Mengurangi padding agar lebih pas */
+                }
+
+                .footer-item h4 {
+                    font-size: 16px; /* Mengecilkan ukuran heading */
+                }
+
+                .footer-item a {
+                    font-size: 14px; /* Mengecilkan ukuran teks */
+                }
+
+                .footer-item i {
+                    font-size: 14px; /* Mengecilkan ikon */
+                }
+
+                .footer .btn-square {
+                    width: 28px; /* Mengecilkan tombol sosial media */
+                    height: 28px;
+                    font-size: 12px;
+                    padding: 4px;
+                }
+                
+            }
             @media (max-width: 450px){
+                .navbar-brand .m-0 {
+                    font-size: 23px;
+                }
+                .navbar-brand .subtext {
+                    font-size: 18px;
+                    margin-left: 31px;
+                }
+                .navbar-brand .fa {
+                    font-size: 20px !important;
+                }
                 /* HERO  SECTION */
                 .p-3 h4{
                     font-size: 15px;
@@ -90,7 +192,16 @@
                     font-size: 15px !important;
                 }
             }
+            
 
+            @media (min-width: 2560px) {
+                .navbar-brand .m-0{
+                    font-size: 40px;
+                }
+                .navbar-brand .subtext{ 
+                    font-size: 35px;
+                }
+            } 
         </style>
     </head>
 
@@ -105,15 +216,7 @@
         <!-- Spinner End -->
 
         <!-- Topbar Start -->
-        <div class="container-fluid bg-primary px-5 d-none d-lg-block">
-            <div class="row gx-0 justify-content-end"> <!-- Tambahkan justify-content-end -->
-                <div class="col-lg-4 text-end"> <!-- Gunakan text-end agar teks sejajar ke kanan -->
-                    <div class="d-inline-flex align-items-center" style="height: 45px;">
-                        <a href="#"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
         
         <!-- Topbar End -->
 
@@ -153,6 +256,7 @@
                                 <a href="Tigaraksa.html" class="dropdown-item">Kelurahan Tigaraksa</a>
                             </div>
                         </div>
+                        <a href="#" class="nav-item nav-link">Login</a>
                     </div>
             </nav>
 

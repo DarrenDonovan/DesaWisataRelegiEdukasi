@@ -125,12 +125,22 @@
 })(jQuery);
 
 window.addEventListener("scroll", function () {
-  var navbar = document.querySelector(".navbar-brand"); // Ganti dengan elemen navbar utama jika perlu
+  var navbar = document.querySelector(".navbar-brand");
+  var navToggler = document.querySelector(".navbar-toggler");
+  var kec = document.querySelector(".navbar-brand h1");
+  var subtext = document.querySelector(".navbar-brand h1 .subtext");
+  // Ganti dengan elemen navbar utama jika perlu
   if (window.scrollY > 50) {
     // Jika scroll lebih dari 50px
     navbar.classList.add("scrolled");
+    navToggler.classList.add("scrolled");
+    kec.classList.add("scrolled");
+    subtext.classList.add("scrolled");
   } else {
     navbar.classList.remove("scrolled");
+    navToggler.classList.remove("scrolled");
+    kec.classList.remove("scrolled");
+    subtext.classList.remove("scrolled");
   }
 });
 
