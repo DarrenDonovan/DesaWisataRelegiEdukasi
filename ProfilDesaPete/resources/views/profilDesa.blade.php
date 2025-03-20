@@ -431,31 +431,13 @@
     </div>
     <div class="containerWisata">
       <div class="gridWisata">
+          @foreach($wisata as $itemWisata)
           <div class="cardW">
-            <a href="{{ url('wisata') }}">
-              <img src="/img/pantai.jpg" alt="Pantai"></a>
-              <div class="info">Pantai Indah</div>
+            <a href="{{ url('profildesa/' . $itemWisata->id_wilayah . '/wisata/' . $itemWisata->id_wisata) }}">
+              <img src="{{ asset('storage/' . $itemWisata->gambar_wisata) }}" alt="{{ $itemWisata->nama_tempat }}"></a>
+              <div class="info">{{ $itemWisata->nama_tempat }}</div>
           </div>
-          <div class="cardW">
-              <img src="/img/Gunung.jpg" alt="Gunung">
-              <div class="info">Gunung Sejuk</div>
-          </div>
-          <div class="cardW">
-              <img src="/img/Hutan.jpg" alt="Hutan">
-              <div class="info">Hutan Hijau</div>
-          </div>
-          <div class="cardW">
-              <img src="/img/Kota.jpg" alt="Kota">
-              <div class="info">Wisata Kota</div>
-          </div>
-          <div class="cardW">
-              <img src="/img/candi.jpg" alt="Candi">
-              <div class="info">Candi Bersejarah</div>
-          </div>
-          <div class="cardW">
-              <img src="/img/airTerjun.jpg" alt="Air Terjun">
-              <div class="info">Air Terjun Cantik</div>
-          </div>
+          @endforeach
       </div>
   </div>
 

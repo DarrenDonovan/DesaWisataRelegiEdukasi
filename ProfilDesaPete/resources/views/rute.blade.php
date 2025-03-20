@@ -29,9 +29,14 @@
 </head>
 <body>
 
-<div id="map"></div>
+<div id="map">
+    <div id="loading">Menunggu informasi lokasi...</div>
+</div>
 
 <script>
+    const wisataLat = {{ $wisata->latitude }};
+    const wisataLng = {{ $wisata->longitude }}
+
     const map = L.map('map');
 
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -39,13 +44,13 @@
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">Traking Maps</a>'
     }).addTo(map);
 
-    const userMarker = L.marker([-6.2514908482756955, 106.62807214954837]).addTo(map)
+    const userMarker = L.marker([-6.200000,106.816666]).addTo(map)
         .bindPopup("Lokasi Anda");
 
     const routingControl = L.Routing.control({
         waypoints: [
-            L.latLng(-6.2514908482756955, 106.62807214954837),
-            L.latLng(-6.240647427622811, 106.62874609187763)
+            L.latLng(-6.200000, 106.816666),
+            L.latLng(wisataLat, wisataLng)
         ],
         createMarker: function() { return null; },
         routeWhileDragging: true,
@@ -65,7 +70,7 @@
 
         routingControl.setWaypoints([
             L.latLng(lat, lng),
-            L.latLng(-6.240647427622811, 106.62874609187763)
+            L.latLng(wisataLat, wisataLng)
         ]);
 
         // Update tampilan peta agar tetap fokus ke rute terbaru

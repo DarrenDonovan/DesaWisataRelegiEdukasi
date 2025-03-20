@@ -117,6 +117,7 @@ class AdminController extends Controller{
             ->where('wilayah.jenis_wilayah', '!=', 'Kecamatan')
             ->get();
 
+        //Penduduk laki-laki + perempuan untuk per wilayah
         $jumlah_penduduk = DB::table('jenis_kelamin_per_wilayah')
             ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
             ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
@@ -124,18 +125,21 @@ class AdminController extends Controller{
             ->where('jenis_kelamin_per_wilayah.id_wilayah', $user->id_wilayah)
             ->get();
 
+        //Jumlah penduduk bersadarkan kelompok umur
         $kel_umur_penduduk = DB::table('kel_umur_per_wilayah')
             ->join('wilayah', 'kel_umur_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
             ->select('kel_umur_per_wilayah.id', 'kel_umur_per_wilayah.kelompok_umur', 'kel_umur_per_wilayah.jumlah_orang')
             ->where('kel_umur_per_wilayah.id_wilayah', $user->id_wilayah)
             ->get();
 
+        //Penduduk laki-laki + perempuan untuk kecamatan
         $jenis_kelamin = DB::table('jenis_kelamin_per_wilayah')
             ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
             ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
             ->select('wilayah.nama_wilayah', DB::raw('(jenis_kelamin_per_wilayah.penduduk_laki + jenis_kelamin_per_wilayah.penduduk_perempuan) as jumlah_penduduk'))
             ->get();
 
+        //Mengambil masing-masing penduduk laki-laki dan perempuan untuk kecamatan
         $data_jenis_kelamin = DB::table('jenis_kelamin_per_wilayah')
             ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
             ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
@@ -149,6 +153,7 @@ class AdminController extends Controller{
             'Perempuan' => $data_jenis_kelamin->penduduk_perempuan,
         ];
 
+        //Mengambil masing-masing penduduk laki-laki dan perempuan per wilayah
         $data_jenis_kelamin_wilayah = DB::table('jenis_kelamin_per_wilayah')
             ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
             ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])

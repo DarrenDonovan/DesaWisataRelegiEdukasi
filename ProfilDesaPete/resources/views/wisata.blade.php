@@ -364,27 +364,27 @@
 
     <div class="hero-text">
         <h4>Wisata</h4>
-        <h1>Pantai Indah</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam hic iste ex quas quae atque numquam sunt architecto adipisci assumenda perspiciatis maiores nobis placeat, maxime id eos nemo odio consequatur.</p>
+        <h1>{{ $wisata->nama_tempat }}</h1>
+        <p>{{ $wisata->keterangan }}</p>
     </div>
 </header>
 
 <!-- Container 360 -->
 <section class="explore-360">
 <div class="text-container">
-    <h2>Jelajahi Pantai Indah dalam 360°</h2>
+    <h2>Jelajahi {{ $wisata->nama_tempat }} dalam 360°</h2>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ab laboriosam vel ratione atque modi provident saepe culpa, necessitatibus quas aperiam quia? Ab dolor atque sed quidem soluta. Neque, voluptate?</p>
 </div>
 
 <div class="vrContainer">
     <div id="viewer">
         <div id="cube">
-            <img class="front" src="img/texture/cube0000.jpg" alt="" />
-            <img class="right" src="img/texture/cube0001.jpg" alt="" />
-            <img class="rear" src="img/texture/cube0002.jpg" alt="" />
-            <img class="left" src="img/texture/cube0003.jpg" alt="" />
-            <img class="roof" src="img/texture/cube0004.jpg" alt="" />
-            <img class="floor" src="img/texture/cube0005.jpg" alt="" />
+            <img class="front" src="/img/texture/cube0000.jpg" alt="" />
+            <img class="right" src="/img/texture/cube0001.jpg" alt="" />
+            <img class="rear" src="/img/texture/cube0002.jpg" alt="" />
+            <img class="left" src="/img/texture/cube0003.jpg" alt="" />
+            <img class="roof" src="/img/texture/cube0004.jpg" alt="" />
+            <img class="floor" src="/img/texture/cube0005.jpg" alt="" />
         </div>
     </div>
 </div>
@@ -394,12 +394,12 @@
 <!-- Container Map dengan Tracking -->
 <section class="explore-map">
 <div class="text-container">
-    <h2>Telusuri Pantai dengan Peta Interaktif</h2>
+    <h2>Telusuri {{ $wisata->nama_tempat }} dengan Peta Interaktif</h2>
     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi necessitatibus ipsum dignissimos harum debitis non qui sapiente, voluptates accusamus laborum quos voluptatum tempora culpa sequi quibusdam! Eaque labore ipsa excepturi.</p>
 </div>
 
 <div class="map-container">
-    <iframe src="{{ url('rute') }}" width="100%" height="400px" style="border-radius: 10px; border: none;"></iframe>
+    <iframe src="{{ url('rute/' . $wisata->id_wisata) }}" width="100%" height="400px" style="border-radius: 10px; border: none;"></iframe>
 </div>
 
 </section>
@@ -408,15 +408,15 @@
       <!-- CONTAINER PAKETAN -->
       <div class="contentPaketan">
         <div class="paket">
-          <img src="img/packages-1.jpg" alt="Hidden Gems Jogja" />
+          <img src="/img/packages-1.jpg" alt="Hidden Gems Jogja" />
           <button class="btn">Hidden Gems [Klik Sini]</button>
         </div>
         <div class="paket">
-          <img src="img/packages-2.jpg" alt="Wisata Keluarga" />
+          <img src="/img/packages-2.jpg" alt="Wisata Keluarga" />
           <button class="btn">Wisata Keluarga [Klik Sini]</button>
         </div>
         <div class="paket">
-          <img src="img/packages-3.jpg" alt="Jogja Magelang 2H1M" />
+          <img src="/img/packages-3.jpg" alt="Jogja Magelang 2H1M" />
           <button class="btn">Wisata 2H1M [Klik Sini]</button>
         </div>
       </div>
