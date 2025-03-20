@@ -162,29 +162,8 @@ class AdminController extends Controller{
             'Laki-Laki' => $data_jenis_kelamin_wilayah->penduduk_laki,
             'Perempuan' => $data_jenis_kelamin_wilayah->penduduk_perempuan,
         ];
-
-        $pekerjaan_penduduk = DB::table('pekerjaan_per_wilayah')
-            ->join('pekerjaan', 'pekerjaan_per_wilayah.id_pekerjaan', '=', 'pekerjaan.id_pekerjaan')
-            ->join('wilayah', 'pekerjaan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->select('pekerjaan_per_wilayah.id', 'pekerjaan_per_wilayah.id_pekerjaan', 'pekerjaan.pekerjaan', 'pekerjaan_per_wilayah.jumlah_pekerja')
-            ->where('pekerjaan_per_wilayah.id_wilayah', $user->id_wilayah)
-            ->get();
-
-        $agama_penduduk = DB::table('agama_per_wilayah')
-            ->join('agama', 'agama_per_wilayah.id_agama','=', 'agama.id_agama')
-            ->join('wilayah', 'agama_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->select('agama_per_wilayah.id', 'agama_per_wilayah.id_agama', 'agama.agama', 'agama_per_wilayah.jumlah_penganut')
-            ->where('agama_per_wilayah.id_wilayah', $user->id_wilayah)
-            ->get();
-
-        $pendidikan_penduduk = DB::table('pendidikan_per_wilayah')
-            ->join('pendidikan', 'pendidikan_per_wilayah.id_pendidikan', '=', 'pendidikan.id_pendidikan')
-            ->join('wilayah', 'pendidikan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->select('pendidikan_per_wilayah.id', 'pendidikan_per_wilayah.id_pendidikan', 'pendidikan.pendidikan', 'pendidikan_per_wilayah.jumlah_orang')
-            ->where('pendidikan_per_wilayah.id_wilayah', $user->id_wilayah)
-            ->get();
                     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'jumlah_penduduk', 'kel_umur_penduduk', 'pekerjaan_penduduk', 'agama_penduduk', 'pendidikan_penduduk', 'wilayaheach', 'jenis_kelamin', 'data_jenis_kelamin', 'rasio_jenis_kelamin', 'data_jenis_kelamin_wilayah', 'rasio_jenis_kelamin_wilayah'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'jumlah_penduduk', 'kel_umur_penduduk', 'wilayaheach', 'jenis_kelamin', 'data_jenis_kelamin', 'rasio_jenis_kelamin', 'data_jenis_kelamin_wilayah', 'rasio_jenis_kelamin_wilayah'));
     }
 
 

@@ -163,9 +163,9 @@
 								<div class="col-md-4">
 									<div class="card">
 										<div class="card-header">
-											<h4 class="card-title text-center mb-1">Jumlah Penduduk</h4>
+											<h4 class="card-title text-center mb-1">Jumlah Penduduk Laki-Laki Kecamatan Tigaraksa</h4>
 											<div class="card-body">
-		  										<p>1000</p>
+		  										<p>{{ $data_jenis_kelamin->penduduk_laki }}</p>
 											</div>
 										</div>
 									</div>
@@ -173,9 +173,9 @@
 								<div class="col-md-4">
 									<div class="card">
 										<div class="card-header">
-											<h4 class="card-title text-center mb-1">Jumlah Penduduk</h4>
+											<h4 class="card-title text-center mb-1">Jumlah Penduduk Perempuan Kecamatan Tigaraksa</h4>
 											<div class="card-body">
-		  										<p>1000</p>
+		  										<p>{{ $data_jenis_kelamin->penduduk_perempuan }}</p>
 											</div>
 										</div>
 									</div>
@@ -183,9 +183,9 @@
 								<div class="col-md-4">
 									<div class="card">
 										<div class="card-header">
-											<h4 class="card-title text-center mb-1">Jumlah Penduduk</h4>
+											<h4 class="card-title text-center mb-1">Angka Jumlah Penduduk Kecamatan Tigaraksa</h4>
 											<div class="card-body">
-		  										<p>1000</p>
+		  										<p>{{ $data_jenis_kelamin->penduduk_laki + $data_jenis_kelamin->penduduk_perempuan }}</p>
 											</div>
 										</div>
 									</div>
