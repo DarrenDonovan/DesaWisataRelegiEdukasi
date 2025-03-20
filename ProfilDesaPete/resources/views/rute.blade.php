@@ -30,7 +30,6 @@
 <body>
 
 <div id="map">
-    <div id="loading">Menunggu informasi lokasi...</div>
 </div>
 
 <script>
@@ -46,6 +45,9 @@
 
     const userMarker = L.marker([-6.200000,106.816666]).addTo(map)
         .bindPopup("Lokasi Anda");
+
+    const destinationMarker = L.marker([wisataLat, wisataLng]).addTo(map)
+        .bindPopup("Tempat Tujuan");
 
     const routingControl = L.Routing.control({
         waypoints: [
