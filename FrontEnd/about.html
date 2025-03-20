@@ -42,6 +42,38 @@
             }
         }
 
+        .map-container {
+        width: 100%;
+        max-width: 600px; /* Sesuaikan dengan kebutuhan */
+        height: 400px; /* Sesuaikan */
+        margin: auto; /* Agar tetap di tengah */
+        }
+
+        .map-container iframe {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        }
+
+
+        .containerInfoMap {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 50px;
+            flex-wrap: wrap;
+            max-width: 900px;
+            margin: auto;
+        }
+        .info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .map-container {
+            flex: 1;
+            min-width: 300px;
+        }
+
         </style>
 
     </head>
@@ -169,7 +201,7 @@
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
             <h3 class="section-title px-3"> Bagan Organisasi</h3>
             <h1 class="mb-0"> Struktur Pemerintahan Kecamatan </h1>
-            <img src="img/struktur.jpg" alt="Struktur Pemerintahan Kecamatan" class="img-fluid mt-3" style="max-width: 100%; height: auto;">
+            <img src="img/struktur.png" alt="Struktur Pemerintahan Kecamatan" class="img-fluid mt-3" style="max-width: 100%; height: auto;">
         </div>
         <!--  Struktur organisasi end-->
 
@@ -440,16 +472,14 @@
         <!-- Perangkat End -->
 
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h3 class="section-title px-3"> Lokasi Desa </h3>
-            <h1 class="mb-0"> Peta Lokasi Desa </h1>
+            <h3 class="section-title px-3">Lokasi Desa</h3>
+            <h1 class="mb-0">Peta Lokasi Desa</h1>
         </div>
-        
-
-            <!-- Kotak Informasi -->
+    
         <div class="containerInfoMap">
             <div class="info">
                 <h2>Desa Pete</h2>
-                <p><strong>Batas Desa</strong></p>
+                <p><strong>Batas Desa:</strong></p>
                 <table>
                     <tr><td class="highlight">Utara</td><td>Desa A</td></tr>
                     <tr><td class="highlight">Timur</td><td>Desa B</td></tr>
@@ -461,7 +491,9 @@
             </div>
     
             <div class="map-container">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15864.305053387168!2d106.44725213424726!3d-6.253682650011039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e42069701b7955f%3A0x75bba1ef93845b62!2sPete%2C%20Tigaraksa%2C%20Tangerang%20Regency%2C%20Banten!5e0!3m2!1sen!2sid!4v1739430678702!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15864.305053387168!2d106.44725213424726!3d-6.253682650011039!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e42069701b7955f%3A0x75bba1ef93845b62!2sPete%2C%20Tigaraksa%2C%20Tangerang%20Regency%2C%20Banten!5e0!3m2!1sen!2sid!4v1739430678702!5m2!1sen!2sid" 
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </div>
 
