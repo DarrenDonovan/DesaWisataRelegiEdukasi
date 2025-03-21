@@ -111,7 +111,7 @@ class AdminController extends Controller{
             ->get();
 
         $wilayah = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.gambar_wilayah')
             ->get();
 
         $wilayaheach = DB::table('wilayah')
@@ -130,7 +130,7 @@ class AdminController extends Controller{
       
 
         $wilayahNoKec = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.gambar_wilayah')
             ->where('wilayah.jenis_wilayah', '!=', 'Kecamatan')
             ->get();
 
@@ -210,7 +210,7 @@ class AdminController extends Controller{
             ->get();
 
         $wilayahNoKec = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.gambar_wilayah')
             ->where('wilayah.jenis_wilayah', '!=', 'Kecamatan')
             ->get();
 
@@ -355,22 +355,17 @@ class AdminController extends Controller{
     public function updateKegiatan(Request $request, $id){
 
         $request->validate([
-            'nama_kegiatan' => 'required|string|max:100',
+            'nama_kegiatan' => 'required|string|max:255',
             'jenis_kegiatan' => 'required|integer', //Sama dengan option name
             'nama_wilayah' => 'required|integer', 
             'keterangan' => 'required|string',
             'gambar_kegiatan' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ]);
         
-       $user = Auth::user();
-
         $kegiatan = DB::table('kegiatan')
             ->where('id_kegiatan', $id)
-            ->where('kegiatan.id_wilayah', $user->id_wilayah)
             ->first();
         
-        dd($kegiatan);
-
         if (!$kegiatan) {
             return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
         }
@@ -380,6 +375,8 @@ class AdminController extends Controller{
             'id_jenis_kegiatan' => $request->jenis_kegiatan,  //nama kolom ditable => name di option
             'id_wilayah' => $request->nama_wilayah,
             'keterangan' => $request->keterangan,
+            'updated_by' => Auth::user()->id,
+            'updated_at' => now(),
         ];
 
         if ($request->hasFile('gambar_kegiatan')) {
@@ -390,7 +387,8 @@ class AdminController extends Controller{
             $imagePath = $request->file('gambar_kegiatan')->store('kegiatan', 'public');
             $updateData['gambar_kegiatan'] = $imagePath;
         }
-        
+
+        DB::table('kegiatan')->where('id_kegiatan', $id)->update($updateData);
         
         Session::flash('message', 'Data Berhasil Diupdate!');
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
@@ -412,7 +410,9 @@ class AdminController extends Controller{
 
         $updateData = [
             'visi' => $request->visi,
-            'misi' => $request->misi
+            'misi' => $request->misi,
+            'updated_by' => Auth::user()->id,
+            'updated_at' => now(),
         ];
 
         if ($request->hasFile('gambar_about')) {
@@ -452,7 +452,10 @@ class AdminController extends Controller{
             return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
         }
 
-        $updateData = [];
+        $updateData = [
+            'updated_by' => Auth::user()->id,
+            'updated_at' => now(),
+        ];
 
         if ($request->hasFile('gambar_wilayah')) {
             if ($wilayah->gambar_wilayah) {
@@ -494,6 +497,8 @@ class AdminController extends Controller{
             'link_facebook' => $request->link_facebook,
             'link_instagram' => $request->link_instagram,
             'link_tiktok' => $request->link_tiktok,
+            'updated_by' => Auth::user()->id,
+            'updated_at' => now(),
         ];
 
         if ($request->hasFile('gambar_perangkat')) {
@@ -535,6 +540,8 @@ class AdminController extends Controller{
             'tanggal_berita' => $request->tanggal_berita,
             'id_wilayah' => $request->nama_wilayah,
             'konten_berita' => $request->konten_berita,
+            'updated_by' => Auth::user()->id,
+            'updated_at' => now(),
         ];
 
         if ($request->hasFile('gambar_berita')) {
@@ -552,28 +559,30 @@ class AdminController extends Controller{
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
     }
 
-    public function updateJumlahPenduduk(Request $request, $id){
-        $request -> validate([
-            'jumlah_penduduk' => 'required|integer'
-        ]);
+    // public function updateJumlahPenduduk(Request $request, $id){
+    //     $request -> validate([
+    //         'jumlah_penduduk' => 'required|integer'
+    //     ]);
 
-        $wilayah = DB::table('wilayah')
-            ->where('wilayah.id_wilayah', $id)
-            ->first();
+    //     $wilayah = DB::table('wilayah')
+    //         ->where('wilayah.id_wilayah', $id)
+    //         ->first();
         
-        if(!$wilayah){
-            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
-        }
+    //     if(!$wilayah){
+    //         return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+    //     }
 
-        $updateData = [
-            'jumlah_penduduk' => $request->jumlah_penduduk
-        ];
+    //     $updateData = [
+    //         'jumlah_penduduk' => $request->jumlah_penduduk,
+    //         'updated_by' => Auth::user()->id,
+    //         'updated_at' => now(),
+    //     ];
 
-        DB::table('wilayah')->where('id_wilayah', $id)->update($updateData);
+    //     DB::table('wilayah')->where('id_wilayah', $id)->update($updateData);
 
-        Session::flash('message', 'Data Berhasil Diupdate!');
-        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
-    }
+    //     Session::flash('message', 'Data Berhasil Diupdate!');
+    //     return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+    // }
 
     public function updateKelompokUmur(Request $request, $id){
         $request -> validate([
@@ -590,7 +599,9 @@ class AdminController extends Controller{
         }
 
         $updateData = [
-            'jumlah_orang' => $request->jumlah_penduduk
+            'jumlah_orang' => $request->jumlah_penduduk,
+            'updated_by' => Auth::user()->id,
+            'updated_at' => now(),
         ];
 
         DB::table('kel_umur_per_wilayah')->where('id', $id)->update($updateData);
@@ -616,7 +627,9 @@ class AdminController extends Controller{
 
         $updateData = [
             'penduduk_laki' => $request->penduduk_laki,
-            'penduduk_perempuan' => $request->penduduk_perempuan
+            'penduduk_perempuan' => $request->penduduk_perempuan,
+            'updated_by' => Auth::user()->id,
+            'updated_at' => now(),
         ];
 
         DB::table('jenis_kelamin_per_wilayah')->where('id_wilayah', $id)->update($updateData);
@@ -625,77 +638,79 @@ class AdminController extends Controller{
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
     }
 
-    public function updatePekerjaanPenduduk(Request $request, $id){
-        $request -> validate([
-            'jumlah_pekerja' => 'required|integer'
-        ]);
+    // public function updatePekerjaanPenduduk(Request $request, $id){
+    //     $request -> validate([
+    //         'jumlah_pekerja' => 'required|integer'
+    //     ]);
 
-        $pekerjaan_penduduk = DB::table('pekerjaan_per_wilayah')
-            ->join('wilayah', 'pekerjaan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->where('pekerjaan_per_wilayah.id', $id)
-            ->get();
+    //     $pekerjaan_penduduk = DB::table('pekerjaan_per_wilayah')
+    //         ->join('wilayah', 'pekerjaan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+    //         ->where('pekerjaan_per_wilayah.id', $id)
+    //         ->get();
         
-        if(!$pekerjaan_penduduk){
-            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
-        }
+    //     if(!$pekerjaan_penduduk){
+    //         return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+    //     }
 
-        $updateData = [
-            'jumlah_pekerja' => $request->jumlah_pekerja
-        ];
+    //     $updateData = [
+    //         'jumlah_pekerja' => $request->jumlah_pekerja,
+    //         'updated_by' => Auth::user()->id,
+    //         'updated_at' => now(),
+    //     ];
 
-        DB::table('pekerjaan_per_wilayah')->where('id', $id)->update($updateData);
+    //     DB::table('pekerjaan_per_wilayah')->where('id', $id)->update($updateData);
 
-        Session::flash('message', 'Data Berhasil Diupdate!');
-        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
-    }
+    //     Session::flash('message', 'Data Berhasil Diupdate!');
+    //     return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+    // }
 
-    public function updateAgamaPenduduk(Request $request, $id){
-        $request -> validate([
-            'jumlah_penganut' => 'required|integer'
-        ]);
+    // public function updateAgamaPenduduk(Request $request, $id){
+    //     $request -> validate([
+    //         'jumlah_penganut' => 'required|integer'
+    //     ]);
 
-        $agama_penduduk = DB::table('agama_per_wilayah')
-            ->join('wilayah', 'agama_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->where('agama_per_wilayah.id', $id)
-            ->get();
+    //     $agama_penduduk = DB::table('agama_per_wilayah')
+    //         ->join('wilayah', 'agama_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+    //         ->where('agama_per_wilayah.id', $id)
+    //         ->get();
         
-        if(!$agama_penduduk){
-            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
-        }
+    //     if(!$agama_penduduk){
+    //         return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+    //     }
 
-        $updateData = [
-            'jumlah_penganut' => $request->jumlah_penganut
-        ];
+    //     $updateData = [
+    //         'jumlah_penganut' => $request->jumlah_penganut
+    //     ];
 
-        DB::table('agama_per_wilayah')->where('id', $id)->update($updateData);
+    //     DB::table('agama_per_wilayah')->where('id', $id)->update($updateData);
 
-        Session::flash('message', 'Data Berhasil Diupdate!');
-        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
-    }
+    //     Session::flash('message', 'Data Berhasil Diupdate!');
+    //     return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+    // }
 
-    public function updatePendidikanPenduduk(Request $request, $id){
-        $request -> validate([
-            'jumlah_penduduk' => 'required|integer'
-        ]);
+    // public function updatePendidikanPenduduk(Request $request, $id){
+    //     $request -> validate([
+    //         'jumlah_penduduk' => 'required|integer'
+    //     ]);
 
-        $pendidikan_penduduk = DB::table('pendidikan_per_wilayah')
-            ->join('wilayah', 'pendidikan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->where('pendidikan_per_wilayah.id', $id)
-            ->get();
+    //     $pendidikan_penduduk = DB::table('pendidikan_per_wilayah')
+    //         ->join('wilayah', 'pendidikan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+    //         ->where('pendidikan_per_wilayah.id', $id)
+    //         ->get();
         
-        if(!$pendidikan_penduduk){
-            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
-        }
+    //     if(!$pendidikan_penduduk){
+    //         return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+    //     }
 
-        $updateData = [
-            'jumlah_orang' => $request->jumlah_penduduk
-        ];
+    //     $updateData = [
+    //         'jumlah_orang' => $request->jumlah_penduduk
+    //     ];
 
-        DB::table('pendidikan_per_wilayah')->where('id', $id)->update($updateData);
+    //     DB::table('pendidikan_per_wilayah')->where('id', $id)->update($updateData);
 
-        Session::flash('message', 'Data Berhasil Diupdate!');
-        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
-    }
+    //     Session::flash('message', 'Data Berhasil Diupdate!');
+    //     return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+    // }
 
 
 
