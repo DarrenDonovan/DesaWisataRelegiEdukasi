@@ -145,7 +145,6 @@
         </div>
         <!-- BERITA END -->
 
-<!-- Bisa Dibikin Grid -->
         <!-- Kegiatan Start -->
         <!-- Kegiatan Terbaru -->
         <div class="container-fluid destination py-5">

@@ -531,12 +531,16 @@
 									<div class="card">
 										<div class="card-header">
 											<h4 class="card-title text-center mb-1">Gambar</h4>
+										</div>
+										<div class="card-body">
 											<img src="{{ asset('storage/' . $about->gambar_about) }}" width="275" alt="">
 										</div>
 									</div>
 									<div class="card">
 										<div class="card-header">
 											<h4 class="card-title text-center mb-1">Bagan Organisasi</h4>
+										</div>
+										<div class="card-body">
 											<img src="{{ asset('storage/' . $about->bagan_organisasi) }}" width="275px" alt="">
 										</div>
 									</div>
@@ -545,7 +549,7 @@
 									<div class="card">
 										<div class="card-header">
 											<h4 class="card-title">Konten Kecamatan</h4>
-											<p class="card-category">Visi dan Misi</p>
+											<p class="card-category">Last Updated {{ $about->name }} at {{ $about->updated_at }}</p>
 										</div>
 										<div class="card-body">
 											<h4 class="card-title">Visi Kecamatan</h4>

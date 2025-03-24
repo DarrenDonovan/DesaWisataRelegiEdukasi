@@ -18,7 +18,7 @@ class UserController extends Controller
             ->get();
 
         $wilayahNoKec = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.gambar_wilayah')
             ->where('wilayah.jenis_wilayah', '!=', 'Kecamatan')
             ->get();
         
@@ -48,7 +48,7 @@ class UserController extends Controller
             ->get();
             
         $wilayahkecamatan = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah')
             ->where('wilayah.nama_wilayah', 'Kecamatan Tigaraksa')
             ->first();
 
@@ -65,7 +65,7 @@ class UserController extends Controller
             ->get();
 
         $wilayahNoKec = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.gambar_wilayah')
             ->where('wilayah.jenis_wilayah', '!=', 'Kecamatan')
             ->get();
 
@@ -83,7 +83,7 @@ class UserController extends Controller
             ->get();
 
         $wilayahNoKec = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah',  'wilayah.gambar_wilayah')
             ->where('wilayah.jenis_wilayah', '!=', 'Kecamatan')
             ->get();
 
@@ -109,14 +109,10 @@ class UserController extends Controller
             ->get();
 
         $wilayahNoKec = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.gambar_wilayah')
             ->where('wilayah.jenis_wilayah', '!=', 'Kecamatan')
             ->get();
         
-        $jumlah_penduduk = DB::table('wilayah')
-            ->select('wilayah.nama_wilayah', 'wilayah.jumlah_penduduk')
-            ->whereIn('jenis_wilayah', ['Desa', 'Kelurahan'])
-            ->get();
 
         $jenis_kelamin = DB::table('jenis_kelamin_per_wilayah')
             ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
@@ -143,7 +139,7 @@ class UserController extends Controller
             ->where('jenis_wilayah', 'Kecamatan')
             ->get();
 
-        return view('infografis', compact('wilayah', 'jumlah_penduduk', 'wilayahNoKec', 'kel_umur_kecamatan', 'jenis_kelamin', 'rasio_jenis_kelamin'));
+        return view('infografis', compact('wilayah', 'wilayahNoKec', 'kel_umur_kecamatan', 'jenis_kelamin', 'rasio_jenis_kelamin'));
     }
 
     public function maps(){
@@ -152,7 +148,7 @@ class UserController extends Controller
             ->get();
 
         $wilayahNoKec = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah', 'wilayah.longitude', 'wilayah.latitude')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.gambar_wilayah', 'wilayah.longitude', 'wilayah.latitude')
             ->where('wilayah.jenis_wilayah', '!=', 'Kecamatan')
             ->get();
 
@@ -166,11 +162,11 @@ class UserController extends Controller
 
     public function profilDesa($id){
         $wilayah = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.jenis_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.jenis_wilayah', 'wilayah.luas_wilayah', 'wilayah.gambar_wilayah')
             ->get();
 
         $wilayahNoKec = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.jumlah_penduduk', 'wilayah.gambar_wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.gambar_wilayah')
             ->where('wilayah.jenis_wilayah', '!=', 'Kecamatan')
             ->get();
 
@@ -178,6 +174,24 @@ class UserController extends Controller
             ->join('jenis_kelamin_per_wilayah', 'wilayah.id_wilayah', '=', 'jenis_kelamin_per_wilayah.id_wilayah')
             ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.jenis_wilayah', 'wilayah.luas_wilayah','wilayah.batas_utara', 'wilayah.batas_timur','wilayah.batas_barat', 'wilayah.batas_selatan', 'wilayah.gambar_wilayah', DB::raw('(jenis_kelamin_per_wilayah.penduduk_laki + jenis_kelamin_per_wilayah.penduduk_perempuan) as jumlah_penduduk'))
             ->where('wilayah.id_wilayah', $id)
+            ->get();
+
+        $kegiatanterbaru = DB::table('kegiatan')
+            ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+            ->select('kegiatan.*', 'jenis_kegiatan.*')
+            ->where('kegiatan.id_wilayah', $id)
+            ->orderBy('id_kegiatan', 'desc')
+            ->first();
+
+        $kegiatan = DB::table('kegiatan')
+            ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+            ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan')
+            ->where('kegiatan.id_wilayah', $id)
+            ->orderBy('id_kegiatan', 'desc')
+            ->get();
+
+        $jenis_kegiatan = DB::table('jenis_kegiatan')
+            ->select('jenis_kegiatan.id_jenis_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'jenis_kegiatan.gambar_jenis_kegiatan')
             ->get();
 
         $wisata = DB::table('wisata')
@@ -205,7 +219,14 @@ class UserController extends Controller
             ->where('kel_umur_per_wilayah.id_wilayah', $id)
             ->get();
 
-        return view('profildesa', compact('wilayah', 'wilayaheach', 'wilayahNoKec', 'kel_umur_penduduk', 'rasio_jenis_kelamin', 'wisata'));
+        $berita = DB::table('berita')
+            ->select('berita.id_berita', 'berita.judul_berita', 'berita.konten_berita', 'berita.gambar_berita', 'berita.penulis_berita', 'berita.tanggal_berita', 'berita.id_wilayah')
+            ->where('berita.id_wilayah', $id)
+            ->orderBy('id_berita', 'desc')
+            ->limit(3)
+            ->get();
+            
+        return view('profildesa', compact('wilayah', 'wilayaheach', 'wilayahNoKec', 'kel_umur_penduduk', 'rasio_jenis_kelamin', 'wisata', 'kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'berita'));
     }
 
     public function wisata($id_wilayah, $id_wisata){

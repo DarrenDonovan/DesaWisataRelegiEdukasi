@@ -169,7 +169,8 @@ class AdminController extends Controller{
 
         $about = DB::table('about_us')
             ->join('wilayah', 'wilayah.id_wilayah', '=', 'about_us.id_wilayah')
-            ->select('about_us.id_about', 'about_us.id_wilayah', 'about_us.visi', 'about_us.misi', 'about_us.gambar_about', 'about_us.bagan_organisasi', 'wilayah.nama_wilayah')
+            ->leftJoin('users', 'about_us.updated_by', '=', 'users.id')
+            ->select('about_us.id_about', 'about_us.id_wilayah', 'about_us.visi', 'about_us.misi', 'about_us.gambar_about', 'about_us.bagan_organisasi', 'wilayah.nama_wilayah', 'about_us.updated_at', 'about_us.updated_by', 'users.name')
             ->first();
 
         

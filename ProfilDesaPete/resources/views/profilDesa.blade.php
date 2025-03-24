@@ -446,7 +446,7 @@
     <h5 class="section-title px-3"> UMKM </h5>
     <h1 class="mb-0">Produk Khas Daerah</h1>
   </div>
-  <div class="containerUMKM" style="margin-bottom: 100px;"> 
+  <div class="containerUMKM" style="margin-bottom: 50px;"> 
     <div class="gridUMKM">
         <div class="cardU" onclick="showUmkmPopup('Jajanan Pasar', 'Aneka jajanan pasar khas daerah dengan cita rasa tradisional.')">
             <img src="/img/jajananPasar.jpg" alt="jajananPasar">
@@ -482,6 +482,175 @@
     <p id="umkm-popup-content"></p>
     <button class="close-btn" onclick="closeUmkmPopup()">Tutup</button>
 </div>
+
+<!-- Kegiatan Start -->
+        <!-- Kegiatan Terbaru -->
+        <div class="container-fluid destination py-5">
+            <div class="container py-5">
+                <div class="mx-auto text-center mb-3" style="max-width: 900px;">
+                    <h5 class="section-title px-3">Galeri</h5>
+                    <h1 class="mb-0">Kegiatan</h1>
+                </div>
+                <div class="container-fluid mb-4">
+                    <div class="container py-5">
+                        <div class="row g-5 align-items-center">
+                            <div class="col-md-5">
+                                <div class="h-100" >
+                                    <img src="{{asset('storage/' . $kegiatanterbaru->gambar_kegiatan)}}" class="img-fluid" style="width: 400px; height: auto; margin-left: 40px;" alt="">
+                                </div>
+                            </div>
+                            @if ($kegiatanterbaru)
+                            <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
+                                <h5 class="section-about-title pe-3">Kegiatan Terbaru</h5>
+                                <h1 class="mb-4" class="text-primary">{{ $kegiatanterbaru->nama_kegiatan }}</h1>
+                                <p class="mb-4">{{ $kegiatanterbaru->keterangan }}</p>                        
+                            </div>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daftar Kegiatan -->
+                <div class="tab-class text-center">
+                    <ul class="nav nav-pills d-inline-flex justify-content-center mb-2">
+                        <li class="nav-item">
+                            <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-all">
+                                <span class="text-dark" style="width: 150px;">Semua</span>
+                            </a>
+                        </li>
+                        @foreach ($jenis_kegiatan as $jenis)
+                        <li class="nav-item">
+                            <a class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#tab-{{ $jenis->id_jenis_kegiatan }}">
+                                <span class="text-dark" style="width: 150px;">{{ $jenis->nama_jenis_kegiatan }}</span>
+                            </a>
+                        </li>
+                        @endforeach
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-all" class="tab-pane fade show p-0 active">
+                            <div class="row g-4">
+                                <div class="row g-4">
+                                    @foreach ($kegiatan as $keg)
+                                    <div class="col-lg-4">
+                                        <div class="destination-img" style="width: 100%; object-fit:cover;">
+                                            <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $keg->gambar_kegiatan) }}" data-bs-toggle="modal"  style="width: 432px; height: 250px; object-fit:cover;">
+                                            <div class="destination-overlay p-4 text-start">
+                                                <a class="btn btn-primary text-white rounded-pill border py-2 px-3" style="pointer-events: none;">6 Photos</a>                                                       
+                                                <h4 class="text-white mb-2 mt-3">{{ $keg->nama_kegiatan }}</h4>
+                                                <a href="#galleryModal{{ $keg->id_kegiatan }}" class="btn-hover text-white"  data-bs-toggle="modal" data-bs-target="#galleryModal{{ $keg->id_kegiatan }}">Lihat Semua Foto <i class="fa fa-arrow-right ms-2"></i>
+                                            </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- galeri pas di klik -->
+                                    <div class="modal fade" id="galleryModal{{ $keg->id_kegiatan }}" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="galleryModalLabel">Galeri {{ $keg->nama_kegiatan }}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row g-5">
+                                                        <div class="col-md-5">
+                                                            <div class="h-100" >
+                                                                <img src="{{asset('storage/' . $keg->gambar_kegiatan)}}" class="img-fluid" style="width: 400px; height: auto; margin-left: 20px;" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
+                                                            <h1 class="mb-4" class="text-primary">{{ $keg->nama_kegiatan }}</h1>
+                                                            <p class="mb-4">{{ $keg->keterangan }}</p>                        
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!-- Kegiatan per kategori -->
+                        @foreach ($jenis_kegiatan as $jenisKegiatan)
+                        <div id="tab-{{ $jenisKegiatan->id_jenis_kegiatan }}" class="tab-pane fade p-0">
+                            <div class="row g-4">
+                                @foreach ($kegiatan as $item)
+                                    @if ($item->id_jenis_kegiatan == $jenisKegiatan->id_jenis_kegiatan)
+                                    <div class="col-lg-4 col-md-6"> 
+                                        <div class="destination-img" style="width: 100%; object-fit:cover;">
+                                            <img class="img-fluid rounded w-100" src="{{ asset('storage/' . $item->gambar_kegiatan) }}" style="object-fit: cover; width: 100%; height: 250px;">
+                                            <div class="destination-overlay p-4 text-start">
+                                                <a class="btn btn-primary text-white rounded-pill border py-2 px-3" style="pointer-events: none;">6 Photos</a>                                                       
+                                                <h4 class="text-white mb-2 mt-3">{{ $item->nama_kegiatan }}</h4>
+                                                <a href="#galleryModal{{ $item->id_kegiatan }}-{{ $jenisKegiatan->id_jenis_kegiatan }}" class="btn-hover text-white" data-bs-toggle="modal" data-bs-target="#galleryModal{{ $item->id_kegiatan }}-{{ $jenisKegiatan->id_jenis_kegiatan }}">Lihat Semua Foto <i class="fa fa-arrow-right ms-2"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade" id="galleryModal{{ $item->id_kegiatan }}-{{ $jenisKegiatan->id_jenis_kegiatan }}" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="galleryModalLabel">Galeri {{ $item->nama_kegiatan }}</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row g-5">
+                                                        <div class="col-md-5">
+                                                            <div class="h-100" >
+                                                                <img src="{{asset('storage/' . $keg->gambar_kegiatan)}}" class="img-fluid" style="width: 400px; height: auto; margin-left: 20px;" alt="">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8)), url(img/about-img-1.png);">
+                                                            <h1 class="mb-4" class="text-primary">{{ $keg->nama_kegiatan }}</h1>
+                                                            <p class="mb-4">{{ $keg->keterangan }}</p>                        
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Kegiatan End -->
+
+        <!-- BERITA -->
+        <div class="container mb-5">
+            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <h5 class="section-title px-3">Highlight</h5>
+                @foreach($wilayaheach as $itemWilayah)
+                <h1 class="mb-0">Berita Terbaru {{ $itemWilayah->nama_wilayah }}</h1>
+                @endforeach
+            </div>
+            <div class="row">
+                <!-- Berita 1 -->
+                @foreach ($berita as $itemBerita)
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ asset('storage/' . $itemBerita->gambar_berita) }}" class="card-img-top" alt="Gambar Berita">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $itemBerita->judul_berita }}</h5>
+                            <p class="text-muted">
+                                <i class="bi bi-calendar"></i> {{ $itemBerita->tanggal_berita }} &nbsp; 
+                                <i class="bi bi-person"></i> {{ $itemBerita->penulis_berita }}
+                            </p>
+                            <p class="card-text">{!! Str::limit($itemBerita->konten_berita, 50, '...') !!}</p>
+                            <a href="{{ url('berita/detailberita/' . $itemBerita->id_berita) }}" class="btn btn-primary">Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+        <!-- BERITA END -->
 
 
     <!-- Footer Start -->
