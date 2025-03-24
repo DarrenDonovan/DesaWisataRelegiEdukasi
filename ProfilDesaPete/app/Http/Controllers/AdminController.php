@@ -21,7 +21,8 @@ class AdminController extends Controller{
             $kegiatanterbaru = DB::table('kegiatan')
                 ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
                 ->join('wilayah', 'kegiatan.id_wilayah', '=', 'wilayah.id_wilayah')
-                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah', 'kegiatan.tanggal_kegiatan')
+                ->leftJoin('users', 'kegiatan.updated_by', '=', 'users.id')
+                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah', 'kegiatan.tanggal_kegiatan', 'kegiatan.updated_at', 'kegiatan.updated_by', 'users.name')
                 ->orderBy('id_kegiatan', 'desc')
                 ->first();
         }
@@ -29,7 +30,8 @@ class AdminController extends Controller{
             $kegiatanterbaru = DB::table('kegiatan')
                 ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
                 ->join('wilayah', 'kegiatan.id_wilayah', '=', 'wilayah.id_wilayah')
-                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah', 'kegiatan.tanggal_kegiatan')
+                ->leftJoin('users', 'kegiatan.updated_by', '=', 'users.id')
+                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah', 'kegiatan.tanggal_kegiatan', 'kegiatan.updated_at', 'kegiatan.updated_by', 'users.name')
                 ->where('kegiatan.id_wilayah', $user->id_wilayah)
                 ->orderBy('id_kegiatan', 'desc')
                 ->first();
@@ -40,7 +42,8 @@ class AdminController extends Controller{
             $kegiatan = DB::table('kegiatan')
                 ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
                 ->join('wilayah', 'kegiatan.id_wilayah','=', 'wilayah.id_wilayah')
-                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah', 'kegiatan.tanggal_kegiatan')
+                ->leftJoin('users', 'kegiatan.updated_by', '=', 'users.id')
+                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah', 'kegiatan.tanggal_kegiatan', 'kegiatan.updated_at', 'kegiatan.updated_by', 'users.name')
                 ->orderBy('id_kegiatan', 'desc')
                 ->paginate(5);
         }
@@ -48,7 +51,8 @@ class AdminController extends Controller{
             $kegiatan = DB::table('kegiatan')
                 ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
                 ->join('wilayah', 'kegiatan.id_wilayah','=', 'wilayah.id_wilayah')
-                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah', 'kegiatan.tanggal_kegiatan')
+                ->leftJoin('users', 'kegiatan.updated_by', '=', 'users.id')
+                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah', 'kegiatan.tanggal_kegiatan', 'kegiatan.updated_at', 'kegiatan.updated_by', 'users.name')
                 ->where('kegiatan.id_wilayah', $user->id_wilayah)
                 ->orderBy('id_kegiatan', 'desc')
                 ->paginate(5);
@@ -58,14 +62,16 @@ class AdminController extends Controller{
         if($user->role == 'superadmin'){
             $berita = DB::table('berita')
                 ->join('wilayah', 'berita.id_wilayah', '=', 'wilayah.id_wilayah')
-                ->select('berita.id_berita', 'berita.judul_berita', 'berita.konten_berita', 'berita.gambar_berita', 'berita.penulis_berita', 'berita.tanggal_berita', 'berita.id_wilayah', 'wilayah.nama_wilayah')
+                ->leftJoin('users', 'berita.updated_by', '=', 'users.id')
+                ->select('berita.id_berita', 'berita.judul_berita', 'berita.konten_berita', 'berita.gambar_berita', 'berita.penulis_berita', 'berita.tanggal_berita', 'berita.id_wilayah', 'wilayah.nama_wilayah', 'berita.updated_at', 'berita.updated_by', 'users.name')
                 ->orderBy('id_berita', 'desc')
                 ->paginate(5);
         }
         else{
             $berita = DB::table('berita')
                 ->join('wilayah', 'berita.id_wilayah', '=', 'wilayah.id_wilayah')
-                ->select('berita.id_berita', 'berita.judul_berita', 'berita.konten_berita', 'berita.gambar_berita', 'berita.penulis_berita', 'berita.tanggal_berita', 'berita.id_wilayah', 'wilayah.nama_wilayah')
+                ->leftJoin('users', 'berita.updated_by', '=', 'users.id')
+                ->select('berita.id_berita', 'berita.judul_berita', 'berita.konten_berita', 'berita.gambar_berita', 'berita.penulis_berita', 'berita.tanggal_berita', 'berita.id_wilayah', 'wilayah.nama_wilayah', 'berita.updated_at', 'berita.updated_by', 'users.name')
                 ->where('berita.id_wilayah', $user->id_wilayah)
                 ->orderBy('id_berita', 'desc')
                 ->paginate(5);
@@ -74,12 +80,14 @@ class AdminController extends Controller{
         //perngkat kecamatan
         if($user->role == 'superadmin'){
             $perangkat_kecamatan = DB::table('perangkat_kecamatan')
-                ->select('perangkat_kecamatan.id_perangkat', 'perangkat_kecamatan.nama', 'perangkat_kecamatan.jabatan', 'perangkat_kecamatan.link_facebook', 'perangkat_kecamatan.link_instagram', 'perangkat_kecamatan.link_tiktok', 'perangkat_kecamatan.gambar_perangkat')
+                ->leftJoin('users', 'perangkat_kecamatan.updated_by', '=', 'users.id')
+                ->select('perangkat_kecamatan.id_perangkat', 'perangkat_kecamatan.nama', 'perangkat_kecamatan.jabatan', 'perangkat_kecamatan.link_facebook', 'perangkat_kecamatan.link_instagram', 'perangkat_kecamatan.link_tiktok', 'perangkat_kecamatan.gambar_perangkat', 'perangkat_kecamatan.updated_by', 'perangkat_kecamatan.updated_at', 'users.name')
                 ->get();
         }
         else{
             $perangkat_kecamatan = DB::table('perangkat_kecamatan')
-                ->select('perangkat_kecamatan.id_perangkat', 'perangkat_kecamatan.nama', 'perangkat_kecamatan.jabatan', 'perangkat_kecamatan.link_facebook', 'perangkat_kecamatan.link_instagram', 'perangkat_kecamatan.link_tiktok', 'perangkat_kecamatan.gambar_perangkat')
+                ->leftJoin('users', 'perangkat_kecamatan.updated_by', '=', 'users.id')
+                ->select('perangkat_kecamatan.id_perangkat', 'perangkat_kecamatan.nama', 'perangkat_kecamatan.jabatan', 'perangkat_kecamatan.link_facebook', 'perangkat_kecamatan.link_instagram', 'perangkat_kecamatan.link_tiktok', 'perangkat_kecamatan.gambar_perangkat', 'perangkat_kecamatan.updated_by', 'perangkat_kecamatan.updated_at', 'users.name')
                 ->where('perangkat_kecamatan.id_wilayah', $user->id_wilayah)
                 ->get();
         }
@@ -100,6 +108,44 @@ class AdminController extends Controller{
                 ->orderBy('wisata.id_wilayah', 'asc')
                 ->paginate(5);   
         }
+
+        //Mengambil masing-masing penduduk laki-laki dan perempuan untuk kecamatan
+        if($user->role == 'superadmin'){
+            $data_jenis_kelamin = DB::table('jenis_kelamin_per_wilayah')
+                ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+                ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
+                ->select([
+                    DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_laki) as penduduk_laki'),
+                    DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_perempuan) as penduduk_perempuan')
+                ])
+                ->first();
+            $rasio_jenis_kelamin = [
+                'Laki-Laki' => $data_jenis_kelamin->penduduk_laki,
+                'Perempuan' => $data_jenis_kelamin->penduduk_perempuan,
+            ];
+        }
+        else{
+            //Mengambil masing-masing penduduk laki-laki dan perempuan per wilayah
+            $data_jenis_kelamin = DB::table('jenis_kelamin_per_wilayah')
+                ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+                ->leftJoin('users', 'jenis_kelamin_per_wilayah.updated_by', '=', 'users.id')
+                ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
+                ->where('jenis_kelamin_per_wilayah.id_wilayah', $user->id_wilayah)
+                ->select([
+                    'jenis_kelamin_per_wilayah.id_wilayah',
+                    'wilayah.nama_wilayah',
+                    DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_laki) as penduduk_laki'),
+                    DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_perempuan) as penduduk_perempuan'),
+                    'users.name',
+                    'jenis_kelamin_per_wilayah.updated_at'
+                    ])
+                    ->groupBy('jenis_kelamin_per_wilayah.id_wilayah', 'wilayah.nama_wilayah', 'users.name', 'jenis_kelamin_per_wilayah.updated_at')
+                    ->first();
+                    $rasio_jenis_kelamin = [
+                        'Laki-Laki' => $data_jenis_kelamin->penduduk_laki,
+                        'Perempuan' => $data_jenis_kelamin->penduduk_perempuan,
+                    ];
+            }
         
         $users = DB::table('users')
             ->select('users.id', 'users.name')
@@ -115,7 +161,8 @@ class AdminController extends Controller{
             ->get();
 
         $wilayaheach = DB::table('wilayah')
-            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.gambar_wilayah', 'wilayah.batas_utara', 'wilayah.batas_barat', 'wilayah.batas_timur', 'wilayah.batas_selatan') 
+            ->leftJoin('users', 'wilayah.updated_by', '=', 'users.id')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.gambar_wilayah', 'wilayah.batas_utara', 'wilayah.batas_barat', 'wilayah.batas_timur', 'wilayah.batas_selatan', 'wilayah.updated_by', 'wilayah.updated_at', 'users.name') 
             ->where('wilayah.id_wilayah', $user->id_wilayah)
             ->first();
 
@@ -144,20 +191,20 @@ class AdminController extends Controller{
 
         //Jumlah penduduk bersadarkan kelompok umur
         $kel_umur_penduduk = DB::table('kel_umur_per_wilayah')
+            ->leftJoin('users', 'kel_umur_per_wilayah.updated_by', '=', 'users.id')
             ->join('wilayah', 'kel_umur_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->select('kel_umur_per_wilayah.id', 'kel_umur_per_wilayah.kelompok_umur', 'kel_umur_per_wilayah.jumlah_orang')
+            ->select('kel_umur_per_wilayah.id', 'kel_umur_per_wilayah.kelompok_umur', 'kel_umur_per_wilayah.jumlah_orang', 'kel_umur_per_wilayah.updated_by', 'kel_umur_per_wilayah.updated_at', 'users.name')
             ->where('kel_umur_per_wilayah.id_wilayah', $user->id_wilayah)
             ->get();
 
         //Penduduk laki-laki + perempuan untuk kecamatan
-        $jenis_kelamin = DB::table('jenis_kelamin_per_wilayah')
+        $jumlah_penduduk = DB::table('jenis_kelamin_per_wilayah')
             ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
             ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
             ->select('wilayah.nama_wilayah', DB::raw('(jenis_kelamin_per_wilayah.penduduk_laki + jenis_kelamin_per_wilayah.penduduk_perempuan) as jumlah_penduduk'))
             ->get();
 
-        //Mengambil masing-masing penduduk laki-laki dan perempuan untuk kecamatan
-        $data_jenis_kelamin = DB::table('jenis_kelamin_per_wilayah')
+        $total_data_jenis_kelamin = DB::table('jenis_kelamin_per_wilayah')
             ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
             ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
             ->select([
@@ -165,27 +212,9 @@ class AdminController extends Controller{
                 DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_perempuan) as penduduk_perempuan')
             ])
             ->first();
-        $rasio_jenis_kelamin = [
-            'Laki-Laki' => $data_jenis_kelamin->penduduk_laki,
-            'Perempuan' => $data_jenis_kelamin->penduduk_perempuan,
-        ];
-
-        //Mengambil masing-masing penduduk laki-laki dan perempuan per wilayah
-        $data_jenis_kelamin_wilayah = DB::table('jenis_kelamin_per_wilayah')
-            ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-            ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
-            ->where('jenis_kelamin_per_wilayah.id_wilayah', $user->id_wilayah)
-            ->select([
-                DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_laki) as penduduk_laki'),
-                DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_perempuan) as penduduk_perempuan')
-            ])
-            ->first();
-        $rasio_jenis_kelamin_wilayah = [
-            'Laki-Laki' => $data_jenis_kelamin_wilayah->penduduk_laki,
-            'Perempuan' => $data_jenis_kelamin_wilayah->penduduk_perempuan,
-        ];
+        
                     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'wisata', 'jumlah_penduduk', 'kel_umur_penduduk', 'wilayaheach', 'jenis_kelamin', 'data_jenis_kelamin', 'rasio_jenis_kelamin', 'data_jenis_kelamin_wilayah', 'rasio_jenis_kelamin_wilayah'));
+        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'wisata', 'jumlah_penduduk', 'kel_umur_penduduk', 'wilayaheach', 'jumlah_penduduk', 'data_jenis_kelamin', 'rasio_jenis_kelamin', 'total_data_jenis_kelamin'));
     }
 
 

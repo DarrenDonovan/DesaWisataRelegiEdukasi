@@ -165,7 +165,7 @@
 										<div class="card-header">
 											<h4 class="card-title text-center mb-1">Jumlah Penduduk Laki-Laki Kecamatan Tigaraksa</h4>
 											<div class="card-body">
-		  										<p>{{ $data_jenis_kelamin->penduduk_laki }}</p>
+		  										<p>{{ $total_data_jenis_kelamin->penduduk_laki }}</p>
 											</div>
 										</div>
 									</div>
@@ -175,7 +175,7 @@
 										<div class="card-header">
 											<h4 class="card-title text-center mb-1">Jumlah Penduduk Perempuan Kecamatan Tigaraksa</h4>
 											<div class="card-body">
-		  										<p>{{ $data_jenis_kelamin->penduduk_perempuan }}</p>
+		  										<p>{{ $total_data_jenis_kelamin->penduduk_perempuan }}</p>
 											</div>
 										</div>
 									</div>
@@ -185,7 +185,7 @@
 										<div class="card-header">
 											<h4 class="card-title text-center mb-1">Angka Jumlah Penduduk Kecamatan Tigaraksa</h4>
 											<div class="card-body">
-		  										<p>{{ $data_jenis_kelamin->penduduk_laki + $data_jenis_kelamin->penduduk_perempuan }}</p>
+		  										<p>{{ $total_data_jenis_kelamin->penduduk_laki + $total_data_jenis_kelamin->penduduk_perempuan }}</p>
 											</div>
 										</div>
 									</div>
@@ -197,7 +197,7 @@
 							<div class="col">
 								<div class="card">
 									<div class="card-header">
-										<h4 class="card-title">BarChart Jumlah Penduduk Kecamatan Tigaraksa</h4>
+										<h4 class="card-title">Jumlah Penduduk Kecamatan Tigaraksa</h4>
 									</div>
 									<div class="card-body">
 										<canvas id="Chart1"></canvas>
@@ -212,13 +212,13 @@
 											<tbody>
         										<tr>
 													<th>Nama Wilayah</th>
-													@foreach ($jenis_kelamin as $jumlahPenduduk)
+													@foreach ($jumlah_penduduk as $jumlahPenduduk)
             											<td>{{ $jumlahPenduduk->nama_wilayah }}</td>
 													@endforeach
 												</tr>
 												<tr>
 													<th>Jumlah Penduduk</th>
-            										@foreach ($jenis_kelamin as $jumlahPenduduk)
+            										@foreach ($jumlah_penduduk as $jumlahPenduduk)
             											<td>{{ $jumlahPenduduk->jumlah_penduduk }}</td>
 													@endforeach
 												</tr>
@@ -234,7 +234,7 @@
 						<div class="col-md-6">
 								<div class="card">
 									<div class="card-header ">
-										<h4 class="card-title">Sebaran Penduduk Berdasarkan Jenis Kelompok</h4>
+										<h4 class="card-title">Sebaran Penduduk Berdasarkan Jenis Kelamin di Kecamatan Tigaraksa</h4>
 									</div>
 									<div class="card-body">
 										<canvas id="Chart2"></canvas>
@@ -285,6 +285,7 @@
 													<th scope="col">Tanggal Kegiatan</th>
 													<th scope="col">Keterangan</th>
 													<th scope="col">Gambar Kegiatan</th>
+													<th scope="col">Last Updated</th>
 													<th scope="col">Action</th>
 												</tr>
 											</thead>
@@ -303,6 +304,7 @@
                 									    Tidak ada gambar
                 									@endif
 													</td>
+													<td>Updated by {{ $kegiatanterbaru->name }} at {{ $kegiatanterbaru->updated_at }}</td>
 													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalKegiatan_terbaru">Edit</a></td>
 												</tr>
 												@endif
@@ -383,6 +385,7 @@
 													<th scope="col">Tanggal Kegiatan</th>
 													<th scope="col">Keterangan</th>
 													<th scope="col">Gambar Kegiatan</th>
+													<th scope="col">Last Updated</th>
 													<th scope="col">Action</th>
 												</tr>
 											</thead>
@@ -401,6 +404,7 @@
                 									    Tidak ada gambar
                 									@endif
 													</td>
+													<td>Updated by {{ $items->name }} at {{ $items->updated_at }}</td>
 													<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{$items->id_kegiatan}}">Edit</a> | <a href="{{route('admin.deleteKegiatan', $items->id_kegiatan)}}">Hapus</a></td>
 												</tr>
 
@@ -598,6 +602,9 @@
 									<div class="card">
 										<div class="card-header">
 											<h4 class="card-title text-center mb-1">Gambar</h4>
+											<p class="card-category">Last Updated by {{ $wilayaheach->name }} at {{ $wilayaheach->updated_at }}</p>
+										</div>
+										<div class="card-body">
 											<img src="{{ asset('storage/' . $wilayaheach->gambar_wilayah) }}" width="275" alt="">
 										</div>
 									</div>
@@ -615,9 +622,7 @@
 											<p>Selatan : {{ $wilayaheach->batas_selatan }}</p>
 											<p>Barat: {{ $wilayaheach->batas_barat }}</p>
 											<p>Luas Wilayah : {{ $wilayaheach->luas_wilayah }} Ha</p>
-											@foreach($jumlah_penduduk as $jumlahPenduduk)
-											<p>Jumlah Penduduk : {{ $jumlahPenduduk->jumlah_penduduk }} Jiwa</p>
-											@endforeach
+											<p>Jumlah Penduduk : {{ $data_jenis_kelamin->penduduk_laki + $data_jenis_kelamin->penduduk_perempuan }} Jiwa</p>
 										</div>
 									</div>
 								</div>
@@ -661,11 +666,12 @@
         				                        <img src="{{ asset('storage/' . $perangkat->gambar_perangkat) }}" style="height: 300px; width:100%; object-fit:cover" class="img-fluid w-100 rounded-top" alt="Image">
         				                    </div>
         				                    <div class="guide-title text-center rounded-bottom p-2">
-        				                        <div class="guide-title-inner" style="height: 150px">
+        				                        <div class="guide-title-inner" style="height: 200px">
         				                            <h4 class="mt-3">{{ $perangkat->nama }}</h4>
         				                            <p class="mb-3">{{ $perangkat->jabatan }}</p>
 													<a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUpdate_perangkat{{$perangkat->id_perangkat}}">Edit</a> 
 													<a href="{{ route('admin.removePerangkat', $perangkat->id_perangkat) }}" class="btn btn-danger">Remove</a>
+													<p class="mt-3">Last Updated by {{ $perangkat->name }} at {{ $perangkat->updated_at }}</p>
         				                        </div>
         				                    </div>
 
@@ -777,6 +783,7 @@
 													<th scope="col">Tanggal</th>
 													<th scope="col">Konten</th>
 													<th scope="col">Thumbnail</th>
+													<th scope="col">Last Updated</th>
 													<th scope="col">Action</th>
 												</tr>
 											</thead>
@@ -792,6 +799,7 @@
 													@else
 													Tidak ada gambar
 													@endif
+													<td>Updated by {{ $itemBerita->name }} at {{ $itemBerita->updated_at }}</td>
 													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalView_Berita{{$itemBerita->id_berita}}">View</a> | <a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_Berita{{$itemBerita->id_berita}}">Edit</a> | <a href="{{ route('admin.deleteBerita', $itemBerita->id_berita) }}">Hapus</a></td>
 												</tr>
 
@@ -944,6 +952,7 @@
 								<div class="card">
 									<div class="card-header ">
 										<h4 class="card-title">Tabel Data Penduduk {{ $wilayaheach->nama_wilayah }} Berdasarkan Jenis Kelamin</h4>
+										<p class="card-category">Last Updated by {{ $data_jenis_kelamin->name }} at {{ $data_jenis_kelamin->updated_at }}</p>
 									</div>
 									<div class="card-body">
 										<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalUpdate_JenisKelaminWilayah{{$wilayaheach->id_wilayah}}">Edit</button>	
@@ -957,11 +966,11 @@
 											<tbody>
         										<tr>
             										<td><p>Laki-Laki</p></td>
-													<td>{{ $data_jenis_kelamin_wilayah->penduduk_laki }}</td>
+													<td>{{ $data_jenis_kelamin->penduduk_laki }}</td>
 												</tr>
                                                 <tr>
             										<td><p>Perempuan</p></td>
-													<td>{{ $data_jenis_kelamin_wilayah->penduduk_perempuan }}</td>
+													<td>{{ $data_jenis_kelamin->penduduk_perempuan }}</td>
 												</tr>
 											</tbody>
 										</table>
@@ -982,11 +991,11 @@
 												@csrf
 												<div class="form-group">
 													<label for="penduduk_laki">Jumlah Penduduk Laki-Laki</label>
-													<input type="text" class="form-control" name="penduduk_laki" id="penduduk_laki" value="{{ $data_jenis_kelamin_wilayah->penduduk_laki }}">
+													<input type="text" class="form-control" name="penduduk_laki" id="penduduk_laki" value="{{ $data_jenis_kelamin->penduduk_laki }}">
 												</div>
 												<div class="form-group">
 													<label for="penduduk_perempuan">Jumlah Penduduk Perempuan</label>
-													<input type="text" class="form-control" name="penduduk_perempuan" id="penduduk_perempuan" value="{{ $data_jenis_kelamin_wilayah->penduduk_perempuan }}">
+													<input type="text" class="form-control" name="penduduk_perempuan" id="penduduk_perempuan" value="{{ $data_jenis_kelamin->penduduk_perempuan }}">
                 								</div>
                 								<button type="submit" class="btn btn-primary form-control">Save changes</button>
 											</form>
@@ -1018,6 +1027,7 @@
 												<tr>
 													<th scope="col">Kelompok Umur</th>
 													<th scope="col">Jumlah Penduduk</th>
+													<th scope="col">Last Updated</th>
 													<th scope="col">Action</th>
 												</tr>
 											</thead>
@@ -1026,6 +1036,7 @@
         										<tr>
             										<td>{{ $kelompok_umur->kelompok_umur }}</td>
 													<td>{{ $kelompok_umur->jumlah_orang }}</td>
+													<td>Updated by {{ $kelompok_umur->name }} at {{ $kelompok_umur->updated_at }}</td>
 													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_KelompokUmur{{$kelompok_umur->id}}">Edit</a></td>
 													<!-- Modal Edit Kelompok Umur -->
 													<div class="modal fade" id="modalUpdate_KelompokUmur{{$kelompok_umur->id}}" tabindex="-1" aria-labelledby="modalTitle{{$kelompok_umur->id}}" aria-hidden="true">
@@ -1250,10 +1261,10 @@
 	new Chart(ctx1, {
 	  type: 'bar',
 	  data: {
-	    labels: {!! json_encode($jenis_kelamin->pluck('nama_wilayah')) !!},
+	    labels: {!! json_encode($jumlah_penduduk->pluck('nama_wilayah')) !!},
 	    datasets: [{
 	      label: 'Jumlah Penduduk',
-	      data: {!! json_encode($jenis_kelamin->pluck('jumlah_penduduk')) !!},
+	      data: {!! json_encode($jumlah_penduduk->pluck('jumlah_penduduk')) !!},
 	      borderWidth: 1
 	    }]
 	  },
@@ -1310,7 +1321,7 @@
               labels: ['Laki-Laki', 'Perempuan'], 
               datasets: [{
                 label: 'Jumlah Penduduk',
-                data: {!! json_encode(array_values($rasio_jenis_kelamin_wilayah)) !!}, 
+                data: {!! json_encode(array_values($rasio_jenis_kelamin)) !!}, 
                 backgroundColor: [
 				  'rgba(54, 162, 235, 0.6)',
                   'rgba(255, 99, 132, 0.6)' 
