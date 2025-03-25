@@ -1076,7 +1076,7 @@
 							</div>
 
 		  				<!-- Daftar Wisata -->
-					<!-- <div class="d-flex justify-content-between align-items-center">
+					<div class="d-flex justify-content-between align-items-center">
 						<h4 class="page-title mt-1">Daftar Wisata</h4>
 						<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalTambah_wisata">Tambah Wisata</button>	
 					</div>				
@@ -1088,32 +1088,32 @@
 											<thead>
 												<tr>
 													<th scope="col">Nama Tempat</th>
-													<th scope="col">Jenis Kegiatan</th>
-													<th scope="col">Nama Wilayah</th>
+													<th scope="col">Letak Wilayah</th>
 													<th scope="col">Keterangan</th>
-													<th scope="col">Gambar Kegiatan</th>
+													<th scope="col">Gambar Wisata</th>
+													<th scope="col">Last Updated</th>
 													<th scope="col">Action</th>
 												</tr>
 											</thead>
 											<tbody>
-    										@foreach ($kegiatan as $items)
+    										@foreach ($wisata as $itemWisata)
         										<tr>
-            										<td>{{ $items->nama_kegiatan }}</td>
-													<td>{{ $items->nama_jenis_kegiatan }}</td>
-													<td>{{ $items->nama_wilayah }}</td>
-            										<td>{{ $items->keterangan }}</td>
+            										<td>{{ $itemWisata->nama_tempat }}</td>
+													<td>{{ $itemWisata->nama_wilayah }}</td>
+            										<td>{{ $itemWisata->keterangan }}</td>
             										<td>
-                									@if ($items->gambar_kegiatan)
-                									    <img src="{{ asset('storage/' . $items->gambar_kegiatan) }}" width="100" alt="">
+                									@if ($itemWisata->gambar_wisata)
+                									    <img src="{{ asset('storage/' . $itemWisata->gambar_wisata) }}" width="100" height="80" alt="">
                 									@else
                 									    Tidak ada gambar
                 									@endif
 													</td>
-													<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{$items->id_kegiatan}}">Edit</a> | <a href="{{route('admin.deleteKegiatan', $items->id_kegiatan)}}">Hapus</a></td>
-												</tr> -->
+													<td>Last Updated by {{ $itemWisata->name }} at {{ $itemWisata->updated_at }}</td>
+													<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{$itemWisata->id_wisata}}">Edit</a> | <a href="{{route('admin.deleteKegiatan', $items->id_kegiatan)}}">Hapus</a></td>
+												</tr> 
 
 												<!-- Modal Edit Kegiatan -->
-												<!-- <div class="modal fade" id="myModal{{$items->id_kegiatan}}" tabindex="-1" aria-labelledby="modalTitle{{$items->id_kegiatan}}" aria-hidden="true">
+												<div class="modal fade" id="myModal{{$items->id_kegiatan}}" tabindex="-1" aria-labelledby="modalTitle{{$items->id_kegiatan}}" aria-hidden="true">
    													<div class="modal-dialog">
         												<div class="modal-content">
             												<div class="modal-header">
@@ -1174,7 +1174,7 @@
 									</div>
 								</div>
 							</div>
-						</div> -->
+						</div>
 
 						</div>
 					
@@ -1219,7 +1219,7 @@
 				</footer>
 			</div>
 		</div>
-	</div>
+	</div> 
 	<!-- Modal -->
 	<div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="modalUpdatePro" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">

@@ -239,7 +239,7 @@
                     <tr><td class="highlight">Selatan</td><td>Kecamatan Jambe - Kabupaten Bogor</td></tr>
                     <tr><td class="highlight">Barat</td><td>Kecamatan Solear - Cisoka</td></tr>
                     <tr><td class="highlight">Luas Desa</td><td>{{ number_format($wilayahkecamatan->luas_wilayah, 0, ',', '.') }} Ha</td></tr>
-                    <tr><td class="highlight">Jumlah Penduduk</td><td>{{ number_format($jumlah_penduduk, 0, ',', '.') }} Jiwa</td></tr>
+                    <tr><td class="highlight">Jumlah Penduduk</td><td>{{ number_format($data_jenis_kelamin->penduduk_laki + $data_jenis_kelamin->penduduk_perempuan, 0, ',', '.') }} Jiwa</td></tr>
                 </table>
             </div>
     

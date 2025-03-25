@@ -52,11 +52,20 @@ class UserController extends Controller
             ->where('wilayah.nama_wilayah', 'Kecamatan Tigaraksa')
             ->first();
 
-        $jumlah_penduduk = DB::table('wilayah')
-            ->whereIn('jenis_wilayah', ['Desa', 'Kelurahan'])
-            ->sum('jumlah_penduduk');
+        $data_jenis_kelamin = DB::table('jenis_kelamin_per_wilayah')
+            ->join('wilayah', 'jenis_kelamin_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->whereIn('wilayah.jenis_wilayah', ['Desa', 'Kelurahan'])
+            ->select([
+                DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_laki) as penduduk_laki'),
+                DB::raw('SUM(jenis_kelamin_per_wilayah.penduduk_perempuan) as penduduk_perempuan')
+            ])
+            ->first();
+        $rasio_jenis_kelamin = [
+            'Laki-Laki' => $data_jenis_kelamin->penduduk_laki,
+            'Perempuan' => $data_jenis_kelamin->penduduk_perempuan,
+        ];
 
-        return view('about', compact('wilayah', 'wilayahNoKec', 'about_us', 'camat', 'sekretaris', 'kasi', 'kepala_desa', 'wilayahkecamatan', 'jumlah_penduduk'));
+        return view('about', compact('wilayah', 'wilayahNoKec', 'about_us', 'camat', 'sekretaris', 'kasi', 'kepala_desa', 'wilayahkecamatan', 'data_jenis_kelamin', 'rasio_jenis_kelamin'));
     }
 
     public function berita(){
