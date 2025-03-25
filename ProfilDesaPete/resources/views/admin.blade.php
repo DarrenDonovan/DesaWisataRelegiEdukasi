@@ -1258,6 +1258,7 @@
 <script src="{{url('js/admin/demo.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 
 
 <script>
@@ -1269,15 +1270,28 @@
 	    datasets: [{
 	      label: 'Jumlah Penduduk',
 	      data: {!! json_encode($jumlah_penduduk->pluck('jumlah_penduduk')) !!},
-	      borderWidth: 1
+	      borderWidth: 1,
+		  datalabels: {
+        	anchor:'end',
+        	align:'top',
+        	offset: 5
+          },
 	    }]
 	  },
+	  plugins: [ChartDataLabels],
 	  options: {
 	    scales: {
 	      y: {
 	        beginAtZero: true
 	      }
-	    }
+	    },
+        plugins: {
+          datalabels: {
+              formatter: function (value) {
+                  return value.toLocaleString(); 
+                  }
+              }
+          }
 	  }
 	});
 
@@ -1294,6 +1308,20 @@
                   'rgba(255, 99, 132, 0.6)' 
                 ]
               }]
+            },
+            plugins: [ChartDataLabels],
+            options: {
+                plugins: {
+                    datalabels: {
+                        formatter: function (value) {
+                            return value.toLocaleString();
+                        },
+                        color: 'black',
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
             }
           });
 
@@ -1331,6 +1359,20 @@
                   'rgba(255, 99, 132, 0.6)' 
                 ]
               }]
+            },
+            plugins: [ChartDataLabels],
+            options: {
+                plugins: {
+                    datalabels: {
+                        formatter: function (value) {
+                            return value.toLocaleString();
+                        },
+                        color: 'black',
+                        font: {
+                            size: 14
+                        }
+                    }
+                }
             }
           });
 

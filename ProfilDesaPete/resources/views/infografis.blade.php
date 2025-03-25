@@ -320,14 +320,15 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
         <script src="{{ url('lib/easing/easing.min.js') }}"></script>
         <script src="{{ url('lib/waypoints/waypoints.min.js') }}"></script>
         <script src="{{ url('lib/owlcarousel/owl.carousel.min.js') }}"></script>
         <script src="{{ url('lib/lightbox/js/lightbox.min.js') }}"></script>
         
-
         <!-- Template Javascript -->
         <script src="{{ url('js/main.js') }}"></script>
+
         <script>
           const ctx1 = document.getElementById('Chart1');
           new Chart(ctx1, {
@@ -337,34 +338,65 @@
               datasets: [{
                 label: 'Jumlah Penduduk',
                 data: {!! json_encode($jenis_kelamin->pluck('jumlah_penduduk')) !!},
-                borderWidth: 1
+                borderWidth: 1,
+                datalabels: {
+                    anchor:'end',
+                    align:'top',
+                    offset: 5
+                },
               }]
             },
+            plugins: [ChartDataLabels],
             options: {
               scales: {
                 y: {
                   beginAtZero: true
                 }
-              }
+              },
+              plugins: {
+                datalabels: {
+                    formatter: function (value) {
+                        return value.toLocaleString(); 
+                        }
+                    }
+                }
             }
           });
 
 
           const ctx2 = document.getElementById('Chart2');
-          new Chart(ctx2, {
-            type: 'pie',
-            data: {
-              labels: ['Laki-Laki', 'Perempuan'], 
-              datasets: [{
-                label: 'Jumlah Penduduk',
-                data: {!! json_encode(array_values($rasio_jenis_kelamin)) !!}, 
-                backgroundColor: [
-				  'rgba(54, 162, 235, 0.6)',
-                  'rgba(255, 99, 132, 0.6)' 
-                ]
-              }]
-            }
-          });
+            new Chart(ctx2, {
+                type: 'pie',
+                data: {
+                    labels: ['Laki-Laki', 'Perempuan'],
+                    datasets: [{
+                        label: 'Jumlah Penduduk',
+                        data: {!! json_encode(array_values($rasio_jenis_kelamin)) !!}, 
+                        backgroundColor: [
+                            'rgba(54, 162, 235, 0.6)',
+                            'rgba(255, 99, 132, 0.6)'
+                        ],
+                        datalabels: {
+                            color: 'black'
+                        }
+                    }]
+                },
+                plugins: [ChartDataLabels],
+                options: {
+                    plugins: {
+                        datalabels: {
+                            formatter: function (value) {
+                                return value.toLocaleString();
+                            },
+                            color: 'black',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                }
+            });
+
 
 
 
