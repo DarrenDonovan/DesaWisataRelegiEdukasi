@@ -400,12 +400,44 @@
                 .position-relative.rounded-pill {
                     height: 90px;
                 }
+                /* BERITA */
+                .container-fluid.mt-5 {
+                    border: 2px solid red;
+               
+                }
+                .mx-auto {
+                    border: 2px solid blue;
+                }
+                .mx-auto h5{
+                font-size: 35px;
+                }
+                .mx-auto h1 {
+                font-size: 50px;
+                }
+
+                .card-title {
+                    font-size: 40px; /* Sesuaikan ukuran judul berita */
+                }
+
+                .card-text {
+                    font-size: 25px; /* Kecilkan teks isi berita */
+                }
+
+                .btn-primary {
+                    font-size: 20px;
+                    padding: 8px 12px; /* Kurangi padding tombol */
+                }
+                .col-12.col-sm-6 {
+                    width: 500px;
+                    margin-left: 50px;
+                }
+            
 
             } 
         </style>
     </head>
 
-    <body>
+    <body style="border: 2px solid blue;">
 
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -520,7 +552,7 @@
        
         </div>
         <!-- BERITA -->
-        <div class="container mt-5">
+        <div class="container-fluid mt-5">
             <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                 <h5 class="section-title px-3">Highlight</h5>
                 <h1 class="mb-0">Berita Terbaru Kecamatan Tigaraksa</h1>
@@ -1516,6 +1548,7 @@
     </body>
 
     <script>
+        // FUNGSI BUAT DROPDOWN KEGIATAN PAS LAYARNYA KECIL
         document.addEventListener("DOMContentLoaded", function () {
     const dropdownItems = document.querySelectorAll(".dropdown-item");
 

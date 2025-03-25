@@ -545,7 +545,9 @@
              pitch = c_pitch;
  
              for (let i in vendors) {
-                 $cube.css(vendors[i] + 'transform', translateZ(-150px) rotateX(${yaw}deg) rotateY(${pitch}deg));
+                $cube.css(vendors[i] + 'transform', 
+    `translateZ(-150px) rotateX(${yaw}deg) rotateY(${pitch}deg)`
+);
              }
  
              x1 = x2;
