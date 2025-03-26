@@ -381,6 +381,12 @@ class AdminController extends Controller{
         return redirect()->route('admin');
     }
 
+    public function createWisata(Request $request){
+        
+        
+        return redirect()->route('admin');
+    }
+
 
 
     //Data Update
@@ -591,6 +597,45 @@ class AdminController extends Controller{
         return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
     }
 
+    public function updateWisata(Request $request, $id){
+        $request->validate([
+            'nama_tempat' => 'required|string|max:255',
+            'nama_wilayah' => 'required|integer', 
+            'keterangan' => 'required|string',
+            'gambar_kegiatan' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+        
+        $wisata = DB::table('wisata')
+            ->where('id_wisata', $id)
+            ->first();
+        
+        if (!$wisata) {
+            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+        }
+
+        $updateData = [
+            'nama_tempat' => $request->nama_tempat,
+            'id_wilayah' => $request->nama_wilayah,
+            'keterangan' => $request->keterangan,
+            'updated_by' => Auth::user()->id,
+            'updated_at' => now(),
+        ];
+
+        if ($request->hasFile('gambar_wisata')) {
+            if ($kegiatan->gambar_wisata) {
+                Storage::disk('public')->delete($wisata->gambar_wisata);
+            }
+
+            $imagePath = $request->file('gambar_wisata')->store('wisata', 'public');
+            $updateData['gambar_wisata'] = $imagePath;
+        }
+
+        DB::table('wisata')->where('id_wisata', $id)->update($updateData);
+        
+        Session::flash('message', 'Data Berhasil Diupdate!');
+        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+    }
+
     // public function updateJumlahPenduduk(Request $request, $id){
     //     $request -> validate([
     //         'jumlah_penduduk' => 'required|integer'
@@ -795,5 +840,16 @@ class AdminController extends Controller{
         return redirect()->route('admin');
     }
 
+    public function deleteWisata($id){
+        $wisata = DB::table('wisata')
+            ->where('id_wisata', $id)
+            ->first();
+
+        DB::table('wisata')->where('id_wisata', $id)->delete();
+        Storage::disk('public')->delete($wisata->gambar_wisata);
+
+        Session::flash('message', 'Data Berhasil Dihapus!');
+        return redirect()->route('admin');
+    }
 
 }

@@ -1109,35 +1109,23 @@
                 									@endif
 													</td>
 													<td>Last Updated by {{ $itemWisata->name }} at {{ $itemWisata->updated_at }}</td>
-													<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal{{$itemWisata->id_wisata}}">Edit</a> | <a href="{{route('admin.deleteKegiatan', $items->id_kegiatan)}}">Hapus</a></td>
+													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_wisata{{$itemWisata->id_wisata}}">Edit</a> | <a href="{{route('admin.deleteWisata', $itemWisata->id_wisata)}}">Hapus</a></td>
 												</tr> 
 
-												<!-- Modal Edit Kegiatan -->
-												<div class="modal fade" id="myModal{{$items->id_kegiatan}}" tabindex="-1" aria-labelledby="modalTitle{{$items->id_kegiatan}}" aria-hidden="true">
+												<!-- Modal Edit Wisata -->
+												<div class="modal fade" id="modalUpdate_wisata{{$itemWisata->id_wisata}}" tabindex="-1" aria-labelledby="modalTitle{{$itemWisata->id_wisata}}" aria-hidden="true">
    													<div class="modal-dialog">
         												<div class="modal-content">
             												<div class="modal-header">
-																<h5 class="modal-title" id="modalTitle">Edit Kegiatan Terbaru</h5>
+																<h5 class="modal-title" id="modalTitle">Edit Wisata</h5>
 																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             												</div>
             												<div class="modal-body">
-																<form action="{{ route('admin.updateKegiatan', $items->id_kegiatan)}}" method="post" enctype="multipart/form-data">
+																<form action="{{ route('admin.updateWisata', $itemWisata->id_wisata)}}" method="post" enctype="multipart/form-data">
 																	@csrf
 																	<div class="form-group">
-																		<label for="nama_kegiatan">Nama Kegiatan</label>
-																		<input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" value="{{ $items->nama_kegiatan }}" required>
-																	</div>
-																	<div class="form-group">
-																		<label for="jenis_kegiatan">Jenis Kegiatan</label>
-																		<select name="jenis_kegiatan" class="form-control" required>
-														    				<option value="">-- Pilih Jenis Kegiatan --</option>
-														    				@foreach ($jenis_kegiatan as $jenis)
-														    				    <option value="{{ $jenis->id_jenis_kegiatan }}" 
-																				{{ $jenis->id_jenis_kegiatan == $items->id_jenis_kegiatan ? 'selected' : '' }}>
-																				{{ $jenis->nama_jenis_kegiatan }}
-																				</option>
-														    				@endforeach
-																		</select>
+																		<label for="nama_tempat">Nama Tempat Wisata</label>
+																		<input type="text" class="form-control" name="nama_tempat" id="nama_tempat" value="{{ $itemWisata->nama_tempat }}" required>
 																	</div>
 																	<div class="form-group">
 																		<label for="nama_wilayah">Nama Wilayah</label>
@@ -1153,11 +1141,11 @@
 																	</div>
 																	<div class="form-group">
 																		<label for="keterangan">Keterangan</label>
-																		<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required>{{ $items->keterangan }}</textarea>
+																		<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required>{{ $itemWisata->keterangan }}</textarea>
 																	</div>
 																	<div class="form-group">					
-																		<label for="gambar_kegiatan">Gambar Kegiatan</label>
-																		<input type="file" name="gambar_kegiatan" id="gambar_kegiatan" class="form-control-file">
+																		<label for="gambar_wisata">Gambar Kegiatan</label>
+																		<input type="file" name="gambar_wisata" id="gambar_wisata" class="form-control-file">
 																	</div>
                 													<button type="submit" class="btn btn-primary form-control">Save changes</button>
 																</form>
@@ -1169,11 +1157,50 @@
 											</tbody>
 										</table>
 										<div class="mb-4">
-										{{ $kegiatan->links() }}
+										{{ $wisata->links() }}
 										</div>
 									</div>
 								</div>
 							</div>
+						</div>
+
+						<!-- Modal Tambah Wisata (Sementara) -->
+						<div class="modal fade" id="modalTambah_wisata" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+   							<div class="modal-dialog">
+        						<div class="modal-content">
+            						<div class="modal-header">
+										<h5 class="modal-title" id="modalTitle">Tambah Tempat Wisata Baru</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            						</div>
+            						<div class="modal-body">
+										<form action=" {{ route('admin.createWisata') }}" method="post" enctype="multipart/form-data">
+											@csrf
+											<div class="form-group">
+												<label for="nama_tempat">Nama Tempat Wisata</label>
+												<input type="text" class="form-control" name="nama_tempat" id="nama_tempat" required>
+											</div>
+											<div class="form-group">
+												<label for="nama_wilayah">Nama Wilayah</label>
+												<select name="nama_wilayah" class="form-control" required>
+												    <option value="">-- Pilih Wilayah --</option>
+												    @foreach ($wilayahNoKec as $item)
+												        <option value="{{ $item->id_wilayah }}">{{ $item->nama_wilayah }}</option>
+												    @endforeach
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="keterangan">Keterangan</label>
+												<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required></textarea>					
+											</div>
+											<div class="form-group">
+												<label for="gambar_wisata">Gambar Wisata</label>
+												<input type="file" class="form-control-file" name="gambar_wisata" id="gambar_wisata">
+                							</div>
+											<button type="submit" class="btn btn-primary form-control">Tambahkan</button>
+										</form>
+						            </div>
+						        </div>
+						    </div>
 						</div>
 
 						</div>

@@ -77,6 +77,14 @@ Route::post('admin/createBerita', [AdminController::class, 'createBerita'])->nam
 Route::post('admin/updateBerita/{id}', [AdminController::class, 'updateBerita'])->name('admin.updateBerita');
 Route::get('admin/deleteBerita/{id}', [AdminController::class, 'deleteBerita'])->name('admin.deleteBerita');
 
+//Route untuk Profil
+Route::post('admin/updateProfil/{id}', [AdminController::class, 'updateProfil'])->name('admin.updateProfil');
+
+//Route untuk Wisata
+Route::post('admin/updateWisata/{id}', [AdminController::class, 'updateWisata'])->name('admin.updateWisata');
+Route::post('admin/createWisata', [AdminController::class, 'createWisata'])->name('admin.createWisata');
+Route::get('admin/deleteWisata/{id}', [AdminController::class, 'deleteWisata'])->name('admin.deleteWisata');
+
 Route::post('admin/updateJumlahPenduduk/{id}', [AdminController::class, 'updateJumlahPenduduk'])->name('admin.updateJumlahPenduduk');
 
 Route::post('admin/updateKelompokUmur/{id}', [AdminController::class, 'updateKelompokUmur'])->name('admin.updateKelompokUmur');
@@ -89,4 +97,4 @@ Route::post('admin/updateAgamaPenduduk/{id}', [AdminController::class, 'updateAg
 
 Route::post('admin/updatePendidikanPenduduk/{id}', [AdminController::class, 'updatePendidikanPenduduk'])->name('admin.updatePendidikanPenduduk');
 
-Route::post('admin/updateProfil/{id}', [AdminController::class, 'updateProfil'])->name('admin.updateProfil');
+
