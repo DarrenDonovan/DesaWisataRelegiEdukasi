@@ -448,30 +448,12 @@
   </div>
   <div class="containerUMKM" style="margin-bottom: 50px;"> 
     <div class="gridUMKM">
-        <div class="cardU" onclick="showUmkmPopup('Jajanan Pasar', 'Aneka jajanan pasar khas daerah dengan cita rasa tradisional.')">
-            <img src="/img/jajananPasar.jpg" alt="jajananPasar">
-            <div class="info">Jajanan Pasar</div>
+        @foreach ($jenis_umkm as $itemJenisUmkm)
+        <div class="cardU" onclick="showUmkmPopup('{{ $itemJenisUmkm->jenis_umkm }}', '{{ $itemJenisUmkm->keterangan }}')">
+            <img src="{{ asset('storage/' . $itemJenisUmkm->gambar_jenis_umkm) }}" alt="">
+            <div class="info">{{ $itemJenisUmkm->jenis_umkm }}</div>
         </div>
-        <div class="cardU" onclick="showUmkmPopup('Kerajinan Tangan', 'Kerajinan tangan khas daerah dari bahan alami.')">
-            <img src="/img/kerajinanRotan.jpg" alt="kerajinanRotan">
-            <div class="info">Kerajinan Tangan</div>
-        </div>
-        <div class="cardU" onclick="showUmkmPopup('Kue Tradisional', 'Aneka kue tradisional yang lezat dan khas.')">
-            <img src="/img/kueTradisional.jpg" alt="kueTradisional">
-            <div class="info">Kue Tradisional</div>
-        </div>
-        <div class="cardU" onclick="showUmkmPopup('Oleh-oleh Khas Daerah', 'Berbagai oleh-oleh khas daerah yang bisa dibawa pulang.')">
-            <img src="/img/olehOleh.jpg" alt="olehOleh">
-            <div class="info">Oleh-oleh Khas Daerah</div>
-        </div>
-        <div class="cardU" onclick="showUmkmPopup('Anyaman', 'Produk anyaman dari bahan alami berkualitas tinggi.')">
-            <img src="/img/anyaman.jpg" alt="anyaman">
-            <div class="info">Anyaman</div>
-        </div>
-        <div class="cardU" onclick="showUmkmPopup('Anyaman', 'Produk anyaman dari bahan alami berkualitas tinggi.')">
-            <img src="/img/gorengan.jpg" alt="gorengan">
-            <div class="info">Gorengan</div>
-        </div>
+        @endforeach
     </div>
 </div>
 
@@ -631,7 +613,6 @@
                 @endforeach
             </div>
             <div class="row">
-                <!-- Berita 1 -->
                 @foreach ($berita as $itemBerita)
                 <div class="col-md-4">
                     <div class="card">

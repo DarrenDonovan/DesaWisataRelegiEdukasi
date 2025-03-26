@@ -234,8 +234,11 @@ class UserController extends Controller
             ->orderBy('id_berita', 'desc')
             ->limit(3)
             ->get();
+
+        $jenis_umkm = DB::table('jenis_umkm')
+            ->get();
             
-        return view('profildesa', compact('wilayah', 'wilayaheach', 'wilayahNoKec', 'kel_umur_penduduk', 'rasio_jenis_kelamin', 'wisata', 'kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'berita'));
+        return view('profildesa', compact('wilayah', 'wilayaheach', 'wilayahNoKec', 'kel_umur_penduduk', 'rasio_jenis_kelamin', 'wisata', 'kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'berita', 'jenis_umkm'));
     }
 
     public function wisata($id_wilayah, $id_wisata){

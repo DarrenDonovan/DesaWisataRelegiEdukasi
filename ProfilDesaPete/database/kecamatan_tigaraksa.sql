@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2025 at 08:10 AM
+-- Generation Time: Mar 26, 2025 at 08:29 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -44,54 +44,6 @@ CREATE TABLE `about_us` (
 
 INSERT INTO `about_us` (`id_about`, `id_wilayah`, `visi`, `misi`, `gambar_about`, `bagan_organisasi`, `updated_by`, `updated_at`) VALUES
 (1, 13, '<p>Visi Kecamatan Tigaraksa bertujuan memberikan arah strategis bagi pembangunan daerah yang berkelanjutan sebagai berikut:s</p>\r\n<p>\"Terwujudnya kehidupan masyarakat Kecamatan Tigaraksa yang cerdas, religius, dan berwawasan kemandirian\"</p>\r\n<ul>\r\n<li>Cerdas: Masyarakat memiliki wawasan, keterampilan, serta pendidikan yang mendukung kualitas hidup</li>\r\n<li>Religius: Nilai-nilai agama menjadi landasan dalam kehidupan masyarakat dan kebijakan pemerintah</li>\r\n<li>Berwawasan Kemandirian: Masyarakat mampu berpikir kreatif, inovatif, serta mandiri dalam menghadapi tantangan</li>\r\n</ul>\r\n<p>Visi ini menjadi pedoman dalam menyusun program prioritas dan kegiatan pembangunan di Kecamatan Tigaraksa</p>', '<ul>\r\n<li>Meningkatkan fasilitas pendidikan dan layanan kesehatan masyarakat</li>\r\n<li>Mendorong pertumbuhan ekonomi berbasis UMKM sesuai potensi wilayah</li>\r\n<li>Mewujudkan kesejahteraan sosial dengan nilai-nilai religius dalam pemerintahan</li>\r\n<li>Mempercepat pembangunan infrastruktur jalan, jembatan, dan fasilitas umum</li>\r\n<li>Meningkatkan ketertiban dan keamanan melalui koordinasi yang efektif</li>\r\n<li>Mengembangkan kapasitas aparatur kecamatan, desa, dan kelurahan dalam pelayanan publik</li>\r\n</ul>\r\n<p>Misi ini menjadi pedoman utama dalam merancang kebijakan dan program pembangunan di Kecamatan Tigaraksa, Tangerang</p>', 'about_us/tentang-kami.jpg', 'bagan_organisasi/tigaraksa.jpg', 1, '2025-03-21 01:25:31');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `agama`
---
-
-CREATE TABLE `agama` (
-  `id_agama` int(11) NOT NULL,
-  `agama` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `agama`
---
-
-INSERT INTO `agama` (`id_agama`, `agama`) VALUES
-(1, 'Katolik'),
-(2, 'Kristen'),
-(3, 'Islam'),
-(4, 'Buddha'),
-(5, 'Hindu'),
-(6, 'Kong Hu Cu');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `agama_per_wilayah`
---
-
-CREATE TABLE `agama_per_wilayah` (
-  `id` int(11) NOT NULL,
-  `id_agama` int(11) NOT NULL,
-  `id_wilayah` int(11) NOT NULL,
-  `jumlah_penganut` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `agama_per_wilayah`
---
-
-INSERT INTO `agama_per_wilayah` (`id`, `id_agama`, `id_wilayah`, `jumlah_penganut`) VALUES
-(1, 1, 13, 10000),
-(2, 2, 13, 1234),
-(3, 3, 13, 40000),
-(4, 4, 13, 5900),
-(5, 5, 13, 10235),
-(6, 6, 13, 7000);
 
 -- --------------------------------------------------------
 
@@ -181,6 +133,31 @@ INSERT INTO `jenis_kelamin_per_wilayah` (`id_wilayah`, `penduduk_laki`, `pendudu
 (12, 4637, 4449, 3, '2025-03-23 23:05:47'),
 (14, 4185, 4149, NULL, NULL),
 (15, 8588, 8581, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jenis_umkm`
+--
+
+CREATE TABLE `jenis_umkm` (
+  `id_jenis_umkm` int(11) NOT NULL,
+  `jenis_umkm` varchar(255) NOT NULL,
+  `keterangan` longtext NOT NULL,
+  `gambar_jenis_umkm` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `jenis_umkm`
+--
+
+INSERT INTO `jenis_umkm` (`id_jenis_umkm`, `jenis_umkm`, `keterangan`, `gambar_jenis_umkm`) VALUES
+(1, 'Jajanan Pasar', 'Aneka jajanan pasar khas daerah dengan cita rasa tradisional', 'jenis_umkm/jajananPasar.jpg'),
+(2, 'Kerajinan Rotan', 'Kerajinan tangan khas daerah dari bahan alami', 'jenis_umkm/kerajinanRotan.jpg'),
+(3, 'Kue Tradisional', 'Aneka kue tradisional yang lezat dan khas', 'jenis_umkm/kueTradisional.jpg'),
+(4, 'Oleh-oleh Khas Daerah', 'Berbagai oleh-oleh khas daerah yang bisa dibawa pulang', 'jenis_umkm/olehOleh.jpg'),
+(5, 'Anyaman', 'Produk anyaman dari bahan alami berkualitas tinggi', 'jenis_umkm/anyaman.jpg'),
+(6, 'Gorengan', 'Berbagai macam gorengan unik dengan rasa yang unik dan khas', 'jenis_umkm/gorengan.jpg');
 
 -- --------------------------------------------------------
 
@@ -497,106 +474,6 @@ CREATE TABLE `migrations` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pekerjaan`
---
-
-CREATE TABLE `pekerjaan` (
-  `id_pekerjaan` int(11) NOT NULL,
-  `pekerjaan` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `pekerjaan`
---
-
-INSERT INTO `pekerjaan` (`id_pekerjaan`, `pekerjaan`) VALUES
-(1, 'Petani'),
-(2, 'Nelayan'),
-(3, 'Guru'),
-(4, 'Dokter'),
-(5, 'Pegawai Negeri'),
-(6, 'Wiraswasta');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pekerjaan_per_wilayah`
---
-
-CREATE TABLE `pekerjaan_per_wilayah` (
-  `id` int(11) NOT NULL,
-  `id_pekerjaan` int(11) NOT NULL,
-  `id_wilayah` int(11) NOT NULL,
-  `jumlah_pekerja` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `pekerjaan_per_wilayah`
---
-
-INSERT INTO `pekerjaan_per_wilayah` (`id`, `id_pekerjaan`, `id_wilayah`, `jumlah_pekerja`) VALUES
-(1, 1, 13, 1000),
-(2, 2, 13, 1200),
-(3, 3, 13, 800),
-(4, 4, 13, 300),
-(5, 5, 13, 1500),
-(6, 6, 13, 2000);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pendidikan`
---
-
-CREATE TABLE `pendidikan` (
-  `id_pendidikan` int(11) NOT NULL,
-  `pendidikan` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `pendidikan`
---
-
-INSERT INTO `pendidikan` (`id_pendidikan`, `pendidikan`) VALUES
-(1, 'Tidak Sekolah'),
-(2, 'SD'),
-(3, 'SMP'),
-(4, 'SMA'),
-(5, 'Diploma'),
-(6, 'Sarjana'),
-(7, 'Magister'),
-(8, 'Doktor');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pendidikan_per_wilayah`
---
-
-CREATE TABLE `pendidikan_per_wilayah` (
-  `id` int(11) NOT NULL,
-  `id_pendidikan` int(11) NOT NULL,
-  `id_wilayah` int(11) NOT NULL,
-  `jumlah_orang` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `pendidikan_per_wilayah`
---
-
-INSERT INTO `pendidikan_per_wilayah` (`id`, `id_pendidikan`, `id_wilayah`, `jumlah_orang`) VALUES
-(1, 1, 13, 600),
-(2, 2, 13, 4000),
-(3, 3, 13, 3500),
-(4, 4, 13, 2800),
-(5, 5, 13, 1500),
-(6, 6, 13, 2000),
-(7, 7, 13, 500),
-(8, 8, 13, 100);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `perangkat_kecamatan`
 --
 
@@ -639,6 +516,22 @@ INSERT INTO `perangkat_kecamatan` (`id_perangkat`, `nama`, `jabatan`, `link_face
 (21, 'Dewi Kartikasari', 'Kepala Kelurahan Kadu Agung', 'https://facebook.com/dewikartikasari', 'https://instagram.com/dewikartikasari', 'https://tiktok.com/@dewikartikasari', 14, 'perangkat_kecamatan/kepala_kaduagung.jpg', NULL, NULL),
 (22, 'Arif Ramadhan', 'Kepala Kelurahan Tigaraksa', 'https://facebook.com/ariframadhan', 'https://instagram.com/ariframadhan', 'https://tiktok.com/@ariframadhan', 15, 'perangkat_kecamatan/kepala_tigaraksa.jpg', NULL, NULL),
 (23, 'Adi Makmur Sejahtra', 'Kepala Desa Cileles', NULL, NULL, NULL, 12, 'perangkat_kecamatan/kepala_cileles.jpg', 1, '2025-03-24 06:03:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `umkm`
+--
+
+CREATE TABLE `umkm` (
+  `id_umkm` int(11) NOT NULL,
+  `nama_umkm` varchar(255) NOT NULL,
+  `keterangan` longtext NOT NULL,
+  `gambar_umkm` varchar(255) NOT NULL,
+  `id_jenis_umkm` int(11) NOT NULL,
+  `latitude` decimal(20,17) NOT NULL,
+  `longitude` decimal(20,17) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -700,7 +593,18 @@ INSERT INTO `user_log` (`id_log`, `user_id`, `email`, `action`, `time`) VALUES
 (11, 1, 'superadmin@admin.com', 'logout', '2025-03-23 22:57:00'),
 (12, 2, 'admin1@admin.com', 'login', '2025-03-23 22:57:09'),
 (13, 2, 'admin1@admin.com', 'logout', '2025-03-23 22:59:04'),
-(14, 3, 'admin2@admin.com', 'login', '2025-03-23 22:59:13');
+(14, 3, 'admin2@admin.com', 'login', '2025-03-23 22:59:13'),
+(15, 3, 'admin2@admin.com', 'logout', '2025-03-24 00:35:41'),
+(16, 1, 'superadmin@admin.com', 'login', '2025-03-24 00:35:50'),
+(17, 1, 'superadmin@admin.com', 'logout', '2025-03-24 01:03:25'),
+(18, 1, 'superadmin@admin.com', 'login', '2025-03-24 20:58:09'),
+(19, 2, 'admin1@admin.com', 'login', '2025-03-24 23:29:12'),
+(20, 2, 'admin1@admin.com', 'logout', '2025-03-25 01:05:20'),
+(21, 1, 'superadmin@admin.com', 'login', '2025-03-25 01:05:25'),
+(22, 1, 'superadmin@admin.com', 'login', '2025-03-25 20:19:34'),
+(23, 1, 'superadmin@admin.com', 'logout', '2025-03-25 23:09:43'),
+(24, 2, 'admin1@admin.com', 'login', '2025-03-25 23:09:52'),
+(25, 2, 'admin1@admin.com', 'logout', '2025-03-25 23:10:12');
 
 -- --------------------------------------------------------
 
@@ -769,7 +673,7 @@ CREATE TABLE `wisata` (
 
 INSERT INTO `wisata` (`id_wisata`, `id_wilayah`, `nama_tempat`, `keterangan`, `gambar_wisata`, `latitude`, `longitude`, `updated_by`, `updated_at`) VALUES
 (1, 8, 'Hutan Kota Tigaraksa', 'Hutan Kota Tigaraksa adalah ruang hijau yang terletak di pusat Pemerintahan Kabupaten Tangerang. Hutan kota ini menawarkan pemandangan alam yang asri dan menjadi tempat yang ideal untuk rekreasi dan bersantai. Pengunjung dapat menikmati berjalan-jalan di tengah pepohonan rindang, area piknik, serta berbagai fasilitas olahraga yang disediakan. Hutan Kota Tigaraksa juga berfungsi sebagai paru-paru kota, menyediakan udara segar bagi warga sekitar.', 'wisata/HutanKotaTigaraksa.jpg', -6.27653176143692450, 106.48042897326377000, NULL, NULL),
-(2, 6, 'Makam Syekh Mubarok', 'Makan Syekh Mubarok telah dijadikan sebagai destinasi wisata religi oleh Pemerintah Desa Tegalsari, Kecamatan Tigaraksa. Langkah ini diambil untuk memanfaatkan potensi ziarah yang sudah berlangsung sejak lama dan meningkatkan perekonomian masyarakat setempat.\r\n\r\n', 'wisata/MakamSyekhMubarok.jpg', -6.24639994718182000, 106.44647806188415000, NULL, NULL),
+(2, 11, 'Makam Syekh Mubarok', 'Makan Syekh Mubarok telah dijadikan sebagai destinasi wisata religi oleh Pemerintah Desa Tegalsari, Kecamatan Tigaraksa. Langkah ini diambil untuk memanfaatkan potensi ziarah yang sudah berlangsung sejak lama dan meningkatkan perekonomian masyarakat setempat.', 'wisata/MakamSyekhMubarok.jpg', -6.24639994718182000, 106.44647806188415000, 1, '2025-03-25 21:25:13'),
 (3, 15, 'Taman ide ', 'Taman Ide adalah sebuah kafe dengan konsep taman yang unik, terletak di Perumahan Triraksa Village 2, Kecamatan Tigaraksa, Kabupaten Tangerang. \r\nTempat ini menawarkan suasana outdoor yang asri dengan berbagai spot foto Instagramable, menjadikannya destinasi favorit bagi kaum milenial dan pecinta fotografi. \r\n', 'wisata/TamanIde.jpg', -6.26361653365111300, 106.45856173337036000, NULL, NULL),
 (4, 14, 'Tigaraksa Waterboom', 'Tigaraksa Waterboom adalah destinasi wisata air yang populer di Kabupaten Tangerang. Tempat ini menawarkan berbagai wahana air yang menyenangkan untuk keluarga, termasuk kolam renang, perosotan, ember tumpah, dan kolam arus mini. Fasilitas yang tersedia di sini meliputi kamar bilas, toilet, kantin, mushola, dan area parkir yang luas. Tigaraksa Waterboom juga memiliki lifeguard yang berjaga di beberapa titik untuk memastikan keamanan pengunjung, terutama anak-anak. Tiket masuknya terjangkau, dengan harga Rp 25.000 pada hari biasa dan Rp 30.000 pada akhir pekan.', 'wisata/TigaraksaWaterboom.jpg', -6.26238036130619900, 106.49107417326361000, NULL, NULL),
 (5, 14, 'Monumen Tigaraksa\r\n\r\n', 'Monumen Tigaraksa adalah tugu yang dibangun untuk mengenang jasa tiga perwira dari Kesultanan Banten. Monumen ini berbentuk tiga orang yang berdiri, terbuat dari material stainless steel dan tembaga, memberikan kesan modern namun tetap sarat dengan nilai sejarah. Monumen ini menjadi simbol perjuangan tiga ksatria yang bernama Aria Yudanegara, Aria Wangsakerta, dan Aria Santika, yang bertugas menyusun baris pertahanan dan perlawanan terhadap penjajah pada masa Kesultanan Banten\r\n\r\n', 'wisata/MonumenTigaraksa.jpg', -6.26207196130332800, 106.48139347326357000, NULL, NULL),
@@ -786,20 +690,6 @@ ALTER TABLE `about_us`
   ADD PRIMARY KEY (`id_about`),
   ADD KEY `FK_wilayah` (`id_wilayah`),
   ADD KEY `FK_id_user_updated_by` (`updated_by`);
-
---
--- Indexes for table `agama`
---
-ALTER TABLE `agama`
-  ADD PRIMARY KEY (`id_agama`);
-
---
--- Indexes for table `agama_per_wilayah`
---
-ALTER TABLE `agama_per_wilayah`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_id_agama` (`id_agama`),
-  ADD KEY `fk_agama_id_wilayah` (`id_wilayah`);
 
 --
 -- Indexes for table `berita`
@@ -822,6 +712,12 @@ ALTER TABLE `jenis_kegiatan`
 ALTER TABLE `jenis_kelamin_per_wilayah`
   ADD KEY `FK_wilayah_jenis_kelamin` (`id_wilayah`),
   ADD KEY `FK_jeniskel_updated_by` (`updated_by`);
+
+--
+-- Indexes for table `jenis_umkm`
+--
+ALTER TABLE `jenis_umkm`
+  ADD PRIMARY KEY (`id_jenis_umkm`);
 
 --
 -- Indexes for table `kegiatan`
@@ -847,38 +743,19 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pekerjaan`
---
-ALTER TABLE `pekerjaan`
-  ADD PRIMARY KEY (`id_pekerjaan`);
-
---
--- Indexes for table `pekerjaan_per_wilayah`
---
-ALTER TABLE `pekerjaan_per_wilayah`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_id_wilayah_pekerjaan` (`id_wilayah`),
-  ADD KEY `FK_id_pekerjaan` (`id_pekerjaan`);
-
---
--- Indexes for table `pendidikan`
---
-ALTER TABLE `pendidikan`
-  ADD PRIMARY KEY (`id_pendidikan`);
-
---
--- Indexes for table `pendidikan_per_wilayah`
---
-ALTER TABLE `pendidikan_per_wilayah`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `perangkat_kecamatan`
 --
 ALTER TABLE `perangkat_kecamatan`
   ADD PRIMARY KEY (`id_perangkat`),
   ADD KEY `FK_wilayah_perangkat_kec` (`id_wilayah`),
   ADD KEY `FK_perangkat_updated` (`updated_by`);
+
+--
+-- Indexes for table `umkm`
+--
+ALTER TABLE `umkm`
+  ADD PRIMARY KEY (`id_umkm`),
+  ADD KEY `FK_id_jenis_umkm` (`id_jenis_umkm`);
 
 --
 -- Indexes for table `users`
@@ -919,18 +796,6 @@ ALTER TABLE `about_us`
   MODIFY `id_about` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `agama`
---
-ALTER TABLE `agama`
-  MODIFY `id_agama` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `agama_per_wilayah`
---
-ALTER TABLE `agama_per_wilayah`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
 -- AUTO_INCREMENT for table `berita`
 --
 ALTER TABLE `berita`
@@ -941,6 +806,12 @@ ALTER TABLE `berita`
 --
 ALTER TABLE `jenis_kegiatan`
   MODIFY `id_jenis_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `jenis_umkm`
+--
+ALTER TABLE `jenis_umkm`
+  MODIFY `id_jenis_umkm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `kegiatan`
@@ -961,34 +832,16 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `pekerjaan`
---
-ALTER TABLE `pekerjaan`
-  MODIFY `id_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `pekerjaan_per_wilayah`
---
-ALTER TABLE `pekerjaan_per_wilayah`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `pendidikan`
---
-ALTER TABLE `pendidikan`
-  MODIFY `id_pendidikan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `pendidikan_per_wilayah`
---
-ALTER TABLE `pendidikan_per_wilayah`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
 -- AUTO_INCREMENT for table `perangkat_kecamatan`
 --
 ALTER TABLE `perangkat_kecamatan`
   MODIFY `id_perangkat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `umkm`
+--
+ALTER TABLE `umkm`
+  MODIFY `id_umkm` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -1000,7 +853,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `wilayah`
@@ -1024,13 +877,6 @@ ALTER TABLE `wisata`
 ALTER TABLE `about_us`
   ADD CONSTRAINT `FK_id_user_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `FK_wilayah` FOREIGN KEY (`id_wilayah`) REFERENCES `wilayah` (`id_wilayah`);
-
---
--- Constraints for table `agama_per_wilayah`
---
-ALTER TABLE `agama_per_wilayah`
-  ADD CONSTRAINT `FK_id_agama` FOREIGN KEY (`id_agama`) REFERENCES `agama` (`id_agama`),
-  ADD CONSTRAINT `fk_agama_id_wilayah` FOREIGN KEY (`id_wilayah`) REFERENCES `wilayah` (`id_wilayah`);
 
 --
 -- Constraints for table `berita`
@@ -1063,18 +909,17 @@ ALTER TABLE `kel_umur_per_wilayah`
   ADD CONSTRAINT `fk_id_wilayah_kel_umur` FOREIGN KEY (`id_wilayah`) REFERENCES `wilayah` (`id_wilayah`);
 
 --
--- Constraints for table `pekerjaan_per_wilayah`
---
-ALTER TABLE `pekerjaan_per_wilayah`
-  ADD CONSTRAINT `FK_id_pekerjaan` FOREIGN KEY (`id_pekerjaan`) REFERENCES `pekerjaan` (`id_pekerjaan`),
-  ADD CONSTRAINT `FK_id_wilayah_pekerjaan` FOREIGN KEY (`id_wilayah`) REFERENCES `wilayah` (`id_wilayah`);
-
---
 -- Constraints for table `perangkat_kecamatan`
 --
 ALTER TABLE `perangkat_kecamatan`
   ADD CONSTRAINT `FK_perangkat_updated` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `FK_wilayah_perangkat_kec` FOREIGN KEY (`id_wilayah`) REFERENCES `wilayah` (`id_wilayah`);
+
+--
+-- Constraints for table `umkm`
+--
+ALTER TABLE `umkm`
+  ADD CONSTRAINT `FK_id_jenis_umkm` FOREIGN KEY (`id_jenis_umkm`) REFERENCES `jenis_umkm` (`id_jenis_umkm`);
 
 --
 -- Constraints for table `user_log`
