@@ -295,14 +295,32 @@
 /* Responsif */
 @media (max-width: 768px) {
     .explore-map {
+        display: flex;
         flex-direction: column;
+        align-items: center;
         text-align: center;
+        padding: 15px;
+        overflow: hidden; 
     }
 
-    .map-placeholder {
-        height: 250px;
+    .text-container {
+        max-width: 90%;
+        margin-bottom: 15px;
     }
-  } 
+
+    .map-container {
+    width: 90%;
+    max-width: 100%;
+    max-height: 300px;
+    }
+
+    #map {
+        height: 300px !important; /* Biar lebih pas di layar kecil */
+        width: 100% !important;
+        border-radius: 10px;
+    }
+}
+
     /* CONTENT PAKETAN */
       .contentPaketan {
         display: grid;
@@ -485,8 +503,6 @@
  </script>
  
  </section>
- 
- 
        <!-- CONTAINER PAKETAN -->
        <div class="mx-auto text-center mb-5">
          <h5 class="section-title px-3"> Paket Wisata</h5>
