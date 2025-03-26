@@ -100,7 +100,6 @@
                 /* KEGIATAN */
                 .nav.nav-pills {
                     font-size: 15px;
-                    border: 2px solid blue;
                 }
             }
             @media (min-width: 310px) and (max-width: 469px) {
@@ -163,12 +162,17 @@
 
                 /* BERITA */
                 .col-12.col-sm-6 {
-                    width: 300px;
-                    margin-left: 11px !important;
+                    /* border: 2px solid rebeccapurple; */
+                    width: 250px !important;
+                    /* margin: 2px !important; */
+                }
+                /* galery */
+                .tab-content {
+                    padding: 0px !important;
                 }
                 
             }
-            @media (min-width: 322px) and (max-width: 380px) {
+            @media (max-width: 380px) {
                 /* NAVBAR */
                 .navbar-brand .fa { 
                     font-size: 20px !important; /*logo*/
@@ -193,6 +197,10 @@
                 
                 .collapse {
                     font-size: 20px;
+                }
+                /* GALERY */
+                .tab-content {
+                    padding: 5px !important;
                 }
                 /* FOOTER */
                 .footer {
@@ -227,7 +235,7 @@
                 /* BERITA */
                 .col-12.col-sm-6 {
                     width: 300px;
-                    margin-left: 40px !important;
+                     margin: 25px !important; 
                 }
                 
             }
@@ -285,6 +293,9 @@
                     height: 50px;
                 }
                 /* BERITA */
+                .container-fluid.mt-5 {
+                    padding: 25px !important;
+                }
                 .mx-auto h5{
                 font-size: 15px;
                 }
@@ -306,10 +317,13 @@
                 }
                 .col-12.col-sm-6 {
                     width: 300px;
-                    margin-left: 50px;
+                    margin-left: 60px;
                 }
 
                 /* KEGIATAN */
+                .tab-content {
+                    padding: 5px !important;
+                }
                 .nav-pills span{
                     font-size: 15px !important;
                 }
@@ -361,11 +375,18 @@
 
                 .navbar-nav .nav-item {
                     font-size: 30px !important;
-                    /* padding: 50px 10px !important; */
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
-                .navbar-nav .nav-link {
+                .navbar-nav .nav-item.dropdown .nav-link{
                     font-size: 30px !important;
-                    height: 180px !important;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .dropdown-menu {
+                    font-size: 24px;
                 }
                 /* HERO  SECTION */
                 .p-3 h4{
@@ -379,13 +400,11 @@
                 }
                 .p-3 {
                     max-width: 90% !important;
-                    border: 2px solid blue;
                 }
                  /* SEARCH */
                  .container-fluid.w-100.search-bar {
                     width: 900px !important;
                     height: auto;
-                    border: 2px solid red;
                     margin-top: 80px !important;
                 }
                 .container-fluid.w-100.search-bar .btn {
@@ -394,19 +413,21 @@
                 }
                 .form-control {
                     height: 70px;
-                    margin-top: -10px;
+                    margin-top: -7px;
                     font-size: 25px;
+                    padding-right: 140px !important;
                 }
                 .position-relative.rounded-pill {
                     height: 90px;
                 }
                 /* BERITA */
                 .container-fluid.mt-5 {
-                    border: 2px solid red;
-               
+                    width: 100%;
+                    padding: 50px;
                 }
                 .mx-auto {
-                    border: 2px solid blue;
+                    /* border: 2px solid blue; */
+                    margin-top: 150px;
                 }
                 .mx-auto h5{
                 font-size: 35px;
@@ -424,20 +445,91 @@
                 }
 
                 .btn-primary {
-                    font-size: 20px;
+                    font-size: 25px;
                     padding: 8px 12px; /* Kurangi padding tombol */
                 }
+                p.text-muted {
+                    font-size: 1.5rem;
+                }
                 .col-12.col-sm-6 {
-                    width: 500px;
+                    width: 700px;
                     margin-left: 50px;
                 }
-            
+                /* KEGIATAN */
+                .container-fluid.destination.py-5 {
+                    width: 90% !important;
+                }
+                
+                .nav.nav-pills {
+                    width: 90% !important;
+                    /* margin-left: 125px; */
+                }
+                .nav.nav-pills .nav-item {
+                    width: 15%;
+                    /* height: 2rem; */
+                    font-size: 28px;
+                    /* border: 2px solid salmon; */
+                }
+                .nav.nav-pills .nav-item .d-flex {
+                    display: flex;
+                    justify-content: center;
+                }
+                /* galery */
+                .destination-img {
+                    width: 100%;
+                }
+                .destination-overlay.p-4.text-start .text-white {
+                    font-size: 30px !important;
+                }
+                .modal.fade {
+                    border: 2px solid blue;
+                    
+                }
+                .modal-lg {
+                    max-width: 60% !important; /* Perbesar modal */
+                }
+                .modal-body .col-md-4 img {
+                    width: 150% !important; /* Bisa lebih dari 100% */
+                    height: auto; /* Agar proporsi tetap */
+                }
+                .modal-title {
+                    font-size: 40px;
+                }
 
+
+                /* FOOTER */
+                .footer {
+                    padding: 20px 10px; /* Mengurangi padding agar lebih pas */
+                }
+                .footer-item {
+                    width: 500px;
+                    gap: 20px;
+                }
+                .footer-item h4 {
+                    font-size: 35px; /* Mengecilkan ukuran heading */
+                }
+
+                .footer-item a {
+                    font-size: 30px; /* Mengecilkan ukuran teks */
+                    text-wrap: nowrap;
+
+                }
+
+                .footer-item i {
+                    font-size: 35px; /* Mengecilkan ikon */
+                }
+
+                .footer .btn-square {
+                    width: 60px; /* Mengecilkan tombol sosial media */
+                    height: 60px;
+                    font-size: 40px;
+                    padding: 4px;
+                }
             } 
         </style>
     </head>
 
-    <body style="border: 2px solid blue;">
+    <body>
 
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -552,8 +644,8 @@
        
         </div>
         <!-- BERITA -->
-        <div class="container-fluid mt-5">
-            <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+        <div class="container-fluid mt-5" style="border: 2px solid red; padding: 100px;">
+            <div class="mx-auto text-center mb-5" style="max-width: 800px;">
                 <h5 class="section-title px-3">Highlight</h5>
                 <h1 class="mb-0">Berita Terbaru Kecamatan Tigaraksa</h1>
             </div>
@@ -611,7 +703,7 @@
 
         <!-- Kegiatan Start -->
         <div class="container-fluid destination py-5">
-            <div class="container py-5">
+            <div class="container-fluid py-5">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                     <h5 class="section-title px-3">Galeri</h5>
                     <h1 class="mb-0">Kegiatan</h1>
@@ -665,7 +757,7 @@
                         </ul>
                     </div>
                     <!-- Pembangunan -->
-                    <div class="tab-content">
+                    <div class="tab-content" style="border: 2px solid blue; padding: 50px;">
                         <div id="tab-1" class="tab-pane fade show p-0 active">
                             <div class="row g-4">
                                 <div class="col-xl-8">
@@ -685,7 +777,7 @@
                                         </div>
 
                                         <!-- galeri pas di klik -->
-                                        <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true" style="padding: 150px;">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
