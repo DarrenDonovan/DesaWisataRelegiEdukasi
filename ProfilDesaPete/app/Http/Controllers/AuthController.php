@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     function login(){ //sesuaikan nama function dengan yang dibuat pada route
-        return view('login');
+        return view('admin.login');
     }
 
     function authenticate(Request $request){

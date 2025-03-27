@@ -462,6 +462,7 @@
 <div class="umkm-popup" id="umkm-popup">
     <h2 id="umkm-popup-title"></h2>
     <p id="umkm-popup-content"></p>
+    <!-- MAP -->
     <button class="close-btn" onclick="closeUmkmPopup()">Tutup</button>
 </div>
 

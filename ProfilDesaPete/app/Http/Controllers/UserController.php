@@ -65,7 +65,7 @@ class UserController extends Controller
             'Perempuan' => $data_jenis_kelamin->penduduk_perempuan,
         ];
 
-        return view('about', compact('wilayah', 'wilayahNoKec', 'about_us', 'camat', 'sekretaris', 'kasi', 'kepala_desa', 'wilayahkecamatan', 'data_jenis_kelamin', 'rasio_jenis_kelamin'));
+        return view('public.about', compact('wilayah', 'wilayahNoKec', 'about_us', 'camat', 'sekretaris', 'kasi', 'kepala_desa', 'wilayahkecamatan', 'data_jenis_kelamin', 'rasio_jenis_kelamin'));
     }
 
     public function berita(){
@@ -83,7 +83,7 @@ class UserController extends Controller
             ->select('berita.id_berita', 'berita.judul_berita', 'berita.konten_berita', 'berita.gambar_berita', 'berita.penulis_berita', 'berita.tanggal_berita', 'berita.id_wilayah', 'wilayah.nama_wilayah')
             ->paginate(6);
 
-        return view('berita', compact('wilayah', 'berita', 'wilayahNoKec'));
+        return view('public.berita', compact('wilayah', 'berita', 'wilayahNoKec'));
     }
 
     public function detailberita($id){
@@ -109,7 +109,7 @@ class UserController extends Controller
             ->limit(5)
             ->get();
         
-        return view('detailberita', compact('wilayah', 'berita', 'beritaterbaru', 'wilayahNoKec'));
+        return view('public.detailberita', compact('wilayah', 'berita', 'beritaterbaru', 'wilayahNoKec'));
     }
 
     public function infografis(){
@@ -148,7 +148,7 @@ class UserController extends Controller
             ->where('jenis_wilayah', 'Kecamatan')
             ->get();
 
-        return view('infografis', compact('wilayah', 'wilayahNoKec', 'kel_umur_kecamatan', 'jenis_kelamin', 'rasio_jenis_kelamin'));
+        return view('public.infografis', compact('wilayah', 'wilayahNoKec', 'kel_umur_kecamatan', 'jenis_kelamin', 'rasio_jenis_kelamin'));
     }
 
     public function maps(){
@@ -166,7 +166,7 @@ class UserController extends Controller
             ->where('jenis_wilayah', '!=', 'Kecamatan')
             ->get();
 
-        return view('maps', compact('wilayah', 'wilayahNoKec', 'lokasi_wilayah'));
+        return view('public.maps', compact('wilayah', 'wilayahNoKec', 'lokasi_wilayah'));
     }
 
     public function profilDesa($id){
@@ -238,7 +238,7 @@ class UserController extends Controller
         $jenis_umkm = DB::table('jenis_umkm')
             ->get();
             
-        return view('profildesa', compact('wilayah', 'wilayaheach', 'wilayahNoKec', 'kel_umur_penduduk', 'rasio_jenis_kelamin', 'wisata', 'kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'berita', 'jenis_umkm'));
+        return view('public.profildesa', compact('wilayah', 'wilayaheach', 'wilayahNoKec', 'kel_umur_penduduk', 'rasio_jenis_kelamin', 'wisata', 'kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'berita', 'jenis_umkm'));
     }
 
     public function wisata($id_wilayah, $id_wisata){
@@ -249,7 +249,7 @@ class UserController extends Controller
             ->where('wisata.id_wisata', $id_wisata)
             ->first();
         
-        return view('wisata', compact('wisata'));
+        return view('public.wisata', compact('wisata'));
     }
 
     public function rute($id){
@@ -259,6 +259,6 @@ class UserController extends Controller
             ->where('wisata.id_wisata', $id)
             ->first();
         
-        return view('rute', compact('wisata'));
+        return view('public.rute', compact('wisata'));
     }
 }

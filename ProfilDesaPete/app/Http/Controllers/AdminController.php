@@ -217,7 +217,7 @@ class AdminController extends Controller{
             ->first();
         
                     
-        return view('admin', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'wisata', 'jumlah_penduduk_per_wilayah', 'kel_umur_penduduk', 'wilayaheach', 'jumlah_penduduk', 'data_jenis_kelamin', 'rasio_jenis_kelamin', 'total_data_jenis_kelamin'));
+        return view('admin.dashboard', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'users', 'about', 'perangkat_kecamatan', 'berita', 'wilayahNoKec', 'wisata', 'jumlah_penduduk_per_wilayah', 'kel_umur_penduduk', 'wilayaheach', 'jumlah_penduduk', 'data_jenis_kelamin', 'rasio_jenis_kelamin', 'total_data_jenis_kelamin'));
     }
 
 
@@ -252,7 +252,7 @@ class AdminController extends Controller{
             ->limit(3)
             ->get();
 
-        return view('index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'berita', 'wilayahNoKec'));
+        return view('public.index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'berita', 'wilayahNoKec'));
     }
 
     //Create Admin
@@ -270,7 +270,7 @@ class AdminController extends Controller{
             ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah')
             ->get();
 
-        return view('createadmin', compact('users','wilayah'));
+        return view('admin.createadmin', compact('users','wilayah'));
     }
 
 
