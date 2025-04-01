@@ -27,6 +27,106 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+        <style> 
+ /* Hilangkan margin & padding global untuk menghindari area putih di pinggir */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Pastikan footer dan copyright section full width */
+.footer, 
+.container-fluid.copyright {
+    width: 100vw;
+    margin: 0;
+    padding: 50px 10px; /* Disesuaikan biar lebih responsif */
+}
+
+/* Atur ulang container di dalam footer */
+.footer .container, 
+.container-fluid.copyright .container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 15px;
+}
+
+/* Pastikan tidak ada horizontal scroll */
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+/* Hapus kemungkinan margin yang bikin efek putih */
+.row {
+    margin: 0 !important;
+}
+
+/* Fix untuk elemen yang bisa menyebabkan overflow */
+.container-fluid {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* RESPONSIVE SETTINGS */
+@media (max-width: 380px) {
+    /* FOOTER */
+    .footer {
+        padding: 20px 10px; /* Mengurangi padding agar lebih pas */
+    }
+
+    .footer-item h4 {
+        font-size: 16px; /* Mengecilkan ukuran heading */
+    }
+
+    .footer-item a {
+        font-size: 14px; /* Mengecilkan ukuran teks */
+    }
+
+    .footer-item i {
+        font-size: 14px; /* Mengecilkan ikon */
+    }
+
+    .footer .btn-square {
+        width: 28px; /* Mengecilkan tombol sosial media */
+        height: 28px;
+        font-size: 12px;
+        padding: 4px;
+    }
+
+    /* COPYRIGHT */
+    .container-fluid.copyright .container .col-md-6 {
+        font-size: 12px;
+    }
+    .container-fluid.copyright .container .col-md-6 i, .text-white {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 425px) {
+    .footer {
+        padding: 15px 10px;
+    }
+}
+
+@media (max-width: 450px) {
+    .footer-item h4 {
+        font-size: 14px;
+    }
+
+    .footer-item a {
+        font-size: 12px;
+    }
+
+    .footer .btn-square {
+        width: 25px;
+        height: 25px;
+        font-size: 10px;
+    }
+}
+
+        </style>
+        
     </head>
 
     <body>
