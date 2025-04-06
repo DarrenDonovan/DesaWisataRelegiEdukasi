@@ -73,7 +73,503 @@
             flex: 1;
             min-width: 300px;
         }
+        .navbar {
+                position: fixed !important; /* Pastikan navbar tetap fixed */
+                top: -1px;
+                left: 0;
+                width: 100%;
+                /* border: 2px solid red;  */
+                height: fit-content;
+                }
 
+                
+
+            .navbar-brand .m-0 {
+                font-size: 28px;
+            }
+            @media (max-width: 992px) {
+
+                .navbar-brand .fa {
+                    font-size: 25px !important;
+                }
+                .navbar-brand .subtext {
+                    margin-left: 35px !important;
+                }
+                .navbar-toggler.scrolled {
+                    color: #13357b !important;
+                    border-color: #13357b !important;
+                }
+
+                .navbar-brand h1.scrolled {
+                    color: #13357b !important;
+                    border-color: #13357b !important;
+                }
+
+                .navbar-brand h1 .subtext.scrolled {
+                    color: #13357b !important;
+                    border-color: #13357b !important;
+                    
+                }
+                .navbar-nav {
+                    background-color: #ffff;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+                .navbar-brand h1 {
+                    color: #ffff !important;
+                }
+                .navbar-toggler  {
+                    color: #ffff !important;
+                    border-color: #ffff !important;
+                }
+                /* HERO SECTION */
+                .p-3 h1{
+                    font-size: 50px;
+                }
+                .p-3 p {
+                    font-size: 18px !important;
+                }
+                /* SEARCH */
+                .container-fluid.w-100.search-bar {
+                    width: 350px !important;
+                }
+                .container-fluid.w-100.search-bar .btn {
+                    font-size: 13px;
+                }
+                /* KEGIATAN */
+                .nav.nav-pills {
+                    font-size: 15px;
+                }
+            }
+            @media (min-width: 310px) and (max-width: 469px) {
+                /* FOOTER */
+                .footer {
+                    padding: 20px 10px; /* Mengurangi padding agar lebih pas */
+                }
+
+                .footer-item h4 {
+                    font-size: 12px; /* Mengecilkan ukuran heading */
+                }
+
+                .footer-item a {
+                    font-size: 12px; /* Mengecilkan ukuran teks */
+                }
+
+                .footer-item i {
+                    font-size: 12px; /* Mengecilkan ikon */
+                }
+
+                .footer .btn-square {
+                    width: 20px; /* Mengecilkan tombol sosial media */
+                    height: 20px;
+                    font-size: 12px;
+                    padding: 4px;
+                }
+                /* COPYRIGHT */
+                .container-fluid.copyright .container .col-md-6 {
+                    font-size: 12px;
+                }
+                .container-fluid.copyright .container .col-md-6 i, .text-white {
+                    font-size: 12px;
+                }
+            }
+            @media (max-width: 321px){
+                .navbar-brand .fa { 
+                    font-size: 15px !important; 
+                    margin-right: 10px !important;
+                }
+                .navbar-brand h1 {
+                    font-size: 20px !important;
+                    color: #ffff !important;
+                }
+                .navbar-brand h1 .subtext {
+                    font-size: 15px !important;
+                    margin-left: 25px !important;
+                    color: #ffff !important;
+                }
+
+                .navbar-toggler  {
+                    font-size: 15px;
+                    padding: 0.3rem 0.6rem !important; 
+                    color: #ffff !important;
+                    border-color: #ffff !important;
+                }
+                
+                .collapse {
+                    font-size: 20px;
+                }
+
+                /* BERITA */
+                .col-12.col-sm-6 {
+                    /* border: 2px solid rebeccapurple; */
+                    width: 250px !important;
+                    /* margin: 2px !important; */
+                }
+                /* galery */
+                .tab-content {
+                    padding: 0px !important;
+                }
+                
+            }
+            @media (max-width: 380px) {
+                /* NAVBAR */
+                .navbar-brand .fa { 
+                    font-size: 20px !important; /*logo*/
+                    margin-right: 10px !important;
+                }
+                .navbar-brand h1 {
+                    font-size: 20px !important;
+                    color: #ffff !important;
+                }
+                .navbar-brand h1 .subtext {
+                    font-size: 15px !important;
+                    margin-left: 25px !important;
+                    color: #ffff !important;
+                }
+
+                .navbar-toggler  {
+                    font-size: 15px;
+                    padding: 0.3rem 0.6rem !important; 
+                    color: #ffff !important;
+                    border-color: #ffff !important;
+                }
+                
+                .collapse {
+                    font-size: 20px;
+                }
+                /* GALERY */
+                .tab-content {
+                    padding: 5px !important;
+                }
+                /* FOOTER */
+                .footer {
+                    padding: 20px 10px; /* Mengurangi padding agar lebih pas */
+                }
+
+                .footer-item h4 {
+                    font-size: 16px; /* Mengecilkan ukuran heading */
+                }
+
+                .footer-item a {
+                    font-size: 14px; /* Mengecilkan ukuran teks */
+                }
+
+                .footer-item i {
+                    font-size: 14px; /* Mengecilkan ikon */
+                }
+
+                .footer .btn-square {
+                    width: 28px; /* Mengecilkan tombol sosial media */
+                    height: 28px;
+                    font-size: 12px;
+                    padding: 4px;
+                }
+                /* COPYRIGHT */
+                .container-fluid.copyright .container .col-md-6 {
+                    font-size: 12px;
+                }
+                .container-fluid.copyright .container .col-md-6 i, .text-white {
+                    font-size: 12px;
+                }
+                /* BERITA */
+                .col-12.col-sm-6 {
+                    width: 300px;
+                     margin: 25px !important; 
+                }
+                
+            }
+
+            @media (max-width: 425px) {
+                .nav.nav-pills {
+                    /* justify-content: flex-start;
+                    align-items: flex-start; */
+                    flex-wrap: nowrap;
+                    overflow-x: scroll;
+                    /* border: 1px solid red; */
+                    max-width: 100%;
+                    /* text-align: left !important; */
+                    justify-content: flex-start !important;
+                }
+                .col-12.col-sm-6 {
+                    width: 300px;
+                    margin-left: 50px;
+                }
+            }
+            @media (max-width: 450px){
+                .navbar-brand .m-0 {
+                    font-size: 23px;
+                }
+                .navbar-brand .subtext {
+                    font-size: 18px;
+                    margin-left: 31px;
+                }
+                .navbar-brand .fa {
+                    font-size: 20px !important;
+                }
+                /* HERO  SECTION */
+                .p-3 h4{
+                    font-size: 15px;
+                }
+                .p-3 h1 {
+                    font-size: 25px;
+                }
+                .fs-5 {
+                    font-size: 15px !important;
+                }
+                /* SEARCH */
+                .container-fluid.w-100.search-bar {
+                    width: 300px !important;
+                }
+                .container-fluid.w-100.search-bar .btn {
+                    font-size: 10px;
+                    margin-bottom: 3px;
+                }
+                .form-control {
+                    height: 35px;
+                    margin-top: -10px;
+                }
+                .position-relative.rounded-pill {
+                    height: 50px;
+                }
+                /* BERITA */
+                .container-fluid.mt-5 {
+                    padding: 25px !important;
+                }
+                .mx-auto h5{
+                font-size: 15px;
+                }
+                .mx-auto h1 {
+                font-size: 19px;
+                }
+
+                .card-title {
+                    font-size: 15px; /* Sesuaikan ukuran judul berita */
+                }
+
+                .card-text {
+                    font-size: 13px; /* Kecilkan teks isi berita */
+                }
+
+                .btn-primary {
+                    font-size: 13px;
+                    padding: 8px 12px; /* Kurangi padding tombol */
+                }
+                .col-12.col-sm-6 {
+                    width: 300px;
+                    margin-left: 60px;
+                }
+
+                /* KEGIATAN */
+                .tab-content {
+                    padding: 5px !important;
+                }
+                .nav-pills span{
+                    font-size: 15px !important;
+                }
+            }
+
+            @media (min-width: 551) and (max-width: 770px){
+                
+                 /* SEARCH */
+                 .container-fluid.w-100.search-bar {
+                    width: 400px !important;
+                }
+                .container-fluid.w-100.search-bar .btn {
+                    font-size: 10px;
+                }
+                .form-control {
+                    height: 35px;
+                    margin-top: -10px;
+                }
+                .position-relative.rounded-pill {
+                    height: 50px;
+                }
+                
+            }
+            
+            @media screen and (max-width: 1120px) {
+                .navbar {
+                    padding-inline: 30px !important;
+                }
+            }
+
+            @media (min-width: 2560px) {
+                /* NAVBAR */
+                .navbar {
+                    height: 180px;
+                }
+                .navbar.navbar-expand-lg.navbar-light {
+                    height: 180px !important;
+                }
+                .navbar-brand .m-0{
+                    font-size: 50px;
+                }
+                .navbar-brand .subtext{ 
+                    font-size: 30px;
+                }
+                .navbar-nav {
+                   /* border: 2px solid blue; */
+                   height: 180px;
+                }
+
+                .navbar-nav .nav-item {
+                    font-size: 30px !important;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .navbar-nav .nav-item.dropdown .nav-link{
+                    font-size: 30px !important;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .dropdown-menu {
+                    font-size: 24px;
+                }
+                /* HERO  SECTION */
+                .p-3 h4{
+                    font-size: 40px;
+                }
+                .p-3 h1 {
+                    font-size: 100px;
+                }
+                .fs-5 {
+                    font-size: 30px !important;
+                }
+                .p-3 {
+                    max-width: 90% !important;
+                }
+                 /* SEARCH */
+                 .container-fluid.w-100.search-bar {
+                    width: 900px !important;
+                    height: auto;
+                    margin-top: 80px !important;
+                }
+                .container-fluid.w-100.search-bar .btn {
+                    font-size: 20px;
+                    margin-right: 15px !important;
+                }
+                .form-control {
+                    height: 70px;
+                    margin-top: -7px;
+                    font-size: 25px;
+                    padding-right: 140px !important;
+                }
+                .position-relative.rounded-pill {
+                    height: 90px;
+                }
+                /* BERITA */
+                .container-fluid.mt-5 {
+                    width: 100%;
+                    padding: 50px;
+                }
+                .mx-auto {
+                    /* border: 2px solid blue; */
+                    margin-top: 150px;
+                }
+                .mx-auto h5{
+                font-size: 35px;
+                }
+                .mx-auto h1 {
+                font-size: 50px;
+                }
+
+                .card-title {
+                    font-size: 40px; /* Sesuaikan ukuran judul berita */
+                }
+
+                .card-text {
+                    font-size: 25px; /* Kecilkan teks isi berita */
+                }
+
+                .btn-primary {
+                    font-size: 25px;
+                    padding: 8px 12px; /* Kurangi padding tombol */
+                }
+                p.text-muted {
+                    font-size: 1.5rem;
+                }
+                .col-12.col-sm-6 {
+                    width: 700px;
+                    margin-left: 50px;
+                }
+                /* KEGIATAN */
+                .container-fluid.destination.py-5 {
+                    width: 90% !important;
+                }
+                
+                .nav.nav-pills {
+                    width: 90% !important;
+                    /* margin-left: 125px; */
+                }
+                .nav.nav-pills .nav-item {
+                    width: 15%;
+                    /* height: 2rem; */
+                    font-size: 28px;
+                    /* border: 2px solid salmon; */
+                }
+                .nav.nav-pills .nav-item .d-flex {
+                    display: flex;
+                    justify-content: center;
+                }
+                /* galery */
+                .destination-img {
+                    width: 100%;
+                }
+                .destination-overlay.p-4.text-start .text-white {
+                    font-size: 30px !important;
+                }
+                .modal.fade {
+                    border: 2px solid blue;
+                    
+                }
+                .modal-lg {
+                    max-width: 60% !important; /* Perbesar modal */
+                }
+                .modal-body .col-md-4 img {
+                    width: 150% !important; /* Bisa lebih dari 100% */
+                    height: auto; /* Agar proporsi tetap */
+                }
+                .modal-title {
+                    font-size: 40px;
+                }
+
+
+                /* FOOTER */
+                .footer {
+                    padding: 20px 10px; /* Mengurangi padding agar lebih pas */
+                }
+                .footer-item {
+                    width: 500px;
+                    gap: 20px;
+                }
+                .footer-item h4 {
+                    font-size: 35px; /* Mengecilkan ukuran heading */
+                }
+
+                .footer-item a {
+                    font-size: 30px; /* Mengecilkan ukuran teks */
+                    text-wrap: nowrap;
+
+                }
+
+                .footer-item i {
+                    font-size: 35px; /* Mengecilkan ikon */
+                }
+
+                .footer .btn-square {
+                    width: 60px; /* Mengecilkan tombol sosial media */
+                    height: 60px;
+                    font-size: 40px;
+                    padding: 4px;
+                }
+            } 
+            @media (max-width: 576px) {
+                .bg-breadcrumb h3 {
+                    font-size: 2rem !important;
+                }
+            }
         </style>
 
     </head>
@@ -87,20 +583,6 @@
             </div>
         </div>
         <!-- Spinner End -->
-
-        <!-- Topbar Start -->
-        <div class="container-fluid bg-primary px-5 d-none d-lg-block">
-            <div class="row gx-0">
-                <div class="col-lg-8 text-center text-lg-start mb-2 mb-lg-0">
-                </div>
-                <div class="col-lg-4 text-center text-lg-end">
-                    <div class="d-inline-flex align-items-center" style="height: 45px;">
-                        <a href="login.html"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Topbar End -->
 
         <!-- Navbar & Hero Start -->
         <div class="container-fluid position-relative p-0">

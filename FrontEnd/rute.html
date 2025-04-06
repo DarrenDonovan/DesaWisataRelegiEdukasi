@@ -242,6 +242,63 @@
         } else {
             alert("Geolocation tidak didukung di browser ini.");
         }
+
+        async function geocodeLocation(address) {
+        const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`);
+        const data = await response.json();
+        if (data && data.length > 0) {
+            return {
+                lat: parseFloat(data[0].lat),
+                lon: parseFloat(data[0].lon)
+            };
+        } else {
+            return null;
+        }
+    }
+
+    document.getElementById("search-route").addEventListener("click", async function() {
+        const startInput = document.getElementById("start-location").value;
+        const endInput = document.getElementById("end-location").value;
+
+        if (!startInput || !endInput) {
+            alert("Mohon isi kedua lokasi!");
+            return;
+        }
+
+        const startCoords = await geocodeLocation(startInput);
+        const endCoords = await geocodeLocation(endInput);
+
+        if (!startCoords || !endCoords) {
+            alert("Lokasi tidak ditemukan. Coba lagi dengan alamat yang lebih spesifik.");
+            return;
+        }
+
+        routingControl.setWaypoints([
+            L.latLng(startCoords.lat, startCoords.lon),
+            L.latLng(endCoords.lat, endCoords.lon)
+        ]);
+
+        map.setView([startCoords.lat, startCoords.lon], 14);
+    });
+
+     // Autocomplete untuk input lokasi
+     const provider = new window.GeoSearch.OpenStreetMapProvider();
+
+    function setupAutocomplete(inputId) {
+        const input = document.getElementById(inputId);
+
+        input.addEventListener("input", async (e) => {
+            const results = await provider.search({ query: e.target.value });
+            if (results.length > 0) {
+                console.log("Saran lokasi:", results.map(r => r.label));
+                // Kamu bisa menambahkan dropdown suggestion di sini kalau mau
+            }
+        });
+    }
+
+    setupAutocomplete("start-location");
+    setupAutocomplete("end-location");
+
     </script>      
     <br>
     <br>
