@@ -166,7 +166,59 @@
                 font-size: 10px;
             }
         }
+        @media (max-width: 576px) {
+            .blog-item {
+                font-size: 14px !important;
+                padding: 10px !important;
+            }
 
+            .blog-item h5 {
+                font-size: 16px !important;
+            }
+
+            .blog-item p {
+                font-size: 13px !important;
+                line-height: 1.4 !important;
+                max-height: 4.2em;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .btn {
+                font-size: 11px !important;
+                padding: 5px 10px !important;
+                border-radius: 20px !important;
+            }
+
+            .blog-img-inner img {
+                height: 130px !important;
+                object-fit: cover !important;
+                width: 100% !important;
+            }
+        }
+        @media (max-width: 576px) {
+            .blog .col-lg-4,
+            .blog .col-md-6 {
+                padding-left: 1px !important;
+                padding-right: 1px !important;
+                margin-bottom: 20px;
+            }
+
+            .blog .blog-item {
+                padding: 10px !important;
+                font-size: 14px !important;
+            }
+
+            .blog .btn {
+                font-size: 11px !important;
+                padding: 6px 10px !important;
+            }
+
+            .blog .blog-img img {
+                height: 120px !important;
+                object-fit: cover !important;
+            }
+        }
         </style> 
     </head>
 
@@ -345,7 +397,7 @@
                     <!-- End Card Item -->
 
                     <!-- Card Item (repeatable block) -->
-                    <div class="col-lg-4 col-md-6">
+                     <div class="col-6 col-md-6 col-lg-4">
                         <div class="blog-item">
                             <div class="blog-img">
                                 <div class="blog-img-inner">
@@ -366,7 +418,7 @@
                     <!-- End Card Item -->
 
                     <!-- Card Item (repeatable block) -->
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-6 col-md-6 col-lg-4">
                         <div class="blog-item">
                             <div class="blog-img">
                                 <div class="blog-img-inner">
