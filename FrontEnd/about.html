@@ -19,7 +19,7 @@
 
         <!-- Libraries Stylesheet -->
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+        <!-- <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet"> -->
 
 
         <!-- Customized Bootstrap Stylesheet -->
@@ -145,24 +145,28 @@
                 /* FOOTER */
                 .footer {
                     padding: 20px 10px; /* Mengurangi padding agar lebih pas */
+                    /* border: 2px solid red; */
                 }
 
                 .footer-item h4 {
-                    font-size: 12px; /* Mengecilkan ukuran heading */
+                    /* border: 2px solid red; */
+                    font-size: 16px; /* Mengecilkan ukuran heading */
                 }
 
                 .footer-item a {
-                    font-size: 12px; /* Mengecilkan ukuran teks */
+                    /* border: 2px solid red; */
+                    font-size: 14px; /* Mengecilkan ukuran teks */
                 }
 
                 .footer-item i {
-                    font-size: 12px; /* Mengecilkan ikon */
+                    font-size: 14px; /* Mengecilkan ikon */
                 }
 
                 .footer .btn-square {
-                    width: 20px; /* Mengecilkan tombol sosial media */
-                    height: 20px;
-                    font-size: 12px;
+                    /* border: 2px solid red; */
+                    width: 25px !important; /* Mengecilkan tombol sosial media */
+                    height: 25px;
+                    font-size: 14px;
                     padding: 4px;
                 }
                 /* COPYRIGHT */
@@ -174,6 +178,7 @@
                 }
             }
             @media (max-width: 321px){
+                /* NAVBAR */
                 .navbar-brand .fa { 
                     font-size: 15px !important; 
                     margin-right: 10px !important;
@@ -199,13 +204,23 @@
                     font-size: 20px;
                 }
 
-                /* VISI MISI */
-                .img-fluid.w-100 {
-                    border: 2px solid blue;
+                /* HERO */
+                .container-fluid.bg-breadcrumb {
+                    height: 60% !important;
                 }
+                /* LOGO */
+                .col-lg-5 {
+                    padding-left: 55px !important;
+                }
+
+                .h-100 {
+                   width: 200px !important;
+
+                }
+                /* VISI MISI */
                 .col-lg-7 {
                     font-size: 15px;
-                    border: 2px solid rgb(255, 42, 0);
+                    /* border: 2px solid rgb(255, 42, 0); */
                 }
                 .mx-auto.text-center.mb-5 {
                     margin-bottom: 20px !important;
@@ -215,16 +230,66 @@
                     font-size: 15px;
                    
                 }
+                .visi-container h1 {
+                    font-size: 20px;
+                }
+                .visi-container p, ul{
+                    font-size: 13px;
+                }
+                .misi-container h1 {
+                    font-size: 20px;
+                }
+                .misi-container p, ul{
+                    font-size: 13px;
+                }
                 /* PERANGKAT DESA */
                 .container-fluid.guide.py-5 {
-                    border: 2px solid red;
+                    /* border: 2px solid red; */
+                }
+                .btn.btn-square {
+                    height: 24px;
+                    width: 7px;
+                }
+                .guide-img .guide-icon.rounded-pill.p-2 {
+                    /* border: 2px solid red; */
+                    display: flex;
+                    /* gap: -3px; */
+                    width: 130px;
+                    
                 }
                 .guide-img .guide-icon.rounded-pill.p-2 .btn {
                     font-size: 15px !important;
                 }
-                
+                .guide-title-inner .mt-3 {
+                    font-size: 17px;
+                }
+                .guide-title-inner .mb-0 {
+                    font-size: 14px;
+                }
+
+                /* LOKASI KECAMATAN */
+                .containerInfoMap {
+                    /* border: 2px solid red; */
+                    width: 90% !important;
+                    margin-left: 15px !important;
+                }
+                .info {
+                    padding: 30px;
+                }
+                .containerInfoMap .info h2 {
+                    font-size: 17px;
+                }
+                .containerInfoMap .info p {
+                    font-size: 14px;
+                }
+                .containerInfoMap .info table {
+                    font-size: 14px;
+                }
+                .map-container {
+                    /* border: 2px solid blue; */
+                }
             }
-            @media (max-width: 380px) {
+            @media (min-width: 322px) and (max-width: 380px) {
                 /* NAVBAR */
                 .navbar-brand .fa { 
                     font-size: 20px !important; /*logo*/
@@ -246,14 +311,92 @@
                     color: #ffff !important;
                     border-color: #ffff !important;
                 }
-                
                 .collapse {
                     font-size: 20px;
                 }
-                /* GALERY */
-                .tab-content {
-                    padding: 5px !important;
+
+                /* LOGO */
+                .col-lg-5 {
+                    padding-left: 85px;
+                    display: flex;
+                    align-items: center !important;
                 }
+                .h-100 {
+                    width: 200px !important;
+                }
+                /* VISI MISI */
+                .col-lg-7 {
+                    font-size: 15px;
+                    /* border: 2px solid rgb(255, 42, 0); */
+                }
+                .mx-auto.text-center.mb-5 {
+                    margin-bottom: 20px !important;
+                    /* border: 2px solid blue; */
+                }
+                .section-title {
+                    font-size: 15px;
+                   
+                }
+                .visi-container h1 {
+                    font-size: 20px;
+                }
+                .visi-container p, ul{
+                    font-size: 13px;
+                }
+                .misi-container h1 {
+                    font-size: 20px;
+                }
+                .misi-container p, ul{
+                    font-size: 13px;
+                }
+
+                /* PERANGKAT */
+                .container-fluid.guide.py-5 {
+                    /* border: 2px solid red; */
+                }
+                .btn.btn-square {
+                    height: 24px;
+                    width: 7px;
+                }
+                .guide-img .guide-icon.rounded-pill.p-2 {
+                    /* border: 2px solid red; */
+                    display: flex;
+                    /* gap: -3px; */
+                    width: 155px;
+                    
+                }
+                .guide-img .guide-icon.rounded-pill.p-2 .btn {
+                    font-size: 15px !important;
+                }
+                .guide-title-inner .mt-3 {
+                    font-size: 17px;
+                }
+                .guide-title-inner .mb-0 {
+                    font-size: 14px;
+                }
+
+                /* LOKASI KECAMATAN */
+                .containerInfoMap {
+                    /* border: 2px solid red; */
+                    width: 90% !important;
+                    margin-left: 15px !important;
+                }
+                .info {
+                    padding: 30px;
+                }
+                .containerInfoMap .info h2 {
+                    font-size: 17px;
+                }
+                .containerInfoMap .info p {
+                    font-size: 14px;
+                }
+                .containerInfoMap .info table {
+                    font-size: 14px;
+                }
+                .map-container {
+                    /* border: 2px solid blue; */
+                }
+
                 /* FOOTER */
                 .footer {
                     padding: 20px 10px; /* Mengurangi padding agar lebih pas */
@@ -284,15 +427,12 @@
                 .container-fluid.copyright .container .col-md-6 i, .text-white {
                     font-size: 12px;
                 }
-                /* BERITA */
-                .col-12.col-sm-6 {
-                    width: 300px;
-                     margin: 25px !important; 
-                }
-                
             }
 
-            @media (max-width: 425px) {
+            @media (min-width: 381px) and (max-width: 426px) {
+                .navbar-brand h1 .subtext {
+                    margin-left: 31px !important;
+                }
                 .nav.nav-pills {
                     /* justify-content: flex-start;
                     align-items: flex-start; */
@@ -305,100 +445,188 @@
                 }
                 .col-12.col-sm-6 {
                     width: 300px;
-                    margin-left: 50px;
+                    margin-left: 40px;
                 }
+                /* LOGO */
+                .col-lg-5 {
+                    /* border: 2px solid red; */
+                    padding-left: 110px;
+                }
+                .h-100 {
+                    width: 200px !important;
+                }
+                /* VISI MISI */
+                .col-lg-7 {
+                    font-size: 20px;
+                    /* border: 2px solid rgb(255, 42, 0); */
+                }
+                .mx-auto.text-center.mb-5 {
+                    margin-bottom: 20px !important;
+                    /* border: 2px solid blue; */
+                }
+                .section-title {
+                    font-size: 20px;
+                   
+                }
+                .visi-container h1 {
+                    font-size: 20px;
+                }
+                .visi-container p, ul{
+                    font-size: 13px;
+                }
+                .misi-container h1 {
+                    font-size: 20px;
+                }
+                .misi-container p, ul{
+                    font-size: 13px;
+                }
+
+                /* PERANGKAT */
+                .container-fluid.guide.py-5 {
+                    /* border: 2px solid red; */
+                }
+                .btn.btn-square {
+                    height: 27px;
+                    width: 10px;
+                }
+                .guide-img .guide-icon.rounded-pill.p-2 {
+                    /* border: 2px solid red; */
+                    display: flex;
+                    gap: 2px;
+                    width: 180px;
+                    
+                }
+                .guide-img .guide-icon.rounded-pill.p-2 .btn {
+                    font-size: 15px !important;
+                }
+                .guide-title-inner .mt-3 {
+                    font-size: 17px;
+                }
+                .guide-title-inner .mb-0 {
+                    font-size: 14px;
+                }
+
+                /* LOKASI KECAMATAN */
+                .containerInfoMap {
+                    /* border: 2px solid red; */
+                    width: 90% !important;
+                    margin-left: 23px !important;
+                }
+                .info {
+                    padding: 30px;
+                }
+                .containerInfoMap .info h2 {
+                    font-size: 17px;
+                }
+                .containerInfoMap .info p {
+                    font-size: 14px;
+                }
+                .containerInfoMap .info table {
+                    font-size: 14px;
+                }
+                .map-container {
+                    /* border: 2px solid blue; */
+                }
+
             }
-            @media (max-width: 450px){
+            @media (min-width: 427px) and (max-width: 769px){
+                /* NAVBAR */
                 .navbar-brand .m-0 {
-                    font-size: 23px;
+                    font-size: 25px;
                 }
                 .navbar-brand .subtext {
-                    font-size: 18px;
+                    font-size: 20px;
                     margin-left: 31px;
                 }
                 .navbar-brand .fa {
-                    font-size: 20px !important;
+                    font-size: 25px !important;
                 }
-                /* HERO  SECTION */
-                .p-3 h4{
-                    font-size: 15px;
+                /* LOGO */
+                .container-fluid.about.py-5{
+                    border: 2px solid red;
                 }
-                .p-3 h1 {
-                    font-size: 25px;
+                .col-lg-5 {
+                    padding-left: 150px;
                 }
-                .fs-5 {
-                    font-size: 15px !important;
-                }
-                /* SEARCH */
-                .container-fluid.w-100.search-bar {
+                .h-100 {
+                    border: 2px solid blue;
                     width: 300px !important;
                 }
-                .container-fluid.w-100.search-bar .btn {
-                    font-size: 10px;
-                    margin-bottom: 3px;
+                /* VISI MISI */
+                .col-lg-7 {
+                    font-size: 20px;
+                    /* border: 2px solid rgb(255, 42, 0); */
                 }
-                .form-control {
-                    height: 35px;
-                    margin-top: -10px;
+                .mx-auto.text-center.mb-5 {
+                    margin-bottom: 20px !important;
+                    /* border: 2px solid blue; */
                 }
-                .position-relative.rounded-pill {
-                    height: 50px;
+                .section-title {
+                    font-size: 20px;
+                   
                 }
-                /* BERITA */
-                .container-fluid.mt-5 {
-                    padding: 25px !important;
+                .visi-container h1 {
+                    font-size: 23px;
                 }
-                .mx-auto h5{
-                font-size: 15px;
+                .visi-container p, ul{
+                    font-size: 16px;
                 }
-                .mx-auto h1 {
-                font-size: 19px;
+                .misi-container h1 {
+                    font-size: 23px;
                 }
-
-                .card-title {
-                    font-size: 15px; /* Sesuaikan ukuran judul berita */
-                }
-
-                .card-text {
-                    font-size: 13px; /* Kecilkan teks isi berita */
+                .misi-container p, ul{
+                    font-size: 16px;
                 }
 
-                .btn-primary {
-                    font-size: 13px;
-                    padding: 8px 12px; /* Kurangi padding tombol */
+                /* PERANGKAT */
+                .container-fluid.guide.py-5 {
+                    /* border: 2px solid red; */
                 }
-                .col-12.col-sm-6 {
-                    width: 300px;
-                    margin-left: 60px;
+                .btn.btn-square {
+                    height: 27px;
+                    width: 10px;
                 }
-
-                /* KEGIATAN */
-                .tab-content {
-                    padding: 5px !important;
+                .guide-img .guide-icon.rounded-pill.p-2 {
+                    /* border: 2px solid red; */
+                    display: flex;
+                    gap: 2px;
+                    width: 180px;
+                    
                 }
-                .nav-pills span{
+                .guide-img .guide-icon.rounded-pill.p-2 .btn {
                     font-size: 15px !important;
                 }
+                .guide-title-inner .mt-3 {
+                    font-size: 17px;
+                }
+                .guide-title-inner .mb-0 {
+                    font-size: 14px;
+                }
+
+                /* LOKASI KECAMATAN */
+                .containerInfoMap {
+                    /* border: 2px solid red; */
+                    width: 90% !important;
+                    margin-left: 23px !important;
+                }
+                .info {
+                    padding: 30px;
+                }
+                .containerInfoMap .info h2 {
+                    font-size: 17px;
+                }
+                .containerInfoMap .info p {
+                    font-size: 14px;
+                }
+                .containerInfoMap .info table {
+                    font-size: 14px;
+                }
+                .map-container {
+                    /* border: 2px solid blue; */
+                }
+                
             }
 
-            @media (min-width: 551) and (max-width: 770px){
-                
-                 /* SEARCH */
-                 .container-fluid.w-100.search-bar {
-                    width: 400px !important;
-                }
-                .container-fluid.w-100.search-bar .btn {
-                    font-size: 10px;
-                }
-                .form-control {
-                    height: 35px;
-                    margin-top: -10px;
-                }
-                .position-relative.rounded-pill {
-                    height: 50px;
-                }
-                
-            }
             
             @media screen and (max-width: 1120px) {
                 .navbar {
@@ -587,7 +815,7 @@
 
     </head>
 
-    <body style="border: 2px solid red; ">
+    <body>
 
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -693,9 +921,9 @@
         <!-- About End -->
 
 
-        <!-- Struktu organisasi -->
+        <!-- Struktur organisasi -->
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h3 class="section-title px-3"> Bagan Organisasi</h3>
+            <h3 class="section-title px-3"> Bagan <br>Organisasi</h3>
             <h1 class="mb-0"> Struktur Pemerintahan Kecamatan </h1>
             <img src="img/struktur.png" alt="Struktur Pemerintahan Kecamatan" class="img-fluid mt-3" style="max-width: 100%; height: auto;">
         </div>
@@ -705,7 +933,7 @@
          <div class="container-fluid guide py-5">
             <div class="container py-5">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                    <h3 class="section-title px-3"> Perangkat Kecamatan </h3>
+                    <h3 class="section-title px-3"> Perangkat <br>Kecamatan </h3>
                     <h1 class="mb-0"> Daftar nama dan Jabatan </h1>
                 </div>
                 <br>
@@ -968,13 +1196,13 @@
         <!-- Perangkat End -->
 
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-            <h3 class="section-title px-3">Lokasi Desa</h3>
-            <h1 class="mb-0">Peta Lokasi Desa</h1>
+            <h3 class="section-title px-3">Lokasi Kecamatan</h3>
+            <h1 class="mb-0">Peta Lokasi Kecamatan</h1>
         </div>
     
         <div class="containerInfoMap">
             <div class="info">
-                <h2>Desa Pete</h2>
+                <h2>Kecamatan Tigaraksa</h2>
                 <p><strong>Batas Desa:</strong></p>
                 <table>
                     <tr><td class="highlight">Utara</td><td>Desa A</td></tr>
@@ -1050,7 +1278,7 @@
         <script src="lib/easing/easing.min.js"></script>
         <script src="lib/waypoints/waypoints.min.js"></script>
         <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/lightbox/js/lightbox.min.js"></script>
+        <!-- <script src="lib/lightbox/js/lightbox.min.js"></script> -->
         
 
         <!-- Template Javascript -->
