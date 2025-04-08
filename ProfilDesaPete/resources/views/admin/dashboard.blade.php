@@ -25,28 +25,6 @@
         <!-- Template Stylesheet -->
 		<link href="{{url('css/style.css')}}" rel="stylesheet">
 
-		<!-- TinyMCE -->
-		<script src="https://cdn.tiny.cloud/1/jnkfs9zvfl13vly0k5556lcy3znx17cwejz9ng8k3hyk3uau/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-
-		<script>
-		  tinymce.init({
-		    selector: '#visi', 
-		    plugins: 'code table lists',
-		    toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
-		  });
-
-		  tinymce.init({
-		    selector: '#misi', 
-		    plugins: 'code table lists',
-		    toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
-		  });
-
-		  tinymce.init({
-		    selector: '#konten_berita', 
-		    plugins: 'code table lists image',
-		    toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table | image'
-		  });
-		</script>
 	</head>
 <body>
    <!-- Topbar Start -->
@@ -102,8 +80,8 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="components.html">
-							<p>Components</p>
+						<a href="{{ route('admin.kegiatan') }}">
+							<p>Kegiatan</p>
 						</a>
 					</li>
 					<li class="nav-item">

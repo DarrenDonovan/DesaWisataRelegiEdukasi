@@ -255,6 +255,67 @@ class AdminController extends Controller{
         return view('public.index', compact('kegiatanterbaru', 'kegiatan', 'jenis_kegiatan', 'wilayah', 'berita', 'wilayahNoKec'));
     }
 
+    public function kegiatan(){
+        $user = Auth::user();
+        
+        //Kegiatan Terbaru
+        if($user->role == 'superadmin'){
+            $kegiatanterbaru = DB::table('kegiatan')
+                ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+                ->join('wilayah', 'kegiatan.id_wilayah', '=', 'wilayah.id_wilayah')
+                ->leftJoin('users', 'kegiatan.updated_by', '=', 'users.id')
+                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah', 'kegiatan.tanggal_kegiatan', 'kegiatan.updated_at', 'kegiatan.updated_by', 'users.name')
+                ->orderBy('id_kegiatan', 'desc')
+                ->first();
+        }
+        else{
+            $kegiatanterbaru = DB::table('kegiatan')
+                ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+                ->join('wilayah', 'kegiatan.id_wilayah', '=', 'wilayah.id_wilayah')
+                ->leftJoin('users', 'kegiatan.updated_by', '=', 'users.id')
+                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah', 'kegiatan.tanggal_kegiatan', 'kegiatan.updated_at', 'kegiatan.updated_by', 'users.name')
+                ->where('kegiatan.id_wilayah', $user->id_wilayah)
+                ->orderBy('id_kegiatan', 'desc')
+                ->first();
+        }
+
+        //Daftar Kegiatan
+        if($user->role == 'superadmin'){
+            $kegiatan = DB::table('kegiatan')
+                ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+                ->join('wilayah', 'kegiatan.id_wilayah','=', 'wilayah.id_wilayah')
+                ->leftJoin('users', 'kegiatan.updated_by', '=', 'users.id')
+                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah', 'kegiatan.tanggal_kegiatan', 'kegiatan.updated_at', 'kegiatan.updated_by', 'users.name')
+                ->orderBy('id_kegiatan', 'desc')
+                ->paginate(5);
+        }
+        else{
+            $kegiatan = DB::table('kegiatan')
+                ->join('jenis_kegiatan', 'kegiatan.id_jenis_kegiatan', '=', 'jenis_kegiatan.id_jenis_kegiatan')
+                ->join('wilayah', 'kegiatan.id_wilayah','=', 'wilayah.id_wilayah')
+                ->leftJoin('users', 'kegiatan.updated_by', '=', 'users.id')
+                ->select('kegiatan.id_kegiatan', 'kegiatan.nama_kegiatan', 'kegiatan.id_jenis_kegiatan', 'kegiatan.keterangan', 'kegiatan.gambar_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan', 'kegiatan.id_wilayah', 'wilayah.nama_wilayah', 'kegiatan.tanggal_kegiatan', 'kegiatan.updated_at', 'kegiatan.updated_by', 'users.name')
+                ->where('kegiatan.id_wilayah', $user->id_wilayah)
+                ->orderBy('id_kegiatan', 'desc')
+                ->paginate(5);
+        }
+
+        $users = DB::table('users')
+            ->select('users.id', 'users.name')
+            ->where('users.id', '>', 1)
+            ->get();
+
+        $jenis_kegiatan = DB::table('jenis_kegiatan')
+            ->select('jenis_kegiatan.id_jenis_kegiatan', 'jenis_kegiatan.nama_jenis_kegiatan')
+            ->get();
+
+        $wilayah = DB::table('wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.gambar_wilayah')
+            ->get();
+
+        return view('admin.kegiatanAdmin', compact('kegiatan', 'kegiatanterbaru', 'users', 'jenis_kegiatan', 'wilayah'));
+    }
+
     //Create Admin
     public function create(){
         if(Auth::user()->role !== 'superadmin'){

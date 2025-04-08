@@ -40,7 +40,8 @@ Route::get('profildesa/{id_wilayah}/wisata/{id_wisata}', [UserController::class,
 Route::get('rute/{id}', [UserController::class, 'rute'])->name('rute');
 
 //Admin Dashboard Landpage
-Route::get('admin', [AdminController::class, 'admin'])->middleware('auth')->name('admin');
+Route::get('admin/dashboard', [AdminController::class, 'admin'])->middleware('auth')->name('admin');
+Route::get('admin/kegiatan', [AdminController::class, 'kegiatan'])->middleware('auth')->name('admin.kegiatan');
 Route::get('/', [AdminController::class, 'index'])->name('index');
 
 // Admin Logout

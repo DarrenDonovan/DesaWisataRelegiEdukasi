@@ -2247,6 +2247,12 @@ body {
   height: 50px;
   z-index: 100;
 }
+.modal{
+  margin-top: 40px;
+}
+.modal-backdrop {
+  display: none;
+}
 .main-panel {
   position: relative;
   width: calc(100% - 260px);

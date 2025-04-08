@@ -20,5 +20,3 @@ mix.minify("public/js/app.js");
 
 // Enable live reload
 mix.browserSync("localhost:8000");
-
-mix.copyDirectory('vendor/tinymce/tinymce', 'public/js/tinymce');
