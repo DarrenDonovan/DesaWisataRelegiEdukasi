@@ -28,7 +28,7 @@ class AuthController extends Controller
                 'time' => now(),
             ]);
  
-            return redirect()->intended('admin');
+            return redirect()->intended('admin/dashboard');
         }
 
         return back()->withErrors([

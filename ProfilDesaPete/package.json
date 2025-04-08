@@ -6,7 +6,6 @@
     },
     "devDependencies": {
         "axios": "^1.1.2",
-        "browser-sync": "^3.0.3",
         "browser-sync-webpack-plugin": "^2.3.0",
         "laravel-mix": "^6.0.49",
         "laravel-vite-plugin": "^0.7.2",
@@ -53,6 +52,7 @@
         "brace-expansion": "^1.1.11",
         "braces": "^3.0.3",
         "brorand": "^1.1.0",
+        "browser-sync": "^2.29.3",
         "browserify-aes": "^1.2.0",
         "browserify-cipher": "^1.0.1",
         "browserify-des": "^1.0.2",

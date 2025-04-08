@@ -9,7 +9,7 @@
 <body>
   <div class="wrapper">
     <div>
-        <a href="{{url('admin')}}">Back to Admin Page</a>
+        <a href="{{url('admin/dashboard')}}">Back to Admin Page</a>
     </div>
     @if (session('success'))
         <div style="color:green;">{{session('success')}}</div>
