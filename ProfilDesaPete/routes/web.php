@@ -42,6 +42,10 @@ Route::get('rute/{id}', [UserController::class, 'rute'])->name('rute');
 //Admin Dashboard Landpage
 Route::get('admin/dashboard', [AdminController::class, 'admin'])->middleware('auth')->name('admin');
 Route::get('admin/kegiatan', [AdminController::class, 'kegiatan'])->middleware('auth')->name('admin.kegiatan');
+Route::get('admin/profil_wilayah', [AdminController::class, 'profilWilayah'])->middleware('auth')->name('admin.profilWilayah');
+Route::get('admin/berita', [AdminController::class, 'berita'])->middleware('auth')->name('admin.berita');
+Route::get('admin/infografis', [AdminController::class, 'infografis'])->middleware('auth')->name('admin.infografis');
+Route::get('admin/wisata', [AdminController::class, 'wisata'])->middleware('auth')->name('admin.wisata');
 Route::get('/', [AdminController::class, 'index'])->name('index');
 
 // Admin Logout

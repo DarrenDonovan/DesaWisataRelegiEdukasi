@@ -79,7 +79,7 @@
 							<p>Dashboard</p>
 						</a>
 					</li>
-					<li class="nav-item active">
+					<li class="nav-item">
 						<a href="{{ route('admin.kegiatan') }}">
 							<p>Kegiatan</p>
 						</a>
@@ -90,7 +90,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="{{ route('admin.berita') }}}}">
+						<a href="{{ route('admin.berita') }}">
 							<p>Berita</p>
 						</a>
 					</li>
@@ -99,7 +99,7 @@
 							<p>Infografis</p>
 						</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item active">
 						<a href="{{ route('admin.wisata') }}">
 							<p>Wisata</p>
 						</a>
@@ -117,108 +117,10 @@
 						@if (Session::has('message'))
 							<p class="alert alert-success mt-2">{{ Session::get('message') }}</p>
 						@endif
-						
-						<!-- Kegiatan Terbaru -->
-						<h4 class="page-title mt-2">Kegiatan Terbaru</h4>
-						<div class="row">
-							<div class="col">
-								<div class="card">
-									<div class="card-body">
-										<table class="table table-striped mt-3">
-											<thead>
-												<tr>
-													<th scope="col">Nama Kegiatan</th>
-													<th scope="col">Jenis Kegiatan</th>
-													<th scope="col">Nama Wilayah</th>
-													<th scope="col">Tanggal Kegiatan</th>
-													<th scope="col">Keterangan</th>
-													<th scope="col">Gambar Kegiatan</th>
-													<th scope="col">Last Updated</th>
-													<th scope="col">Action</th>
-												</tr>
-											</thead>
-											<tbody>
-												@if($kegiatanterbaru)
-        										<tr>
-            										<td>{{ $kegiatanterbaru->nama_kegiatan }}</td>
-													<td>{{ $kegiatanterbaru->nama_jenis_kegiatan }}</td>
-													<td>{{ $kegiatanterbaru->nama_wilayah }}</td>
-													<td>{{ $kegiatanterbaru->tanggal_kegiatan }}</td>
-            										<td>{{ $kegiatanterbaru->keterangan }}</td>
-            										<td>
-                									@if ($kegiatanterbaru->gambar_kegiatan)
-                									    <img src="{{ asset('storage/' . $kegiatanterbaru->gambar_kegiatan) }}" width="100" alt="">
-                									@else
-                									    Tidak ada gambar
-                									@endif
-													</td>
-													<td>Updated by {{ $kegiatanterbaru->name }} at {{ $kegiatanterbaru->updated_at }}</td>
-													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalKegiatan_terbaru1">Edit</a></td>
-												</tr>
-												@endif
-											</tbody>
-										</table>
-									</div>
-								</div>
-							
-								<!-- Modal Kegiatan Terbaru -->
-								<div class="modal fade" id="modalKegiatan_terbaru1" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
-   									<div class="modal-dialog">
-        								<div class="modal-content">
-            								<div class="modal-header">
-												<h5 class="modal-title" id="modalTitle">Edit Kegiatan Terbaru</h5>
-												<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            								</div>
-            								<div class="modal-body">
-												<form action="{{ route('admin.updateKegiatan', $kegiatanterbaru->id_kegiatan)}}" method="post" enctype="multipart/form-data">
-													@csrf
-													<div class="form-group">
-														<label for="nama_kegiatan">Nama Kegiatan</label>
-														<input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" value="{{ $kegiatanterbaru->nama_kegiatan }}" required>
-													</div>
-													<div class="form-group">
-														<label for="jenis_kegiatan">Jenis Kegiatan</label>
-														<select name="jenis_kegiatan" class="form-control" required>
-														    <option value="">-- Pilih Jenis Kegiatan --</option>
-														    @foreach ($jenis_kegiatan as $item)
-														        <option value="{{ $item->id_jenis_kegiatan }}" 
-																{{ $item->id_jenis_kegiatan == $kegiatanterbaru->id_jenis_kegiatan ? 'selected' :'' }}>
-																{{ $item->nama_jenis_kegiatan }}
-																</option>
-														    @endforeach
-														</select>
-													</div>
-													<div class="form-group">
-														<label for="nama_wilayah">Nama Wilayah</label>
-														<select name="nama_wilayah" class="form-control" required>
-														    <option value="">-- Pilih Wilayah --</option>
-														    @foreach ($wilayah as $itemWilayah)
-														        <option value="{{ $itemWilayah->id_wilayah }}" 
-																{{ $itemWilayah->id_wilayah == $kegiatanterbaru->id_wilayah ? 'selected' :'' }}>
-																{{ $itemWilayah->nama_wilayah }}
-																</option>
-														    @endforeach
-														</select>
-													</div>
-													<div class="form-group">
-														<label for="keterangan">Keterangan</label>
-														<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required>{{ $kegiatanterbaru->keterangan }}</textarea>					
-													</div>
-													<div class="form-group">
-														<label for="gambar_kegiatan">Gambar Kegiatan</label>
-														<input type="file" class="form-control-file" name="gambar_kegiatan" id="gambar_kegiatan">
-                									</div>
-													<button type="submit" class="btn btn-primary form-control">Save changes</button>
-												</form>
-								            </div>
-								        </div>
-								    </div>
-								</div>
-
-					<!-- Daftar Kegiatan -->
+		  				<!-- Daftar Wisata -->
 					<div class="d-flex justify-content-between align-items-center">
-						<h4 class="page-title mt-1">Daftar Kegiatan</h4>
-						<button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#modalTambah_kegiatan1">Tambah Kegiatan</button>	
+						<h4 class="page-title mt-2">Daftar Wisata</h4>
+						<button type="button" class="btn btn-primary mb-4 mt-2" data-bs-toggle="modal" data-bs-target="#modalTambah_wisata">Tambah Wisata</button>	
 					</div>				
 						<div class="row">
 							<div class="col">
@@ -227,61 +129,45 @@
 										<table class="table table-striped mt-3">
 											<thead>
 												<tr>
-													<th scope="col">Nama Kegiatan</th>
-													<th scope="col">Jenis Kegiatan</th>
-													<th scope="col">Nama Wilayah</th>
-													<th scope="col">Tanggal Kegiatan</th>
+													<th scope="col">Nama Tempat</th>
+													<th scope="col">Letak Wilayah</th>
 													<th scope="col">Keterangan</th>
-													<th scope="col">Gambar Kegiatan</th>
+													<th scope="col">Gambar Wisata</th>
 													<th scope="col">Last Updated</th>
 													<th scope="col">Action</th>
 												</tr>
 											</thead>
 											<tbody>
-    										@foreach ($kegiatan as $items)
+    										@foreach ($wisata as $itemWisata)
         										<tr>
-            										<td>{{ $items->nama_kegiatan }}</td>
-													<td>{{ $items->nama_jenis_kegiatan }}</td>
-													<td>{{ $items->nama_wilayah }}</td>
-													<td>{{ $items->tanggal_kegiatan }}</td>
-            										<td>{{ $items->keterangan }}</td>
+            										<td>{{ $itemWisata->nama_tempat }}</td>
+													<td>{{ $itemWisata->nama_wilayah }}</td>
+            										<td>{{ $itemWisata->keterangan }}</td>
             										<td>
-                									@if ($items->gambar_kegiatan)
-                									    <img src="{{ asset('storage/' . $items->gambar_kegiatan) }}" width="100" alt="">
+                									@if ($itemWisata->gambar_wisata)
+                									    <img src="{{ asset('storage/' . $itemWisata->gambar_wisata) }}" width="100" height="80" alt="">
                 									@else
                 									    Tidak ada gambar
                 									@endif
 													</td>
-													<td>Updated by {{ $items->name }} at {{ $items->updated_at }}</td>
-													<td><a href="#" data-bs-toggle="modal" data-bs-target="#myModal1{{$items->id_kegiatan}}">Edit</a> | <a href="{{route('admin.deleteKegiatan', $items->id_kegiatan)}}">Hapus</a></td>
-												</tr>
+													<td>Last Updated by {{ $itemWisata->name }} at {{ $itemWisata->updated_at }}</td>
+													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_wisata{{$itemWisata->id_wisata}}">Edit</a> | <a href="{{route('admin.deleteWisata', $itemWisata->id_wisata)}}">Hapus</a></td>
+												</tr> 
 
-												<!-- Modal Edit Kegiatan -->
-												<div class="modal fade" id="myModal1{{$items->id_kegiatan}}" tabindex="-1" aria-labelledby="modalTitle{{$items->id_kegiatan}}" aria-hidden="true">
+												<!-- Modal Edit Wisata -->
+												<div class="modal fade" id="modalUpdate_wisata{{$itemWisata->id_wisata}}" tabindex="-1" aria-labelledby="modalTitle{{$itemWisata->id_wisata}}" aria-hidden="true">
    													<div class="modal-dialog">
         												<div class="modal-content">
             												<div class="modal-header">
-																<h5 class="modal-title" id="modalTitle">Edit Kegiatan Terbaru</h5>
+																<h5 class="modal-title" id="modalTitle">Edit Wisata</h5>
 																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             												</div>
             												<div class="modal-body">
-																<form action="{{ route('admin.updateKegiatan', $items->id_kegiatan)}}" method="post" enctype="multipart/form-data">
+																<form action="{{ route('admin.updateWisata', $itemWisata->id_wisata)}}" method="post" enctype="multipart/form-data">
 																	@csrf
 																	<div class="form-group">
-																		<label for="nama_kegiatan">Nama Kegiatan</label>
-																		<input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" value="{{ $items->nama_kegiatan }}" required>
-																	</div>
-																	<div class="form-group">
-																		<label for="jenis_kegiatan">Jenis Kegiatan</label>
-																		<select name="jenis_kegiatan" class="form-control" required>
-														    				<option value="">-- Pilih Jenis Kegiatan --</option>
-														    				@foreach ($jenis_kegiatan as $jenis)
-														    				    <option value="{{ $jenis->id_jenis_kegiatan }}" 
-																				{{ $jenis->id_jenis_kegiatan == $items->id_jenis_kegiatan ? 'selected' : '' }}>
-																				{{ $jenis->nama_jenis_kegiatan }}
-																				</option>
-														    				@endforeach
-																		</select>
+																		<label for="nama_tempat">Nama Tempat Wisata</label>
+																		<input type="text" class="form-control" name="nama_tempat" id="nama_tempat" value="{{ $itemWisata->nama_tempat }}" required>
 																	</div>
 																	<div class="form-group">
 																		<label for="nama_wilayah">Nama Wilayah</label>
@@ -289,7 +175,7 @@
 														    				<option value="">-- Pilih Wilayah --</option>
 														    				@foreach ($wilayah as $itemWilayah)
 														    				    <option value="{{ $itemWilayah->id_wilayah }}" 
-																				{{ $itemWilayah->id_wilayah == $items->id_wilayah ? 'selected' : '' }}>
+																				{{ $itemWilayah->id_wilayah == $itemWisata->id_wilayah ? 'selected' : '' }}>
 																				{{ $itemWilayah->nama_wilayah }}
 																				</option>
 														    				@endforeach
@@ -297,11 +183,11 @@
 																	</div>
 																	<div class="form-group">
 																		<label for="keterangan">Keterangan</label>
-																		<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required>{{ $items->keterangan }}</textarea>
+																		<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required>{{ $itemWisata->keterangan }}</textarea>
 																	</div>
 																	<div class="form-group">					
-																		<label for="gambar_kegiatan">Gambar Kegiatan</label>
-																		<input type="file" name="gambar_kegiatan" id="gambar_kegiatan" class="form-control-file">
+																		<label for="gambar_wisata">Gambar Wisata</label>
+																		<input type="file" name="gambar_wisata" id="gambar_wisata" class="form-control-file">
 																	</div>
                 													<button type="submit" class="btn btn-primary form-control">Save changes</button>
 																</form>
@@ -313,42 +199,33 @@
 											</tbody>
 										</table>
 										<div class="mb-4">
-										{{ $kegiatan->links() }}
+										{{ $wisata->links() }}
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<!-- Modal Tambah Kegiatan -->
-						<div class="modal fade" id="modalTambah_kegiatan1" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+						<!-- Modal Tambah Wisata (Sementara) -->
+						<div class="modal fade" id="modalTambah_wisata" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
    							<div class="modal-dialog">
         						<div class="modal-content">
             						<div class="modal-header">
-										<h5 class="modal-title" id="modalTitle">Tambah Kegiatan Terbaru</h5>
+										<h5 class="modal-title" id="modalTitle">Tambah Tempat Wisata Baru</h5>
 										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             						</div>
             						<div class="modal-body">
-										<form action=" {{ route('admin.createKegiatan') }}" method="post" enctype="multipart/form-data">
+										<form action=" {{ route('admin.createWisata') }}" method="post" enctype="multipart/form-data">
 											@csrf
 											<div class="form-group">
-												<label for="nama_kegiatan">Nama Kegiatan</label>
-												<input type="text" class="form-control" name="nama_kegiatan" id="nama_kegiatan" required>
-											</div>
-											<div class="form-group">
-												<label for="jenis_kegiatan">Jenis Kegiatan</label>
-												<select name="jenis_kegiatan" class="form-control" required>
-												    <option value="">-- Pilih Jenis Kegiatan --</option>
-												    @foreach ($jenis_kegiatan as $item)
-												        <option value="{{ $item->id_jenis_kegiatan }}">{{ $item->nama_jenis_kegiatan }}</option>
-												    @endforeach
-												</select>
+												<label for="nama_tempat">Nama Tempat Wisata</label>
+												<input type="text" class="form-control" name="nama_tempat" id="nama_tempat" required>
 											</div>
 											<div class="form-group">
 												<label for="nama_wilayah">Nama Wilayah</label>
 												<select name="nama_wilayah" class="form-control" required>
 												    <option value="">-- Pilih Wilayah --</option>
-												    @foreach ($wilayah as $item)
+												    @foreach ($wilayahNoKec as $item)
 												        <option value="{{ $item->id_wilayah }}">{{ $item->nama_wilayah }}</option>
 												    @endforeach
 												</select>
@@ -358,22 +235,21 @@
 												<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required></textarea>					
 											</div>
 											<div class="form-group">
-												<label for="gambar_kegiatan">Gambar Kegiatan</label>
-												<input type="file" class="form-control-file" name="gambar_kegiatan" id="gambar_kegiatan">
+												<label for="gambar_wisata">Gambar Wisata</label>
+												<input type="file" class="form-control-file" name="gambar_wisata" id="gambar_wisata">
                 							</div>
 											<button type="submit" class="btn btn-primary form-control">Tambahkan</button>
 										</form>
 						            </div>
 						        </div>
 						    </div>
-                        </div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div> 
-
-
+	
 </body>
 <script src="{{url('js/admin/core/jquery.3.2.1.min.js')}}"></script>
 <script src="{{url('js/admin/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
