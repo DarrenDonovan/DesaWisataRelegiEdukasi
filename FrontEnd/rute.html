@@ -220,6 +220,18 @@
             routeWhileDragging: true
         }).addTo(map);
 
+        // Tambahkan marker merah untuk tujuan
+        const tujuanMarker = L.marker([-6.240647427622811, 106.62874609187763], {
+            icon: L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            })
+        }).addTo(map).bindPopup("Tujuan Anda");
+
         function updateUserLocation(position) {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
