@@ -143,10 +143,6 @@
             }
             @media (min-width: 310px) and (max-width: 469px) {
                 /* FOOTER */
-                .footer {
-                    padding: 20px 10px; /* Mengurangi padding agar lebih pas */
-                    /* border: 2px solid red; */
-                }
 
                 .footer-item h4 {
                     /* border: 2px solid red; */
@@ -189,7 +185,7 @@
                 }
                 .navbar-brand h1 .subtext {
                     font-size: 15px !important;
-                    margin-left: 25px !important;
+                    margin-left: 22px !important;
                     color: #ffff !important;
                 }
 
@@ -228,8 +224,8 @@
                 }
                 .section-title {
                     font-size: 15px;
-                   
                 }
+                
                 .visi-container h1 {
                     font-size: 20px;
                 }
@@ -243,12 +239,17 @@
                     font-size: 13px;
                 }
                 /* PERANGKAT DESA */
+                .mx-auto.text-center.mb-5 .mb-0 {
+                    border: 2px solid blue;
+                    font-size: 19px;
+                }
                 .container-fluid.guide.py-5 {
                     /* border: 2px solid red; */
                 }
                 .btn.btn-square {
-                    height: 24px;
-                    width: 7px;
+                    height: 25px;
+                    width: 30px;
+                    /* border: 2px solid red; */
                 }
                 .guide-img .guide-icon.rounded-pill.p-2 {
                     /* border: 2px solid red; */
@@ -356,7 +357,7 @@
                 }
                 .btn.btn-square {
                     height: 24px;
-                    width: 7px;
+                    width: 25px;
                 }
                 .guide-img .guide-icon.rounded-pill.p-2 {
                     /* border: 2px solid red; */
@@ -379,7 +380,7 @@
                 .containerInfoMap {
                     /* border: 2px solid red; */
                     width: 90% !important;
-                    margin-left: 15px !important;
+                    margin-left: 20px !important;
                 }
                 .info {
                     padding: 30px;
@@ -429,18 +430,25 @@
                 }
             }
 
-            @media (min-width: 381px) and (max-width: 426px) {
+            @media (min-width: 381px) and (max-width: 427px) {
+                .navbar-brand .fa { 
+                    font-size: 20px !important; /*logo*/
+                    margin-right: 15px !important;
+                }
+                .navbar-brand h1 {
+                    font-size: 23px !important;
+                    color: #ffff !important;
+                }
                 .navbar-brand h1 .subtext {
-                    margin-left: 31px !important;
+                    font-size: 18px !important;
+                    margin-left: 30px !important;
+                    color: #ffff !important;
+                    /* border: 2px solid blue; */
                 }
                 .nav.nav-pills {
-                    /* justify-content: flex-start;
-                    align-items: flex-start; */
                     flex-wrap: nowrap;
                     overflow-x: scroll;
-                    /* border: 1px solid red; */
                     max-width: 100%;
-                    /* text-align: left !important; */
                     justify-content: flex-start !important;
                 }
                 .col-12.col-sm-6 {
@@ -464,9 +472,12 @@
                     margin-bottom: 20px !important;
                     /* border: 2px solid blue; */
                 }
-                .section-title {
-                    font-size: 20px;
+                .section-title { /* tulisan warna biru yg ada garis*/
+                    font-size: 15px;
                    
+                }
+                .mx-auto.text-center.mb-5 .mb-0 { /* bawahnya tulisan biru yang ada garis*/
+                    font-size: 19px;
                 }
                 .visi-container h1 {
                     font-size: 20px;
@@ -486,8 +497,9 @@
                     /* border: 2px solid red; */
                 }
                 .btn.btn-square {
+                    /* border: 2px solid red; */
                     height: 27px;
-                    width: 10px;
+                    width: 30px;
                 }
                 .guide-img .guide-icon.rounded-pill.p-2 {
                     /* border: 2px solid red; */
@@ -546,7 +558,7 @@
                     border: 2px solid red;
                 }
                 .col-lg-5 {
-                    padding-left: 150px;
+                    padding-left: 130px;
                 }
                 .h-100 {
                     border: 2px solid blue;
@@ -562,8 +574,10 @@
                     /* border: 2px solid blue; */
                 }
                 .section-title {
-                    font-size: 20px;
-                   
+                    font-size: 18px;
+                }
+                .mx-auto.text-center.mb-5 .mb-0 { /* bawahnya tulisan biru yang ada garis*/
+                    font-size: 23px;
                 }
                 .visi-container h1 {
                     font-size: 23px;
@@ -577,14 +591,17 @@
                 .misi-container p, ul{
                     font-size: 16px;
                 }
-
+                
                 /* PERANGKAT */
                 .container-fluid.guide.py-5 {
-                    /* border: 2px solid red; */
+                    border: 2px solid red;
+                }
+                .guide-item {
+                    
                 }
                 .btn.btn-square {
                     height: 27px;
-                    width: 10px;
+                    width: 30px;
                 }
                 .guide-img .guide-icon.rounded-pill.p-2 {
                     /* border: 2px solid red; */
@@ -607,7 +624,7 @@
                 .containerInfoMap {
                     /* border: 2px solid red; */
                     width: 90% !important;
-                    margin-left: 23px !important;
+                    margin-left: 40px !important;
                 }
                 .info {
                     padding: 30px;
@@ -634,7 +651,7 @@
                 }
             }
 
-            @media (min-width: 2560px) {
+            @media (min-width: 2560px){
                 /* NAVBAR */
                 .navbar {
                     height: 180px;
@@ -876,18 +893,22 @@
         <!-- Header End -->
 
         <!-- About Start -->
-        <div class="container-fluid about py-5">
-            <div class="container py-5">
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-5">
+        
+        <div class="container-fluid about py-5" style="border: 2px solid red;">
+           
+            <div class="container-fluid py-5" style="border: 2px solid blue;">
+
+                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                    <h3 class="section-title px-3"> Visi dan Misi </h3>
+                </div>
+                <div class="row g-5 align-items-center" style="border: 2px solid yellow">
+                    <div class="col-lg-5" style="border: 2px solid red">
                         <div class="h-100">
                             <img src="img/logokab.png" class="img-fluid w-100 h-100" alt="">
                         </div>
                     </div>
                     <div class="col-lg-7" style="background: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .8))">
-                        <div class="mx-auto text-center mb-5" style="max-width: 900px; margin-bottom: 30px;">
-                            <h3 class="section-title px-3"> Visi dan Misi</h3>
-                        </div>
+                        
                         <!-- Container untuk Visi -->
                         <div class="visi-container p-4 mb-4">
                             <h1 class="mb-4">Visi</h1>
@@ -925,7 +946,7 @@
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
             <h3 class="section-title px-3"> Bagan <br>Organisasi</h3>
             <h1 class="mb-0"> Struktur Pemerintahan Kecamatan </h1>
-            <img src="img/struktur.png" alt="Struktur Pemerintahan Kecamatan" class="img-fluid mt-3" style="max-width: 100%; height: auto;">
+            <img src="img/struktur.png" alt="Struktur Pemerintahan Kecamatan" class="img-fluid mt-3" style="max-width: 90%; height: auto;">
         </div>
         <!--  Struktur organisasi end-->
 
