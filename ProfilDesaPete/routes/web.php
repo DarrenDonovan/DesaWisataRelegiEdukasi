@@ -46,6 +46,7 @@ Route::get('admin/profil_wilayah', [AdminController::class, 'profilWilayah'])->m
 Route::get('admin/berita', [AdminController::class, 'berita'])->middleware('auth')->name('admin.berita');
 Route::get('admin/infografis', [AdminController::class, 'infografis'])->middleware('auth')->name('admin.infografis');
 Route::get('admin/wisata', [AdminController::class, 'wisata'])->middleware('auth')->name('admin.wisata');
+Route::get('admin/umkm', [AdminController::class, 'umkm'])->middleware('auth')->name('admin.umkm');
 Route::get('/', [AdminController::class, 'index'])->name('index');
 
 // Admin Logout

@@ -2253,6 +2253,9 @@ body {
 .modal-backdrop {
   display: none;
 }
+#cke_notifications_area_konten_berita, #cke_notifications_area_add_konten_berita, #cke_notifications_area_visi, #cke_notifications_area_misi{
+  display: none !important;
+}
 .main-panel {
   position: relative;
   width: calc(100% - 260px);

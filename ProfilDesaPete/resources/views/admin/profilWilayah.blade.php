@@ -25,6 +25,9 @@
         <!-- Template Stylesheet -->
 		<link href="{{url('css/style.css')}}" rel="stylesheet">
 
+		<!-- CKEditor5 -->
+		<link rel="stylesheet" href="{{url('../../assets/vendor/ckeditor5.css')}}">
+
 	</head>
 <body>
    <!-- Topbar Start -->
@@ -105,8 +108,8 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="icons.html">
-							<p>Icons</p>
+						<a href="{{ route('admin.umkm') }}">
+							<p>UMKM</p>
 						</a>
 					</li>
 				</ul>
@@ -393,6 +396,14 @@
 			</div>
 		</div>
 	</div>
+
+
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+
+<script>
+    CKEDITOR.replace('visi');
+	CKEDITOR.replace('misi');
+</script>
 </body>
 <script src="{{url('js/admin/core/jquery.3.2.1.min.js')}}"></script>
 <script src="{{url('js/admin/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>

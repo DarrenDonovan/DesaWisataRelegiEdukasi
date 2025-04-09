@@ -100,13 +100,13 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="typography.html">
-							<p>Typography</p>
+						<a href="{{ route('admin.wisata') }}">
+							<p>Wisata</p>
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="icons.html">
-							<p>Icons</p>
+						<a href="{{ route('admin.umkm') }}">
+							<p>UMKM</p>
 						</a>
 					</li>
 				</ul>
@@ -273,7 +273,7 @@
                 							</div>
 											<div class="form-group">
 		  										<label for="konten_berita">Konten Berita</label>
-												<textarea name="konten_berita" id="konten_berita" class="form-control" rows="4" cols="50"></textarea>
+												<textarea name="add_konten_berita" id="add_konten_berita" class="form-control" rows="4" cols="50"></textarea>
 											</div>
 											<button type="submit" class="btn btn-primary form-control">Tambahkan</button>
 										</form>
@@ -287,7 +287,12 @@
 		</div>				
     </div>
 	
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 
+<script>
+    CKEDITOR.replace('konten_berita');
+	CKEDITOR.replace('add_konten_berita');
+</script>
 
 </body>
 <script src="{{url('js/admin/core/jquery.3.2.1.min.js')}}"></script>

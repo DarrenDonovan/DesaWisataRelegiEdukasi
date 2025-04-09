@@ -1,5 +1,7 @@
 const mix = require("laravel-mix");
 
+mix.js('resources/js/ckeditor.js', 'public/js');
+
 // Compile CSS
 mix.postCss("resources/css/style.css", "public/css/app.css", [
     require("autoprefixer")({

@@ -105,8 +105,8 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="icons.html">
-							<p>Icons</p>
+						<a href="{{ route('admin.umkm') }}">
+							<p>UMKM</p>
 						</a>
 					</li>
 				</ul>

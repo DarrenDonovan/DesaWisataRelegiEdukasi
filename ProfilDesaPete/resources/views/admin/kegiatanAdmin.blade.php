@@ -25,6 +25,7 @@
         <!-- Template Stylesheet -->
 		<link href="{{url('css/style.css')}}" rel="stylesheet">
 
+		<link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/45.0.0/ckeditor5.css">
 	</head>
 <body>
    <!-- Topbar Start -->
@@ -90,7 +91,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="{{ route('admin.berita') }}}}">
+						<a href="{{ route('admin.berita') }}">
 							<p>Berita</p>
 						</a>
 					</li>
@@ -105,8 +106,8 @@
 						</a>
 					</li>
 					<li class="nav-item">
-						<a href="icons.html">
-							<p>Icons</p>
+						<a href="{{ route('admin.umkm') }}">
+							<p>UMKM</p>
 						</a>
 					</li>
 				</ul>
@@ -372,7 +373,6 @@
 			</div>
 		</div>
 	</div> 
-
 
 </body>
 <script src="{{url('js/admin/core/jquery.3.2.1.min.js')}}"></script>

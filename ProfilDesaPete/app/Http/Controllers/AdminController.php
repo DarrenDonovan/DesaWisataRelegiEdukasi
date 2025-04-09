@@ -415,6 +415,16 @@ class AdminController extends Controller{
     }
 
 
+    public function umkm(){
+        $users = DB::table('users')
+            ->select('users.id', 'users.name')
+            ->where('users.id', '>', 1)
+            ->get();
+
+        return view('admin.umkm', compact('users'));
+    }
+
+
 
 
     //Create Admin
@@ -522,7 +532,7 @@ class AdminController extends Controller{
             'tanggal_berita' => 'required|date',
             'nama_wilayah' => 'required|integer',
             'gambar_berita' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'konten_berita' => 'required|string'
+            'add_konten_berita' => 'required|string'
         ]);
 
         $imagePath = null;
@@ -536,7 +546,7 @@ class AdminController extends Controller{
             'tanggal_berita' => $request->tanggal_berita,
             'id_wilayah' => $request->nama_wilayah,
             'gambar_berita' => $imagePath,
-            'konten_berita' => $request->konten_berita
+            'konten_berita' => $request->add_konten_berita
         ]);
 
         Session::flash('message', 'Data Berhasil Ditambahkan!');
