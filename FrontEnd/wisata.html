@@ -440,8 +440,8 @@
  <div class="text-container">
      <h2>Telusuri Pantai dengan Peta Interaktif</h2>
      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi necessitatibus ipsum dignissimos harum debitis non qui sapiente, voluptates accusamus laborum quos voluptatum tempora culpa sequi quibusdam! Eaque labore ipsa excepturi.</p>
-     <a href="rute.html" target="_blank" class="btn-detail">Lihat Peta Lengkap</a>
- </div>
+     <a href="rute.html" class="btn-detail">Lihat Peta Lengkap</a>
+</div>
  
  <div class="map-container">
      <div id="map" style="height: 500px; width: 100%; border-radius: 10px;"></div>
@@ -468,10 +468,17 @@
          show: false // Menyembunyikan panel instruksi
      }).addTo(map);
  
-     routingControl.on('routesfound', function(e) {
-         const bounds = L.latLngBounds(e.routes[0].coordinates.map(coord => [coord.lat, coord.lng]));
-         map.fitBounds(bounds, { padding: [20, 20] });
-     });
+     // Tambahkan marker merah untuk tujuan
+     const tujuanMarker = L.marker([-6.240647427622811, 106.62874609187763], {
+            icon: L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            })
+        }).addTo(map).bindPopup("Tujuan Anda");
  
      function updateUserLocation(position) {
          const lat = position.coords.latitude;

@@ -176,52 +176,42 @@
 
     <script>
         const map = L.map('map').setView([-6.200000, 106.816666], 13); // Jakarta
-
-        // Gunakan dua tile layer sebagai cadangan
+    
         const tileLayer1 = L.tileLayer('https://tiles.mapindo.com/osm/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> & <a href="https://mapindo.com/">Mapindo</a>'
         });
-
+    
         const tileLayer2 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; Tracking Maps'
         });
-
+    
         tileLayer1.addTo(map);
-        tileLayer1.on('tileerror', function() {
+        tileLayer1.on('tileerror', function () {
             map.removeLayer(tileLayer1);
             tileLayer2.addTo(map);
         });
-
-        // Pencarian Lokasi (Geocoder)
-        L.Control.geocoder({
-            defaultMarkGeocode: false
-        })
-        .on('markgeocode', function(e) {
-            var latlng = e.geocode.center;
-            L.marker(latlng).addTo(map)
-                .bindPopup(e.geocode.name)
-                .openPopup();
-            map.setView(latlng, 15);
-        })
-        .addTo(map);
-
+    
         // Marker Lokasi Pengguna
         const userMarker = L.marker([-6.2514908482756955, 106.62807214954837]).addTo(map)
             .bindPopup("Lokasi Anda");
-
+    
+        // Simpan marker tujuan secara global
+        let tujuanMarker = null;
+    
+        // Routing
         const routingControl = L.Routing.control({
             waypoints: [
                 L.latLng(-6.2514908482756955, 106.62807214954837),
                 L.latLng(-6.240647427622811, 106.62874609187763)
             ],
-            createMarker: function() { return null; },
+            createMarker: function () { return null; },
             routeWhileDragging: true
         }).addTo(map);
-
-        // Tambahkan marker merah untuk tujuan
-        const tujuanMarker = L.marker([-6.240647427622811, 106.62874609187763], {
+    
+        // Marker tujuan awal
+        tujuanMarker = L.marker([-6.240647427622811, 106.62874609187763], {
             icon: L.icon({
                 iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
                 shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
@@ -231,22 +221,61 @@
                 shadowSize: [41, 41]
             })
         }).addTo(map).bindPopup("Tujuan Anda");
-
+    
+        // Geocoder dengan auto-update marker & routing
+        L.Control.geocoder({
+            defaultMarkGeocode: false
+        })
+            .on('markgeocode', function (e) {
+                const latlng = e.geocode.center;
+    
+                // Hapus marker sebelumnya (jika ada)
+                if (tujuanMarker) {
+                    map.removeLayer(tujuanMarker);
+                }
+    
+                // Tambahkan marker tujuan baru
+                tujuanMarker = L.marker(latlng, {
+                    icon: L.icon({
+                        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+                        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+                        iconSize: [25, 41],
+                        iconAnchor: [12, 41],
+                        popupAnchor: [1, -34],
+                        shadowSize: [41, 41]
+                    })
+                }).addTo(map)
+                    .bindPopup(e.geocode.name)
+                    .openPopup();
+    
+                // Update rute
+                const userLatLng = userMarker.getLatLng();
+                routingControl.setWaypoints([
+                    L.latLng(userLatLng.lat, userLatLng.lng),
+                    latlng
+                ]);
+    
+                map.setView(latlng, 15);
+            })
+            .addTo(map);
+    
         function updateUserLocation(position) {
             const lat = position.coords.latitude;
             const lng = position.coords.longitude;
             userMarker.setLatLng([lat, lng]).update();
-
-            routingControl.setWaypoints([
-                L.latLng(lat, lng),
-                L.latLng(-6.240647427622811, 106.62874609187763)
-            ]);
+    
+            if (tujuanMarker) {
+                routingControl.setWaypoints([
+                    L.latLng(lat, lng),
+                    tujuanMarker.getLatLng()
+                ]);
+            }
         }
-
+    
         function errorHandler(error) {
             console.log("Error mendapatkan lokasi:", error);
         }
-
+    
         if (navigator.geolocation) {
             navigator.geolocation.watchPosition(updateUserLocation, errorHandler, {
                 enableHighAccuracy: true
@@ -254,64 +283,80 @@
         } else {
             alert("Geolocation tidak didukung di browser ini.");
         }
-
+    
         async function geocodeLocation(address) {
-        const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`);
-        const data = await response.json();
-        if (data && data.length > 0) {
-            return {
-                lat: parseFloat(data[0].lat),
-                lon: parseFloat(data[0].lon)
-            };
-        } else {
-            return null;
-        }
-    }
-
-    document.getElementById("search-route").addEventListener("click", async function() {
-        const startInput = document.getElementById("start-location").value;
-        const endInput = document.getElementById("end-location").value;
-
-        if (!startInput || !endInput) {
-            alert("Mohon isi kedua lokasi!");
-            return;
-        }
-
-        const startCoords = await geocodeLocation(startInput);
-        const endCoords = await geocodeLocation(endInput);
-
-        if (!startCoords || !endCoords) {
-            alert("Lokasi tidak ditemukan. Coba lagi dengan alamat yang lebih spesifik.");
-            return;
-        }
-
-        routingControl.setWaypoints([
-            L.latLng(startCoords.lat, startCoords.lon),
-            L.latLng(endCoords.lat, endCoords.lon)
-        ]);
-
-        map.setView([startCoords.lat, startCoords.lon], 14);
-    });
-
-     // Autocomplete untuk input lokasi
-     const provider = new window.GeoSearch.OpenStreetMapProvider();
-
-    function setupAutocomplete(inputId) {
-        const input = document.getElementById(inputId);
-
-        input.addEventListener("input", async (e) => {
-            const results = await provider.search({ query: e.target.value });
-            if (results.length > 0) {
-                console.log("Saran lokasi:", results.map(r => r.label));
-                // Kamu bisa menambahkan dropdown suggestion di sini kalau mau
+            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`);
+            const data = await response.json();
+            if (data && data.length > 0) {
+                return {
+                    lat: parseFloat(data[0].lat),
+                    lon: parseFloat(data[0].lon)
+                };
+            } else {
+                return null;
             }
+        }
+    
+        document.getElementById("search-route").addEventListener("click", async function () {
+            const startInput = document.getElementById("start-location").value;
+            const endInput = document.getElementById("end-location").value;
+    
+            if (!startInput || !endInput) {
+                alert("Mohon isi kedua lokasi!");
+                return;
+            }
+    
+            const startCoords = await geocodeLocation(startInput);
+            const endCoords = await geocodeLocation(endInput);
+    
+            if (!startCoords || !endCoords) {
+                alert("Lokasi tidak ditemukan. Coba lagi dengan alamat yang lebih spesifik.");
+                return;
+            }
+    
+            // Update user marker & tujuan marker
+            userMarker.setLatLng([startCoords.lat, startCoords.lon]).update();
+    
+            if (tujuanMarker) {
+                map.removeLayer(tujuanMarker);
+            }
+    
+            tujuanMarker = L.marker([endCoords.lat, endCoords.lon], {
+                icon: L.icon({
+                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                    shadowSize: [41, 41]
+                })
+            }).addTo(map).bindPopup("Tujuan Anda").openPopup();
+    
+            routingControl.setWaypoints([
+                L.latLng(startCoords.lat, startCoords.lon),
+                L.latLng(endCoords.lat, endCoords.lon)
+            ]);
+    
+            map.setView([startCoords.lat, startCoords.lon], 14);
         });
-    }
-
-    setupAutocomplete("start-location");
-    setupAutocomplete("end-location");
-
-    </script>      
+    
+        const provider = new window.GeoSearch.OpenStreetMapProvider();
+    
+        function setupAutocomplete(inputId) {
+            const input = document.getElementById(inputId);
+    
+            input.addEventListener("input", async (e) => {
+                const results = await provider.search({ query: e.target.value });
+                if (results.length > 0) {
+                    console.log("Saran lokasi:", results.map(r => r.label));
+                    // Kamu bisa menambahkan dropdown suggestion di sini
+                }
+            });
+        }
+    
+        setupAutocomplete("start-location");
+        setupAutocomplete("end-location");
+    </script>         
     <br>
     <br>
 </body>
