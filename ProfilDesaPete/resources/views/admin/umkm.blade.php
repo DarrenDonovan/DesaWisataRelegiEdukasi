@@ -113,15 +113,162 @@
 		</div>
 
 			<div class="main-panel">
-					<div class="container-fluid">
-						@if (Session::has('message'))
-							<p class="alert alert-success mt-2">{{ Session::get('message') }}</p>
-						@endif
-		  				<!-- Daftar UMKM -->
+				<div class="container-fluid">
+					@if (Session::has('message'))
+						<p class="alert alert-success mt-2">{{ Session::get('message') }}</p>
+					@endif
+		  			<!-- Daftar UMKM -->
 					<div class="d-flex justify-content-between align-items-center">
 						<h4 class="page-title mt-2">Daftar UMKM</h4>
 						<button type="button" class="btn btn-primary mb-4 mt-2" data-bs-toggle="modal" data-bs-target="#modalTambah_umkm">Tambah UMKM</button>	
-					</div>				
+					</div>
+					
+
+					<div class="row">
+							<div class="col">
+								<div class="card">
+									<div class="card-body">
+										<table class="table table-striped mt-3">
+											<thead>
+												<tr>
+													<th scope="col">Nama UMKM</th>
+													<th scope="col">Jenis UMKM</th>
+													<th scope="col">Keterangan</th>
+													<th scope="col">Gambar UMKM</th>
+													<th scope="col">Last Updated</th>
+													<th scope="col">Action</th>
+												</tr>
+											</thead>
+											<tbody>
+    										@foreach ($umkm as $itemUMKM)
+        										<tr>
+            										<td>{{ $itemUMKM->nama_umkm }}</td>
+													<td>{{ $itemUMKM->jenis_umkm }}</td>
+            										<td>{{ $itemUMKM->keterangan }}</td>
+            										<td>
+                									@if ($itemUMKM->gambar_umkm)
+                									    <img src="{{ asset('storage/' . $itemUMKM->gambar_umkm) }}" width="100" height="80" alt="">
+                									@else
+                									    Tidak ada gambar
+                									@endif
+													</td>
+													<td>Last Updated by {{ $itemUMKM->name }} at {{ $itemUMKM->updated_at }}</td>
+													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_umkm{{$itemUMKM->id_umkm}}">Edit</a> | <a href="{{route('admin.deleteUMKM', $itemUMKM->id_umkm)}}">Hapus</a></td>
+												</tr> 
+
+												<!-- Modal Edit Wisata -->
+												<div class="modal fade" id="modalUpdate_umkm{{$itemUMKM->id_umkm}}" tabindex="-1" aria-labelledby="modalTitle{{$itemUMKM->id_umkm}}" aria-hidden="true">
+   													<div class="modal-dialog">
+        												<div class="modal-content">
+            												<div class="modal-header">
+																<h5 class="modal-title" id="modalTitle">Edit UMKM</h5>
+																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            												</div>
+            												<div class="modal-body">
+																<form action="{{ route('admin.updateUMKM', $itemUMKM->id_umkm)}}" method="post" enctype="multipart/form-data">
+																	@csrf
+																	<div class="form-group">
+																		<label for="nama_tempat">Nama Tempat UMKM</label>
+																		<input type="text" class="form-control" name="nama_umkm" id="nama_umkm" value="{{ $itemUMKM->nama_umkm }}" required>
+																	</div>
+																	<div class="form-group">
+																		<label for="nama_wilayah">Nama Wilayah</label>
+																		<select name="nama_wilayah" class="form-control" required>
+														    				<option value="">-- Pilih Wilayah --</option>
+														    				@foreach ($wilayah as $itemWilayah)
+														    				    <option value="{{ $itemWilayah->id_wilayah }}" 
+																				{{ $itemWilayah->id_wilayah == $itemWisata->id_wilayah ? 'selected' : '' }}>
+																				{{ $itemWilayah->nama_wilayah }}
+																				</option>
+														    				@endforeach
+																		</select>
+																	</div>
+																	<div class="form-group">
+																		<label for="jenis_umkm">Jenis UMKM</label>
+																		<select name="jenis_umkm" class="form-control" required>
+														    				<option value="">-- Pilih Jenis UMKM --</option>
+														    				@foreach ($jenis_umkm as $itemJenisUMKM)
+														    				    <option value="{{ $itemJenisUMKM->id_jenis_umkm }}" 
+																				{{ $itemJenisUMKM->id_jenis_umkm == $itemUMKM->id_jenis_umkm ? 'selected' : '' }}>
+																				{{ $itemJenisUMKM->jenis_umkm }}
+																				</option>
+														    				@endforeach
+																		</select>
+																	</div>
+																	<div class="form-group">
+																		<label for="keterangan">Keterangan</label>
+																		<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required>{{ $itemUMKM->keterangan }}</textarea>
+																	</div>
+																	<div class="form-group">					
+																		<label for="gambar_wisata">Gambar UMKM</label>
+																		<input type="file" name="gambar_umkm" id="gambar_umkm" class="form-control-file">
+																	</div>
+                													<button type="submit" class="btn btn-primary form-control">Save changes</button>
+																</form>
+												            </div>
+												        </div>
+												    </div>
+												</div>
+												@endforeach
+											</tbody>
+										</table>
+										<div class="mb-4">
+										{{ $umkm->links() }}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- Modal Tambah UMKM (Sementara) -->
+						<div class="modal fade" id="modalTambah_umkm" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
+   							<div class="modal-dialog">
+        						<div class="modal-content">
+            						<div class="modal-header">
+										<h5 class="modal-title" id="modalTitle">Tambah UMKM Baru</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            						</div>
+            						<div class="modal-body">
+										<form action=" {{ route('admin.createUMKM') }}" method="post" enctype="multipart/form-data">
+											@csrf
+											<div class="form-group">
+												<label for="nama_umkm">Nama UMKM</label>
+												<input type="text" class="form-control" name="nama_umkm" id="nama_umkm" required>
+											</div>
+											<div class="form-group">
+												<label for="nama_wilayah">Nama Wilayah</label>
+												<select name="nama_wilayah" class="form-control" required>
+												    <option value="">-- Pilih Wilayah --</option>
+												    @foreach ($wilayahNoKec as $item)
+												        <option value="{{ $item->id_wilayah }}">{{ $item->nama_wilayah }}</option>
+												    @endforeach
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="jenis_umkm">Jenis UMKM</label>
+												<select name="jenis_umkm" class="form-control" required>
+													<option value="">-- Pilih Jenis UMKM --</option>
+													@foreach ($jenis_umkm as $itemJenisUMKM)
+													    <option value="{{ $itemJenisUMKM->id_jenis_umkm }}">{{ $itemJenisUMKM->jenis_umkm }}</option>
+													@endforeach
+												</select>
+											</div>
+											<div class="form-group">
+												<label for="keterangan">Keterangan</label>
+												<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required></textarea>					
+											</div>
+											<div class="form-group">
+												<label for="gambar_umkm">Gambar Wisata</label>
+												<input type="file" class="form-control-file" name="gambar_umkm" id="gambar_umkm">
+                							</div>
+											<button type="submit" class="btn btn-primary form-control">Tambahkan</button>
+										</form>
+						            </div>
+						        </div>
+						    </div>
+						</div>
+					</div>
+					
 				</div>
 			</div>
 		</div>

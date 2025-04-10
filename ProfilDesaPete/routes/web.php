@@ -91,6 +91,10 @@ Route::post('admin/updateWisata/{id}', [AdminController::class, 'updateWisata'])
 Route::post('admin/createWisata', [AdminController::class, 'createWisata'])->name('admin.createWisata');
 Route::get('admin/deleteWisata/{id}', [AdminController::class, 'deleteWisata'])->name('admin.deleteWisata');
 
+Route::post('admin/updateUMKM/{id}', [AdminController::class, 'updateUMKM'])->name('admin.updateUMKM');
+Route::post('admin/createUMKM', [AdminController::class, 'createUMKM'])->name('admin.createUMKM');
+Route::get('admin/deleteUMKM/{id}', [AdminController::class, 'deleteUMKM'])->name('admin.deleteUMKM');
+
 Route::post('admin/updateJumlahPenduduk/{id}', [AdminController::class, 'updateJumlahPenduduk'])->name('admin.updateJumlahPenduduk');
 
 Route::post('admin/updateKelompokUmur/{id}', [AdminController::class, 'updateKelompokUmur'])->name('admin.updateKelompokUmur');

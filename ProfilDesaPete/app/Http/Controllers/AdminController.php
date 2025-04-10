@@ -416,12 +416,48 @@ class AdminController extends Controller{
 
 
     public function umkm(){
+        $user = Auth::user();
+
+        //Daftar UMKM
+        if($user->role == 'superadmin'){
+            $umkm = DB::table('umkm')
+                ->join('wilayah', 'umkm.id_wilayah', '=', 'wilayah.id_wilayah')
+                ->join('jenis_umkm', 'umkm.id_jenis_umkm', '=', 'jenis_umkm.id_jenis_umkm')
+                ->leftJoin('users', 'umkm.updated_by', '=', 'users.id')
+                ->select('umkm.id_umkm', 'umkm.id_wilayah', 'umkm.id_jenis_umkm', 'jenis_umkm.jenis_umkm', 'wilayah.nama_wilayah', 'umkm.nama_tempat', 'umkm.keterangan', 'umkm.gambar_umkm', 'umkm.latitude', 'umkm.longitude', 'users.name', 'umkm.updated_by', 'umkm.updated_at')
+                ->orderBy('wisata.id_wilayah', 'asc')
+                ->paginate(5);
+        }
+        else{
+            $umkm = DB::table('umkm')
+                ->join('wilayah', 'umkm.id_wilayah', '=', 'wilayah.id_wilayah')
+                ->join('jenis_umkm', 'umkm.id_jenis_umkm', '=', 'jenis_umkm.id_jenis_umkm')
+                ->leftJoin('users', 'umkm.updated_by', '=', 'users.id')
+                ->select('umkm.id_umkm', 'umkm.id_wilayah', 'umkm.id_jenis_umkm', 'jenis_umkm.jenis_umkm', 'wilayah.nama_wilayah', 'umkm.nama_tempat', 'umkm.keterangan', 'umkm.gambar_umkm', 'umkm.latitude', 'umkm.longitude', 'users.name', 'umkm.updated_by', 'umkm.updated_at')
+                ->where('umkm.id_wilayah', $user->id_wilayah)
+                ->orderBy('umkm.id_wilayah', 'asc')
+                ->paginate(5);
+        }
+        
         $users = DB::table('users')
             ->select('users.id', 'users.name')
             ->where('users.id', '>', 1)
             ->get();
 
-        return view('admin.umkm', compact('users'));
+        $wilayahNoKec = DB::table('wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.gambar_wilayah')
+            ->where('wilayah.jenis_wilayah', '!=', 'Kecamatan')
+            ->get();
+
+        $wilayah = DB::table('wilayah')
+            ->select('wilayah.id_wilayah', 'wilayah.nama_wilayah', 'wilayah.luas_wilayah', 'wilayah.gambar_wilayah')
+            ->get();
+
+        $jenis_umkm = DB::table('jenis_umkm')
+            ->select('jenis_umkm.id_jenis_umkm', 'jenis_umkm.jenis_umkm')
+            ->get();
+
+        return view('admin.umkm', compact('user','users', 'umkm', 'wilayahNoKec', 'wilayah', 'jenis_umkm'));
     }
 
 
@@ -494,7 +530,7 @@ class AdminController extends Controller{
         ]);
 
         Session::flash('message', 'Data Berhasil Ditambahkan!');
-        return redirect()->route('admin');
+        return redirect()->route('admin.kegiatan');
     }
 
     public function createPerangkat(Request $request){
@@ -522,7 +558,7 @@ class AdminController extends Controller{
         ]);
 
         Session::flash('message', 'Data Berhasil Ditambahkan!');
-        return redirect()->route('admin');
+        return redirect()->route('admin.profilWilayah');
     }
 
     public function createBerita(Request $request){
@@ -550,13 +586,19 @@ class AdminController extends Controller{
         ]);
 
         Session::flash('message', 'Data Berhasil Ditambahkan!');
-        return redirect()->route('admin');
+        return redirect()->route('admin.berita');
     }
 
     public function createWisata(Request $request){
         
         
-        return redirect()->route('admin');
+        return redirect()->route('admin.wisata');
+    }
+
+    public function createUMKM(Request $request){
+        
+        
+        return redirect()->route('admin.umkm');
     }
 
 
@@ -577,7 +619,7 @@ class AdminController extends Controller{
             ->first();
         
         if (!$kegiatan) {
-            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+            return redirect()->route('admin.profilWilayah')->with('error', 'Data tidak ditemukan.');
         }
 
         $updateData = [
@@ -601,7 +643,7 @@ class AdminController extends Controller{
         DB::table('kegiatan')->where('id_kegiatan', $id)->update($updateData);
         
         Session::flash('message', 'Data Berhasil Diupdate!');
-        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('admin.kegiatan')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function updateAboutUs(Request $request){
@@ -615,7 +657,7 @@ class AdminController extends Controller{
         $about_us = DB::table('about_us')->first();
 
         if (!$about_us) {
-            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+            return redirect()->route('admin.profilWilayah')->with('error', 'Data tidak ditemukan.');
         }   
 
         $updateData = [
@@ -646,7 +688,7 @@ class AdminController extends Controller{
         DB::table('about_us')->where('id_about', $about_us->id_about)->update($updateData);
 
         Session::flash('message', 'Data Berhasil Diupdate!');
-        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('admin.profilWilayah')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function updateProfil(Request $request, $id){
@@ -659,7 +701,7 @@ class AdminController extends Controller{
             ->first();
         
         if (!$wilayah) {
-            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+            return redirect()->route('admin.profilWilayah')->with('error', 'Data tidak ditemukan.');
         }
 
         $updateData = [
@@ -679,7 +721,7 @@ class AdminController extends Controller{
         DB::table('wilayah')->where('id_wilayah', $id)->update($updateData);
 
         Session::flash('message', 'Data Berhasil Diupdate!');
-        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('admin.profilWilayah')->with('success', 'Data berhasil diperbarui.');
     }
 
 
@@ -698,7 +740,7 @@ class AdminController extends Controller{
             ->first();
         
         if (!$perangkat) {
-            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+            return redirect()->route('admin.profilWilayah')->with('error', 'Data tidak ditemukan.');
         }
 
         $updateData = [
@@ -723,7 +765,7 @@ class AdminController extends Controller{
         DB::table('perangkat_kecamatan')->where('id_perangkat', $id)->update($updateData);
 
         Session::flash('message', 'Data Berhasil Diupdate!');
-        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('admin.profilWilayah')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function updateBerita(Request $request, $id){
@@ -741,7 +783,7 @@ class AdminController extends Controller{
             ->first();
         
         if(!$berita){
-            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+            return redirect()->route('admin.berita')->with('error', 'Data tidak ditemukan.');
         }
 
         $updateData = [
@@ -766,7 +808,7 @@ class AdminController extends Controller{
         DB::table('berita')->where('id_berita', $id)->update($updateData);
 
         Session::flash('message', 'Data Berhasil Diupdate!');
-        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('admin.berita')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function updateWisata(Request $request, $id){
@@ -782,7 +824,7 @@ class AdminController extends Controller{
             ->first();
         
         if (!$wisata) {
-            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+            return redirect()->route('admin.wisata')->with('error', 'Data tidak ditemukan.');
         }
 
         $updateData = [
@@ -794,7 +836,7 @@ class AdminController extends Controller{
         ];
 
         if ($request->hasFile('gambar_wisata')) {
-            if ($kegiatan->gambar_wisata) {
+            if ($wisata->gambar_wisata) {
                 Storage::disk('public')->delete($wisata->gambar_wisata);
             }
 
@@ -805,33 +847,49 @@ class AdminController extends Controller{
         DB::table('wisata')->where('id_wisata', $id)->update($updateData);
         
         Session::flash('message', 'Data Berhasil Diupdate!');
-        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('admin.wisata')->with('success', 'Data berhasil diperbarui.');
     }
 
-    // public function updateJumlahPenduduk(Request $request, $id){
-    //     $request -> validate([
-    //         'jumlah_penduduk' => 'required|integer'
-    //     ]);
-
-    //     $wilayah = DB::table('wilayah')
-    //         ->where('wilayah.id_wilayah', $id)
-    //         ->first();
+    public function updateUMKM(Request $request, $id){
+        $request->validate([
+            'nama_umkm' => 'required|string|max:255',
+            'nama_wilayah' => 'required|integer',
+            'jenis_umkm'=> 'required|integer', 
+            'keterangan' => 'required|string',
+            'gambar_kegiatan' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
         
-    //     if(!$wilayah){
-    //         return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
-    //     }
+        $umkm = DB::table('umkm')
+            ->where('id_umkm', $id)
+            ->first();
+        
+        if (!$umkm) {
+            return redirect()->route('admin.umkm')->with('error', 'Data tidak ditemukan.');
+        }
 
-    //     $updateData = [
-    //         'jumlah_penduduk' => $request->jumlah_penduduk,
-    //         'updated_by' => Auth::user()->id,
-    //         'updated_at' => now(),
-    //     ];
+        $updateData = [
+            'nama_umkm' => $request->nama_umkm,
+            'id_wilayah' => $request->nama_wilayah,
+            'id_jenis_umkm' => $request->jenis_umkm,
+            'keterangan' => $request->keterangan,
+            'updated_by' => Auth::user()->id,
+            'updated_at' => now(),
+        ];
 
-    //     DB::table('wilayah')->where('id_wilayah', $id)->update($updateData);
+        if ($request->hasFile('gambar_umkm')) {
+            if ($umkm->gambar_umkm) {
+                Storage::disk('public')->delete($umkm->gambar_umkm);
+            }
 
-    //     Session::flash('message', 'Data Berhasil Diupdate!');
-    //     return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
-    // }
+            $imagePath = $request->file('gambar_umkm')->store('umkm', 'public');
+            $updateData['gambar_umkm'] = $imagePath;
+        }
+
+        DB::table('umkm')->where('id_umkm', $id)->update($updateData);
+        
+        Session::flash('message', 'Data Berhasil Diupdate!');
+        return redirect()->route('admin.umkm')->with('success', 'Data berhasil diperbarui.');
+    }
 
     public function updateKelompokUmur(Request $request, $id){
         $request -> validate([
@@ -844,7 +902,7 @@ class AdminController extends Controller{
             ->get();
         
         if(!$kel_umur){
-            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+            return redirect()->route('admin.infografis')->with('error', 'Data tidak ditemukan.');
         }
 
         $updateData = [
@@ -856,7 +914,7 @@ class AdminController extends Controller{
         DB::table('kel_umur_per_wilayah')->where('id', $id)->update($updateData);
 
         Session::flash('message', 'Data Berhasil Diupdate!');
-        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('admin.infografis')->with('success', 'Data berhasil diperbarui.');
     }
 
     public function updateJenisKelaminWilayah(Request $request, $id){
@@ -871,7 +929,7 @@ class AdminController extends Controller{
             ->get();
         
         if(!$jenis_kelamin_wilayah){
-            return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
+            return redirect()->route('admin.infografis')->with('error', 'Data tidak ditemukan.');
         }
 
         $updateData = [
@@ -884,82 +942,9 @@ class AdminController extends Controller{
         DB::table('jenis_kelamin_per_wilayah')->where('id_wilayah', $id)->update($updateData);
 
         Session::flash('message', 'Data Berhasil Diupdate!');
-        return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
+        return redirect()->route('admin.infografis')->with('success', 'Data berhasil diperbarui.');
     }
 
-    // public function updatePekerjaanPenduduk(Request $request, $id){
-    //     $request -> validate([
-    //         'jumlah_pekerja' => 'required|integer'
-    //     ]);
-
-    //     $pekerjaan_penduduk = DB::table('pekerjaan_per_wilayah')
-    //         ->join('wilayah', 'pekerjaan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-    //         ->where('pekerjaan_per_wilayah.id', $id)
-    //         ->get();
-        
-    //     if(!$pekerjaan_penduduk){
-    //         return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
-    //     }
-
-    //     $updateData = [
-    //         'jumlah_pekerja' => $request->jumlah_pekerja,
-    //         'updated_by' => Auth::user()->id,
-    //         'updated_at' => now(),
-    //     ];
-
-    //     DB::table('pekerjaan_per_wilayah')->where('id', $id)->update($updateData);
-
-    //     Session::flash('message', 'Data Berhasil Diupdate!');
-    //     return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
-    // }
-
-    // public function updateAgamaPenduduk(Request $request, $id){
-    //     $request -> validate([
-    //         'jumlah_penganut' => 'required|integer'
-    //     ]);
-
-    //     $agama_penduduk = DB::table('agama_per_wilayah')
-    //         ->join('wilayah', 'agama_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-    //         ->where('agama_per_wilayah.id', $id)
-    //         ->get();
-        
-    //     if(!$agama_penduduk){
-    //         return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
-    //     }
-
-    //     $updateData = [
-    //         'jumlah_penganut' => $request->jumlah_penganut
-    //     ];
-
-    //     DB::table('agama_per_wilayah')->where('id', $id)->update($updateData);
-
-    //     Session::flash('message', 'Data Berhasil Diupdate!');
-    //     return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
-    // }
-
-    // public function updatePendidikanPenduduk(Request $request, $id){
-    //     $request -> validate([
-    //         'jumlah_penduduk' => 'required|integer'
-    //     ]);
-
-    //     $pendidikan_penduduk = DB::table('pendidikan_per_wilayah')
-    //         ->join('wilayah', 'pendidikan_per_wilayah.id_wilayah', '=', 'wilayah.id_wilayah')
-    //         ->where('pendidikan_per_wilayah.id', $id)
-    //         ->get();
-        
-    //     if(!$pendidikan_penduduk){
-    //         return redirect()->route('admin')->with('error', 'Data tidak ditemukan.');
-    //     }
-
-    //     $updateData = [
-    //         'jumlah_orang' => $request->jumlah_penduduk
-    //     ];
-
-    //     DB::table('pendidikan_per_wilayah')->where('id', $id)->update($updateData);
-
-    //     Session::flash('message', 'Data Berhasil Diupdate!');
-    //     return redirect()->route('admin')->with('success', 'Data berhasil diperbarui.');
-    // }
 
 
 
@@ -973,7 +958,7 @@ class AdminController extends Controller{
         Storage::disk('public')->delete($kegiatan->gambar_kegiatan);
 
         Session::flash('message', 'Data Berhasil Dihapus!');
-        return redirect()->route('admin');
+        return redirect()->route('admin.kegiatan');
     }
 
     public function deleteAdmin(Request $request){
@@ -995,7 +980,7 @@ class AdminController extends Controller{
         Storage::disk('public')->delete($perangkat->gambar_perangkat);
 
         Session::flash('message', 'Data Berhasil Dihapus!');
-        return redirect()->route('admin');
+        return redirect()->route('admin.profilWilayah');
     }
 
     public function deleteBerita($id){
@@ -1009,7 +994,7 @@ class AdminController extends Controller{
         Storage::disk('public')->delete($berita->gambar_berita);
 
         Session::flash('message', 'Data Berhasil Dihapus!');
-        return redirect()->route('admin');
+        return redirect()->route('admin.berita');
     }
 
     public function deleteWisata($id){
@@ -1021,7 +1006,19 @@ class AdminController extends Controller{
         Storage::disk('public')->delete($wisata->gambar_wisata);
 
         Session::flash('message', 'Data Berhasil Dihapus!');
-        return redirect()->route('admin');
+        return redirect()->route('admin.wisata');
+    }
+
+    public function deleteUMKM($id){
+        $umkm = DB::table('umkm')
+            ->where('id_umkm', $id)
+            ->first();
+
+        DB::table('umkm')->where('id_umkm', $id)->delete();
+        Storage::disk('public')->delete($umkm->gambar_umkm);
+
+        Session::flash('message', 'Data Berhasil Dihapus!');
+        return redirect()->route('admin.umkm');
     }
 
 }
