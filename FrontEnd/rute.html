@@ -149,6 +149,22 @@
         .search-button:hover {
             background: #0056b3;
         }
+        #loading-indicator::after {
+        content: "";
+        display: inline-block;
+        margin-left: 10px;
+        border: 3px solid #007bff;
+        border-top: 3px solid transparent;
+        border-radius: 50%;
+        width: 14px;
+        height: 14px;
+        animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -171,7 +187,10 @@
             <input type="text" id="end-location" class="input-box" placeholder="Masukkan lokasi tujuan">
             <button id="search-route" class="search-button">Cari Rute</button>
         </div>
-        <div id="map"></div>
+        <div id="loading-indicator" style="display: none; text-align: center; font-weight: bold; color: #007bff; margin-bottom: 10px;">
+            Sedang mencari rute...
+        </div>  
+        <div id="map"></div>      
     </div>
 
     <script>
@@ -285,7 +304,7 @@
         }
     
         async function geocodeLocation(address) {
-            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`);
+            const response = await fetch(`https://nominatim.openstreetmap.org/search?format=json&countrycodes=id&q=${encodeURIComponent(address)}`);
             const data = await response.json();
             if (data && data.length > 0) {
                 return {
@@ -296,48 +315,62 @@
                 return null;
             }
         }
+
     
         document.getElementById("search-route").addEventListener("click", async function () {
-            const startInput = document.getElementById("start-location").value;
-            const endInput = document.getElementById("end-location").value;
-    
-            if (!startInput || !endInput) {
-                alert("Mohon isi kedua lokasi!");
-                return;
-            }
-    
-            const startCoords = await geocodeLocation(startInput);
-            const endCoords = await geocodeLocation(endInput);
-    
-            if (!startCoords || !endCoords) {
-                alert("Lokasi tidak ditemukan. Coba lagi dengan alamat yang lebih spesifik.");
-                return;
-            }
-    
-            // Update user marker & tujuan marker
-            userMarker.setLatLng([startCoords.lat, startCoords.lon]).update();
-    
-            if (tujuanMarker) {
-                map.removeLayer(tujuanMarker);
-            }
-    
-            tujuanMarker = L.marker([endCoords.lat, endCoords.lon], {
-                icon: L.icon({
-                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
-                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
-                    iconSize: [25, 41],
-                    iconAnchor: [12, 41],
-                    popupAnchor: [1, -34],
-                    shadowSize: [41, 41]
-                })
-            }).addTo(map).bindPopup("Tujuan Anda").openPopup();
-    
-            routingControl.setWaypoints([
-                L.latLng(startCoords.lat, startCoords.lon),
-                L.latLng(endCoords.lat, endCoords.lon)
-            ]);
-    
-            map.setView([startCoords.lat, startCoords.lon], 14);
+        const startInput = document.getElementById("start-location").value;
+        const endInput = document.getElementById("end-location").value;
+        const loadingIndicator = document.getElementById("loading-indicator");
+        const searchBtn = document.getElementById("search-route"); // ambil tombolnya di sini
+
+        if (!startInput || !endInput) {
+            alert("Mohon isi kedua lokasi!");
+            return;
+        }
+
+        // Aktifkan loading & disable tombol
+        loadingIndicator.style.display = "block";
+        searchBtn.disabled = true;
+        searchBtn.innerText = "Mencari...";
+
+        const startCoords = await geocodeLocation(startInput);
+        const endCoords = await geocodeLocation(endInput);
+
+        if (!startCoords || !endCoords) {
+            alert("Lokasi tidak ditemukan. Coba lagi dengan alamat yang lebih spesifik.");
+            loadingIndicator.style.display = "none";
+            searchBtn.disabled = false; // aktifkan kembali tombolnya
+            return;
+        }
+
+        userMarker.setLatLng([startCoords.lat, startCoords.lon]).update();
+
+        if (tujuanMarker) {
+            map.removeLayer(tujuanMarker);
+        }
+
+        tujuanMarker = L.marker([endCoords.lat, endCoords.lon], {
+            icon: L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            })
+        }).addTo(map).bindPopup("Tujuan Anda").openPopup();
+
+        routingControl.setWaypoints([
+            L.latLng(startCoords.lat, startCoords.lon),
+            L.latLng(endCoords.lat, endCoords.lon)
+        ]);
+
+        map.setView([startCoords.lat, startCoords.lon], 14);
+
+        // Sembunyikan loading & aktifkan tombol lagi
+        loadingIndicator.style.display = "none";
+        searchBtn.disabled = false;
+        searchBtn.innerText = "Cari Rute";
         });
     
         const provider = new window.GeoSearch.OpenStreetMapProvider();
