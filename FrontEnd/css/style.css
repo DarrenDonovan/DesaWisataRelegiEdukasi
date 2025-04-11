@@ -1068,12 +1068,12 @@
 /* kotak info dan map */
 .containerInfoMap {
   display: flex;
-  width: 80%;
+  justify-content: center;
+  width: 100%;
   background: white;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  margin-left: 180px;
 }
 .info {
   width: 50%;
