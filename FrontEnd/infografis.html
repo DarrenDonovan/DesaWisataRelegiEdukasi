@@ -29,8 +29,319 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
 
-    <body>
+    <style>
+            .navbar {
+                position: fixed !important; /* Pastikan navbar tetap fixed */
+                top: -1px;
+                left: 0;
+                width: 100%;
+                /* border: 2px solid red;  */
+                height: fit-content;
+            }
+            .navbar-brand .m-0 {
+                font-size: 28px;
+            }
+            @media (min-width: 310px) and (max-width: 469px) {
+            /* FOOTER */
+            .footer-item h4 {
+                    /* border: 2px solid red; */
+                    font-size: 16px; /* Mengecilkan ukuran heading */
+                }
 
+                .footer-item a {
+                    /* border: 2px solid red; */
+                    font-size: 14px; /* Mengecilkan ukuran teks */
+                }
+
+                .footer-item i {
+                    font-size: 14px; /* Mengecilkan ikon */
+                }
+
+                .footer .btn-square {
+                    /* border: 2px solid red; */
+                    width: 25px !important; /* Mengecilkan tombol sosial media */
+                    height: 25px;
+                    font-size: 14px;
+                    padding: 4px;
+                }
+                /* COPYRIGHT */
+                .container-fluid.copyright .container .col-md-6 {
+                    font-size: 12px;
+                }
+                .container-fluid.copyright .container .col-md-6 i, .text-white {
+                    font-size: 12px;
+                }
+            }
+            @media (max-width: 321px){
+                /* NAVBAR */
+                .navbar-brand .fa { 
+                    font-size: 15px !important; 
+                    margin-right: 10px !important;  
+                }
+                .navbar-brand h1 {
+                    font-size: 20px !important;
+                    color: #ffff !important;
+                }
+                .navbar-brand h1 .subtext {
+                    font-size: 15px !important;
+                    margin-left: 22px !important;
+                    color: #ffff !important;
+                }
+                .navbar-toggler  {
+                    font-size: 15px;
+                    padding: 0.3rem 0.6rem !important; 
+                    color: #ffff !important;
+                    border-color: #ffff !important;
+                }
+                .collapse {
+                    font-size: 20px;
+                }
+
+                /* HERO */
+                .container-fluid.bg-breadcrumb {
+                    height: 60% !important;
+                }
+                /* LOGO */
+                .h-100 {
+                   width: 200px !important;
+
+                }
+            }
+            @media (min-width: 322px) and (max-width: 380px) {
+                /* NAVBAR */
+                .navbar-brand .fa { 
+                    font-size: 20px !important; /*logo*/
+                    margin-right: 10px !important;
+                }
+                .navbar-brand h1 {
+                    font-size: 20px !important;
+                    color: #ffff !important;
+                }
+                .navbar-brand h1 .subtext {
+                    font-size: 15px !important;
+                    margin-left: 25px !important;
+                    color: #ffff !important;
+                }
+                .navbar-toggler  {
+                    font-size: 15px;
+                    padding: 0.3rem 0.6rem !important; 
+                    color: #ffff !important;
+                    border-color: #ffff !important;
+                }
+                .collapse {
+                    font-size: 20px;
+                }
+
+                /* FOOTER */
+                .footer {
+                    padding: 20px 10px; /* Mengurangi padding agar lebih pas */
+                }
+
+                .footer-item h4 {
+                    font-size: 16px; /* Mengecilkan ukuran heading */
+                }
+                .footer-item a {
+                    font-size: 14px; /* Mengecilkan ukuran teks */
+                }
+
+                .footer-item i {
+                    font-size: 14px; /* Mengecilkan ikon */
+                }
+
+                .footer .btn-square {
+                    width: 28px; /* Mengecilkan tombol sosial media */
+                    height: 28px;
+                    font-size: 12px;
+                    padding: 4px;
+                }
+                /* COPYRIGHT */
+                .container-fluid.copyright .container .col-md-6 {
+                    font-size: 12px;
+                }
+                .container-fluid.copyright .container .col-md-6 i, .text-white {
+                    font-size: 12px;
+                }
+            }
+
+            @media (min-width: 381px) and (max-width: 427px) {
+                .navbar-brand .fa { 
+                    font-size: 20px !important; /*logo*/
+                    margin-right: 15px !important;
+                }
+                .navbar-brand h1 {
+                    font-size: 23px !important;
+                    color: #ffff !important;
+                }
+                .navbar-brand h1 .subtext {
+                    font-size: 18px !important;
+                    margin-left: 30px !important;
+                    color: #ffff !important;
+                    /* border: 2px solid blue; */
+                }
+                .nav.nav-pills {
+                    flex-wrap: nowrap;
+                    overflow-x: scroll;
+                    max-width: 100%;
+                    justify-content: flex-start !important;
+                }
+                .col-12.col-sm-6 {
+                    width: 300px;
+                    margin-left: 40px;
+                }
+            }
+            @media (min-width: 427px) and (max-width: 769px){
+                /* NAVBAR */
+                .navbar-brand .m-0 {
+                    font-size: 25px;
+                }
+                .navbar-brand .subtext {
+                    font-size: 20px;
+                    margin-left: 31px;
+                }
+                .navbar-brand .fa {
+                    font-size: 25px !important;
+                }
+            }
+
+            @media (min-width: 770) and (max-width: 1024px) {
+                .navbar {
+                    height: 180px;
+                }
+                .navbar.navbar-expand-lg.navbar-light {
+                    height: 180px !important;
+                }
+                .navbar-brand .m-0{
+                    font-size: 50px;
+                }
+                .navbar-brand .subtext{ 
+                    font-size: 30px;
+                }
+                .navbar-nav {
+                   /* border: 2px solid blue; */
+                   height: 180px;
+                }
+
+                .navbar-nav .nav-item {
+                    font-size: 30px !important;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .navbar-nav .nav-item.dropdown .nav-link{
+                    font-size: 30px !important;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .dropdown-menu {
+                    font-size: 24px;
+                }
+                
+                /* FOOTER */
+                .footer {
+                    /* border: 2px solid blue; */
+                    padding: 20px 615px; /* Mengurangi padding agar lebih pas */
+                }
+                .footer-item {
+                    width: 500px;
+                    gap: 20px;
+                }
+                .footer-item h4 {
+                    font-size: 35px; /* Mengecilkan ukuran heading */
+                }
+                .footer-item a {
+                    font-size: 30px; /* Mengecilkan ukuran teks */
+                    text-wrap: nowrap;
+
+                }
+                .footer-item i {
+                    font-size: 35px; /* Mengecilkan ikon */
+                }
+                .footer .btn-square {
+                    width: 60px; /* Mengecilkan tombol sosial media */
+                    height: 60px;
+                    font-size: 40px;
+                    padding: 4px;
+                }
+            }
+
+            @media  (min-width: 2560px) {
+                /* NAVBAR */
+                .navbar {
+                    height: 180px;
+                }
+                .navbar.navbar-expand-lg.navbar-light {
+                    height: 180px !important;
+                }
+                .navbar-brand .m-0{
+                    font-size: 50px;
+                }
+                .navbar-brand .subtext{ 
+                    font-size: 30px;
+                }
+                .navbar-nav {
+                   /* border: 2px solid blue; */
+                   height: 180px;
+                }
+
+                .navbar-nav .nav-item {
+                    font-size: 30px !important;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .navbar-nav .nav-item.dropdown .nav-link{
+                    font-size: 30px !important;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .dropdown-menu {
+                    font-size: 24px;
+                }
+            } 
+            @media (max-width: 576px) {
+                .bg-breadcrumb h3 {
+                    font-size: 2rem !important;
+                }
+            }
+            @media (max-width: 992px) {
+                .navbar-brand .fa {
+                    font-size: 25px !important;
+                }
+                .navbar-brand .subtext {
+                    margin-left: 35px !important;
+                }
+                .navbar-toggler.scrolled {
+                    color: #13357b !important;
+                    border-color: #13357b !important;
+                }
+
+                .navbar-brand h1.scrolled {
+                    color: #13357b !important;
+                    border-color: #13357b !important;
+                }
+
+                .navbar-brand h1 .subtext.scrolled {
+                    color: #13357b !important;
+                    border-color: #13357b !important;
+                    
+                }
+                .navbar-nav {
+                    background-color: #ffff;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+                .navbar-brand h1 {
+                    color: #ffff !important;
+                }
+                .navbar-toggler  {
+                    color: #ffff !important;
+                    border-color: #ffff !important;
+                }
+            }
+    </style>
+    <body>
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
@@ -64,8 +375,8 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
                         <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
-                        <a href="infografis.html" class="nav-item nav-link active">Infografis</a>
+                        <a href="about.html" class="nav-item nav-link active">Tentang Kami</a>
+                        <a href="infografis.html" class="nav-item nav-link">Infografis</a>
                         <a href="maps.html" class="nav-item nav-link">Maps</a>
                         <a href="berita.html" class="nav-item nav-link">Berita</a>
                         <div class="nav-item dropdown">
@@ -88,6 +399,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
             </nav>
         </div>
         <!-- Navbar & Hero End -->
@@ -201,7 +513,7 @@
                 <div class="container-fluid testimonial py-5">
                     <div class="container py-5">
                         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
-                            <h1 class="mb-0" >Jumlah Penduduk dan Kepala Keluarga</h1>
+                            <h1 class="mb-0" >Jumlah Penduduk dan Kepala Keluarga </h1>
                         </div>
                     </div>
                 </div>
