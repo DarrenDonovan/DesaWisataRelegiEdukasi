@@ -40,9 +40,6 @@
                 /* border: 2px solid red;  */
                 height: fit-content;
                 }
-
-                
-
             .navbar-brand .m-0 {
                 font-size: 28px;
             }
@@ -133,9 +130,12 @@
                 }
             }
             @media (max-width: 321px){
+                .navbar.navbar-expand-lg.navbar-light {
+                    /* border: 2px solid red; */
+                    padding-left: 20px !important;
+                }
                 .navbar-brand .fa { 
                     font-size: 15px !important; 
-                    margin-right: 10px !important;
                 }
                 .navbar-brand h1 {
                     font-size: 20px !important;
@@ -143,7 +143,7 @@
                 }
                 .navbar-brand h1 .subtext {
                     font-size: 15px !important;
-                    margin-left: 22px !important;
+                    margin-left: 32px !important;
                     color: #ffff !important;
                 }
 
@@ -159,22 +159,33 @@
                 }
 
                 /* BERITA */
-                .col-12.col-sm-6 {
-                    /* border: 2px solid rebeccapurple; */
-                    width: 250px !important;
-                    /* margin: 2px !important; */
-                }
-                /* galery */
-                .tab-content {
-                    padding: 0px !important;
-                }
-                
+               .container-fluid.mt-5 {
+                /* border: 2px solid red; */
+               }
+               .row {
+                overflow: hidden;
+                /* border: 2px solid blue; */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0px;
+                padding: 0px;
+               }
+               .col-12.col-sm-6 {
+                margin: 0px !important;
+                padding: 0px !important;
             }
-            @media (max-width: 380px) {
+            /* FOOTER */
+            .col-md-6.col-lg-6.col-xl-3 {
+                padding: 0px !important;
+            }
+        }
+
+            @media (min-width: 322px) and (max-width: 380px) {
                 /* NAVBAR */
                 .navbar-brand .fa { 
                     font-size: 15px !important; 
-                    margin-right: 10px !important;
+                    margin-right: 14px !important;
                 }
                 .navbar-brand h1 {
                     font-size: 20px !important;
@@ -182,7 +193,7 @@
                 }
                 .navbar-brand h1 .subtext {
                     font-size: 15px !important;
-                    margin-left: 22px !important;
+                    margin-left: 30px !important;
                     color: #ffff !important;
                 }
 
@@ -231,14 +242,19 @@
                     font-size: 12px;
                 }
                 /* BERITA */
+                .row {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
                 .col-12.col-sm-6 {
                     width: 300px;
-                     margin: 25px !important; 
+                     margin: 0px !important; 
                 }
                 
             }
 
-            @media (max-width: 426px) {
+            @media (min-width: 381px) and (max-width: 426px) {
                 .navbar-brand h1 .subtext {
                     margin-left: 31px !important;
                 }
@@ -252,9 +268,14 @@
                     /* text-align: left !important; */
                     justify-content: flex-start !important;
                 }
+                .row {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
                 .col-12.col-sm-6 {
                     width: 300px;
-                    margin-left: 50px;
+                     margin: 0px !important; 
                 }
             }
             @media (max-width: 450px){
@@ -346,7 +367,6 @@
                 .position-relative.rounded-pill {
                     height: 50px;
                 }
-                
             }
             
             @media screen and (max-width: 1120px) {
@@ -652,7 +672,7 @@
             </div>
             <div class="row">
                 <!-- Berita 1 -->
-                <div class="col-12 col-sm-6 col-md-4 mb-4">
+                <div class="col-12 col-sm-6 col-md-4 mb-4" >
                     <div class="card h-100">
                         <img src="img/blog-1.jpg" class="card-img-top" alt="Gambar Berita">
                         <div class="card-body">
