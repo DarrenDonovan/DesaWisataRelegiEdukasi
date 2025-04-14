@@ -41,6 +41,13 @@
             .navbar-brand .m-0 {
                 font-size: 28px;
             }
+            .subtext {
+                margin: 0px;
+            }
+            .kec {
+                /* border: 2px solid red; */
+                margin-left: 6px;
+            }
             @media (min-width: 310px) and (max-width: 469px) {
             /* FOOTER */
             .footer-item h4 {
@@ -84,7 +91,7 @@
                 }
                 .navbar-brand h1 .subtext {
                     font-size: 15px !important;
-                    margin-left: 22px !important;
+                    margin: 0px !important;
                     color: #ffff !important;
                 }
                 .navbar-toggler  {
@@ -100,11 +107,6 @@
                 /* HERO */
                 .container-fluid.bg-breadcrumb {
                     height: 60% !important;
-                }
-                /* LOGO */
-                .h-100 {
-                   width: 200px !important;
-
                 }
             }
             @media (min-width: 322px) and (max-width: 380px) {
@@ -174,7 +176,7 @@
                 }
                 .navbar-brand h1 .subtext {
                     font-size: 18px !important;
-                    margin-left: 30px !important;
+                    /* margin-left: 30px !important; */
                     color: #ffff !important;
                     /* border: 2px solid blue; */
                 }
@@ -196,7 +198,7 @@
                 }
                 .navbar-brand .subtext {
                     font-size: 20px;
-                    margin-left: 31px;
+                    /* margin-left: 31px; */
                 }
                 .navbar-brand .fa {
                     font-size: 25px !important;
@@ -309,9 +311,6 @@
                 .navbar-brand .fa {
                     font-size: 25px !important;
                 }
-                .navbar-brand .subtext {
-                    margin-left: 35px !important;
-                }
                 .navbar-toggler.scrolled {
                     color: #13357b !important;
                     border-color: #13357b !important;
@@ -350,33 +349,24 @@
         </div>
         <!-- Spinner End -->
 
-       
-        <div class="container-fluid bg-primary px-5 d-none d-lg-block">
-            <div class="row gx-0 justify-content-end"> <!-- Tambahkan justify-content-end -->
-                <div class="col-lg-4 text-end"> <!-- Gunakan text-end agar teks sejajar ke kanan -->
-                    <div class="d-inline-flex align-items-center" style="height: 45px;">
-                        <a href="#"><small class="me-3 text-light"><i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Topbar End -->
-
         <!-- Navbar & Hero Start -->
         <div class="container-fluid position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
-                    <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Kecamatan Tigaraksa <span class="subtext">Kabupaten Tangerang</span></h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
-                </a>
+                    <h1 class="m-0 d-flex align-items-center">
+                      <i class="fa fa-map-marker-alt me-2"></i>
+                      <div class="kec" style="text-align: left;"> Kecamatan Tigaraksa<br> <span class="subtext">Kabupaten Tangerang</span></div>
+                    </h1>
+                  </a>
+                  
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
                         <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="about.html" class="nav-item nav-link active">Tentang Kami</a>
-                        <a href="infografis.html" class="nav-item nav-link">Infografis</a>
+                        <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
+                        <a href="infografis.html" class="nav-item nav-link active">Infografis</a>
                         <a href="maps.html" class="nav-item nav-link">Maps</a>
                         <a href="berita.html" class="nav-item nav-link">Berita</a>
                         <div class="nav-item dropdown">
@@ -405,7 +395,7 @@
         <!-- Navbar & Hero End -->
 
         <!-- Header Start -->
-        <div class="container-fluid bg-breadcrumb">
+        <div class="container-fluid bg-breadcrumb" style="display: flex; justify-content: center; align-items: center; height: 50vh;">
             <div class="container text-center py-5" style="max-width: 900px;">
                 <h3 class="text-white display-3 mb-4">Infografis</h1>
             </div>

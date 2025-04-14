@@ -83,12 +83,18 @@
             .navbar-brand .m-0 {
                 font-size: 28px;
             }
+            .subtext {
+                margin: 0px;
+            }
+            .kec {
+                margin-left: 6px;
+            }
             @media (max-width: 992px) {
                 .navbar-brand .fa {
                     font-size: 25px !important;
                 }
                 .navbar-brand .subtext {
-                    margin-left: 35px !important;
+                    margin: 0px !important;
                 }
                 .navbar-toggler.scrolled {
                     color: #13357b !important;
@@ -156,7 +162,7 @@
             @media (max-width: 321px){
                 /* NAVBAR */
                 .navbar-brand .fa { 
-                    font-size: 15px !important; 
+                    font-size: 20px !important; 
                     margin-right: 10px !important;
                 }
                 .navbar-brand h1 {
@@ -165,7 +171,6 @@
                 }
                 .navbar-brand h1 .subtext {
                     font-size: 15px !important;
-                    margin-left: 22px !important;
                     color: #ffff !important;
                 }
                 .navbar-toggler  {
@@ -278,7 +283,6 @@
                 }
                 .navbar-brand h1 .subtext {
                     font-size: 15px !important;
-                    margin-left: 25px !important;
                     color: #ffff !important;
                 }
                 .navbar-toggler  {
@@ -416,7 +420,6 @@
                 }
                 .navbar-brand h1 .subtext {
                     font-size: 18px !important;
-                    margin-left: 30px !important;
                     color: #ffff !important;
                     /* border: 2px solid blue; */
                 }
@@ -516,7 +519,6 @@
                 }
                 .navbar-brand .subtext {
                     font-size: 20px;
-                    margin-left: 31px;
                 }
                 .navbar-brand .fa {
                     font-size: 25px !important;
@@ -775,6 +777,10 @@
                 .navbar {
                     height: 180px;
                 }
+                .navbar-brand .m-0.d-flex .fa {
+                    font-size: 40px !important;
+                    border: 2px solid red;
+                }
                 .navbar.navbar-expand-lg.navbar-light {
                     height: 180px !important;
                 }
@@ -958,9 +964,11 @@
         <div class="container-fluid position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
-                    <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Kecamatan Tigaraksa <span class="subtext">Kabupaten Tangerang</span></h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
-                </a>
+                    <h1 class="m-0 d-flex align-items-center">
+                      <i class="fa fa-map-marker-alt me-2"></i>
+                      <div class="kec" style="text-align: left;"> Kecamatan Tigaraksa<br> <span class="subtext">Kabupaten Tangerang</span></div>
+                    </h1>
+                  </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
