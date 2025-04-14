@@ -151,7 +151,7 @@
             <div class="container py-5">
                 <div class="mx-auto text-center mb-3" style="max-width: 900px;">
                     <h5 class="section-title px-3">Galeri</h5>
-                    <h1 class="mb-0">Kegiatan</h1>
+                    <h1 class="mb-0">Kegiatan Kecamatan Tigaraksa</h1>
                 </div>
                 <div class="container-fluid mb-4">
                     <div class="container py-5">

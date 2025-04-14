@@ -227,6 +227,23 @@ console.log(interestPoints);
 
   // Array untuk menyimpan marker
   var markers = [];
+  var redIcon = new L.Icon({
+    iconUrl: '{{ url('assets/marker-icon/marker-icon-red.png') }}',
+    shadowUrl: '{{ url('assets/marker-icon/marker-shadow.png') }}',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
+
+  var blueIcon = new L.Icon({
+    iconUrl: '{{ url('assets/marker-icon/marker-icon-blue.png') }}',
+    shadowUrl: '{{ url('assets/marker-icon/marker-shadow.png') }}',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  });
 
   // Fungsi untuk menampilkan marker berdasarkan kategori
   function addMarkers(category) {
@@ -236,7 +253,12 @@ console.log(interestPoints);
 
     interestPoints.forEach((point) => {
       if (category === "all" || point.category === category) {
-        var marker = L.marker([point.lat, point.lon]).addTo(map);
+        if(point.category === "Desa"){
+            var marker = L.marker([point.lat, point.lon], {icon: blueIcon}).addTo(map);
+        }
+        else{
+            var marker = L.marker([point.lat, point.lon], {icon: redIcon}).addTo(map);
+        }
 
         // Tooltip menggantikan Popup agar tidak ada tombol X dan menghilang otomatis
         marker.bindTooltip(`<b>${point.name}</b><br>${point.category}`, {
