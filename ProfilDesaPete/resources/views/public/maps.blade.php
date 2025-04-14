@@ -101,7 +101,7 @@
             <div class="container py-5">
                 <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                     <h5 class="section-title px-3">Peta Kecamatan</h5>
-                    <h1 class="mb-0">Menampilkan Peta Kecamatan Tigaraksa Dengan Penandaan Lokasi Setiap Desa</h1>
+                    <h1 class="mb-0">Menampilkan Peta Kecamatan Tigaraksa Dengan Penandaan Lokasi Setiap Desa dan Kelurahan</h1>
                 </div>
                
                 

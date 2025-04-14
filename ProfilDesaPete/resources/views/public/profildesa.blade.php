@@ -427,7 +427,9 @@
     <!-- Wisata start -->
     <div class="mx-auto text-center mb-5" style="max-width: 900px; margin-top: 100px;">
       <h5 class="section-title px-3"> Wisata </h5>
-      <h1 class="mb-0">Jelajahi Wisata Lokal</h1>
+      @foreach ($wilayaheach as $itemWilayah)
+      <h1 class="mb-0">Jelajahi Wisata Lokal {{ $itemWilayah->nama_wilayah }}</h1>
+      @endforeach
     </div>
     <div class="containerWisata">
       <div class="gridWisata">
@@ -444,7 +446,9 @@
   <!-- UMKM start -->
   <div class="mx-auto text-center mb-5" style="max-width: 900px; margin-top: 100px;">
     <h5 class="section-title px-3"> UMKM </h5>
-    <h1 class="mb-0">Produk Khas Daerah</h1>
+    @foreach ($wilayaheach as $itemWilayah)
+    <h1 class="mb-0">Produk Khas Daerah {{ $itemWilayah->nama_wilayah }}</h1>
+    @endforeach
   </div>
   <div class="containerUMKM" style="margin-bottom: 50px;"> 
     <div class="gridUMKM">
@@ -472,7 +476,9 @@
             <div class="container py-5">
                 <div class="mx-auto text-center mb-3" style="max-width: 900px;">
                     <h5 class="section-title px-3">Galeri</h5>
-                    <h1 class="mb-0">Kegiatan</h1>
+                    @foreach ($wilayaheach as $itemWilayah)
+                    <h1 class="mb-0">Kegiatan {{ $itemWilayah->nama_wilayah }}</h1>
+                    @endforeach
                 </div>
                 <div class="container-fluid mb-4">
                     <div class="container py-5">

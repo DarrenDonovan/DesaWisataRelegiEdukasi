@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2025 at 08:29 AM
+-- Generation Time: Apr 14, 2025 at 05:45 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -43,7 +43,154 @@ CREATE TABLE `about_us` (
 --
 
 INSERT INTO `about_us` (`id_about`, `id_wilayah`, `visi`, `misi`, `gambar_about`, `bagan_organisasi`, `updated_by`, `updated_at`) VALUES
-(1, 13, '<p>Visi Kecamatan Tigaraksa bertujuan memberikan arah strategis bagi pembangunan daerah yang berkelanjutan sebagai berikut:s</p>\r\n<p>\"Terwujudnya kehidupan masyarakat Kecamatan Tigaraksa yang cerdas, religius, dan berwawasan kemandirian\"</p>\r\n<ul>\r\n<li>Cerdas: Masyarakat memiliki wawasan, keterampilan, serta pendidikan yang mendukung kualitas hidup</li>\r\n<li>Religius: Nilai-nilai agama menjadi landasan dalam kehidupan masyarakat dan kebijakan pemerintah</li>\r\n<li>Berwawasan Kemandirian: Masyarakat mampu berpikir kreatif, inovatif, serta mandiri dalam menghadapi tantangan</li>\r\n</ul>\r\n<p>Visi ini menjadi pedoman dalam menyusun program prioritas dan kegiatan pembangunan di Kecamatan Tigaraksa</p>', '<ul>\r\n<li>Meningkatkan fasilitas pendidikan dan layanan kesehatan masyarakat</li>\r\n<li>Mendorong pertumbuhan ekonomi berbasis UMKM sesuai potensi wilayah</li>\r\n<li>Mewujudkan kesejahteraan sosial dengan nilai-nilai religius dalam pemerintahan</li>\r\n<li>Mempercepat pembangunan infrastruktur jalan, jembatan, dan fasilitas umum</li>\r\n<li>Meningkatkan ketertiban dan keamanan melalui koordinasi yang efektif</li>\r\n<li>Mengembangkan kapasitas aparatur kecamatan, desa, dan kelurahan dalam pelayanan publik</li>\r\n</ul>\r\n<p>Misi ini menjadi pedoman utama dalam merancang kebijakan dan program pembangunan di Kecamatan Tigaraksa, Tangerang</p>', 'about_us/tentang-kami.jpg', 'bagan_organisasi/tigaraksa.jpg', 1, '2025-03-21 01:25:31');
+(1, 13, '<p><strong>Visi Kecamatan</strong> Tigaraksa bertujuan memberikan arah strategis bagi pembangunan daerah yang berkelanjutan sebagai berikut:s</p>\r\n\r\n<p>&quot;Terwujudnya kehidupan masyarakat Kecamatan Tigaraksa yang cerdas, religius, dan berwawasan kemandirian&quot;</p>\r\n\r\n<ul>\r\n	<li>Cerdas: Masyarakat memiliki wawasan, keterampilan, serta pendidikan yang mendukung kualitas hidup</li>\r\n	<li>Religius: Nilai-nilai agama menjadi landasan dalam kehidupan masyarakat dan kebijakan pemerintah</li>\r\n	<li>Berwawasan Kemandirian: Masyarakat mampu berpikir kreatif, inovatif, serta mandiri dalam menghadapi tantangan</li>\r\n</ul>\r\n\r\n<p>Visi ini menjadi pedoman dalam menyusun program prioritas dan kegiatan pembangunan di Kecamatan Tigaraksa</p>', '<ul>\r\n<li>Meningkatkan fasilitas pendidikan dan layanan kesehatan masyarakat</li>\r\n<li>Mendorong pertumbuhan ekonomi berbasis UMKM sesuai potensi wilayah</li>\r\n<li>Mewujudkan kesejahteraan sosial dengan nilai-nilai religius dalam pemerintahan</li>\r\n<li>Mempercepat pembangunan infrastruktur jalan, jembatan, dan fasilitas umum</li>\r\n<li>Meningkatkan ketertiban dan keamanan melalui koordinasi yang efektif</li>\r\n<li>Mengembangkan kapasitas aparatur kecamatan, desa, dan kelurahan dalam pelayanan publik</li>\r\n</ul>\r\n<p>Misi ini menjadi pedoman utama dalam merancang kebijakan dan program pembangunan di Kecamatan Tigaraksa, Tangerang</p>', 'about_us/tentang-kami.jpg', 'bagan_organisasi/tigaraksa.jpg', 1, '2025-04-08 23:32:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `agama`
+--
+
+CREATE TABLE `agama` (
+  `id_agama` int(11) NOT NULL,
+  `agama` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `agama`
+--
+
+INSERT INTO `agama` (`id_agama`, `agama`) VALUES
+(1, 'Katolik'),
+(2, 'Kristen'),
+(3, 'Islam'),
+(4, 'Buddha'),
+(5, 'Hindu'),
+(6, 'Kong Hu Cu'),
+(7, 'Kepercayaan Terhadap Tuhan YME/Lainnya');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `agama_per_wilayah`
+--
+
+CREATE TABLE `agama_per_wilayah` (
+  `id_wilayah` int(11) NOT NULL,
+  `id_agama` int(11) NOT NULL,
+  `jumlah_penganut` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `agama_per_wilayah`
+--
+
+INSERT INTO `agama_per_wilayah` (`id_wilayah`, `id_agama`, `jumlah_penganut`) VALUES
+(1, 1, 800),
+(1, 2, 100),
+(1, 3, 70),
+(1, 4, 20),
+(1, 5, 10),
+(1, 6, 5),
+(1, 7, 2),
+(2, 1, 950),
+(2, 2, 120),
+(2, 3, 60),
+(2, 4, 15),
+(2, 5, 12),
+(2, 6, 8),
+(2, 7, 5),
+(3, 1, 700),
+(3, 2, 90),
+(3, 3, 50),
+(3, 4, 18),
+(3, 5, 7),
+(3, 6, 3),
+(3, 7, 1),
+(4, 1, 870),
+(4, 2, 110),
+(4, 3, 55),
+(4, 4, 22),
+(4, 5, 11),
+(4, 6, 6),
+(4, 7, 4),
+(5, 1, 920),
+(5, 2, 95),
+(5, 3, 80),
+(5, 4, 19),
+(5, 5, 10),
+(5, 6, 5),
+(5, 7, 3),
+(6, 1, 880),
+(6, 2, 130),
+(6, 3, 70),
+(6, 4, 25),
+(6, 5, 9),
+(6, 6, 4),
+(6, 7, 2),
+(7, 1, 760),
+(7, 2, 85),
+(7, 3, 65),
+(7, 4, 14),
+(7, 5, 8),
+(7, 6, 6),
+(7, 7, 2),
+(8, 1, 810),
+(8, 2, 105),
+(8, 3, 60),
+(8, 4, 20),
+(8, 5, 10),
+(8, 6, 5),
+(8, 7, 3),
+(9, 1, 950),
+(9, 2, 125),
+(9, 3, 85),
+(9, 4, 30),
+(9, 5, 15),
+(9, 6, 7),
+(9, 7, 4),
+(10, 1, 890),
+(10, 2, 110),
+(10, 3, 75),
+(10, 4, 22),
+(10, 5, 12),
+(10, 6, 4),
+(10, 7, 2),
+(11, 1, 930),
+(11, 2, 100),
+(11, 3, 65),
+(11, 4, 18),
+(11, 5, 11),
+(11, 6, 5),
+(11, 7, 3),
+(12, 1, 890),
+(12, 2, 115),
+(12, 3, 85),
+(12, 4, 30),
+(12, 5, 18),
+(12, 6, 14),
+(12, 7, 8),
+(13, 1, 3500),
+(13, 2, 450),
+(13, 3, 220),
+(13, 4, 80),
+(13, 5, 60),
+(13, 6, 35),
+(13, 7, 15),
+(14, 1, 870),
+(14, 2, 100),
+(14, 3, 75),
+(14, 4, 28),
+(14, 5, 22),
+(14, 6, 12),
+(14, 7, 9),
+(15, 1, 910),
+(15, 2, 120),
+(15, 3, 80),
+(15, 4, 30),
+(15, 5, 20),
+(15, 6, 10),
+(15, 7, 5);
 
 -- --------------------------------------------------------
 
@@ -474,6 +621,153 @@ CREATE TABLE `migrations` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pendidikan`
+--
+
+CREATE TABLE `pendidikan` (
+  `id_pendidikan` int(11) NOT NULL,
+  `tingkat_pendidikan` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pendidikan`
+--
+
+INSERT INTO `pendidikan` (`id_pendidikan`, `tingkat_pendidikan`) VALUES
+(1, 'Tidak/Belum Sekolah'),
+(2, 'TK/Sederajat'),
+(3, 'SD/Sederajat'),
+(4, 'SMP/Sederajat'),
+(5, 'SMA/Sederajat'),
+(6, 'Diploma'),
+(7, 'Strata');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pendidikan_per_wilayah`
+--
+
+CREATE TABLE `pendidikan_per_wilayah` (
+  `id_wilayah` int(11) NOT NULL,
+  `id_pendidikan` int(11) NOT NULL,
+  `jumlah_orang` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pendidikan_per_wilayah`
+--
+
+INSERT INTO `pendidikan_per_wilayah` (`id_wilayah`, `id_pendidikan`, `jumlah_orang`) VALUES
+(1, 1, 45),
+(1, 2, 80),
+(1, 3, 65),
+(1, 4, 55),
+(1, 5, 30),
+(1, 6, 20),
+(1, 7, 5),
+(2, 1, 50),
+(2, 2, 85),
+(2, 3, 70),
+(2, 4, 60),
+(2, 5, 35),
+(2, 6, 25),
+(2, 7, 10),
+(3, 1, 35),
+(3, 2, 60),
+(3, 3, 50),
+(3, 4, 45),
+(3, 5, 20),
+(3, 6, 15),
+(3, 7, 5),
+(4, 1, 40),
+(4, 2, 75),
+(4, 3, 60),
+(4, 4, 55),
+(4, 5, 30),
+(4, 6, 20),
+(4, 7, 8),
+(5, 1, 60),
+(5, 2, 90),
+(5, 3, 75),
+(5, 4, 65),
+(5, 5, 40),
+(5, 6, 30),
+(5, 7, 12),
+(6, 1, 50),
+(6, 2, 70),
+(6, 3, 55),
+(6, 4, 50),
+(6, 5, 25),
+(6, 6, 20),
+(6, 7, 5),
+(7, 1, 55),
+(7, 2, 80),
+(7, 3, 60),
+(7, 4, 55),
+(7, 5, 30),
+(7, 6, 18),
+(7, 7, 6),
+(8, 1, 45),
+(8, 2, 65),
+(8, 3, 55),
+(8, 4, 50),
+(8, 5, 20),
+(8, 6, 15),
+(8, 7, 4),
+(9, 1, 50),
+(9, 2, 85),
+(9, 3, 70),
+(9, 4, 60),
+(9, 5, 35),
+(9, 6, 28),
+(9, 7, 10),
+(10, 1, 60),
+(10, 2, 95),
+(10, 3, 80),
+(10, 4, 70),
+(10, 5, 45),
+(10, 6, 35),
+(10, 7, 15),
+(11, 1, 48),
+(11, 2, 76),
+(11, 3, 62),
+(11, 4, 55),
+(11, 5, 32),
+(11, 6, 24),
+(11, 7, 8),
+(12, 1, 52),
+(12, 2, 80),
+(12, 3, 65),
+(12, 4, 58),
+(12, 5, 30),
+(12, 6, 22),
+(12, 7, 7),
+(13, 1, 200),
+(13, 2, 300),
+(13, 3, 250),
+(13, 4, 220),
+(13, 5, 180),
+(13, 6, 150),
+(13, 7, 75),
+(14, 1, 58),
+(14, 2, 82),
+(14, 3, 66),
+(14, 4, 59),
+(14, 5, 35),
+(14, 6, 25),
+(14, 7, 9),
+(15, 1, 53),
+(15, 2, 79),
+(15, 3, 63),
+(15, 4, 57),
+(15, 5, 28),
+(15, 6, 19),
+(15, 7, 6);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `perangkat_kecamatan`
 --
 
@@ -526,11 +820,14 @@ INSERT INTO `perangkat_kecamatan` (`id_perangkat`, `nama`, `jabatan`, `link_face
 CREATE TABLE `umkm` (
   `id_umkm` int(11) NOT NULL,
   `nama_umkm` varchar(255) NOT NULL,
+  `id_wilayah` int(11) NOT NULL,
   `keterangan` longtext NOT NULL,
   `gambar_umkm` varchar(255) NOT NULL,
   `id_jenis_umkm` int(11) NOT NULL,
   `latitude` decimal(20,17) NOT NULL,
-  `longitude` decimal(20,17) NOT NULL
+  `longitude` decimal(20,17) NOT NULL,
+  `updated_by` bigint(20) UNSIGNED NOT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -604,7 +901,32 @@ INSERT INTO `user_log` (`id_log`, `user_id`, `email`, `action`, `time`) VALUES
 (22, 1, 'superadmin@admin.com', 'login', '2025-03-25 20:19:34'),
 (23, 1, 'superadmin@admin.com', 'logout', '2025-03-25 23:09:43'),
 (24, 2, 'admin1@admin.com', 'login', '2025-03-25 23:09:52'),
-(25, 2, 'admin1@admin.com', 'logout', '2025-03-25 23:10:12');
+(25, 2, 'admin1@admin.com', 'logout', '2025-03-25 23:10:12'),
+(26, 1, 'superadmin@admin.com', 'login', '2025-03-27 01:41:20'),
+(27, 1, 'superadmin@admin.com', 'login', '2025-04-06 21:36:03'),
+(28, 1, 'superadmin@admin.com', 'login', '2025-04-06 21:41:42'),
+(29, 1, 'superadmin@admin.com', 'login', '2025-04-06 21:44:02'),
+(30, 1, 'superadmin@admin.com', 'logout', '2025-04-06 21:44:08'),
+(31, 1, 'superadmin@admin.com', 'login', '2025-04-06 21:44:12'),
+(32, 1, 'superadmin@admin.com', 'login', '2025-04-07 06:59:33'),
+(33, 1, 'superadmin@admin.com', 'logout', '2025-04-07 07:06:09'),
+(34, 1, 'superadmin@admin.com', 'login', '2025-04-07 07:06:13'),
+(35, 1, 'superadmin@admin.com', 'login', '2025-04-07 07:07:53'),
+(36, 1, 'superadmin@admin.com', 'login', '2025-04-07 07:08:07'),
+(37, 1, 'superadmin@admin.com', 'login', '2025-04-07 18:53:30'),
+(38, 1, 'superadmin@admin.com', 'login', '2025-04-07 19:58:28'),
+(39, 1, 'superadmin@admin.com', 'login', '2025-04-07 20:56:17'),
+(40, 1, 'superadmin@admin.com', 'login', '2025-04-07 21:42:16'),
+(41, 1, 'superadmin@admin.com', 'logout', '2025-04-07 22:33:27'),
+(42, 2, 'admin1@admin.com', 'login', '2025-04-07 22:33:34'),
+(43, 2, 'admin1@admin.com', 'logout', '2025-04-08 00:00:23'),
+(44, 1, 'superadmin@admin.com', 'login', '2025-04-08 00:00:27'),
+(45, 1, 'superadmin@admin.com', 'login', '2025-04-08 18:59:19'),
+(46, 1, 'superadmin@admin.com', 'login', '2025-04-08 22:35:01'),
+(47, 1, 'superadmin@admin.com', 'login', '2025-04-09 21:10:47'),
+(48, 1, 'superadmin@admin.com', 'login', '2025-04-13 20:30:21'),
+(49, 1, 'superadmin@admin.com', 'logout', '2025-04-13 20:30:42'),
+(50, 2, 'admin1@admin.com', 'login', '2025-04-13 20:30:52');
 
 -- --------------------------------------------------------
 
@@ -692,6 +1014,19 @@ ALTER TABLE `about_us`
   ADD KEY `FK_id_user_updated_by` (`updated_by`);
 
 --
+-- Indexes for table `agama`
+--
+ALTER TABLE `agama`
+  ADD PRIMARY KEY (`id_agama`);
+
+--
+-- Indexes for table `agama_per_wilayah`
+--
+ALTER TABLE `agama_per_wilayah`
+  ADD KEY `FK_id_agama` (`id_agama`),
+  ADD KEY `fk_agama_id_wilayah` (`id_wilayah`);
+
+--
 -- Indexes for table `berita`
 --
 ALTER TABLE `berita`
@@ -743,6 +1078,19 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `pendidikan`
+--
+ALTER TABLE `pendidikan`
+  ADD PRIMARY KEY (`id_pendidikan`);
+
+--
+-- Indexes for table `pendidikan_per_wilayah`
+--
+ALTER TABLE `pendidikan_per_wilayah`
+  ADD KEY `FK_id_pendidikan` (`id_pendidikan`),
+  ADD KEY `FK_pendidikan_id_wilayah` (`id_wilayah`);
+
+--
 -- Indexes for table `perangkat_kecamatan`
 --
 ALTER TABLE `perangkat_kecamatan`
@@ -755,7 +1103,9 @@ ALTER TABLE `perangkat_kecamatan`
 --
 ALTER TABLE `umkm`
   ADD PRIMARY KEY (`id_umkm`),
-  ADD KEY `FK_id_jenis_umkm` (`id_jenis_umkm`);
+  ADD KEY `FK_id_jenis_umkm` (`id_jenis_umkm`),
+  ADD KEY `FK_updated_by_umkm` (`updated_by`),
+  ADD KEY `FK_id_wilayah_umkm` (`id_wilayah`);
 
 --
 -- Indexes for table `users`
@@ -796,6 +1146,12 @@ ALTER TABLE `about_us`
   MODIFY `id_about` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `agama`
+--
+ALTER TABLE `agama`
+  MODIFY `id_agama` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `berita`
 --
 ALTER TABLE `berita`
@@ -832,6 +1188,12 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `pendidikan`
+--
+ALTER TABLE `pendidikan`
+  MODIFY `id_pendidikan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `perangkat_kecamatan`
 --
 ALTER TABLE `perangkat_kecamatan`
@@ -853,7 +1215,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_log`
 --
 ALTER TABLE `user_log`
-  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `wilayah`
@@ -877,6 +1239,13 @@ ALTER TABLE `wisata`
 ALTER TABLE `about_us`
   ADD CONSTRAINT `FK_id_user_updated_by` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `FK_wilayah` FOREIGN KEY (`id_wilayah`) REFERENCES `wilayah` (`id_wilayah`);
+
+--
+-- Constraints for table `agama_per_wilayah`
+--
+ALTER TABLE `agama_per_wilayah`
+  ADD CONSTRAINT `FK_id_agama` FOREIGN KEY (`id_agama`) REFERENCES `agama` (`id_agama`),
+  ADD CONSTRAINT `fk_agama_id_wilayah` FOREIGN KEY (`id_wilayah`) REFERENCES `wilayah` (`id_wilayah`);
 
 --
 -- Constraints for table `berita`
@@ -909,6 +1278,13 @@ ALTER TABLE `kel_umur_per_wilayah`
   ADD CONSTRAINT `fk_id_wilayah_kel_umur` FOREIGN KEY (`id_wilayah`) REFERENCES `wilayah` (`id_wilayah`);
 
 --
+-- Constraints for table `pendidikan_per_wilayah`
+--
+ALTER TABLE `pendidikan_per_wilayah`
+  ADD CONSTRAINT `FK_id_pendidikan` FOREIGN KEY (`id_pendidikan`) REFERENCES `pendidikan` (`id_pendidikan`),
+  ADD CONSTRAINT `FK_pendidikan_id_wilayah` FOREIGN KEY (`id_wilayah`) REFERENCES `wilayah` (`id_wilayah`);
+
+--
 -- Constraints for table `perangkat_kecamatan`
 --
 ALTER TABLE `perangkat_kecamatan`
@@ -919,7 +1295,9 @@ ALTER TABLE `perangkat_kecamatan`
 -- Constraints for table `umkm`
 --
 ALTER TABLE `umkm`
-  ADD CONSTRAINT `FK_id_jenis_umkm` FOREIGN KEY (`id_jenis_umkm`) REFERENCES `jenis_umkm` (`id_jenis_umkm`);
+  ADD CONSTRAINT `FK_id_jenis_umkm` FOREIGN KEY (`id_jenis_umkm`) REFERENCES `jenis_umkm` (`id_jenis_umkm`),
+  ADD CONSTRAINT `FK_id_wilayah_umkm` FOREIGN KEY (`id_wilayah`) REFERENCES `wilayah` (`id_wilayah`),
+  ADD CONSTRAINT `FK_updated_by_umkm` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `user_log`
