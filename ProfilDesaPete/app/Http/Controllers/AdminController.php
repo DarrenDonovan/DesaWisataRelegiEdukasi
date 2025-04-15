@@ -460,6 +460,17 @@ class AdminController extends Controller{
         return view('admin.umkm', compact('user','users', 'umkm', 'wilayahNoKec', 'wilayah', 'jenis_umkm'));
     }
 
+    public function penduduk(){
+    $user = Auth::user();
+
+
+    $users = DB::table('users')
+        ->select('users.id', 'users.name')
+        ->where('users.id', '>', 1)
+        ->get();
+
+        return view('admin.penduduk', compact('user', 'users'));
+    }
 
 
 

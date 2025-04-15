@@ -91,6 +91,11 @@
 						</a>
 					</li>
 					<li class="nav-item">
+						<a href="{{ route('admin.penduduk') }}">
+							<p>Kependudukan</p>
+						</a>
+					</li>
+					<li class="nav-item">
 						<a href="{{ route('admin.berita') }}">
 							<p>Berita</p>
 						</a>
