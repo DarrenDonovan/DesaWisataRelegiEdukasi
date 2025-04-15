@@ -130,11 +130,12 @@
 						<div class="row">
 							<div class="col">
 								<div class="card">
-									<div class="card-body">
-										<table class="table-responsive" style="overflow-x:auto">
+									<div class="card-body" style="overflow-x:auto; white-space:nowrap;">
+										<table class="table table-striped" style="overflow-x:auto">
 											<thead>
 												<tr>
                                                     <th scope="col">Action</th>
+                                                    <th scope="col">Foto</th>
 													<th scope="col">Nomor Induk Kependudukan</th>
 													<th scope="col">Nama Lengkap</th>
 													<th scope="col">Jenis Kelamin</th>
@@ -153,6 +154,13 @@
     				                        @foreach ($penduduk as $itemPenduduk)
                                                 <tr>
                                                     <td><a href="#">Edit</a></td>
+                                                    <td>
+                                                    @if($itemPenduduk->gambar_biodata)
+                                                        <img src="{{ asset('storage/' . $itemPenduduk->gambar_biodata) }}" width="60" height="80" alt=""> 
+                                                    @else
+                                                        Tidak ada gambar
+                                                    @endif
+                                                    </td>
                                                     <td>{{ $itemPenduduk->NIK }}</td>
                                                     <td>{{ $itemPenduduk->nama_lengkap }}</td>
                                                     <td>{{ $itemPenduduk->jenis_kelamin }}</td>
