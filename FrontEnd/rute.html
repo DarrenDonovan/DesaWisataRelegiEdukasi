@@ -41,6 +41,24 @@
         .leaflet-routing-container {
             display: block !important;
         }
+        @media (max-width: 1024px) {
+        .leaflet-routing-container {
+            position: fixed;
+            top: auto;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            z-index: 1000;
+            background: white; /* supaya jelas dan tidak tumpang tindih */
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            overflow-y: auto;
+            max-height: 200px; /* atau sesuaikan */
+        }
+    }
         
         /* Hero Section */
         .hero {
@@ -165,6 +183,73 @@
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
         }
+        /* Responsif */
+        @media (max-width: 1024px) {
+            .hero {
+                height: 400px;
+            }
+            .hero-text h1 {
+                font-size: 36px;
+            }
+            .hero-text p {
+                font-size: 16px;
+            }
+            .input-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .input-box {
+                width: 80%;
+            }
+            #map {
+                height: 500px;
+            }
+        }
+
+        /* Responsif  */
+        @media (max-width: 768px) {
+            .hero {
+                height: 300px;
+                padding: 15px;
+            }
+            .hero-text h1 {
+                font-size: 28px;
+            }
+            .hero-text h4 {
+                font-size: 16px;
+            }
+            .hero-text p {
+                font-size: 14px;
+            }
+            .back-button {
+                top: 10px;
+                left: 10px;
+                font-size: 20px;
+                padding: 8px 12px;
+            }
+            #map-container {
+                width: 95%;
+                padding: 10px;
+            }
+            .input-container {
+                flex-direction: column;
+                gap: 8px;
+                margin-bottom: 10px;
+            }
+            .input-box {
+                width: 100%;
+                font-size: 14px;
+            }
+            .search-button {
+                width: 100%;
+                font-size: 14px;
+                padding: 10px;
+            }
+            #map {
+                height: 400px;
+            }
+        }
+
     </style>
 </head>
 <body>
