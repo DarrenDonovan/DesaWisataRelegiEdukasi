@@ -131,19 +131,42 @@
 							<div class="col">
 								<div class="card">
 									<div class="card-body">
-										<table class="table-responsive table-striped mt-3">
+										<table class="table-responsive" style="overflow-x:auto">
 											<thead>
 												<tr>
-													<th scope="col">Nama Tempat</th>
-													<th scope="col">Letak Wilayah</th>
-													<th scope="col">Keterangan</th>
-													<th scope="col">Gambar Wisata</th>
-													<th scope="col">Last Updated</th>
-													<th scope="col">Action</th>
+                                                    <th scope="col">Action</th>
+													<th scope="col">Nomor Induk Kependudukan</th>
+													<th scope="col">Nama Lengkap</th>
+													<th scope="col">Jenis Kelamin</th>
+													<th scope="col">Tempat Lahir</th>
+													<th scope="col">Umur</th>
+													<th scope="col">Alamat</th>
+                                                    <th scope="col">Wilayah</th>
+                                                    <th scope="col">Agama</th>
+                                                    <th scope="col">Pendidikan Terakhir</th>
+                                                    <th scope="col">Pekerjaan</th>
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col">Tanggal Terdaftar</th>
 												</tr>
 											</thead>
 											<tbody>
-    				
+    				                        @foreach ($penduduk as $itemPenduduk)
+                                                <tr>
+                                                    <td><a href="#">Edit</a></td>
+                                                    <td>{{ $itemPenduduk->NIK }}</td>
+                                                    <td>{{ $itemPenduduk->nama_lengkap }}</td>
+                                                    <td>{{ $itemPenduduk->jenis_kelamin }}</td>
+                                                    <td>{{ $itemPenduduk->tempat_lahir }}</td>
+                                                    <td>{{ $itemPenduduk->umur }} Tahun</td>
+                                                    <td>{{ $itemPenduduk->alamat }}</td>
+                                                    <td>{{ $itemPenduduk->nama_wilayah }}</td>
+                                                    <td>{{ $itemPenduduk->agama }}</td>
+                                                    <td>{{ $itemPenduduk->tingkat_pendidikan }}</td>
+                                                    <td>{{ $itemPenduduk->pekerjaan }}</td>
+                                                    <td>{{ $itemPenduduk->status }}</td>
+                                                    <td>{{ $itemPenduduk->tanggal_terdaftar }}</td>
+                                                </tr>
+                                            @endforeach
 											</tbody>
                                         </table>
 									</div>
