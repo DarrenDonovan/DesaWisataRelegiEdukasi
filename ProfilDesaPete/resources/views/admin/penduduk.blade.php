@@ -89,7 +89,7 @@
 							<p>Profil Wilayah</p>
 						</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item active">
 						<a href="{{ route('admin.penduduk') }}">
 							<p>Kependudukan</p>
 						</a>
@@ -104,7 +104,7 @@
 							<p>Infografis</p>
 						</a>
 					</li>
-					<li class="nav-item active">
+					<li class="nav-item">
 						<a href="{{ route('admin.wisata') }}">
 							<p>Wisata</p>
 						</a>
@@ -124,14 +124,14 @@
 						@endif
 		  				<!-- Daftar Wisata -->
 					<div class="d-flex justify-content-between align-items-center">
-						<h4 class="page-title mt-2">Daftar Wisata</h4>
+						<h4 class="page-title mt-2">Data Kependudukan</h4>
 						<button type="button" class="btn btn-primary mb-4 mt-2" data-bs-toggle="modal" data-bs-target="#modalTambah_wisata">Tambah Wisata</button>	
 					</div>				
 						<div class="row">
 							<div class="col">
 								<div class="card">
 									<div class="card-body">
-										<table class="table table-striped mt-3">
+										<table class="table-responsive table-striped mt-3">
 											<thead>
 												<tr>
 													<th scope="col">Nama Tempat</th>
@@ -143,112 +143,15 @@
 												</tr>
 											</thead>
 											<tbody>
-    										@foreach ($wisata as $itemWisata)
-        										<tr>
-            										<td>{{ $itemWisata->nama_tempat }}</td>
-													<td>{{ $itemWisata->nama_wilayah }}</td>
-            										<td>{{ $itemWisata->keterangan }}</td>
-            										<td>
-                									@if ($itemWisata->gambar_wisata)
-                									    <img src="{{ asset('storage/' . $itemWisata->gambar_wisata) }}" width="100" height="80" alt="">
-                									@else
-                									    Tidak ada gambar
-                									@endif
-													</td>
-													<td>Last Updated by {{ $itemWisata->name }} at {{ $itemWisata->updated_at }}</td>
-													<td><a href="#" data-bs-toggle="modal" data-bs-target="#modalUpdate_wisata{{$itemWisata->id_wisata}}">Edit</a> | <a href="{{route('admin.deleteWisata', $itemWisata->id_wisata)}}">Hapus</a></td>
-												</tr> 
-
-												<!-- Modal Edit Wisata -->
-												<div class="modal fade" id="modalUpdate_wisata{{$itemWisata->id_wisata}}" tabindex="-1" aria-labelledby="modalTitle{{$itemWisata->id_wisata}}" aria-hidden="true">
-   													<div class="modal-dialog">
-        												<div class="modal-content">
-            												<div class="modal-header">
-																<h5 class="modal-title" id="modalTitle">Edit Wisata</h5>
-																<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            												</div>
-            												<div class="modal-body">
-																<form action="{{ route('admin.updateWisata', $itemWisata->id_wisata)}}" method="post" enctype="multipart/form-data">
-																	@csrf
-																	<div class="form-group">
-																		<label for="nama_tempat">Nama Tempat Wisata</label>
-																		<input type="text" class="form-control" name="nama_tempat" id="nama_tempat" value="{{ $itemWisata->nama_tempat }}" required>
-																	</div>
-																	<div class="form-group">
-																		<label for="nama_wilayah">Nama Wilayah</label>
-																		<select name="nama_wilayah" class="form-control" required>
-														    				<option value="">-- Pilih Wilayah --</option>
-														    				@foreach ($wilayah as $itemWilayah)
-														    				    <option value="{{ $itemWilayah->id_wilayah }}" 
-																				{{ $itemWilayah->id_wilayah == $itemWisata->id_wilayah ? 'selected' : '' }}>
-																				{{ $itemWilayah->nama_wilayah }}
-																				</option>
-														    				@endforeach
-																		</select>
-																	</div>
-																	<div class="form-group">
-																		<label for="keterangan">Keterangan</label>
-																		<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required>{{ $itemWisata->keterangan }}</textarea>
-																	</div>
-																	<div class="form-group">					
-																		<label for="gambar_wisata">Gambar Wisata</label>
-																		<input type="file" name="gambar_wisata" id="gambar_wisata" class="form-control-file">
-																	</div>
-                													<button type="submit" class="btn btn-primary form-control">Save changes</button>
-																</form>
-												            </div>
-												        </div>
-												    </div>
-												</div>
-												@endforeach
+    				
 											</tbody>
-										</table>
-										<div class="mb-4">
-										{{ $wisata->links() }}
-										</div>
+                                        </table>
 									</div>
 								</div>
 							</div>
 						</div>
 
-						<!-- Modal Tambah Wisata (Sementara) -->
-						<div class="modal fade" id="modalTambah_wisata" tabindex="-1" aria-labelledby="modalTitle" aria-hidden="true">
-   							<div class="modal-dialog">
-        						<div class="modal-content">
-            						<div class="modal-header">
-										<h5 class="modal-title" id="modalTitle">Tambah Tempat Wisata Baru</h5>
-										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            						</div>
-            						<div class="modal-body">
-										<form action=" {{ route('admin.createWisata') }}" method="post" enctype="multipart/form-data">
-											@csrf
-											<div class="form-group">
-												<label for="nama_tempat">Nama Tempat Wisata</label>
-												<input type="text" class="form-control" name="nama_tempat" id="nama_tempat" required>
-											</div>
-											<div class="form-group">
-												<label for="nama_wilayah">Nama Wilayah</label>
-												<select name="nama_wilayah" class="form-control" required>
-												    <option value="">-- Pilih Wilayah --</option>
-												    @foreach ($wilayahNoKec as $item)
-												        <option value="{{ $item->id_wilayah }}">{{ $item->nama_wilayah }}</option>
-												    @endforeach
-												</select>
-											</div>
-											<div class="form-group">
-												<label for="keterangan">Keterangan</label>
-												<textarea name="keterangan" class="form-control" id="keterangan" cols="50" rows="4" required></textarea>					
-											</div>
-											<div class="form-group">
-												<label for="gambar_wisata">Gambar Wisata</label>
-												<input type="file" class="form-control-file" name="gambar_wisata" id="gambar_wisata">
-                							</div>
-											<button type="submit" class="btn btn-primary form-control">Tambahkan</button>
-										</form>
-						            </div>
-						        </div>
-						    </div>
-						</div>
+						
 					</div>
 				</div>
 			</div>
