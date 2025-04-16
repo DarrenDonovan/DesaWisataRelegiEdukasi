@@ -37,7 +37,24 @@
     <link rel="stylesheet" href="css/leaflet.css" />
 
     <style>  
-
+      .navbar {
+        position: fixed !important; /* Pastikan navbar tetap fixed */
+        top: -1px;
+        left: 0;
+        width: 100%;
+        /* border: 2px solid red;  */
+        height: fit-content;
+      }
+      .navbar-brand .m-0 {
+        font-size: 28px;
+      }
+      .subtext {
+        margin: 0px;
+      }
+      .kec {
+        /* border: 2px solid red; */
+        margin-left: 6px;
+      }
       /* PROFILE DESA */
       .small-text {
         font-size: 0.7em; /* Ukuran lebih kecil */
@@ -144,7 +161,7 @@
 
         .gridUMKM {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
             gap: 20px;
         }
         
@@ -229,79 +246,609 @@
                cursor: pointer;
                border-radius: 5px;
           }   
-          @media (max-width: 450px) {
-            
-            /* PROFIL */
-            .mx-auto h5{
-              font-size: 15px;
-            }
-            .mx-auto h1 {
-              font-size: 19px;
-            }
-            /* INFOGRAFIS */
-            .container-fluid h1 {
-              font-size: 19px;
-            }
-            .container-fluid h5 {
-              font-size: 15px;
-            }
-            .proDes h2 {
-              font-size: 19px;
-            }
-          }
+          @media (min-width: 310px) and (max-width: 469px) {
+            /* FOOTER */
+            .footer-item h4 {
+                    /* border: 2px solid red; */
+                    font-size: 16px; /* Mengecilkan ukuran heading */
+                }
 
-          @media (max-width: 1080px) {
-            
-            
-            /* PROFIL DESA */
-            .containerProDes {
-                flex-direction: column; /* Elemen ditumpuk ke bawah */
-                align-items: center;   
-            }
-            .proDes, .gmbrDesa {
-                width: 100%; 
-                text-align: center;
-            }
-            .proDes p {
-              font-size: 15px;
-            }
+                .footer-item a {
+                    /* border: 2px solid red; */
+                    font-size: 14px; /* Mengecilkan ukuran teks */
+                }
 
-            /* WISATA */
-            .containerWisata{
-              margin-top: -20px;
-            }
-            .gridWisata {
-              grid-template-columns: repeat(2, 1fr); /* Tetap 2 kolom di HP */
-              padding: 10px;
-            }
+                .footer-item i {
+                    font-size: 14px; /* Mengecilkan ikon */
+                }
 
-            .cardW img {
-                height: 150px; /* Buat gambar lebih kecil */
+                .footer .btn-square {
+                    /* border: 2px solid red; */
+                    width: 25px !important; /* Mengecilkan tombol sosial media */
+                    height: 25px;
+                    font-size: 14px;
+                    padding: 4px;
+                }
+                /* COPYRIGHT */
+                .container-fluid.copyright .container .col-md-6 {
+                    font-size: 12px;
+                }
+                .container-fluid.copyright .container .col-md-6 i, .text-white {
+                    font-size: 12px;
+                }
+            }
+            @media (max-width: 321px){
+                /* NAVBAR */
+                .mx-auto h5 {
+                    font-size: 15px;
+                }
+                .mx-auto h1 {
+                    font-size: 19px;
+                }
+                .navbar-brand .fa { 
+                    font-size: 15px !important; 
+                    margin-right: 10px !important;  
+                }
+                .navbar-brand h1 {
+                    font-size: 20px !important;
+                    color: #ffff !important;
+                }
+                .navbar-brand h1 .subtext {
+                    font-size: 15px !important;
+                    margin: 0px !important;
+                    color: #ffff !important;
+                }
+                .navbar-toggler  {
+                    font-size: 15px;
+                    padding: 0.3rem 0.6rem !important; 
+                    color: #ffff !important;
+                    border-color: #ffff !important;
+                }
+                .collapse {
+                    font-size: 20px;
+                }
+                .proDes h2 {
+                  margin-top: 0;
+                  color: #222;
+                  font-size: 18px;
+                  /* border: 2px solid blue; */
+                }
+                .proDes p {
+                  font-size: 12px;
+                  /* border: 2px solid blue; */
+                }
+                .proDes table {
+                  width: 100%;
+                  border-collapse: collapse;
+                  /* border: 2px solid blue; */
+                  font-size: 12px;
+                }
+                .proDes td {
+                  padding: 8px 0;
+                }
+                .proDes {
+                  font-weight: bold;
+                  color: #333;
+                }
                 
-            }
+                /* HERO */
+                .container-fluid.bg-breadcrumb {
+                    height: 60% !important;
+                }
 
-            .cardW .info {
-                font-size: 14px; /* Ukuran teks lebih kecil di HP */
-                padding: 8px;
-            }
-            
-            /* UMKM */
-            .gridUMKM {
-              grid-template-columns: repeat (3, 1fr);
-              padding: 10px;
-              gap: 5px;
-              margin-top: -30px;
-            }
+               /* WISATA */
+               .containerWisata {
+                  padding: 2px;
+                  /* border: 2px solid red !important; */
+                  width: 100%;
+                }
+                .gridWisata {
+                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                  height: 700px;
+                  padding: 5px;
+                }
+                .cardW .info {
+                  font-size: 15px;
+                }
 
-            .cardU img {
-              height: 100px;
+                /* UMKM */
+                .gridUMKM {
+                  /* border: 2px solid blue; */
+                  padding: 5px;
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                  height: 450px;
+                  gap: 20px;
+                }
+                .cardU .info {
+                  font-size: 15px;
+                }
             }
+            @media (min-width: 322px) and (max-width: 380px) {
+                /* NAVBAR */
+                .mx-auto h5 {
+                    font-size: 15px;
+                }
+                .mx-auto h1 {
+                    font-size: 19px;
+                }
+                .navbar-brand .fa { 
+                    font-size: 20px !important; /*logo*/
+                    margin-right: 10px !important;
+                }
+                .navbar-brand h1 {
+                    font-size: 20px !important;
+                    color: #ffff !important;
+                }
+                .navbar-brand h1 .subtext {
+                    font-size: 15px !important;
+                    color: #ffff !important;
+                }
+                .navbar-toggler  {
+                    font-size: 15px;
+                    padding: 0.3rem 0.6rem !important; 
+                    color: #ffff !important;
+                    border-color: #ffff !important;
+                }
+                .collapse {
+                    font-size: 20px;
+                }
 
-            .cardU .info {
-              font-size: 14px;
+                /* PROFILE DESA */
+                .proDes h2 {
+                  margin-top: 0;
+                  color: #222;
+                  font-size: 18px;
+                  /* border: 2px solid blue; */
+                }
+                .proDes p {
+                  font-size: 12px;
+                  /* border: 2px solid blue; */
+                }
+                .proDes table {
+                  width: 100%;
+                  border-collapse: collapse;
+                  /* border: 2px solid blue; */
+                  font-size: 12px;
+                }
+                .proDes td {
+                  padding: 8px 0;
+                }
+                .proDes {
+                  font-weight: bold;
+                  color: #333;
+                }
               
+                /* WISATA */
+               .containerWisata {
+                  /* border: 2px solid red !important; */
+                  width: 100%;
+                }
+                .gridWisata {
+                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                  height: 700px;
+                  padding: 10px;
+                }
+                .cardW .info {
+                  font-size: 15px;
+                }
+
+                /* UMKM */
+                .gridUMKM {
+                  /* border: 2px solid blue; */
+                  padding: 6px;
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                  height: 450px;
+                  gap: 20px;
+                }
+                .cardu .info {
+                  font-size: 15px;
+                }
+                /* FOOTER */
+                .footer {
+                    padding: 20px 10px; /* Mengurangi padding agar lebih pas */
+                }
+
+                .footer-item h4 {
+                    font-size: 16px; /* Mengecilkan ukuran heading */
+                }
+                .footer-item a {
+                    font-size: 14px; /* Mengecilkan ukuran teks */
+                }
+
+                .footer-item i {
+                    font-size: 14px; /* Mengecilkan ikon */
+                }
+
+                .footer .btn-square {
+                    width: 28px; /* Mengecilkan tombol sosial media */
+                    height: 28px;
+                    font-size: 12px;
+                    padding: 4px;
+                }
+                /* COPYRIGHT */
+                .container-fluid.copyright .container .col-md-6 {
+                    font-size: 12px;
+                }
+                .container-fluid.copyright .container .col-md-6 i, .text-white {
+                    font-size: 12px;
+                }
+              }
+
+            @media (min-width: 381px) and (max-width: 426px) {
+                .mx-auto h5 {
+                    font-size: 15px;
+                }
+                .mx-auto h1 {
+                    font-size: 19px;
+                }
+                .navbar-brand .fa { 
+                    font-size: 20px !important; /*logo*/
+                    margin-right: 10px !important;
+                }
+                .navbar-brand h1 {
+                    font-size: 25px !important;
+                    color: #ffff !important;
+                }
+                .navbar-brand h1 .subtext {
+                    font-size: 20px !important;
+                    /* margin-left: 30px !important; */
+                    color: #ffff !important;
+                    /* border: 2px solid blue; */
+                }
+                .nav.nav-pills {
+                    flex-wrap: nowrap;
+                    overflow-x: scroll;
+                    max-width: 100%;
+                    justify-content: flex-start !important;
+                }
+                .col-12.col-sm-6 {
+                    width: 300px;
+                    margin-left: 40px;
+                }
+
+                /* PROFILE DESA */
+                .proDes h2 {
+                  font-size: 18px;
+                  /* border: 2px solid blue; */
+                }
+                .proDes p {
+                  font-size: 12px;
+                  /* border: 2px solid blue; */
+                }
+                .proDes table {
+                  width: 100%;
+                  border-collapse: collapse;
+                  /* border: 2px solid blue; */
+                  font-size: 12px;
+                }
+                
+                /* WISATA */
+               .containerWisata {
+                  /* border: 2px solid red !important; */
+                  width: 100%;
+                }
+                .gridWisata {
+                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                  height: 800px;
+                  padding: 10px;
+                }
+                .cardW .info {
+                  font-size: 15px;
+                }
+
+                /* UMKM */
+                .gridUMKM {
+                  /* border: 2px solid blue; */
+                  padding: 10px;
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                  height: 450px;
+                  gap: 20px;
+                }
+                .cardU .info {
+                  font-size: 15px;
+                }
             }
-        }
+            @media (max-width: 576px) {
+                .bg-breadcrumb h3 {
+                    font-size: 2rem !important;
+                }
+            }
+            @media (min-width: 427px) and (max-width: 769px){
+                /* NAVBAR */
+                .mx-auto h5 {
+                    font-size: 18px;
+                }
+                .mx-auto h1 {
+                    font-size: 23px;
+                }
+                .navbar-brand .m-0 {
+                    font-size: 25px;
+                }
+                .navbar-brand .subtext {
+                    font-size: 20px;
+                    /* margin-left: 31px; */
+                }
+                .navbar-brand .fa {
+                    font-size: 25px !important;
+                }
+
+                /* PROFILE DESA */
+                .proDes h2 {
+                  margin-top: 0;
+                  font-size: 20px;
+                  /* border: 2px solid blue; */
+                }
+                .proDes p {
+                  font-size: 16px;
+                  /* border: 2px solid blue; */
+                }
+                .proDes table {
+                  width: 100%;
+                  border-collapse: collapse;
+                  /* border: 2px solid blue; */
+                  font-size: 14px;
+                }
+              
+                /* WISATA */
+               .containerWisata {
+                  /* border: 2px solid red !important; */
+                  width: 100%;
+                }
+                .gridWisata {
+                  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                  height: 700px;
+                  padding: 15px;
+                }
+                .cardW .info {
+                  font-size: 15px;
+                }
+
+                /* UMKM */
+                .gridUMKM {
+                  /* border: 2px solid blue; */
+                  padding: 15px;
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                  height: 450px;
+                  gap: 20px;
+                }
+                .cardu .info {
+                  font-size: 15px;
+                }
+            }
+            @media (max-width: 992px) {
+                .navbar-brand .fa {
+                    font-size: 25px !important;
+                }
+                .navbar-toggler.scrolled {
+                    color: #13357b !important;
+                    border-color: #13357b !important;
+                }
+
+                .navbar-brand h1.scrolled {
+                    color: #13357b !important;
+                    border-color: #13357b !important;
+                }
+
+                .navbar-brand h1 .subtext.scrolled {
+                    color: #13357b !important;
+                    border-color: #13357b !important;
+                    
+                }
+                .navbar-nav {
+                    background-color: #ffff;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+                .navbar-brand h1 {
+                    color: #ffff !important;
+                }
+                .navbar-toggler  {
+                    color: #ffff !important;
+                    border-color: #ffff !important;
+                }
+            }
+            @media (min-width: 770) and (max-width: 1025px) {
+                .mx-auto h5 {
+                    font-size: 26px !important;
+                }
+                .mx-auto h1 {
+                    font-size: 19px;
+                }
+                .navbar {
+                    height: 180px;
+                }
+                .navbar.navbar-expand-lg.navbar-light {
+                    height: 180px !important;
+                }
+                .navbar-brand .m-0{
+                    font-size: 50px;
+                }
+                .navbar-brand .subtext{ 
+                    font-size: 30px;
+                }
+                .navbar-nav {
+                   /* border: 2px solid blue; */
+                   height: 180px;
+                }
+                .navbar-nav .nav-item {
+                    font-size: 30px !important;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .navbar-nav .nav-item.dropdown .nav-link{
+                    font-size: 30px !important;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .dropdown-menu {
+                    font-size: 24px;
+                }
+
+                /* PROFILE DESA */
+                .proDes h2 {
+                  margin-top: 0;
+                  font-size: 20px;
+                  border: 2px solid blue;
+                }
+                .proDes p {
+                  font-size: 16px;
+                  /* border: 2px solid blue; */
+                }
+                .proDes table {
+                  width: 100%;
+                  border-collapse: collapse;
+                  /* border: 2px solid blue; */
+                  font-size: 14px;
+                }
+              
+                /* WISATA */
+               .containerWisata {
+                  border: 2px solid red !important;
+                  width: 100%;
+                }
+                .gridWisata {
+                  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+                  height: 700px;
+                  padding: 15px;
+                }
+                .cardW .info {
+                  font-size: 15px;
+                }
+
+                /* UMKM */
+                .gridUMKM {
+                  /* border: 2px solid blue; */
+                  padding: 15px;
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                  height: 450px;
+                  gap: 20px;
+                }
+                .cardu .info {
+                  font-size: 15px;
+                }
+                
+                /* FOOTER */
+                .footer {
+                    /* border: 2px solid blue; */
+                    padding: 20px 615px; /* Mengurangi padding agar lebih pas */
+                }
+                .footer-item {
+                    width: 500px;
+                    gap: 20px;
+                }
+                .footer-item h4 {
+                    font-size: 35px; /* Mengecilkan ukuran heading */
+                }
+                .footer-item a {
+                    font-size: 30px; /* Mengecilkan ukuran teks */
+                    text-wrap: nowrap;
+
+                }
+                .footer-item i {
+                    font-size: 35px; /* Mengecilkan ikon */
+                }
+                .footer .btn-square {
+                    width: 60px; /* Mengecilkan tombol sosial media */
+                    height: 60px;
+                    font-size: 40px;
+                    padding: 4px;
+                }
+            }
+
+            @media  (min-width: 2500px) {
+                
+                .mx-auto h5 {
+                    font-size: 35px !important;
+                }
+                .mx-auto h1 {
+                    font-size: 50px;
+                }
+                /* NAVBAR */
+                .navbar {
+                    height: 180px;
+                }
+                .navbar.navbar-expand-lg.navbar-light {
+                    height: 180px !important;
+                }
+                .navbar-brand .m-0{
+                    font-size: 50px;
+                }
+                .navbar-brand .subtext{ 
+                    font-size: 30px;
+                   /* border: 2px solid blue; */
+
+                }
+                .navbar-brand .fa {
+                    font-size: 50px !important;
+                    padding-right: 15px;
+                }
+                .navbar-nav {
+                   /* border: 2px solid blue; */
+                   height: 180px;
+                }
+
+                .navbar-nav .nav-item {
+                    font-size: 30px !important;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .navbar-nav .nav-item.dropdown .nav-link{
+                    font-size: 30px !important;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                .dropdown-menu {
+                    font-size: 24px;
+                }
+                .container-fluid.py-5 select {
+                    width: 250px;
+                    height: 30px;
+                }
+                #categoryFilter {
+                    font-size: 1.5rem;
+                }
+                #categoryFilter option {
+                    font-size: 15px !important; /* ukuran font di dalam pilihan dropdown */
+                }
+                #map {
+                    height: 700px !important;
+                }
+                /* FOOTER */
+                .footer {
+                    /* border: 2px solid blue; */
+                    padding: 20px 615px; /* Mengurangi padding agar lebih pas */
+                }
+                .footer-item {
+                    width: 500px;
+                    gap: 20px;
+                }
+                .footer-item h4 {
+                    font-size: 35px; /* Mengecilkan ukuran heading */
+                }
+                .footer-item a {
+                    font-size: 30px; /* Mengecilkan ukuran teks */
+                    text-wrap: nowrap;
+
+                }
+                .footer-item i {
+                    font-size: 35px; /* Mengecilkan ikon */
+                }
+                .footer .btn-square {
+                    width: 60px; /* Mengecilkan tombol sosial media */
+                    height: 60px;
+                    font-size: 40px;
+                    padding: 4px;
+                }
+            } 
 
     </style>
   </head>
@@ -320,66 +867,47 @@
     </div>
     <!-- Spinner End -->
 
-    <!-- Topbar Start -->
-    <div class="container-fluid bg-primary px-5 d-none d-lg-block">
-      <div class="row gx-0 justify-content-end">
-        <!-- Tambahkan justify-content-end -->
-        <div class="col-lg-4 text-end">
-          <!-- Gunakan text-end agar teks sejajar ke kanan -->
-          <div class="d-inline-flex align-items-center" style="height: 45px">
-            <a href="#"
-              ><small class="me-3 text-light"
-                ><i class="fa fa-sign-in-alt me-2"></i>Login</small
-              ></a
-            >
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Topbar End -->
+    
 
     <!-- Navbar & Hero Start -->
     <div class="container-fluid position-relative p-0">
-      <nav
-        class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-        <a href="" class="navbar-brand p-0">
+      <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
           <a href="" class="navbar-brand p-0">
-            <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>Bantar Panjang <span class="subtext">Kecamatan Tigaraksa</span></h1>
-            <!-- <img src="img/logo.png" alt="Logo"> -->
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-          <span class="fa fa-bars"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-          <div class="navbar-nav ms-auto py-0">
-              <a href="index.html" class="nav-item nav-link">Home</a>
-              <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
-              <a href="infografis.html" class="nav-item nav-link">Infografis</a>
-              <a href="maps.html" class="nav-item nav-link">Maps</a>
-              <a href="berita.html" class="nav-item nav-link">Berita</a>
-              <div class="nav-item dropdown">
-                  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile Desa</a>
-                  <div class="dropdown-menu m-0">
-                      <a href="BantarPanjang.html" class="dropdown-item">Desa Bantar Panjang </a>
-                      <a href="Cileles.html" class="dropdown-item">Desa Cileles</a>
-                      <a href="Cisereh.html" class="dropdown-item">Desa Cisereh</a>
-                      <a href="KaduAgung.html" class="dropdown-item">Desa Kadu Agung</a>
-                      <a href="MargaSari.html" class="dropdown-item">Desa Marga Sari</a>
-                      <a href="MataGara.html" class="dropdown-item">Desa Mata Gara</a>
-                      <a href="PasirBolang.html" class="dropdown-item">Desa Pasir Bolang</a>
-                      <a href="PasirNangka.html" class="dropdown-item">Desa Pasir Nangka</a>
-                      <a href="Pematang.html" class="dropdown-item">Desa Pematang</a>
-                      <a href="Pete.html" class="dropdown-item">Desa Pete</a>
-                      <a href="Sodong.html" class="dropdown-item">Desa Sodong</a>
-                      <a href="Tapos.html" class="dropdown-item">Desa Tapos</a>
-                      <a href="kelurahanKaduAgung.html" class="dropdown-item">Kelurahan Kadu Agung</a>
-                      <a href="Tigaraksa.html" class="dropdown-item">Kelurahan Tigaraksa</a>
+              <h1 class="m-0 d-flex align-items-center">
+                <i class="fa fa-map-marker-alt me-2"></i>
+                <div class="kec" style="text-align: left;"> Bantar Panjang<br> <span class="subtext">Tigaraksa</span></div>
+              </h1>
+            </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+              <span class="fa fa-bars"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+              <div class="navbar-nav ms-auto py-0">
+                  <a href="index.html" class="nav-item nav-link">Home</a>
+                  <a href="about.html" class="nav-item nav-link">Tentang Kami</a>
+                  <a href="infografis.html" class="nav-item nav-link">Infografis</a>
+                  <a href="maps.html" class="nav-item nav-link active">Maps</a>
+                  <a href="berita.html" class="nav-item nav-link">Berita</a>
+                  <div class="nav-item dropdown">
+                      <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile Desa</a>
+                      <div class="dropdown-menu m-0">
+                          <a href="BantarPanjang.html" class="dropdown-item">Desa Bantar Panjang </a>
+                          <a href="Cileles.html" class="dropdown-item">Desa Cileles</a>
+                          <a href="Cisereh.html" class="dropdown-item">Desa Cisereh</a>
+                          <a href="KaduAgung.html" class="dropdown-item">Desa Kadu Agung</a>
+                          <a href="MargaSari.html" class="dropdown-item">Desa Marga Sari</a>
+                          <a href="MataGara.html" class="dropdown-item">Desa Mata Gara</a>
+                          <a href="PasirBolang.html" class="dropdown-item">Desa Pasir Bolang</a>
+                          <a href="PasirNangka.html" class="dropdown-item">Desa Pasir Nangka</a>
+                          <a href="Pematang.html" class="dropdown-item">Desa Pematang</a>
+                          <a href="Pete.html" class="dropdown-item">Desa Pete</a>
+                          <a href="Sodong.html" class="dropdown-item">Desa Sodong</a>
+                          <a href="Tapos.html" class="dropdown-item">Desa Tapos</a>
+                      </div>
                   </div>
               </div>
-          </div>
-      </div>
-  </nav>
-</div>
+      </nav>
+  </div>
     <!-- Navbar & Hero End -->
 
     <!-- Header Start -->
