@@ -48,6 +48,7 @@ Route::get('admin/infografis', [AdminController::class, 'infografis'])->middlewa
 Route::get('admin/wisata', [AdminController::class, 'wisata'])->middleware('auth')->name('admin.wisata');
 Route::get('admin/umkm', [AdminController::class, 'umkm'])->middleware('auth')->name('admin.umkm');
 Route::get('admin/penduduk', [AdminController::class, 'penduduk'])->middleware('auth')->name('admin.penduduk');
+Route::get('admin/penduduk/editPenduduk/{id}', [AdminController::class, 'editPenduduk'])->middleware('auth')->name('admin.editPenduduk');
 Route::get('/', [AdminController::class, 'index'])->name('index');
 
 // Admin Logout

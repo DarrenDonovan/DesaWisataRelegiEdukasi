@@ -478,24 +478,45 @@ class AdminController extends Controller{
                 ->join('status', 'penduduk.id_status', '=', 'status.id_status')
                 ->select('penduduk.*', 'agama.*', 'pendidikan.*', 'pekerjaan.*', 'wilayah.*', 'status.*', DB::raw('FLOOR(DATEDIFF(CURDATE(), penduduk.tanggal_lahir) / 365) as umur'))
                 ->orderBy('penduduk.nik', 'asc')
-                ->get();
+                ->paginate(50);
         }
         else{
             $penduduk = DB::table('penduduk')
                 ->join('wilayah', 'penduduk.id_wilayah', '=', 'wilayah.id_wilayah')
-                ->join('agama', 'penduduk.agama', '=', 'agama.id_agama')
-                ->join('pendidikan', 'penduduk.pendidikan', 'pendidikan.id_pendidikan')
-                ->join('pekerjaan', 'penduduk.pekerjaan', '=', 'pekerjaan.id_pekerjaan')
+                ->join('agama', 'penduduk.id_agama', '=', 'agama.id_agama')
+                ->join('pendidikan', 'penduduk.id_pendidikan', 'pendidikan.id_pendidikan')
+                ->join('pekerjaan', 'penduduk.id_pekerjaan', '=', 'pekerjaan.id_pekerjaan')
                 ->join('status', 'penduduk.id_status', '=', 'status.id_status')
                 ->select('penduduk.*', 'agama.*', 'pendidikan.*', 'pekerjaan.*', 'wilayah.*', 'status.*', DB::raw('FLOOR(DATEDIFF(CURDATE(), penduduk.tanggal_lahir) / 365) as umur'))
                 ->where('wilayah.id_wilayah', $user->id_wilayah)
                 ->orderBy('penduduk.nik', 'asc')
-                ->get();
+                ->paginate(50);
         }
 
 
 
         return view('admin.penduduk', compact('user', 'users', 'penduduk'));
+    }
+
+    public function editPenduduk($id){
+        $user = Auth::user();
+
+        $users = DB::table('users')
+            ->select('users.id', 'users.name')
+            ->where('users.id', '>', 1)
+            ->get();
+        
+        $penduduk = DB::table('penduduk')
+            ->join('wilayah', 'penduduk.id_wilayah', '=', 'wilayah.id_wilayah')
+            ->join('agama', 'penduduk.id_agama', '=', 'agama.id_agama')
+            ->join('pendidikan', 'penduduk.id_pendidikan', 'pendidikan.id_pendidikan')
+            ->join('pekerjaan', 'penduduk.id_pekerjaan', '=', 'pekerjaan.id_pekerjaan')
+            ->join('status', 'penduduk.id_status', '=', 'status.id_status')
+            ->select('penduduk.*', 'agama.*', 'pendidikan.*', 'pekerjaan.*', 'wilayah.*', 'status.*', DB::raw('FLOOR(DATEDIFF(CURDATE(), penduduk.tanggal_lahir) / 365) as umur'))
+            ->where('penduduk.id_penduduk', $id)
+            ->get();
+
+        return view('admin.editPenduduk', compact('user', 'users', 'penduduk'));
     }
 
 
