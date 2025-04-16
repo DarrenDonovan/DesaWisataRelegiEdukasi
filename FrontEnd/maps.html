@@ -120,6 +120,11 @@
                 .container-fluid.bg-breadcrumb {
                     height: 60% !important;
                 }
+
+                /* MAPS */
+                .container-fluid.py-5 {
+                    width: 100% !important;
+                }
             }
             @media (min-width: 322px) and (max-width: 380px) {
                 /* NAVBAR */
@@ -493,13 +498,13 @@
                 <h5 class="section-title px-3">Peta Kecamatan</h5>
                 <h1 class="mb-0">Menampilkan Peta Kecamatan Tigaraksa Dengan Penandaan Lokasi Setiap Desa</h1>
             </div>
-            <div class="container-fluid py-5" style="border: 2px solid red; width: 80%;">
+            <div class="container-fluid py-5" style="border: 2px solid red; width: 90%;">
                 <select id="categoryFilter">
                     <option class="pilihan" value="all">Semua</option>
                     <option value="Desa">Desa</option>
                     <option value="Kelurahan">Kelurahan</option>
                 </select>
-                <div id="map" style="border: 2px solid red;"></div>
+                <div id="map"></div>
                 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
                 <br>
             </div>
