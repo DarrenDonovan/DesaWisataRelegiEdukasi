@@ -123,64 +123,78 @@
 							<p class="alert alert-success mt-2">{{ Session::get('message') }}</p>
 						@endif
 		  				<!-- Daftar Wisata -->
+                        <a href="{{ route('admin.penduduk') }}">
+							<p style="font-size: 18px; text-decoration: underline; margin-top:10px">Back</p>
+						</a>	
 					<div class="d-flex justify-content-between align-items-center">
-						<h4 class="page-title mt-2">Data Kependudukan</h4>
-						<button type="button" class="btn btn-primary mb-4 mt-2" data-bs-toggle="modal" data-bs-target="#modalTambah_wisata">Tambah Wisata</button>	
-					</div>				
+						<h4 class="page-title mt-1">Edit Data Kependudukan</h4>
+					</div>		
+                        @foreach ($penduduk as $itemPenduduk)		
 						<div class="row">
 							<div class="col">
 								<div class="card">
-									<div class="card-body" style="overflow-x:auto; white-space:nowrap;">
-										<table class="table table-striped" style="overflow-x:auto">
-											<thead>
-												<tr>
-                                                    <th scope="col">Action</th>
-                                                    <th scope="col">Foto</th>
-													<th scope="col">Nomor Induk Kependudukan</th>
-													<th scope="col">Nama Lengkap</th>
-													<th scope="col">Jenis Kelamin</th>
-													<th scope="col">Tempat Lahir</th>
-													<th scope="col">Umur</th>
-													<th scope="col">Alamat</th>
-                                                    <th scope="col">Wilayah</th>
-                                                    <th scope="col">Agama</th>
-                                                    <th scope="col">Pendidikan Terakhir</th>
-                                                    <th scope="col">Pekerjaan</th>
-                                                    <th scope="col">Status</th>
-                                                    <th scope="col">Tanggal Terdaftar</th>
-												</tr>
-											</thead>
-											<tbody>
-    				                        @foreach ($penduduk as $itemPenduduk)
-                                                <tr>
-                                                    <td><a href="{{ route('admin.editPenduduk', $itemPenduduk->id_penduduk) }}">Edit</a></td>
-                                                    <td>
-                                                    @if($itemPenduduk->gambar_biodata)
-                                                        <img src="{{ asset('storage/' . $itemPenduduk->gambar_biodata) }}" width="60" height="80" alt=""> 
-                                                    @else
-                                                        Tidak ada gambar
-                                                    @endif
-                                                    </td>
-                                                    <td>{{ $itemPenduduk->NIK }}</td>
-                                                    <td>{{ $itemPenduduk->nama_lengkap }}</td>
-                                                    <td>{{ $itemPenduduk->jenis_kelamin }}</td>
-                                                    <td>{{ $itemPenduduk->tempat_lahir }}</td>
-                                                    <td>{{ $itemPenduduk->umur }} Tahun</td>
-                                                    <td>{{ $itemPenduduk->alamat }}</td>
-                                                    <td>{{ $itemPenduduk->nama_wilayah }}</td>
-                                                    <td>{{ $itemPenduduk->agama }}</td>
-                                                    <td>{{ $itemPenduduk->tingkat_pendidikan }}</td>
-                                                    <td>{{ $itemPenduduk->pekerjaan }}</td>
-                                                    <td>{{ $itemPenduduk->status }}</td>
-                                                    <td>{{ $itemPenduduk->tanggal_terdaftar }}</td>
-                                                </tr>
-                                            @endforeach
-											</tbody>
-                                        </table>
+									<div class="card-body">
+                                        <div class="row">
+                                            <div class="col col-md-4">
+                                                <img src="{{ asset('storage/' . $itemPenduduk->gambar_biodata) }}" alt="" width="300" height="400">
+                                                <button>Edit Gambar</button>
+                                            </div>
+                                            <div class="col col-md-8">
+                                                <form action="" method="post" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <label for="nik">Nomor Induk Kependudukan</label>
+                                                        <input type="text" class="form-control" name="nik" id="nik" value="{{ $itemPenduduk->NIK }}" disabled>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="nama_lengkap">Nama Lengkap</label>
+                                                        <input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" value="{{ $itemPenduduk->nama_lengkap }}" required>
+                                                    </div>
+                                                    <div class="form-group"> <!-- Jenis Kelamin -->
+                                                        <label for="jenis_kelamin">Jenis Kelamin</label>
+                                                        <input type="text" class="form-control" name="jenis_kelamin" id="jenis_kelamin" value="{{ $itemPenduduk->jenis_kelamin }}" required>
+                                                    </div>
+                                                    <div class="form-group"> <!-- Tempat Lahir -->
+                                                        <label for="tempat_lahir">Tempat Lahir</label>
+                                                        <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" value="{{ $itemPenduduk->tempat_lahir }}" required>
+                                                    </div>
+                                                    <div class="form-group"> <!-- Tanggal Lahir -->
+                                                        <label for="tanggal_lahir">Tanggal Lahir</label>
+                                                        <input type="text" class="form-control" name="tanggal_lahir" id="tanggal_lahir" value="{{ $itemPenduduk->tanggal_lahir }}" required>
+                                                    </div>
+                                                    <div class="form-group"> <!-- Alamat -->
+                                                        <label for="alamat">Alamat</label>
+                                                        <input type="text" class="form-control" name="alamat" id="alamat" value="{{ $itemPenduduk->alamat }}" required>
+                                                    </div>
+                                                    <div class="form-group"> <!-- Wilayah -->
+                                                        <label for="wilayah">Wilayah</label>
+                                                        <input type="text" class="form-control" name="wilayah" id="wilayah" value="{{ $itemPenduduk->nama_wilayah }}" required>
+                                                    </div>
+                                                    <div class="form-group"> <!-- Agama -->
+                                                        <label for="agama">Agama</label>
+                                                        <input type="text" class="form-control" name="agama" id="agama" value="{{ $itemPenduduk->agama }}" required>
+                                                    </div>
+                                                    <div class="form-group"> <!-- Pendidikan -->
+                                                        <label for="pendidikan">Pendidikan</label>
+                                                        <input type="text" class="form-control" name="pendidikan" id="pendidikan" value="{{ $itemPenduduk->tingkat_pendidikan }}" required>
+                                                        <button>Tambah Pekerjaan</button>
+                                                    </div>
+                                                    <div class="form-group"> <!-- Pekerjaan -->
+                                                        <label for="pekerjaan">Pekerjaan</label>
+                                                        <input type="text" class="form-control" name="pekerjaan" id="pekerjaan" value="{{ $itemPenduduk->pekerjaan }}" required>
+                                                    </div>
+                                                    <div class="form-group"> <!-- Status -->
+                                                        <label for="status">Status</label>
+                                                        <input type="text" class="form-control" name="status" id="status" value="{{ $itemPenduduk->status }}" required>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
 									</div>
 								</div>
 							</div>
 						</div>
+                        @endforeach
 					</div>
 				</div>
 			</div>
