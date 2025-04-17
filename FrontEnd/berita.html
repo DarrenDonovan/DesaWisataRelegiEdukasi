@@ -733,6 +733,45 @@
                     padding: 6px 8px !important;
                 }
             }
+            .container {
+                max-width: 100% !important;
+                }
+                img, iframe, video {
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+            .pagination-wrapper {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: 0 10px;
+                display: flex;
+                justify-content: center; /* Untuk memastikan wrapper terpusat */
+            }
+
+            .pagination-container {
+                display: flex;
+                align-items: center;
+                gap: 2px;
+                flex-wrap: nowrap;
+                justify-content: center; /* Ini akan memastikan elemen-elemen di dalamnya juga terpusat */
+                width: max-content;
+            }
+
+            .pagination-number.arrow {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .pagination-number {
+                padding: 8px 12px;
+                background-color: #0c214c;
+                color: white;
+                border-radius: 6px;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
         </style> 
     </head>
 
@@ -940,8 +979,8 @@
                 </div>
 
                 <!-- Pagination -->
-                <div class="d-flex justify-content-center mt-5">
-                    <div class="pagination-container d-flex align-items-center gap-2">
+                <div class="pagination-wrapper overflow-auto mt-5">
+                    <div class="pagination-container d-flex align-items-center gap-2 flex-nowrap" style="width: max-content;">
                         <!-- Left Arrow -->
                         <div class="pagination-number arrow d-flex align-items-center">
                             <svg width="18" height="18">
