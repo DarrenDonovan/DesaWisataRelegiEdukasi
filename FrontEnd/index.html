@@ -49,57 +49,35 @@
             .kec {
                 margin-left: 6px;
             }
-            @media (max-width: 992px) {
-
-                .navbar-brand .fa {
-                    font-size: 25px !important;
-                }
-                .navbar-toggler.scrolled {
-                    color: #13357b !important;
-                    border-color: #13357b !important;
-                }
-
-                .navbar-brand h1.scrolled {
-                    color: #13357b !important;
-                    border-color: #13357b !important;
-                }
-
-                .navbar-brand h1 .subtext.scrolled {
-                    color: #13357b !important;
-                    border-color: #13357b !important;
-                    
-                }
-                .navbar-nav {
-                    background-color: #ffff;
-                    padding: 10px;
-                    border-radius: 5px;
-                }
-                .navbar-brand h1 {
-                    color: #ffff !important;
-                }
-                .navbar-toggler  {
-                    color: #ffff !important;
-                    border-color: #ffff !important;
-                }
-                /* HERO SECTION */
-                .p-3 h1{
-                    font-size: 50px;
-                }
-                .p-3 p {
-                    font-size: 18px !important;
-                }
-                /* SEARCH */
-                .container-fluid.w-100.search-bar {
-                    width: 350px !important;
-                }
-                .container-fluid.w-100.search-bar .btn {
-                    font-size: 13px;
-                }
-                /* KEGIATAN */
-                .nav.nav-pills {
-                    font-size: 15px;
-                }
+            .search-container {
+                display: flex;
+                align-items: center;
+                border: 2px solid #2c3e50;
+                border-radius: 6px;
+                padding: 8px 12px;
+                width: 250px;
+                background-color: white;
             }
+
+            .search-icon {
+                font-size: 18px;
+                margin-right: 8px;
+                color: #2c3e50;
+            }
+
+            .search-input {
+                border: none;
+                outline: none;
+                flex: 1;
+                font-size: 16px;
+                color: #2c3e50;
+            }
+
+            .search-input::placeholder {
+                color: #ccc;
+            }
+
+            
             @media (min-width: 310px) and (max-width: 469px) {
                 /* FOOTER */
                 .footer {
@@ -133,6 +111,7 @@
                 }
             }
             @media (max-width: 321px){
+                /* NAVBAR */
                 .navbar.navbar-expand-lg.navbar-light {
                     /* border: 2px solid red; */
                     padding-left: 20px !important;
@@ -156,29 +135,69 @@
                     color: #ffff !important;
                     border-color: #ffff !important;
                 }
-                
                 .collapse {
                     font-size: 20px;
                 }
+                /* HERO */
+                .p-3 h4{
+                    margin-top: 60px;
+                }
+                .p-3 h1{
+                    margin-left: 60px;
+                    margin-right: 60px;
+                    max-width: 600px;
+                    font-size: 30px !important;
+                }
+                .mb-5.fs-5 {
+                    padding-left: 30px !important;
+                    padding-right: 30px;
+                    max-width: 300px;
+                    font-size: 15px !important;
+                    margin-left: 30px;
+                    margin-right: 30px;
+                }
+
+                /* SEARCH */
+                .container-fluid.w-100.search-bar {
+                    border: 2px solid yellow;
+                    width: 100% !important;
+                }
+                .container-fluid.w-100.search-bar .btn {
+                    border: 2px solid red;
+                }
+                .form-control {
+                    border: 2px solid green;
+                }
 
                 /* BERITA */
-               .row {
-                overflow: hidden;
-                /* border: 2px solid blue; */
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin: 0px;
-                padding: 0px;
-               }
-               .col-12.col-sm-6 {
-                margin: 0px !important;
-                padding: 0px !important;
-            }
-            /* FOOTER */
-            .col-md-6.col-lg-6.col-xl-3 {
-                padding: 0px !important;
-            }
+                .container-fluid.mt-5 {
+                    padding: 30px !important;
+                }
+                .row {
+                    overflow: hidden;
+                    /* border: 2px solid blue; */
+                    margin: 0px;
+                    padding: 0px;
+                }
+                .col-12.col-sm-6 {
+                    margin: 5px !important;
+                    padding: 0px !important;
+                }
+
+                /* GALERY */
+                .dropdown.d-lg-none {
+                    margin-bottom: 0px;
+                }
+                .tab-class.text-center {
+                    padding: 0px !important;
+                }
+                .tab-content {
+                    padding: 0px !important;
+                }
+                    /* FOOTER */
+                .col-md-6.col-lg-6.col-xl-3 {
+                    padding: 0px !important;
+                }
         }
 
             @media (min-width: 322px) and (max-width: 380px) {
@@ -255,8 +274,15 @@
             }
 
             @media (min-width: 381px) and (max-width: 426px) {
+                .navbar-brand .m-0 {
+                    font-size: 23px;
+                }
+                .navbar-brand .subtext {
+                    font-size: 18px;
+                    margin: 0px !important;
+                }
                 .navbar-brand .fa {
-                    margin-right: 13px !important;
+                    font-size: 20px !important;
                 }
                 .navbar-brand h1 .subtext {
                     margin: 0px !important;
@@ -279,18 +305,6 @@
                 .col-12.col-sm-6 {
                     width: 300px;
                      margin: 0px !important; 
-                }
-            }
-            @media (max-width: 450px){
-                .navbar-brand .m-0 {
-                    font-size: 23px;
-                }
-                .navbar-brand .subtext {
-                    font-size: 18px;
-                    margin: 0px !important;
-                }
-                .navbar-brand .fa {
-                    font-size: 20px !important;
                 }
                 /* HERO  SECTION */
                 .p-3 h4{
@@ -354,7 +368,7 @@
                 }
             }
 
-            @media (min-width: 551) and (max-width: 770px){
+            @media (min-width: 426px) and (max-width: 770px){
                 .navbar-brand .m-0 {
                     font-size: 23px;
                 }
@@ -380,6 +394,57 @@
                     height: 50px;
                 }
             }
+            @media (max-width: 992px) {
+
+                .navbar-brand .fa {
+                    font-size: 25px !important;
+                }
+                .navbar-toggler.scrolled {
+                    color: #13357b !important;
+                    border-color: #13357b !important;
+                }
+
+                .navbar-brand h1.scrolled {
+                    color: #13357b !important;
+                    border-color: #13357b !important;
+                }
+
+                .navbar-brand h1 .subtext.scrolled {
+                    color: #13357b !important;
+                    border-color: #13357b !important;
+                    
+                }
+                .navbar-nav {
+                    background-color: #ffff;
+                    padding: 10px;
+                    border-radius: 5px;
+                }
+                .navbar-brand h1 {
+                    color: #ffff !important;
+                }
+                .navbar-toggler  {
+                    color: #ffff !important;
+                    border-color: #ffff !important;
+                }
+                /* HERO SECTION */
+                .p-3 h1{
+                    font-size: 50px;
+                }
+                .p-3 p {
+                    font-size: 18px !important;
+                }
+                /* SEARCH */
+                .container-fluid.w-100.search-bar {
+                    width: 350px !important;
+                }
+                .container-fluid.w-100.search-bar .btn {
+                    font-size: 13px;
+                }
+                /* KEGIATAN */
+                .nav.nav-pills {
+                    font-size: 15px;
+                }
+            }
             
             @media screen and (max-width: 1120px) {
                 .navbar {
@@ -387,7 +452,7 @@
                 }
             }
 
-            @media (min-width: 2500px) {
+            @media (min-width: 2000px) {
                 /* NAVBAR */
                 .navbar {
                     height: 180px;
@@ -642,12 +707,13 @@
                                     </p>
 
                                     <!-- search button -->
-                                    <div class="container-fluid w-100 search-bar position-relative" style="max-width: 100%; top: -50%; transform: translateY(-50%);">
-                                        <div class="position-relative rounded-pill w-100 mx-auto p-3" style="background: rgba(19, 53, 123, 0.8);">
-                                            <input class="form-control border-0 rounded-pill w-100 py-2 ps-4" style="padding-right: 85px;" type="text" placeholder="🔍 Cari...">
-                                            <button type="button" class="btn btn-primary rounded-pill py-1 px-3 position-absolute me-1" style="top: 50%; right: 20px; transform: translateY(-50%);">Search</button> 
-                                        </div>
-                                    </div>
+                                    <div class="search-container">
+                                        <span class="search-icon">
+                                          🔍
+                                        </span>
+                                        <input type="text" class="search-input" placeholder="Search...">
+                                      </div>
+                                      
                                 </div>
                                 </div>
                             </div>
@@ -683,14 +749,14 @@
        
         </div>
         <!-- BERITA -->
-        <div class="container-fluid mt-5" style=" padding: 100px;">
-            <div class="mx-auto text-center mb-5" style="max-width: 800px;">
+        <div class="container-fluid mt-5" style=" padding: 100px; border: 2px solid red;">
+            <div class="mx-auto text-center mb-5" style="max-width: 800px; border: 2px solid blue;">
                 <h5 class="section-title px-3">Highlight</h5>
                 <h1 class="mb-0">Berita Terbaru Kecamatan Tigaraksa</h1>
             </div>
-            <div class="row">
+            <div class="row"  style="border: 2px solid blue; display: flex; justify-content: center; align-items: center;">
                 <!-- Berita 1 -->
-                <div class="col-12 col-sm-6 col-md-4 mb-4" >
+                <div class="col-12 col-sm-6 col-md-4 mb-4">
                     <div class="card h-100">
                         <img src="img/blog-1.jpg" class="card-img-top" alt="Gambar Berita">
                         <div class="card-body">
@@ -743,11 +809,11 @@
         <!-- Kegiatan Start -->
         <div class="container-fluid destination py-5">
             <div class="container-fluid py-5">
-                <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+                <div class="mx-auto text-center mb-5" style="max-width: 900px; ">
                     <h5 class="section-title px-3">Galeri</h5>
                     <h1 class="mb-0">Kegiatan</h1>
                 </div>
-                <div class="tab-class text-center">
+                <div class="tab-class text-center" style="border: 2px solid blue;">
                     <ul class="nav nav-pills d-flex flex-wrap justify-content-center gap-2 mb-5 d-lg-flex d-none" id="nav-pills">
                         <li class="nav-item">
                             <a class="d-flex mx-1 py-2 px-3 border border-primary bg-light rounded-pill active" data-bs-toggle="pill" href="#tab-1">
@@ -782,7 +848,7 @@
                     </ul>
                 
                     <!-- Dropdown untuk layar kecil -->
-                    <div class="dropdown d-lg-none d-block mb-5">
+                    <div class="dropdown d-lg-none d-block">
                         <button class="btn btn-primary dropdown-toggle w-80" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             Pilih Kategori
                         </button>

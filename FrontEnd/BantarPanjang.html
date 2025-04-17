@@ -109,14 +109,15 @@
 
       /* CARD WISATA */
         .containerWisata {
-            max-width: 1400px;
+            max-width: 3000px;
             margin: auto;
             text-align: center;
+            padding: 50px;
         }
 
         .gridWisata {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(800px, 1fr));
             gap: 20px;
         }
 
@@ -154,9 +155,10 @@
         }
         /* UMKM CSS */
         .containerUMKM {
-            max-width: 1400px;
+            max-width: 3000px;
             margin: auto;
             text-align: center;
+            padding: 50px;
         }
 
         .gridUMKM {
@@ -352,9 +354,12 @@
                 }
 
                 /* UMKM */
+                .containerUMKM {
+                  padding: 15px !important;
+                }
                 .gridUMKM {
                   /* border: 2px solid blue; */
-                  padding: 5px;
+                  /* padding: 5px; */
                   display: grid;
                   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
                   height: 450px;
@@ -421,22 +426,28 @@
               
                 /* WISATA */
                .containerWisata {
-                  /* border: 2px solid red !important; */
+                  border: 2px solid red !important;
                   width: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  padding: 4px !important;
                 }
                 .gridWisata {
                   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
                   height: 700px;
-                  padding: 10px;
+                  /* padding: 10px; */
                 }
                 .cardW .info {
                   font-size: 15px;
                 }
 
                 /* UMKM */
+                .containerUMKM {
+                  padding: 6px !important;
+                }
                 .gridUMKM {
                   /* border: 2px solid blue; */
-                  padding: 6px;
                   display: grid;
                   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
                   height: 450px;
@@ -528,20 +539,21 @@
                .containerWisata {
                   /* border: 2px solid red !important; */
                   width: 100%;
+                  padding: 10px !important;
                 }
                 .gridWisata {
                   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
                   height: 800px;
-                  padding: 10px;
                 }
                 .cardW .info {
                   font-size: 15px;
                 }
 
                 /* UMKM */
+                .containerUMKM {
+                  padding: 10px !important;
+                }
                 .gridUMKM {
-                  /* border: 2px solid blue; */
-                  padding: 10px;
                   display: grid;
                   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
                   height: 450px;
@@ -596,17 +608,20 @@
                .containerWisata {
                   /* border: 2px solid red !important; */
                   width: 100%;
+                  padding: 15px !important;
                 }
                 .gridWisata {
                   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
                   height: 700px;
-                  padding: 15px;
                 }
                 .cardW .info {
                   font-size: 15px;
                 }
 
                 /* UMKM */
+                .containerUMKM {
+                  padding: 10px;
+                }
                 .gridUMKM {
                   /* border: 2px solid blue; */
                   padding: 15px;
@@ -653,10 +668,10 @@
             }
             @media (min-width: 770) and (max-width: 1025px) {
                 .mx-auto h5 {
-                    font-size: 26px !important;
+                    font-size: 17px !important;
                 }
                 .mx-auto h1 {
-                    font-size: 19px;
+                    font-size: 30px;
                 }
                 .navbar {
                     height: 180px;
@@ -694,7 +709,7 @@
                 .proDes h2 {
                   margin-top: 0;
                   font-size: 20px;
-                  border: 2px solid blue;
+                  border: 2px solid blue !important;
                 }
                 .proDes p {
                   font-size: 16px;
@@ -713,7 +728,7 @@
                   width: 100%;
                 }
                 .gridWisata {
-                  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
                   height: 700px;
                   padding: 15px;
                 }
@@ -730,7 +745,7 @@
                   height: 450px;
                   gap: 20px;
                 }
-                .cardu .info {
+                .cardU .info {
                   font-size: 15px;
                 }
                 
@@ -762,7 +777,57 @@
                 }
             }
 
-            @media  (min-width: 2500px) {
+            @media (min-width: 1026px) and (max-width: 1441px) {
+              .text-white.display-3 .small-text.d-block {
+                font-size: 25px;
+              }
+              .text-white.display-3 {
+                font-size: 45px;
+              }
+              .mx-auto.text-center {
+                margin-bottom: 10px !important;
+              }
+              .mx-auto h5 {
+                font-size: 17px;
+              }
+              .mx-auto h1 {
+                font-size: 30px;
+              }
+              .containerProDes {
+                padding-top: 10px;
+              }
+              /* WISATA */
+              .containerWisata {
+                  /* border: 2px solid red !important; */
+                  width: 100%;
+                }
+                .gridWisata {
+                  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+                  height: 700px;
+                  padding: 15px;
+                }
+                .cardW img {
+                  height: 250px;
+                }
+                .cardW .info {
+                  font-size: 20px;
+                }
+
+                /* UMKM */
+                .gridUMKM {
+                  /* border: 2px solid blue; */
+                  padding: 15px;
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+                  height: 450px;
+                  gap: 20px;
+                }
+                .cardU .info {
+                  font-size: 20px;
+                }
+            }
+
+            @media (min-width: 1921px) {
                 
                 .mx-auto h5 {
                     font-size: 35px !important;
@@ -822,6 +887,70 @@
                 #map {
                     height: 700px !important;
                 }
+                /* PROFILE DESA */
+                .containerProDes {
+                  border: 2px solid blue;
+                  width: 60%;
+                }
+                .proDes {
+                  padding-left: 50px;
+                }
+                .proDes h2 {
+                  font-size: 60px;
+                }
+                .proDes p {
+                  font-size: 35px;
+                }
+                .proDes td {
+                  font-size: 30px;
+                }
+                .gmbrDesa {
+                  width: 50% !important;
+                  border: 2px solid red;
+                }
+
+                /* WISATA */
+               .containerWisata {
+                  border: 2px solid red !important;
+                  overflow: hidden;
+                  width: 2500px;
+                  padding: 80px !important;
+                }
+                .gridWisata {
+                  border: 2px solid red !important;
+                  grid-template-columns: repeat(auto-fit, minmax(850px, 1fr));
+                  height: 900px;
+                  /* padding: 15px; */
+                }
+                .cardW .info {
+                  margin-left: 4px;
+                  font-size: 30px;
+                }
+                .cardW img {
+                  height: 300px;
+                }
+
+                /* UMKM */
+                .containerUMKM {
+                  /* border: 2px solid red; */
+                  padding: 80px;
+                  margin: 25px;
+                }
+                .gridUMKM {
+                  /* border: 2px solid blue; */
+                  /* padding: 15px; */
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(700px, 1fr));
+                  height: 600px;
+                  gap: 20px;
+                }
+                .cardU img {
+                  height: 300px;
+                }
+                .cardU .info {
+                  font-size: 30px;
+                }
+
                 /* FOOTER */
                 .footer {
                     /* border: 2px solid blue; */
@@ -911,7 +1040,7 @@
     <!-- Navbar & Hero End -->
 
     <!-- Header Start -->
-    <div class="container-fluid bg-breadcrumb">
+    <div class="container-fluid bg-breadcrumb" style="display: flex; justify-content: center; align-items: center; height: 50vh;">
       <h3 class="text-white display-3 mb-4 text-center">
         <span class="small-text d-block">Desa</span>
         Bantar Panjang
@@ -1021,7 +1150,7 @@
       <h5 class="section-title px-3"> Wisata </h5>
       <h1 class="mb-0">Jelajahi Wisata Lokal</h1>
     </div>
-    <div class="containerWisata">
+    <div class="containerWisata" >
       <div class="gridWisata">
           <div class="cardW">
             <a href="wisata.html">
