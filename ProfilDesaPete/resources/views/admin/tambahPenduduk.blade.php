@@ -145,7 +145,7 @@
                                                     <div class="form-group row">
 														<div class="col col-md-4">
                                                         	<label for="nik">Nomor Induk Kependudukan</label>
-                                                        	<input type="text" class="form-control" name="nik" id="nik" value="" disabled>
+                                                        	<input type="text" class="form-control" name="nik" id="nik" value="" required>
 															<!-- <div class="form-check">
 																<input type="checkbox" class="form-check-input" id="hasNik" onchange="toggleNikInput()">
 																<label class="form-check-label" for="hasNik">Sudah Memiliki NIK?</label>
