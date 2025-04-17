@@ -125,7 +125,7 @@
 		  				<!-- Daftar Wisata -->
 					<div class="d-flex justify-content-between align-items-center">
 						<h4 class="page-title mt-2">Data Kependudukan</h4>
-						<button type="button" class="btn btn-primary mb-4 mt-2" data-bs-toggle="modal" data-bs-target="#modalTambah_wisata">Tambah Wisata</button>	
+						<a href="{{ route('admin.tambahPenduduk') }}" class="btn btn-primary">Tambah Penduduk</a>	
 					</div>				
 						<div class="row">
 							<div class="col">

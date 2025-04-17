@@ -127,17 +127,16 @@
 							<p style="font-size: 18px; text-decoration: underline; margin-top:10px">Back</p>
 						</a>	
 					<div class="d-flex justify-content-between align-items-center">
-						<h4 class="page-title mt-1">Edit Data Kependudukan</h4>
+						<h4 class="page-title mt-1">Tambah Data Penduduk</h4>
 					</div>		
-                        @foreach ($penduduk as $itemPenduduk)		
 						<div class="row">
 							<div class="col">
 								<div class="card">
 									<div class="card-body">
                                         <div class="row">
-                                            <div class="col col-md-4 text-center">
-                                                <img src="{{ asset('storage/' . $itemPenduduk->gambar_biodata) }}" alt="" width="300" height="400">
-												<button type="button" class="btn btn-primary mb-4 mt-3" data-bs-toggle="modal" data-bs-target="#modalTambah_wisata">Edit Gambar</button>	
+                                            <div class="col col-md-4 text-center mt-3">
+                                                <img src="{{ asset('img/dummy-man.png') }}" alt="" width="300" height="300">
+												<button type="button" class="btn btn-primary mb-4 mt-3" data-bs-toggle="modal" data-bs-target="#modalTambah_wisata">Tambah Gambar</button>
 											</div>
                                             <div class="col col-md-8">
                                                 <form action="" method="post" enctype="multipart/form-data">
@@ -146,7 +145,7 @@
                                                     <div class="form-group row">
 														<div class="col col-md-4">
                                                         	<label for="nik">Nomor Induk Kependudukan</label>
-                                                        	<input type="text" class="form-control" name="nik" id="nik" value="{{ $itemPenduduk->NIK }}" disabled>
+                                                        	<input type="text" class="form-control" name="nik" id="nik" value="" disabled>
 															<!-- <div class="form-check">
 																<input type="checkbox" class="form-check-input" id="hasNik" onchange="toggleNikInput()">
 																<label class="form-check-label" for="hasNik">Sudah Memiliki NIK?</label>
@@ -154,45 +153,45 @@
 														</div>
 														<div class="col-md-8">
                                                         	<label for="nama_lengkap">Nama Lengkap</label>
-                                                        	<input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" value="{{ $itemPenduduk->nama_lengkap }}" required>
+                                                        	<input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" value="" required>
 														</div>
 													</div>
 													<div class="form-group row">
 														<div class="col col-md-4"> <!-- Jenis Kelamin -->
                                                     	    <label for="jenis_kelamin">Jenis Kelamin</label>
-                                                    	    <input type="text" class="form-control" name="jenis_kelamin" id="jenis_kelamin" value="{{ $itemPenduduk->jenis_kelamin }}" required>
+                                                    	    <input type="text" class="form-control" name="jenis_kelamin" id="jenis_kelamin" value="" required>
                                                     	</div>
 														<div class="col col-md-4"> <!-- Tempat Lahir -->
                                                     	    <label for="tempat_lahir">Tempat Lahir</label>
-                                                    	    <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" value="{{ $itemPenduduk->tempat_lahir }}" required>
+                                                    	    <input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" value="" required>
                                                     	</div>
                                                     	<div class="col col-md-4"> <!-- Tanggal Lahir -->
                                                     	    <label for="tanggal_lahir">Tanggal Lahir</label>
-                                                    	    <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" value="{{ $itemPenduduk->tanggal_lahir }}" required>
+                                                    	    <input type="date" class="form-control" name="tanggal_lahir" id="tanggal_lahir" value="" required>
                                                     	</div>
 													</div>
                                                    	<div class="form-group row">
                                                     	<div class="col col-md-8"> <!-- Alamat -->
                                                     	    <label for="alamat">Alamat</label>
-                                                    	    <input type="text" class="form-control" name="alamat" id="alamat" value="{{ $itemPenduduk->alamat }}" required>
+                                                    	    <input type="text" class="form-control" name="alamat" id="alamat" value="" required>
                                                     	</div>
                                                     	<div class="col col-md-4"> <!-- Wilayah -->
                                                     	    <label for="wilayah">Wilayah</label>
-                                                    	    <input type="text" class="form-control" name="wilayah" id="wilayah" value="{{ $itemPenduduk->nama_wilayah }}" required>
+                                                    	    <input type="text" class="form-control" name="wilayah" id="wilayah" value="" required>
                                                     	</div>
 													</div>
 													<div class="form-group row">
                                                     	<div class="col col-md-4"> <!-- Agama -->
                                                     	    <label for="agama">Agama</label>
-                                                    	    <input type="text" class="form-control" name="agama" id="agama" value="{{ $itemPenduduk->agama }}" required>
+                                                    	    <input type="text" class="form-control" name="agama" id="agama" value="" required>
                                                     	</div>
                                                     	<div class="col col-md-4"> <!-- Pendidikan -->
                                                     	    <label for="pekerjaan">Pekerjaan</label>
-                                                    	    <input type="text" class="form-control" name="pekerjaan" id="pekerjaan" value="{{ $itemPenduduk->pekerjaan }}" required>
+                                                    	    <input type="text" class="form-control" name="pekerjaan" id="pekerjaan" value="" required>
                                                     	</div>
 														<div class="col col-md-4">
                                                     		<label for="pendidikan">Pendidikan</label>
-                                                    		<input type="text" class="form-control" name="pendidikan" id="pendidikan" value="{{ $itemPenduduk->tingkat_pendidikan }}" required>
+                                                    		<input type="text" class="form-control" name="pendidikan" id="pendidikan" value="" required>
 														</div>
 													</div>
 													<div class="form-group row">
@@ -306,7 +305,7 @@
 													<div class="form-group row">
 														<div class="col col-md-6">
 															<label for="status_kawin">Status Perkawinan</label>
-															<input type="text" class="form-control" name="status_kawin" id="status_kawin" value="{{ $itemPenduduk->status }}" required>
+															<input type="text" class="form-control" name="status_kawin" id="status_kawin" value="" required>
 														</div>
 														<div class="col col-md-6">
 															<label for="no_akta_nikah">No. Akta Nikah</label>
@@ -357,7 +356,6 @@
 								</div>
 							</div>
 						</div>
-                        @endforeach
 					</div>
 				</div>
 			</div>
